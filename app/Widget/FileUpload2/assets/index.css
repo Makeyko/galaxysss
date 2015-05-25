@@ -1,0 +1,8 @@
+.photo_form_img{
+    width:150px;
+    height:150px;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    position:relative;
+}
