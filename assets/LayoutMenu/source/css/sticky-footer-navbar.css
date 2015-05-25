@@ -1,0 +1,75 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 120px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #cccccc;
+    opacity: 0.5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 0px 100px 0px;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+.newsItem {
+    height: 650px;
+}
+.newsItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.unityItem {
+    height: 650px;
+}
+.unityItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.unityCategoryItem {
+    height: 650px;
+}
+.unityCategoryItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.articleItem {
+    height: 650px;
+}
+.articleItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
