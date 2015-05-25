@@ -3,5 +3,4 @@ db.php
 db.php.dev
 db.php.prod
 params.php
-web.php
 authClientCollection.php
