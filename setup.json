@@ -1,0 +1,53 @@
+{
+    "mails": [
+        {
+            "mail": "no-reply@galaxysss.ru",
+            "password": "no-reply1"
+        },
+        {
+            "mail": "admin@galaxysss.ru",
+            "password": "admin1"
+        },
+        {
+            "mail": "authclients@galaxysss.ru",
+            "password": "authclients1"
+        },
+        {
+            "mail": "web.development@galaxysss.ru",
+            "password": "web.development1"
+        }
+    ],
+    "authClients": [
+        {
+            "name": "Facebook",
+            "login": "authclients@galaxysss.ru",
+            "password": "dram10081",
+            "application": {
+                "id": "1114239771926233",
+                "xfbml": true,
+                "version": "v2.3",
+                "appSecret": "51ae4b3deed4a2c8d35356069aff55ad"
+            }
+        },
+        {
+            "name": "Vkontakte",
+            "login": "+79853570480",
+            "password": "dram10081",
+            "application": {
+                "id": "4896568",
+                "appSecret": "lQD6kk2VshQlxEaw27Pw"
+
+            }
+        }
+    ],
+    "ftp": {
+        "url":"ultra.timeweb.ru",
+        "login":"galaxysss",
+        "password":"AKW7FVUu"
+    },
+    "google": {
+        "mail": "web.development@galaxysss.ru",
+        "password": "web.development1",
+        "secondMail":"authclients@galaxysss.ru"
+    }
+}
