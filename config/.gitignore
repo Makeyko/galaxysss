@@ -1,7 +1,0 @@
-!.gitignore
-db.php
-db.php.dev
-db.php.prod
-params.php
-authClientCollection.php
-mailerTransport.php
