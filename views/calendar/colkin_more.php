@@ -65,6 +65,7 @@ function colorStamp($stamp)
                     bgcolor="<?= ($day['isPortal']) ? 'green' : (($day['kin'] > 120 and $day['kin'] <= 140) ? '#dcdcdc' : colorStamp($day['stamp'])) ?>"
                     height="30"
                     width="40"
+                    <?= ($day['isToday'] == 1) ? "style='border: 3px solid red'" : ''  ?>
                     >
 
                     <img

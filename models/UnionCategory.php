@@ -15,11 +15,14 @@ class UnionCategory extends \cs\base\DbRecord
      */
     public function getUnions()
     {
-        return Union::query(['tree_node_id' => $this->getId()])
+        return Union::query([
+            'tree_node_id'      => $this->getId(),
+            'moderation_status' => 1,
+        ])
             ->orderBy(['sort_index' => SORT_ASC])
             ->orderBy([
-                'if(sort_index is NULL, 1, 0)'  => SORT_ASC,
-                'sort_index' => SORT_ASC,
+                'if(sort_index is NULL, 1, 0)' => SORT_ASC,
+                'sort_index'                   => SORT_ASC,
             ])
             ->all();
     }
@@ -45,11 +48,13 @@ class UnionCategory extends \cs\base\DbRecord
      */
     public static function getRows($id = null, $select = '*')
     {
-        return self::query(['parent_id' => $id])
+        return self::query([
+            'parent_id' => $id,
+        ])
             ->select($select)
             ->orderBy([
-                'if(sort_index is NULL, 1, 0)'  => SORT_ASC,
-                'sort_index' => SORT_ASC,
+                'if(sort_index is NULL, 1, 0)' => SORT_ASC,
+                'sort_index'                   => SORT_ASC,
             ])
             ->all();
     }

@@ -133,5 +133,17 @@ $this->title = 'О нас';
         <area shape="poly" coords="116,223,213,255,198,283,101,255" href="/medical" alt="Здоровье">
         <area shape="poly" coords="213,129,273,198,222,219,184,145" href="/food" alt="Питание">
     </map>
+
+    <hr>
+
+
+    <?= $this->render('../blocks/share', [
+        'image'       => \yii\helpers\Url::to('/images/index/slider/1.jpg', true) ,
+        'url'         => \yii\helpers\Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Мы – люди нового времени. Мы манифестирум Свет, Любовь, Радость, Процветание, Счастье, Здороье,
+        Ясность и многомерную эволюцию на Благо Мира.',
+    ]) ?>
+
 </div>
 

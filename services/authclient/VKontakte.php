@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Дмитрий
- * Date: 02.05.2015
- * Time: 19:36
+ * VKontakte
+ *
+ * После login() и attach() устанавливает флаг $app->session->set('auth/vkontakte/isLogin') в значение 1
  */
 
 namespace app\services\authclient;
@@ -12,7 +11,7 @@ namespace app\services\authclient;
 use app\models\User;
 use yii\helpers\ArrayHelper;
 
-class VKontakte extends \yii\authclient\clients\VKontakte
+class VKontakte extends \yii\authclient\clients\VKontakte implements authClientInterface
 {
     /**
      * [
@@ -104,9 +103,11 @@ class VKontakte extends \yii\authclient\clients\VKontakte
                 if (strlen($arr[1]) == 1) {
                     $arr[1] = '0' . $arr[1];
                 }
-                return $arr[2] . '-' . $arr[1] . '-' . $arr[0] ;
+
+                return $arr[2] . '-' . $arr[1] . '-' . $arr[0];
             }
         }
+
         return null;
     }
 
@@ -130,4 +131,23 @@ class VKontakte extends \yii\authclient\clients\VKontakte
         $params = $this->getAccessToken()->getParams();
         \Yii::$app->cache->set("authClientCollection/{$this->defaultName()}/access_token", $params['access_token'], $params['expires_in']);
     }
-} 
+
+    /**
+     * @inheritdoc
+     */
+    public function setAuthFlag()
+    {
+        \Yii::$app->session->set('auth/' . $this->defaultName() . '/isLogin', 1);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isAuthorize()
+    {
+        $value = \Yii::$app->session->get('auth/' . $this->defaultName() . '/isLogin', null);
+        if (is_null($value)) return false;
+
+        return ($value == 1);
+    }
+}

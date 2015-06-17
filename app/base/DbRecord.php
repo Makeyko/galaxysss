@@ -105,6 +105,22 @@ class DbRecord
     }
 
     /**
+     * Возвращает значение поля
+     * Если оно не найдено среди полей то будет возвращено ''
+     * Если значение поля равно null то будет возвращено ''
+     *
+     * @param $name
+     *
+     * @return int|string
+     */
+    public function get($name)
+    {
+        $value = $this->getField($name);
+
+        return (is_null($value)) ? '' : $value;
+    }
+
+    /**
      * Удаляет запись таблицы
      *
      * @return bool

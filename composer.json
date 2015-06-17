@@ -25,9 +25,8 @@
         "dixso/custombox": "*",
         "NorthwoodsSoftware/GoJS": "*",
         "vlucas/valitron": "~1.2",
-
-
-        "flesler/jquery.scrollTo": "*"
+        "flesler/jquery.scrollTo": "*",
+        "mobiledetect/mobiledetectlib": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

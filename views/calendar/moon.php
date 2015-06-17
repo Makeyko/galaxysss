@@ -62,7 +62,7 @@ $dayWeekList = [
         }
 
         .calendar {
-            margin-bottom: 100px;
+            margin-bottom: 40px;
         }
 
         .calendar td {
@@ -96,6 +96,10 @@ $dayWeekList = [
         .calendar th img {
             height: 20px;
         }
+
+        #main-content {
+            margin-bottom: 80px;
+        }
     </style>
 
     <div class="row">
@@ -105,9 +109,18 @@ $dayWeekList = [
 
             </table>
 
+            <?= $this->render('../blocks/share', [
+                'image'       => \yii\helpers\Url::to(Yii::$app->getAssetManager()->getBundle('app\assets\Maya\Asset')->get('/images/stamp2/9.jpg') , true),
+                'url'         => \yii\helpers\Url::current([], true),
+                'title'       => $this->title,
+                'description' => $this->title,
+            ]) ?>
+
         </div>
         <?= $this->render('_menu') ?>
     </div>
+
+
 
     <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide">

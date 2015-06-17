@@ -29,22 +29,24 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
-                    'id' => 'contact-form',
+                    'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
                 <?= $form->field($model, 'header')->label('Название') ?>
                 <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'content')->label('Содержание')->textarea(['rows' => 20]) ?>
+                <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 20]) ?>
+                <?= $form->field($model, 'content')->label('Полно')->textarea(['rows' => 20]) ?>
                 <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxListMask\CheckBoxListMask', [
-                        'rows' => (new Query())->select('id, name')->from('gs_article_tree')->all()
-                    ]) ?>
+                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
+                    'tableName' => 'gs_unions_tree',
+                    'select'    => 'id, header as name',
+                ]) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Добавить', [
-                            'class' => 'btn btn-default',
-                            'name'  => 'contact-button'
-                        ]) ?>
+                        'class' => 'btn btn-default',
+                        'name'  => 'contact-button'
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

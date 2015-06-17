@@ -67,6 +67,11 @@ class PageController extends BaseController
         return $this->render();
     }
 
+    public function actionHymn()
+    {
+        return $this->render();
+    }
+
     public function actionServices()
     {
         return $this->render([
@@ -123,6 +128,33 @@ class PageController extends BaseController
         ]);
     }
 
+    /**
+     * Выводит подкатегорию
+     *
+     * @param $id
+     *
+     * @return string
+     * @throws Exception
+     */
+    public function actionCategory($id)
+    {
+        $category = UnionCategory::find(['id_string' => $id]);
+        if (is_null($category)) {
+            throw new Exception('Нет такой категории');
+        }
+
+        return $this->render([
+            'item'        => $category,
+            'unionList'   => $category->getUnions(),
+            'articleList' => Article::getByTreeNodeId($category->getId()),
+            'breadcrumbs' => [
+                'label' => $category->getField('header'),
+                'url'   => '/' . $id,
+            ],
+            'idString' => $id
+        ]);
+    }
+
     public function actionLanguage()
     {
         return $this->render([
@@ -154,7 +186,7 @@ class PageController extends BaseController
         $item = Union::find($id);
 
         return $this->render([
-            'item' => $item,
+            'item'       => $item,
             'officeList' => $item->getOfficeList([
                 'point_lat as lat',
                 'point_lng as lng',
@@ -175,15 +207,15 @@ class PageController extends BaseController
         }
 
         return $this->render([
-            'item'       => $item,
-            'officeList' => $item->getOfficeList([
+            'item'        => $item,
+            'officeList'  => $item->getOfficeList([
                 'point_lat as lat',
                 'point_lng as lng',
-                'concat("<h5>",name,"</h5><p>",point_address,"</p>") as html',
+                'concat("<h5>",name,"</h5><div>",content,"</div><p>",point_address,"</p>") as html',
             ]),
             'breadcrumbs' => [
                 'label' => $categoryObject->getField('header'),
-                'url'   => '/'.$category,
+                'url'   => '/' . $category,
             ],
         ]);
     }
@@ -260,9 +292,14 @@ class PageController extends BaseController
         $newsItem->incViewCounter();
 
         $row = $newsItem->getFields();
+
         return $this->render([
             'newsItem' => $newsItem->getFields(),
-            'lastList' => NewsItem::query()->where(['not in', 'id', $row['id']])->orderBy(['date_insert' => SORT_DESC])->limit(3)->all(),
+            'lastList' => NewsItem::query()->where([
+                'not in',
+                'id',
+                $row['id']
+            ])->orderBy(['date_insert' => SORT_DESC])->limit(3)->all(),
         ]);
     }
 
@@ -281,6 +318,46 @@ class PageController extends BaseController
         ]);
     }
 
+    public function actionArticle($category, $year, $month, $day, $id)
+    {
+        $item = Article::find([
+            'id_string'   => $id,
+            'DATE(date_insert)' => $year . $month . $day
+        ]);
+        if (is_null($item)) {
+            throw new Exception('Нет такой статьи');
+        }
+        $categoryObject = UnionCategory::find(['id_string' => $category]);
+        $item->incViewCounter();
+        // похожие статьи
+        {
+            $nearList = Article::getByTreeNodeIdQuery($categoryObject->getId())
+                ->andWhere(['not in', 'id', $item->getId()])
+                ->limit(3)
+                ->all()
+            ;
+            if (count($nearList) == 0) {
+                $nearList = Article::query()
+                    ->select('id,header,id_string,image,view_counter,description,content')
+                    ->orderBy(['date_insert' => SORT_DESC])
+                    ->andWhere(['not in', 'id', $item->getId()])
+                    ->limit(3)
+                    ->all()
+                ;
+            }
+        }
+
+        return $this->render([
+            'item'     => $item->getFields(),
+            'category' => $category,
+            'nearList' => $nearList,
+            'breadcrumbs' => [
+                'label' => $categoryObject->getField('header'),
+                'url'   => '/category/' . $category,
+            ],
+        ]);
+    }
+
     public function actionChenneling_item($year, $month, $day, $id)
     {
         $date = $year . $month . $day;
@@ -292,9 +369,20 @@ class PageController extends BaseController
             throw new Exception('Нет такого послания');
         }
         $item->incViewCounter();
+        // похожие статьи
+        {
+            $nearList = Chenneling::query()
+                ->select('id,header,id_string,img,view_counter,description,content, date_insert')
+                ->orderBy(['date_insert' => SORT_DESC])
+                ->andWhere(['not in', 'id', $item->getId()])
+                ->limit(3)
+                ->all()
+            ;
+        }
 
         return $this->render([
-            'item' => $item->getFields()
+            'item'     => $item->getFields(),
+            'nearList' => $nearList,
         ]);
     }
 

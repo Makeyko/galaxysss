@@ -38,6 +38,7 @@ use yii\helpers\Url;
         <li><a href="<?= Url::to(['page/declaration']) ?>">Декларация</a></li>
         <li><a href="<?= Url::to(['page/codex']) ?>">Кодекс</a></li>
         <li><a href="<?= Url::to(['page/residence']) ?>">Резиденция</a></li>
+        <li><a href="<?= Url::to(['page/hymn']) ?>">Гимн</a></li>
 
     </ul>
 </li>

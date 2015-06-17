@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $form->field($model, 'name')->label('Название') ?>
                 <?= $form->field($model, 'point')->label('Местоположение')->widget('cs\Widget\PlaceMap\PlaceMap') ?>
+                <?= $model->field($form, 'content') ?>
 
                 <hr class="featurette-divider">
                 <div class="form-group">

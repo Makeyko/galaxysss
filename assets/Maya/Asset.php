@@ -28,4 +28,9 @@ class Asset extends AssetBundle
     {
         return $this->baseUrl . '/images/stamp3/' . $stamp . '.gif';
     }
+
+    public function get($path)
+    {
+        return $this->baseUrl . $path;
+    }
 }

@@ -22,6 +22,7 @@ class UnionOffice extends \cs\base\BaseForm
     public $point_address;
     public $point_lat;
     public $point_lng;
+    public $content;
 
     function __construct($fields = [])
     {
@@ -41,6 +42,19 @@ class UnionOffice extends \cs\base\BaseForm
                     'cs\Widget\PlaceMap\PlaceMap'
                 ]
             ],
+            [
+                'content',
+                'Время работы и контакты',
+                0,
+                'string',
+                [
+                    'min' => 1,
+                    'max' => 2000
+                ],
+                'widget' => [
+                    'cs\Widget\HtmlContent\HtmlContent'
+                ]
+            ],
         ];
         parent::__construct($fields);
     }
@@ -48,8 +62,9 @@ class UnionOffice extends \cs\base\BaseForm
     public function insert()
     {
         $this->clearCache();
+
         return parent::insert([
-            'beforeInsert' => function($fields) {
+            'beforeInsert' => function ($fields) {
                 $fields['union_id'] = $this->union_id;
 
                 return $fields;
@@ -60,12 +75,14 @@ class UnionOffice extends \cs\base\BaseForm
     public function delete()
     {
         $this->clearCache();
+
         return parent::delete();
     }
 
     public function update($fields = null)
     {
         $this->clearCache();
+
         return parent::update($fields);
     }
 

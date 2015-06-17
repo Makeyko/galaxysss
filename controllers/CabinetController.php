@@ -45,7 +45,10 @@ class CabinetController extends BaseController
 
     public function actionObjects()
     {
-        $items =  \app\models\Union::query(['user_id' => \Yii::$app->user->getId()])
+        $items = \app\models\Union::query([
+            'user_id'           => \Yii::$app->user->getId(),
+            'moderation_status' => 1,
+        ])
             ->orderBy(['date_insert' => SORT_DESC])
             ->all();
 

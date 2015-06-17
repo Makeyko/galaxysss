@@ -9,7 +9,7 @@ $this->title = 'Энергия';
     <div class="page-header">
         <h1>Энергетика</h1>
     </div>
-    <p class="lead">Когда пространство выстраивается согласно сакральной геометрии, тогда оно несет силу и красоту.</p>
+    <p class="lead">В каждой точке вселенной находится сверхизбыток энергии, а значит на Земле присутствует Богатство Чистейшей Энергии.</p>
 
     <p><img src="/images/page/energy/1405027_571610319578558_903459749_o1.jpg" width="100%" class="thumbnail"></p>
 
@@ -24,7 +24,7 @@ $this->title = 'Энергия';
         </div>
         <div class="row">
             <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'language');
+                echo \app\services\GsssHtml::articleItem($item, 'energy');
             } ?>
         </div>
     </div>

@@ -16,13 +16,13 @@ class UploadFolderDispatcher
      * Создает папку в загрузочной папке
      * если указан параметр $id то будет создана подпапка
      *
-     * @param str     $folder
+     * @param string     $folder
      * @param int|str $id1
      * @param int|str $id2
      *
      * @return \cs\services\SitePath
      */
-    public static function createFolder($folder, $id1 = null, $id2 = null)
+    public static function createFolder($folder, $id1 = null, $id2 = null, $id3 = null)
     {
         $path = new \cs\services\SitePath('/upload');
         $path->addAndCreate($folder);
@@ -31,6 +31,9 @@ class UploadFolderDispatcher
         }
         if (!is_null($id2)) {
             $path->addAndCreate(self::getFolderName($id2));
+        }
+        if (!is_null($id3)) {
+            $path->addAndCreate(self::getFolderName($id3));
         }
 
         return $path;

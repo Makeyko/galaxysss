@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $form->field($model, 'header')->label('Название') ?>
                 <?= $form->field($model, 'description')->label('Описание')->hint('код HTML')->textarea(['rows' => 10]) ?>
+                <?= $model->field($form, 'content') ?>
                 <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
                 <?= $form->field($model, 'parent_id')->label('Родительский')->radioList(
                     ArrayHelper::map(\app\models\Category::query()->all(),'id','header')

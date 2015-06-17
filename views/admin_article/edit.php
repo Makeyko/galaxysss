@@ -7,7 +7,7 @@ use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = $model->header;
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,20 +29,24 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
-                    'id'      => 'contact-form',
+                    'id' => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
                 <?= $form->field($model, 'header')->label('Название') ?>
-                <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'content')->label('Содержание')->textarea(['rows' => 20]) ?>
+                <?= $model->field($form, 'source') ?>
+                <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 20]) ?>
+                <?= $form->field($model, 'content')->label('Полно')->widget('cs\Widget\HtmlContent\HtmlContent') ?>
                 <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxListMask\CheckBoxListMask',
-                    [
-                        'rows' => (new Query())->select('id, name')->from('gs_article_tree')->all()
-                    ]) ?>
+                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
+                    'tableName' => 'gs_unions_tree',
+                    'select'    => 'id, header as name',
+                ]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                            'class' => 'btn btn-default',
+                            'name'  => 'contact-button'
+                        ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

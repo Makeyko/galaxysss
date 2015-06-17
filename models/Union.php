@@ -47,4 +47,33 @@ class Union extends \cs\base\DbRecord
     {
         \Yii::$app->cache->delete(self::PREFIX_CACHE_OFFICE_LIST . $id);
     }
-} 
+
+    /**
+     * Одобряет объединение
+     */
+    public function accept()
+    {
+        $this->update(['moderation_status' => 1]);
+    }
+
+    /**
+     * Отклоняет объединение
+     */
+    public function reject()
+    {
+        $this->update(['moderation_status' => 0]);
+    }
+
+    public function getUserId()
+    {
+        return $this->getField('user_id');
+    }
+
+    /**
+     * @return \app\models\User
+     */
+    public function getUser()
+    {
+        return User::find($this->getUserId());
+    }
+}

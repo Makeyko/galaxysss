@@ -187,4 +187,15 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     {
         return ($this->getField('avatar').'' != '');
     }
+
+    /**
+     * Возвращает почту
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        $v = $this->getField('email');
+        return (is_null($v)) ? '' : $v;
+    }
 }

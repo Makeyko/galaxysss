@@ -12,7 +12,7 @@ namespace app\services\authclient;
 use app\models\User;
 use cs\services\VarDumper;
 
-class Facebook extends \yii\authclient\clients\Facebook
+class Facebook extends \yii\authclient\clients\Facebook implements authClientInterface
 {
     /**
      *
@@ -89,4 +89,23 @@ class Facebook extends \yii\authclient\clients\Facebook
         $params = $this->getAccessToken()->getParams();
         \Yii::$app->cache->set("authClientCollection/{$this->defaultName()}/access_token", $params['access_token'], $params['expires']);
     }
-} 
+
+    /**
+     * @inheritdoc
+     */
+    public function setAuthFlag()
+    {
+        \Yii::$app->session->set('auth/' . $this->defaultName() . '/isLogin', 1);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isAuthorize()
+    {
+        $value = \Yii::$app->session->get('auth/' . $this->defaultName() . '/isLogin', null);
+        if (is_null($value)) return false;
+
+        return ($value == 1);
+    }
+}

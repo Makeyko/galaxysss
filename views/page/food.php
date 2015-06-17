@@ -19,8 +19,9 @@ $this->title = 'Питание';
             <h2>Статьи</h2>
         </div>
         <div class="row">
+
             <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'language');
+                echo \app\services\GsssHtml::articleItem($item, 'food');
             } ?>
         </div>
     </div>

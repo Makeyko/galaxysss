@@ -39,7 +39,7 @@ $this->registerJs("$('#share').popover()");
                     'description' => trim(Str::sub(strip_tags($item['content']), 0, 200)),
                 ]) ?>
                 <!--                Комментарии -->
-                <?= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_NEWS, $item['id']); ?>
+<!--                --><?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_NEWS, $item['id']); ?>
 
             </div>
             <div class="col-lg-4">

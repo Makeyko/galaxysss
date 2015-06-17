@@ -37,7 +37,11 @@ $this->title = 'Прощающая система';
                 <h3>Радикальное прощение</h3>
             </div>
 
-            <p><img src="/images/page/forgive/KVIOgmA3M281.jpg" width="100%" class="thumbnail"></p>
+            <p>                <a href="http://www.radikalnoe-p.ru/" target="_blank">
+
+                <img src="/images/page/forgive/KVIOgmA3M281.jpg" width="100%" class="thumbnail">
+                </a>
+            </p>
 
             <p>«Радикальное прощение» – это эффективная техника избавления от неприятных переживаний прошлого и
                 возвращения к радостной и счастливой жизни.</p>
@@ -48,9 +52,30 @@ $this->title = 'Прощающая система';
             <p>Начните избавляться от груза прошлого – застарелых обид и переживаний, неосознанных блоков и
                 ограничивающих убеждений. Эти обиды и блоки притягивают одни и те же проблемы и не дают начать жить
                 новой счастливой жизнью.</p>
-            <?= Page::linkToSite('http://www.radikalnoe-p.ru/') ?>
         </div>
-        <?= \app\services\GsssHtml::unionCategoryItems(8) ?>
+        <div class="col-lg-4">
+            <div class="header" style="height: 70px;">
+                <h3>Хо’опонопоно</h3>
+            </div>
+
+            <p>
+                <a href="http://hooponoponosecret.ru/" target="_blank">
+                <img src="/images/page/forgive/hoo.jpg" width="100%" class="thumbnail">
+                </a>
+            </p>
+
+            <p>Хо’опонопоно – это древнее гавайское искусство решения проблем. В переводе с гавайского языка слово Хо’опонопоно означает «исправить ошибку» или «сделать верно».</p>
+            <p>Хо’опонопоно помогает удалить, нейтрализовать и стереть деструктивные программы, чтобы стать единым с Божественным сознанием, которое присуще каждому человеку, слиться с потоком Изобилия и получить Вдохновение.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="page-header">
+            <h2>Объединения</h2>
+        </div>
+        <div class="row">
+            <?= \app\services\GsssHtml::unionCategoryItems(8) ?>
+        </div>
     </div>
     <div class="row">
         <div class="page-header">
@@ -58,7 +83,7 @@ $this->title = 'Прощающая система';
         </div>
         <div class="row">
             <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'language');
+                echo \app\services\GsssHtml::articleItem($item, 'forgive');
             } ?>
         </div>
 

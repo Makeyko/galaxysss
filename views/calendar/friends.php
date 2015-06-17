@@ -1,9 +1,10 @@
 <?php
 /** @var array $days */
+/** @var \Yii $app */
 /** @var $this yii\web\View */
 /** @var $me array[
  *  'birth_date' '2018-12-12'
- * ]
+ * ] будет присутствовать если пользователь авторизован
  */
 
 use cs\helpers\Html;
@@ -35,8 +36,17 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
     <div class="row">
         <div class="col-lg-10">
-            <div class="hide" id="meBirthDate"><?= $me['birth_date'] ?></div>
-            <button class="btn btn-default" id="buttonVkontakte">Вконтакте</button>
+            <?php if (!\Yii::$app->user->isGuest) { ?>
+                <div class="hide" id="meBirthDate"><?= $me['birth_date'] ?></div>
+            <?php } ?>
+
+            <?php
+            if (\Yii::$app->authClientCollection->getClient('vkontakte')->isAuthorize()) { ?>
+                <button class="btn btn-default" id="buttonVkontakte">Вконтакте</button>
+            <?php } else { ?>
+                <p>Извините вы не авторизованы через Vk, пожалуйста зайтите через Vk</p>
+            <?php } ?>
+
             <div id="friends" class="col-lg-8">
 
             </div>

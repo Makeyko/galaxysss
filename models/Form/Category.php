@@ -28,6 +28,7 @@ class Category extends \cs\base\BaseForm
     public $image;
     public $id_string;
     public $description;
+    public $content;
 
     function __construct($fields = [])
     {
@@ -43,6 +44,17 @@ class Category extends \cs\base\BaseForm
                 'Описание краткое',
                 0,
                 'string'
+            ],
+            [
+                'content',
+                'Полное описание',
+                0,
+                'string',
+                'widget' => [
+                    'cs\Widget\HtmlContent\HtmlContent',
+                    [
+                    ]
+                ]
             ],
             [
                 'parent_id',

@@ -66,4 +66,16 @@ $this->title = 'Кодекс света';
     <p>9. Не держи ни на кого обиды — это будет тебя стимулировать и держать твой статус Воина.</p>
     <p>10. Путь воина сложен и не лёгок. Выполняй его с честью во благо Мира на Земле.</p>
     <p style="margin-top: 40px;">Источник: <a href="http://tasachena.org/stranica-rabotnikov-sveta/">ссылка</a></p>
+
+
+    <hr>
+
+
+    <?= $this->render('../blocks/share', [
+        'image'       => \yii\helpers\Url::to('/images/page/codex/header.jpg', true) ,
+        'url'         => \yii\helpers\Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Новые правила для работников света',
+    ]) ?>
+
 </div>

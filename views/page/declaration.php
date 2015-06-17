@@ -129,7 +129,21 @@ $this->title = 'Декларация человечества Новой Эры'
                 совместно с другими Разумными Цивилизациями, нашего космического пространства, а также других миров
                 которые сотворил Бог — Создатель, Творец.</p>
 
+            <iframe width="100%" height="360" src="https://www.youtube.com/embed/rO6ft2HibwA?rel=0" frameborder="0" allowfullscreen></iframe>
+
             <p> Автор декларации "Судьбы Мира"</p>
+
+            <hr>
+
+
+            <?= $this->render('../blocks/share', [
+                'image'       => \yii\helpers\Url::to('/images/page/declaration/1270100_654508297907655_1964333961_o.jpg', true) ,
+                'url'         => \yii\helpers\Url::current([], true),
+                'title'       => $this->title,
+                'description' => 'Декларация провозглашает принципы жизни и развития Людей, объединенных в Человеческую
+                Цивилизацию, как единого сообщества разумных живых существ.',
+            ]) ?>
+
         </div>
     </div>
 </div>

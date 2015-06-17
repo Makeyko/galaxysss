@@ -104,4 +104,18 @@ class Str
 
         return $ret;
     }
-} 
+
+    /**
+     * Возвращает ответ на вопрос
+     * Есть ли строка $find в $source?
+     *
+     * @param $source
+     * @param $find
+     *
+     * @return int
+     */
+    public static function isContain($source, $find)
+    {
+        return mb_strpos($source, $find) !== false;
+    }
+}

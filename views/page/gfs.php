@@ -1,3 +1,10 @@
+<?php
+
+
+$this->title = 'Галактическая Федерация Света';
+?>
+
+
 <style>
     .blu {
         font-weight: bold;

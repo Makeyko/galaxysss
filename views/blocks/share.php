@@ -11,24 +11,30 @@ use yii\bootstrap\ButtonDropdown;
 use yii\helpers\Url;
 use cs\services\Url as csUrl;
 
-$this->registerMetaTag(['name' => 'og:image', 'content' => $image   ]);
-$this->registerMetaTag(['name' => 'og:url', 'content' => $url   ]);
-$this->registerMetaTag(['name' => 'og:title', 'content' => $title   ]);
-$this->registerMetaTag(['name' => 'og:description', 'content' => $description   ]);
+$this->registerMetaTag(['name' => 'og:image', 'content' => $image]);
+$this->registerMetaTag(['name' => 'og:url', 'content' => $url]);
+$this->registerMetaTag(['name' => 'og:title', 'content' => $title]);
+$this->registerMetaTag(['name' => 'og:description', 'content' => $description]);
 
 $this->registerJs("$('#share').popover()");
-
+$appAssetUrl = Yii::$app->assetManager->getBundle('app\assets\App\Asset')->baseUrl;
 ?>
 <?= ButtonDropdown::widget([
-    'label'    => 'Поделиться',
-    'dropdown' => [
-        'options' => ['class' => 'pull-top pull-center'],
-        'items'   => [
-            ['label'       => 'Facebook',
-             'linkOptions' => ['target' => '_blank'],
-             'url'         => (string)(new csUrl('http://www.facebook.com/sharer.php', [
-                 'u'     => $url,
-             ]))
+    'label'       => "<img src='{$appAssetUrl}/images/share.png' height='20' style='padding-right: 5px;'> Поделиться",
+    'encodeLabel' => false,
+    'dropdown'    => [
+        'options'      => ['class' => 'pull-top pull-center'],
+        'encodeLabels' => false,
+        'items'        => [
+            [
+                'label'       =>
+//                    "<img src='{$appAssetUrl}/images/share.png' height='20' style='padding-right: 5px;'>" .
+//                    " ".
+                    "Facebook",
+                'linkOptions' => ['target' => '_blank'],
+                'url'         => (string)(new csUrl('http://www.facebook.com/sharer.php', [
+                    'u' => $url,
+                ]))
             ],
             [
                 'label'       => 'Vkontakte',
@@ -39,10 +45,10 @@ $this->registerJs("$('#share').popover()");
                 'label'       => 'Odnoklasniki',
                 'linkOptions' => ['target' => '_blank'],
                 'url'         => (string)(new csUrl('http://www.odnoklassniki.ru/dk', [
-                        'st._surl' => $url,
-                        'st.cmd'   => 'addShare',
-                        'st.s'     => 1
-                    ]))
+                    'st._surl' => $url,
+                    'st.cmd'   => 'addShare',
+                    'st.s'     => 1
+                ]))
             ],
             [
                 'label'       => 'Google+',
@@ -53,9 +59,9 @@ $this->registerJs("$('#share').popover()");
                 'label'       => 'Twitter',
                 'linkOptions' => ['target' => '_blank'],
                 'url'         => (string)(new csUrl('http://twitter.com/share', [
-                        'url'  => $url,
-                        'text' => '11s'
-                    ]))
+                    'url'  => $url,
+                    'text' => '11s'
+                ]))
             ],
         ],
     ],

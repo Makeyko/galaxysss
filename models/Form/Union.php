@@ -34,6 +34,10 @@ class Union extends \cs\base\BaseForm
     public $content;
     public $moderation_status;
     public $sort_index;
+    public $group_link_google;
+    public $group_link_youtube;
+    public $group_link_vkontakte;
+    public $group_link_facebook;
 
     function __construct($fields = [])
     {
@@ -75,6 +79,30 @@ class Union extends \cs\base\BaseForm
                 'string'
             ],
             [
+                'group_link_facebook',
+                'Ссылка на Facebook',
+                0,
+                'string'
+            ],
+            [
+                'group_link_vkontakte',
+                'Ссылка на Vkontakte',
+                0,
+                'string'
+            ],
+            [
+                'group_link_youtube',
+                'Ссылка на Youtube',
+                0,
+                'string'
+            ],
+            [
+                'group_link_google',
+                'Ссылка на Google',
+                0,
+                'string'
+            ],
+            [
                 'img',
                 'Картинка',
                 0,
@@ -107,7 +135,6 @@ class Union extends \cs\base\BaseForm
                 $fields['date_insert'] = gmdate('YmdHis');
                 $fields['description'] = \app\services\Content::parseLink($fields['description']);
                 $fields['content'] = \app\services\Content::convertPlainTextToHtml($fields['content']);
-                $fields['moderation_status'] = 1;
 
                 return $fields;
             }

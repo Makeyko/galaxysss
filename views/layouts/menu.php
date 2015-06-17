@@ -18,7 +18,8 @@ $mayaAsset = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset');
 $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\View::POS_HEAD );
 
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage();
+?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -28,7 +29,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
     <?= Html::csrfMetaTags() ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title><?= $this->title ?></title>
+    <title><?= $this->title ?><?php if (Url::current() != '/') { ?> &middot; ♥ &middot; Галактический Союз Сил Света<?php } ?></title>
     <?php $this->head() ?>
     <link rel="shortcut icon" href="/images/ico.png">
 
@@ -105,6 +106,11 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                                 <li><a href="<?= Url::to(['admin_article/index']) ?>">Статьи</a></li>
                                 <li><a href="<?= Url::to(['admin_category/index']) ?>">Категории</a></li>
                                 <li><a href="<?= Url::to(['admin_service/index']) ?>">Услуги</a></li>
+
+                                <li class="divider"></li>
+
+                                <li role="presentation" class="dropdown-header">Раздел модератора</li>
+                                <li><a href="<?= Url::to(['moderator_unions/index']) ?>">Объединения</a></li>
                             <?php } ?>
 
                             <li class="divider"></li>
@@ -129,7 +135,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                     $this->registerJs("LayoutMenu.init();");
                 }
 
-                if (Yii::$app->devicedetect->isMobile()) {
+                if (Yii::$app->deviceDetect->isMobile()) {
                     $link = '/calendar';
                     $options = [];
                 } else {
@@ -182,18 +188,25 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
 <footer class="footer">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
-        <div class="col-lg-4">
-            <p>&copy; 2015 Галактический союз сил света.</p>
+            <div class="col-lg-4">
+                <p>&copy; 2015 Галактический союз сил света.</p>
+            </div>
+            <div class="col-lg-4">
+                <a
+                    href="https://www.facebook.com/gsss.merkaba"
+                    target="_blank"
+                    >
+                    Facebook
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="<?= Url::to(['site/contact']) ?>">Контакты</a>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <a
-                href="https://www.facebook.com/gsss.merkaba?pnref=lhc"
-                target="_blank"
-                >Facebook</a>
-        </div>
-        <div class="col-lg-4">
-            <a href="<?= Url::to(['site/contact']) ?>">Контакты</a>
-        </div>
+        <div class="row" style="margin-top: 20px; background-color: #f5f5f5;">
+            <div class="col-lg-4 col-lg-offset-4">
+                <script type="text/javascript" src="//ra.revolvermaps.com/0/0/6.js?i=0cp3ra9ti27&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
+            </div>
         </div>
     </div>
 </footer>
@@ -202,6 +215,34 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
     <h1>Dialog example</h1>
     <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
 </div>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter30774383 = new Ya.Metrika({id:30774383,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/30774383" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <?php $this->endBody() ?>
 </body>

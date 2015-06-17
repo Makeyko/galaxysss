@@ -90,6 +90,31 @@ class BaseForm extends Model
         return $this->row;
     }
 
+    /**
+     * @param \yii\bootstrap\ActiveForm $form
+     * @param string                    $name
+     *
+     * @return \yii\bootstrap\ActiveField
+     */
+    public function field($form, $name)
+    {
+        $fieldObject = $form->field($this, $name);
+        $fieldArray = $this->findField($name);
+        $label = ArrayHelper::getValue($fieldArray, self::POS_RUS_NAME, '');
+        if ($label != '') {
+            $fieldObject->label($label);
+        }
+        $hint = ArrayHelper::getValue($fieldArray, self::POS_HINT, '');
+        if ($hint != '') {
+            $fieldObject->hint($hint);
+        }
+        $widget = ArrayHelper::getValue($fieldArray, 'widget', '');
+        if ($widget != '') {
+            $fieldObject->widget($widget[0], ArrayHelper::getValue($widget, 1, []));
+        }
+
+        return $fieldObject;
+    }
 
     public static function rulesAdd($fields = null)
     {
@@ -196,7 +221,7 @@ class BaseForm extends Model
             $item = new static($row);
             $item->row = $row;
 
-            foreach($item::$fields as $field) {
+            foreach ($item::$fields as $field) {
                 $class = ArrayHelper::getValue($field, 'widget.0', '');
                 if ($class != '') {
                     if (method_exists($class, 'onLoadDb')) {
@@ -569,10 +594,11 @@ class BaseForm extends Model
         }
 
         $beforeUpdate = null;
-        if (is_null($fieldsCols) ) {
+        if (is_null($fieldsCols)) {
             $fieldsCols = static::$fields;
-        } else {
-            if (isset($fieldsCols['beforeUpdate']) ) {
+        }
+        else {
+            if (isset($fieldsCols['beforeUpdate'])) {
                 $beforeUpdate = $fieldsCols['beforeUpdate'];
                 $fieldsCols = static::$fields;
             }
@@ -597,14 +623,16 @@ class BaseForm extends Model
     {
         if (!$this->validate()) {
             \cs\services\VarDumper::dump($this);
+
             return false;
         }
         $beforeInsert = null;
 
-        if (is_null($fieldsCols) ) {
+        if (is_null($fieldsCols)) {
             $fieldsCols = static::$fields;
-        } else {
-            if (isset($fieldsCols['beforeInsert']) ) {
+        }
+        else {
+            if (isset($fieldsCols['beforeInsert'])) {
                 $beforeInsert = $fieldsCols['beforeInsert'];
                 $fieldsCols = static::$fields;
             }
@@ -619,19 +647,19 @@ class BaseForm extends Model
 
         // ищу file
         $fieldsUpdate = [];
-        foreach($fieldsCols as $field) {
+        foreach ($fieldsCols as $field) {
             $widget = ArrayHelper::getValue($field, 'widget.0', '');
             if ($widget != '') {
                 if (!method_exists($widget, 'onInsert')) {
                     $ret = $widget::onUpdate($field, $this);
-                    foreach($ret as $k => $v) {
-                        $fieldsUpdate[$k] = $v;
+                    foreach ($ret as $k => $v) {
+                        $fieldsUpdate[ $k ] = $v;
                     }
                 }
             }
         }
         if (count($fieldsUpdate) > 0) {
-            (new Query())->createCommand()->update(static::TABLE, $fieldsUpdate,['id' => $fields['id']])->execute();
+            (new Query())->createCommand()->update(static::TABLE, $fieldsUpdate, ['id' => $fields['id']])->execute();
         }
 
         return $fields;
@@ -656,7 +684,8 @@ class BaseForm extends Model
         if ($count == 0) {
             (new Query())->createCommand()->insert(static::TABLE, $fields)->execute();
             $fields['id'] = \Yii::$app->db->getLastInsertID();
-        } else {
+        }
+        else {
             (new Query())->createCommand()->update(static::TABLE, $fields, $condition, $params)->execute();
         }
 
@@ -773,7 +802,7 @@ class BaseForm extends Model
     {
         if (is_null($this->id)) return true;
 
-        foreach(static::$fields as $field) {
+        foreach (static::$fields as $field) {
             $widget = ArrayHelper::getValue($field, 'widget.0', '');
             if ($widget != '') {
                 if (method_exists($widget, 'onDelete')) {

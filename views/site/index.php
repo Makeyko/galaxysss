@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-$this->title = 'Галактический союз сил света';
+$this->title = 'Галактический Союз Сил Света';
 
 $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryAsset']]);
 ?>
@@ -196,8 +196,8 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     </center>
                 </a>
             </center>
-            <iframe src="https://player.vimeo.com/video/112912782" width="100%" height="200" frameborder="0"
-                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe width="100%" height="200" src="//www.youtube.com/embed/5fVTtsivj64" frameborder="0"
+                    allowfullscreen=""></iframe>
         </div>
         <div class="col-lg-4">
             <center>
@@ -266,6 +266,32 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 
 </div>
 
+<!-- Теленадар -->
+<hr class="featurette-divider" style="margin-top: 100px;">
+<div class="container">
+    <div class="row">
+        <center>
+            <p class="lead text-center">Представляем Полеты в Космос в Сфере Света</p>
+            <p>«Космическая Лётная Академия Вознесённых Владык»</p>
+            <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/fPyKJdFN91c"
+            frameborder="0"
+            allowfullscreen
+            ></iframe>
+            <br>
+            <br>
+            <br>
+            <a
+                href="http://my.mail.ru/community/kocmoc./"
+                class="btn btn-default btn-lg"
+                target="_blank"
+                >Перейти на сайт »</a>
+        </center>
+    </div>
+</div>
+
 <!-- Индекс счастья -->
 <hr class="featurette-divider" style="margin-top: 100px;">
 <div class="container">
@@ -291,8 +317,11 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                 id='iosOst'
                 style="font-size: 100%; padding-left: 20px;vertical-align: top;"></span>
         </p>
-        <img class="featurette-image img-responsive center-block" src="/images/index/x_83bd0a57.jpg"
-             alt="Generic placeholder image">
+        <img
+            class="featurette-image img-responsive center-block"
+            src="/images/index/x_83bd0a57.jpg"
+            alt="Generic placeholder image"
+            >
 
     </div>
 </div>
@@ -308,6 +337,23 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
             echo \app\services\GsssHtml::newsItem($row);
         }
         ?>
+
+        <a
+            class="btn btn-default"
+            style="width:100%"
+            href="<?= Url::to(['page/news']) ?>"
+            >Все новости</a>
     </div>
 </div>
+
+<hr>
+
+
+<?= $this->render('../blocks/share', [
+    'image'       => \yii\helpers\Url::to('/images/index/slider/1.jpg', true) ,
+    'url'         => \yii\helpers\Url::current([], true),
+    'title'       => $this->title,
+    'description' => 'Галактический союз сил света – это живой организм объединяющий все силы света в единое целое служащий всеобщему процветанию и счастью каждого элемента входящего в его состав, построенный на основе естественных законах мироздания.',
+]) ?>
+
 </div>

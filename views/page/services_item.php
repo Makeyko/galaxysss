@@ -27,6 +27,13 @@ $this->title = $item->getField('header');
         <div class="col-lg-8">
             <?= $item->getField('content') ?>
             <?= \app\services\Page::linkToSite($item->getField('link')) ?>
+
+            <?= $this->render('../blocks/share', [
+                'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(\yii\helpers\Url::to($item->getField('image'), true), false) ,
+                'url'         => \yii\helpers\Url::current([], true),
+                'title'       => $item->getField('header'),
+                'description' => trim(\cs\services\Str::sub(strip_tags($item->getField('content')), 0, 200)),
+            ]) ?>
         </div>
     </div>
 </div>

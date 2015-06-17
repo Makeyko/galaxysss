@@ -67,7 +67,7 @@ class CalendarController extends BaseController
         $nextDate = $nextDate->format('Y-m-d');
 
         return $this->render([
-            'days'     => Maya::colkin(),
+            'days'     => $days,
             'nextDate' => $nextDate,
         ]);
     }
@@ -125,11 +125,17 @@ class CalendarController extends BaseController
 
     public function actionFriends()
     {
-        return $this->render([
-            'me' => [
-                'birth_date' => Yii::$app->user->identity->getField('birth_date')
-            ]
-        ]);
+        if (Yii::$app->user->isGuest) {
+            $options = [];
+        } else {
+            $options = [
+                'me' => [
+                    'birth_date' => Yii::$app->user->identity->getField('birth_date')
+                ]
+            ];
+        }
+
+        return $this->render($options);
     }
 
     /**
@@ -186,6 +192,14 @@ class CalendarController extends BaseController
     {
         Yii::$app->session->open();
         VarDumper::dump(Yii::$app->cache->get(Yii::$app->session->getId() . '/maya'));
+    }
+
+    /**
+     * Выводит страницу с виджетами
+     */
+    public function actionWidget()
+    {
+        return $this->render([]);
     }
 
     /**

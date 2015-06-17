@@ -6,7 +6,8 @@ use cs\services\Url as csUrl;
 use cs\services\Str;
 
 /* @var $this yii\web\View */
-/* @var $item array */
+/* @var $item array поля послания */
+/* @var $nearList array похожие послания */
 
 $this->title = $item['header'];
 $this->params['breadcrumbs'][] = $this->title;
@@ -40,53 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'description' => trim(Str::sub(strip_tags($item['content']), 0, 200)),
                 ]) ?>
 <!--                Комментарии -->
-                <?= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_CHENNELING, $item['id']); ?>
+<!--                --><?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_CHENNELING, $item['id']); ?>
 
 
             </div>
             <div class="col-lg-4">
-                <div class="row">
-                    <div class="thumbnail">
-                        <img alt="100%x200"
-                             src="/upload/FileUpload2/gs_chaneling_list/00000002/small/img.jpg"
-                             style="width: 100%; display: block;">
-
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-
-                            <p>Проект Веста создан именно для таких людей. с целью оповещения о тонко-энергетической
-                                работе в космосе и на земле и для синхронизации такой работы между группами сильных
-                                продвинутых сознаний, стремящихся и реально готовых содействовать становлению нового
-                                мира, мира правления Духа. </p>
-
-                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#"
-                                                                                               class="btn btn-default"
-                                                                                               role="button">Button</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="thumbnail">
-                        <img alt="100%x200"
-                             src="/upload/FileUpload2/gs_chaneling_list/00000002/small/img.jpg"
-                             style="height: 200px; width: 100%; display: block;">
-
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-
-                            <p>Проект Веста создан именно для таких людей. с целью оповещения о тонко-энергетической
-                                работе в космосе и на земле и для синхронизации такой работы между группами сильных
-                                продвинутых сознаний, стремящихся и реально готовых содействовать становлению нового
-                                мира, мира правления Духа. </p>
-
-                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#"
-                                                                                               class="btn btn-default"
-                                                                                               role="button">Button</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php foreach ($nearList as $item) { ?>
+                    <?= $this->render('../blocks/chenneling', [
+                        'item'     => $item,
+                    ]) ?>
+                <?php } ?>
             </div>
         </div>
 

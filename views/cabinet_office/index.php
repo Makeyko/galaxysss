@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->title = 'Офисы';
 
-$this->registerJsFile('/js/pages/admin_office/index.js', [
+$this->registerJsFile('/js/pages/cabinet_office/index1.js', [
     'depends' => [
         'app\assets\App\Asset',
         'app\assets\ModalBoxNew\Asset'
@@ -42,7 +42,12 @@ $this->registerJsFile('/js/pages/admin_office/index.js', [
                         'cabinet_office/edit',
                         'id' => $item['id'],
                     ], ['class' => 'btn btn-default']) ?></td>
-                <td><?= Html::button('Удалить', ['class' => 'btn btn-danger btn-xs buttonDelete']) ?></td>
+                <td><?= Html::button('Удалить', [
+                        'class' => 'btn btn-danger btn-xs buttonDelete',
+                        'data' => [
+                            'id' => $item['id'],
+                        ],
+                    ]) ?></td>
             </tr>
             <?php
             $c++;

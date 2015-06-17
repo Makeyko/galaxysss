@@ -62,6 +62,7 @@ class AuthController extends BaseController
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
+        /** @var \app\services\authclient\authClientInterface $client */
         $client->saveToken();
         if (Yii::$app->user->isGuest) {
             $user = $client->login($attributes);
@@ -73,6 +74,7 @@ class AuthController extends BaseController
         else {
             $client->attach($attributes, Yii::$app->user->identity);
         }
+        $client->setAuthFlag();
         Yii::$app->user->setReturnUrl($_SERVER['HTTP_REFERER']);
     }
 

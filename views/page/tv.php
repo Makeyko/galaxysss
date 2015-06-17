@@ -84,7 +84,7 @@ function draw($item)
     <div class="page-header">
         <h1>ТелеВидение</h1>
     </div>
-    <p>Новое прогрессивное телевидение открывающее новые горизонты осприятия мира и обучающее счастью, любви и радости
+    <p class="lead">Новое прогрессивное телевидение открывающее новые горизонты осприятия мира и обучающее счастью, любви и радости
         жизни.</p>
 
 
@@ -96,4 +96,16 @@ function draw($item)
         ?>
         <?= \app\services\GsssHtml::unionCategoryItems(10) ?>
     </div>
+    <?php if (count($articleList) > 0) { ?>
+        <div class="row">
+            <div class="page-header">
+                <h2>Статьи</h2>
+            </div>
+            <div class="row">
+                <?php foreach ($articleList as $item) {
+                    echo \app\services\GsssHtml::articleItem($item, 'tv');
+                } ?>
+            </div>
+        </div>
+    <?php } ?>
 </div>

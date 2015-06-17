@@ -76,8 +76,13 @@ class GsssHtml
     private function getUnionUrl($row)
     {
         $url = Url::current();
-        $url = ltrim($url,'/');
-        $url = '/category/'.$url.'/'.$row['id'];
+        $oUrl = new \cs\services\Url($url);
+        $arr = explode('/', $oUrl->path);
+        if ($arr[1] == 'category') {
+            $url = '/category/'.$arr[2].'/'.$row['id'];
+        } else {
+            $url = '/category/'.$arr[1].'/'.$row['id'];
+        }
 
         return $url;
     }
@@ -221,13 +226,29 @@ class GsssHtml
         }
         // Заголовок
         $html[] = Html::tag('div', Html::tag('h4', $row['header']), ['class' => 'header']);
+        // ссылка
+        $item2 = [
+            'id'       => $row['id_string'],
+            'year'     => substr($row['date_insert'], 0, 4),
+            'month'    => substr($row['date_insert'], 5, 2),
+            'day'      => substr($row['date_insert'], 8, 2),
+            'category' => $category,
+        ];
+        $link = "/category/{$item2['category']}/article/{$item2['year']}/{$item2['month']}/{$item2['day']}/{$item2['id']}";
+
         // картинка с ссылкой
         $html[] = Html::tag('p', Html::a(Html::img($row['image'], [
                         'width' => '100%',
                         'class' => 'thumbnail'
-                    ]), "/{$category}/article/{$row['id_string']}"));
+                    ]), $link));
         // Описание
-        $html[] = Html::tag('p', $row['description']);
+        $content = $row['description'];
+        if ($content.'' == '') {
+            $content = self::getMiniText($row['content']);
+        } else {
+            $content = self::getMiniText($content);
+        }
+        $html[] = Html::tag('p', $content);
 
         return Html::tag('div', join('', $html), ['class' => 'col-lg-4 articleItem']);
     }

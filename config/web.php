@@ -3,14 +3,16 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'            => 'basic',
-    'basePath'      => dirname(__DIR__),
-    'bootstrap'     => ['log'],
-    'aliases'       => [
+    'id'               => 'basic',
+    'basePath'         => dirname(__DIR__),
+    'bootstrap'        => ['log'],
+    'language'         => 'ru',
+    'aliases'          => [
         '@web'    => __DIR__ . '/public_html/',
         '@csRoot' => __DIR__ . '/../app',
+        '@upload' => __DIR__ . '/public_html/upload',
     ],
-    'components'    => [
+    'components'       => [
         'request'              => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey'    => '',
@@ -20,8 +22,9 @@ $config = [
         'cache'                => [
             'class' => 'yii\caching\FileCache',
         ],
-        'devicedetect'         => [
-            'class' => 'alexandernst\devicedetect\DeviceDetect',
+        'deviceDetect'         => [
+            'class'     => 'app\services\DeviceDetect',
+            'setParams' => 'false',
         ],
         'user'                 => [
             'identityClass'   => 'app\models\User',
@@ -88,12 +91,13 @@ $config = [
         ],
 
     ],
-    'params'        => $params,
-    'controllerMap' => [
-        'upload'  => 'cs\Widget\FileUploadMany\UploadController',
-        'comment' => 'app\modules\Comment\Controller',
+    'params'           => $params,
+    'controllerMap'    => [
+        'upload'       => 'cs\Widget\FileUploadMany\UploadController',
+        'comment'      => 'app\modules\Comment\Controller',
+        'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
-    'on beforeRequest' => function($event) {
+    'on beforeRequest' => function ($event) {
         //\cs\Application::checkForIp();
     }
 ];

@@ -68,6 +68,10 @@ class Verhosvet implements ExtractorInterface
         if (is_null($this->content)) {
             $arr = $this->getContentAsArray();
             $ret = [];
+            $ret[] = Html::tag('p', Html::img($this->getImage(), [
+                'width' => '100%',
+                'class' => 'thumbnail',
+            ]));
             foreach ($arr as $item) {
                 if (StringHelper::endsWith($item, "\n")) {
                     $item = Str::sub($item, 0, Str::length($item) - 1);

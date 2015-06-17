@@ -563,6 +563,7 @@ class Maya
                 'kin'      => $kin,
                 'stamp'    => $stamp,
                 'isPortal' => in_array($kin, Maya::$portalList),
+                'isToday'  => ($todayGrisha->format('Y-m-d') == (new DateTime())->format('Y-m-d'))? 1:0,
                 'day'      => $todayGrisha->format('j'),
                 'month'    => $todayGrisha->format('n'),
                 'year'     => $todayGrisha->format('Y'),

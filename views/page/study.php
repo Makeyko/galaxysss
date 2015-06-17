@@ -13,5 +13,17 @@ $this->title = 'Обучение';
     <div class="row">
         <?= \app\services\GsssHtml::unionCategoryItems(11) ?>
     </div>
+    <?php if (count($articleList) > 0) { ?>
+        <div class="row">
+            <div class="page-header">
+                <h2>Статьи</h2>
+            </div>
+            <div class="row">
+                <?php foreach ($articleList as $item) {
+                    echo \app\services\GsssHtml::articleItem($item, 'study');
+                } ?>
+            </div>
+        </div>
+    <?php } ?>
 
 </div>
