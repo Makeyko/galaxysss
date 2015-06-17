@@ -56,9 +56,6 @@ $config = [
                         'warning'
                     ],
                 ],
-                [
-                    'class' => 'yii\log\DbTarget',
-                ],
             ],
         ],
         'db'                   => require(__DIR__ . '/db.php'),
