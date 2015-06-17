@@ -11,6 +11,7 @@ class Article extends \cs\base\DbRecord
     public function incViewCounter()
     {
         $this->update(['view_counter' => $this->getField('view_counter') + 1]);
+
     }
 
     /**
