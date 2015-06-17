@@ -25,6 +25,8 @@
         "dixso/custombox": "*",
         "NorthwoodsSoftware/GoJS": "*",
         "vlucas/valitron": "~1.2",
+
+
         "flesler/jquery.scrollTo": "*"
     },
     "require-dev": {
