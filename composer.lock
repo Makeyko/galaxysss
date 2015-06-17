@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d867f8c981d4df071f9f28df0a496612",
+    "hash": "35afdcccde1eb7ac912f69c22a779601",
     "packages": [
         {
             "name": "NorthwoodsSoftware/GoJS",
@@ -18,16 +18,16 @@
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f"
+                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
-                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
+                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
                 "shasum": ""
             },
             "require": {
@@ -37,13 +37,7 @@
             "extra": {
                 "bower-asset-main": [
                     "less/bootstrap.less",
-                    "dist/css/bootstrap.css",
-                    "dist/js/bootstrap.js",
-                    "dist/fonts/glyphicons-halflings-regular.eot",
-                    "dist/fonts/glyphicons-halflings-regular.svg",
-                    "dist/fonts/glyphicons-halflings-regular.ttf",
-                    "dist/fonts/glyphicons-halflings-regular.woff",
-                    "dist/fonts/glyphicons-halflings-regular.woff2"
+                    "dist/js/bootstrap.js"
                 ],
                 "bower-asset-ignore": [
                     "/.*",
@@ -56,6 +50,9 @@
                     "test-infra"
                 ]
             },
+            "license": [
+                "MIT"
+            ],
             "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
             "keywords": [
                 "css",
@@ -408,16 +405,16 @@
         },
         {
             "name": "flesler/jquery.scrollto",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flesler/jquery.scrollTo.git",
-                "reference": "0ecaf7cb5705b2b1e4e5bcdd339134ab5c069e7f"
+                "reference": "aa8bb320bfe115e844969856d8312e3a5dd8b283"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flesler/jquery.scrollTo/zipball/0ecaf7cb5705b2b1e4e5bcdd339134ab5c069e7f",
-                "reference": "0ecaf7cb5705b2b1e4e5bcdd339134ab5c069e7f",
+                "url": "https://api.github.com/repos/flesler/jquery.scrollTo/zipball/aa8bb320bfe115e844969856d8312e3a5dd8b283",
+                "reference": "aa8bb320bfe115e844969856d8312e3a5dd8b283",
                 "shasum": ""
             },
             "require": {
@@ -440,7 +437,7 @@
                     "name": "Ariel Flesler"
                 }
             ],
-            "description": "Easy element scrolling using jQuery.",
+            "description": "Lightweight, cross-browser and highly customizable animated scrolling with jQuery",
             "homepage": "https://github.com/flesler/jquery.scrollTo",
             "keywords": [
                 "anchors",
@@ -452,7 +449,7 @@
                 "scroll",
                 "scrolling"
             ],
-            "time": "2015-03-18 03:49:47"
+            "time": "2015-03-30 14:17:50"
         },
         {
             "name": "imagine/imagine",
@@ -507,17 +504,71 @@
             "time": "2013-07-10 17:25:36"
         },
         {
-            "name": "smarty/smarty",
-            "version": "v3.1.24",
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "2.8.14",
             "source": {
                 "type": "git",
-                "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "b58771e31b11c721f6aa8e574e16e4058f9edc5f"
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "49562cbc129e22f4f8cb4a0841f31deb3217db5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/b58771e31b11c721f6aa8e574e16e4058f9edc5f",
-                "reference": "b58771e31b11c721f6aa8e574e16e4058f9edc5f",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/49562cbc129e22f4f8cb4a0841f31deb3217db5f",
+                "reference": "49562cbc129e22f4f8cb4a0841f31deb3217db5f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "johnkary/phpunit-speedtrap": "~1.0@dev",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Mobile_Detect.php"
+                ],
+                "psr-0": {
+                    "Detection": "namespaced/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "http://mobiledetect.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "time": "2015-06-16 16:01:51"
+        },
+        {
+            "name": "smarty/smarty",
+            "version": "v3.1.25",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smarty-php/smarty.git",
+                "reference": "58616d6ee598674b682f8a2b81352ec4da7100c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/58616d6ee598674b682f8a2b81352ec4da7100c7",
+                "reference": "58616d6ee598674b682f8a2b81352ec4da7100c7",
                 "shasum": ""
             },
             "require": {
@@ -559,27 +610,27 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-05-23 17:22:14"
+            "time": "2015-06-15 22:23:24"
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.0",
+            "version": "v5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f"
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/31454f258f10329ae7c48763eb898a75c39e0a9f",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/0697e6aa65c83edf97bb0f23d8763f94e3f11421",
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1"
+                "mockery/mockery": "~0.9.1,<0.9.4"
             },
             "type": "library",
             "extra": {
@@ -608,10 +659,11 @@
             "description": "Swiftmailer, free feature-rich PHP mailer",
             "homepage": "http://swiftmailer.org",
             "keywords": [
+                "email",
                 "mail",
                 "mailer"
             ],
-            "time": "2015-03-14 06:06:39"
+            "time": "2015-06-06 14:19:39"
         },
         {
             "name": "vlucas/valitron",
