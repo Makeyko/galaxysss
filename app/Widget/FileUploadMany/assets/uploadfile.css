@@ -1,0 +1,65 @@
+.multifile_upload{
+	float:left;
+	width:450px;
+}
+
+.ajax-file-upload-statusbar {
+	float:left;
+    margin: 10px 0 0 0;
+    width: 400px;
+	height:36px;
+    padding:0 0 0 25px;
+	background:url('multiupload_img/file.png') no-repeat 2px center;
+}
+
+.ajax-file-upload-filename {
+    width: auto;
+    float:left;
+	max-width:220px;
+	line-height:18px;
+	color:#000;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.ajax-file-upload-progress {
+    margin:4px 0 0;
+    position: relative;
+    width: 250px;
+    border-radius: 3px;
+	background:#dfebf4;
+	float:left;
+	clear:both;
+}
+
+.ajax-file-upload-bar {
+    background-color:#2980b9;
+    width:0;
+    height:9px;
+    border-radius:3px;
+    color:#FFFFFF;
+}
+
+.ajax-file-upload-red, .ajax-file-upload-green{
+	float:left;
+	height:18px;
+	width:18px;
+	margin:0 0 0 10px;
+	cursor:pointer;
+    background:url('multiupload_img/delfile.png') no-repeat center top ;
+}
+
+.ajax-file-upload-red:hover, .ajax-file-upload-green:hover{
+    background:url('multiupload_img/delfile.png') no-repeat center bottom ;
+}
+
+.ajax-file-upload {
+    line-height: 42px;
+    padding: 0 10px;
+	text-align:center;
+}
+
+.ajax-file-upload:hover {
+    
+}
