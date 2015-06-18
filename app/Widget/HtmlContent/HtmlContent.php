@@ -255,14 +255,6 @@ JS;
                 $node->_ = [];
             }
         }
-        // iframe
-        // удаляю все атрибуты и подноды
-        foreach ($content->find('iframe') as $element) {
-            $element->attr = [];
-            foreach ($element->nodes as $node) {
-                $node->_ = [];
-            }
-        }
 
         return $content;
     }
