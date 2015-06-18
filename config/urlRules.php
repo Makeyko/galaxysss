@@ -3,17 +3,21 @@
 return [
     'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
+    'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
+
     'upload/upload'                                                                        => 'upload/upload',
     'upload/HtmlContent2'                                                                  => 'html_content/upload',
-    'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
+
     'password/recover'                                                                     => 'auth/password_recover',
     'password/recover/activate/<code:\\w+>'                                                => 'auth/password_recover_activate',
+
     'registration'                                                                         => 'auth/registration',
     'registrationActivate/<code:\\w+>'                                                     => 'auth/registration_activate',
     'login'                                                                                => 'auth/login',
     'loginAjax'                                                                            => 'auth/login_ajax',
     'logout'                                                                               => 'auth/logout',
     'auth'                                                                                 => 'auth/auth',
+
     'category/<id:\\w+>'                                                                   => 'page/category',
     '/'                                                                                    => 'site/index',
     'contact'                                                                              => 'site/contact',
@@ -21,6 +25,7 @@ return [
     'about'                                                                                => 'site/about',
     'captcha'                                                                              => 'site/captcha',
     'log'                                                                                  => 'site/log',
+
     'calendar'                                                                             => 'calendar/index',
     'calendar/friends'                                                                     => 'calendar/friends',
     'calendar/friends/vkontakte'                                                           => 'calendar/friends_vkontakte',
@@ -31,10 +36,13 @@ return [
     'calendar/moon'                                                                        => 'calendar/moon',
     'calendar/colkin'                                                                      => 'calendar/colkin',
     'calendar/colkin/more'                                                                 => 'calendar/colkin_more',
+    'calendar/spyral'                                                                      => 'calendar/spyral',
+
     'moderator/unionList'                                                                  => 'moderator_unions/index',
     'moderator/unionList/<id:\\d+>/accept'                                                 => 'moderator_unions/accept',
     'moderator/unionList/<id:\\d+>/reject'                                                 => 'moderator_unions/reject',
     'moderator/unionList/<id:\\d+>/delete'                                                 => 'moderator_unions/delete',
+
     'admin/serviceList'                                                                    => 'admin_service/index',
     'admin/serviceList/add'                                                                => 'admin_service/add',
     'admin/serviceList/<id:\\d+>/delete'                                                   => 'admin_service/delete',
@@ -57,10 +65,13 @@ return [
     'admin/categoryList/add'                                                               => 'admin_category/add',
     'admin/categoryList/<id:\\d+>/delete'                                                  => 'admin_category/delete',
     'admin/categoryList/<id:\\d+>/edit'                                                    => 'admin_category/edit',
+
     'cabinet/officeList/<unionId:\\d+>'                                                    => 'cabinet_office/index',
     'cabinet/officeList/<unionId:\\d+>/add'                                                => 'cabinet_office/add',
     'cabinet/officeList/<id:\\d+>/delete'                                                  => 'cabinet_office/delete',
     'cabinet/officeList/<id:\\d+>/edit'                                                    => 'cabinet_office/edit',
+
+
     'house'                                                                                => 'page/house',
     'mission'                                                                              => 'page/mission',
     'medical'                                                                              => 'page/medical',
@@ -88,12 +99,15 @@ return [
     'idea'                                                                                 => 'page/idea',
     'codex'                                                                                => 'page/codex',
     'music'                                                                                => 'page/music',
+    'news'                                                                                 => 'page/news',
+    'chenneling'                                                                           => 'page/chenneling',
     'services'                                                                             => 'page/services',
     'services/<id:\\d+>'                                                                   => 'page/services_item',
     'page/<action>'                                                                        => 'page/<action>',
+
     'comment/send'                                                                         => 'comment/send',
-    'news'                                                                                 => 'page/news',
-    'chenneling'                                                                           => 'page/chenneling',
+
+
     'objects'                                                                              => 'cabinet/objects',
     'objects/<id:\\d+>/edit'                                                               => 'cabinet/objects_edit',
     'objects/add'                                                                          => 'cabinet/objects_add',

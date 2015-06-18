@@ -123,6 +123,11 @@ class CalendarController extends BaseController
         return self::jsonSuccess();
     }
 
+    public function actionSpyral()
+    {
+        return $this->render([]);
+    }
+
     public function actionFriends()
     {
         if (Yii::$app->user->isGuest) {
