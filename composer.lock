@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35afdcccde1eb7ac912f69c22a779601",
+    "hash": "e0511b0d97ea7706d13559b21296a1dd",
     "packages": [
         {
             "name": "NorthwoodsSoftware/GoJS",
@@ -505,16 +505,16 @@
         },
         {
             "name": "mobiledetect/mobiledetectlib",
-            "version": "2.8.14",
+            "version": "2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "49562cbc129e22f4f8cb4a0841f31deb3217db5f"
+                "reference": "6495567afe1486353bec82d6b2de6f98553d60a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/49562cbc129e22f4f8cb4a0841f31deb3217db5f",
-                "reference": "49562cbc129e22f4f8cb4a0841f31deb3217db5f",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/6495567afe1486353bec82d6b2de6f98553d60a5",
+                "reference": "6495567afe1486353bec82d6b2de6f98553d60a5",
                 "shasum": ""
             },
             "require": {
@@ -555,20 +555,20 @@
                 "mobile detector",
                 "php mobile detect"
             ],
-            "time": "2015-06-16 16:01:51"
+            "time": "2015-06-18 09:43:23"
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.25",
+            "version": "v3.1.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "58616d6ee598674b682f8a2b81352ec4da7100c7"
+                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/58616d6ee598674b682f8a2b81352ec4da7100c7",
-                "reference": "58616d6ee598674b682f8a2b81352ec4da7100c7",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
+                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
                 "shasum": ""
             },
             "require": {
@@ -610,7 +610,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-15 22:23:24"
+            "time": "2015-06-18 00:55:59"
         },
         {
             "name": "swiftmailer/swiftmailer",
