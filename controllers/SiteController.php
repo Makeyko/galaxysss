@@ -36,16 +36,6 @@ class SiteController extends BaseController
         ];
     }
 
-    public function actionM()
-    {
-        VarDumper::dump(
-            (new YouTube([
-                'url' => 'https://youtu.be/Mq-c8pzCIVM',
-            ]))->run()
-        );
-    }
-
-
     public function actionIndex()
     {
         return $this->render('index');
