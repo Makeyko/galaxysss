@@ -92,7 +92,7 @@ class Chenneling extends \cs\base\BaseForm
 
     public function insert($fieldsCols = null)
     {
-        $item =  parent::insert([
+        $row =  parent::insert([
             'beforeInsert' => function ($fields) {
                 if (Str::pos('<', $fields['content']) === false) {
                     $rows = explode("\r", $fields['content']);
@@ -111,6 +111,7 @@ class Chenneling extends \cs\base\BaseForm
             }
         ]);
 
+        $item = new self($row);
         $rows2[] = Html::tag('p', Html::img(''));
         $item->update(['content' => Html::tag('p', Html::img($item->getField('img'), [
                 'class' => 'thumbnail',
