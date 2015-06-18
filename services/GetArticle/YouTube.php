@@ -64,9 +64,10 @@ class YouTube implements ExtractorInterface
     public function extract()
     {
         return [
-            'image'   => $this->getImage(),
-            'header'  => $this->getHeader(),
-            'content' => $this->getContent(),
+            'image'       => $this->getImage(),
+            'header'      => $this->getHeader(),
+            'content'     => $this->getContent(),
+            'description' => 'Undefined',
         ];
     }
 
@@ -87,19 +88,7 @@ class YouTube implements ExtractorInterface
      */
     public function getHeader()
     {
-        return $this->getDocument()->getElementsByTagName("title")->item(0)->nodeValue;
-    }
-
-    private function getDocument()
-    {
-        if (is_null($this->document)) {
-            $url = 'http://gdata.youtube.com/feeds/api/videos/'. $this->idString;
-            $doc = new \DOMDocument;
-            $doc->load($url);
-            $this->document = $doc;
-        }
-
-        return $this->document;
+        return 'Undefined';
     }
 
     /**
