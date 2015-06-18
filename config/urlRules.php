@@ -3,6 +3,7 @@
 return [
     'm'                                                                                    => 'site/m',
 
+    'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
 
     'upload/upload'                                                                        => 'upload/upload',
@@ -107,15 +108,11 @@ return [
     'music'                                                                                => 'page/music',
     'services'                                                                             => 'page/services',
     'services/<id:\\d+>'                                                                   => 'page/services_item',
-    'page/<action>'                                                                        => 'page/<action>',
 
     'comment/send'                                                                         => 'comment/send',
 
     'news'                                                                                 => 'page/news',
     'chenneling'                                                                           => 'page/chenneling',
-    'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
-
-    'test'                                                                                 => 'site/test',
 
     'objects'                                                                              => 'cabinet/objects',
     'objects/<id:\\d+>/edit'                                                               => 'cabinet/objects_edit',
