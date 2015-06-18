@@ -21,7 +21,7 @@ $this->title = 'Цолькин';
 $this->registerJs("$('.js-stamp').tooltip()");
 
 $ajax = Url::to(['calendar/colkin_more']);
-$this->registerJs(<<<JSSS
+$this->registerJs(<<<JS
 $('#buttonShow').click(function(){
     $('#buttonShow').addClass('active');
     $('#buttonHide').removeClass('active');
@@ -54,7 +54,7 @@ var functionMore = function() {
     });
 };
 $('#more').click(functionMore);
-JSSS
+JS
 );
 $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->baseUrl;
 ?>
