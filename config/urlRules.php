@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'm'                                                                                    => 'site/m',
-
     'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
 
