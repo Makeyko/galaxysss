@@ -47,6 +47,20 @@ class Url
         }
     }
 
+    /**
+     * Добавляет переменную в запрос
+     * @param string $name
+     * @param string $value
+     *
+     * @return Url
+     */
+    public function addParam($name, $value)
+    {
+        $this->params[$name] = $value;
+
+        return $this;
+    }
+
     public function getParam($name, $default = '')
     {
         return ArrayHelper::getValue($this->params, $name, $default);

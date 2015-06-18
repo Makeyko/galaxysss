@@ -38,7 +38,7 @@
     foreach ($rows as $item) { ?>
         <li>
             <input type="checkbox" id="<?= $attrId ?>-<?= $item['id'] ?>" name="<?= $attrName ?>[]"
-                   value="<?= $item['id'] ?>" <?= ($item['selected'])? 'checked="checked"' : '' ?>> <label
+                   value="<?= $item['id'] ?>" <?= (\yii\helpers\ArrayHelper::getValue($item,'selected',false))? 'checked="checked"' : '' ?>> <label
                 for="<?= $attrId ?>-<?= $item['id'] ?>"><?= $item['name'] ?></label>
 
         </li>
