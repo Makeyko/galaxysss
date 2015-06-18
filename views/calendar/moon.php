@@ -18,8 +18,10 @@ $this->registerJsFile('/js/pages/calendar/moon.js', [
         ]
     ]);
 $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->baseUrl;
-$this->registerJs("$('.js-stamp').tooltip()");
-$this->registerJs("Moon.init('{$mayaAssetUrl}')");
+$pathLayoutMenu = \Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset')->baseUrl;
+$this->registerJs("$('.js-stamp').tooltip();");
+$this->registerJs("Moon.init('{$mayaAssetUrl}');");
+$this->registerJs("var pathLayoutMenu = '{$pathLayoutMenu}';", \yii\web\View::POS_HEAD);
 
 $dayInWeek = date('N') + 1;
 if ($dayInWeek == 1) {
@@ -105,10 +107,13 @@ $dayWeekList = [
     <div class="row">
         <div class="col-lg-10" id="main-content">
 
+            <p><img src="" id="ajax-loader"></p>
+
             <table class="calendar">
 
             </table>
 
+            <hr>
             <?= $this->render('../blocks/share', [
                 'image'       => \yii\helpers\Url::to(Yii::$app->getAssetManager()->getBundle('app\assets\Maya\Asset')->get('/images/stamp2/9.jpg') , true),
                 'url'         => \yii\helpers\Url::current([], true),

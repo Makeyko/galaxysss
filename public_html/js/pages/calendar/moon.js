@@ -6,9 +6,9 @@ var Moon = {
 
     init: function (pathUrlAsset) {
 
-        var img=new Image();
-        img.src='/images/calendar/moon/ajax-loader.gif';
-        $('#main-content').append('<p id="ajax-loader"><img src="/images/calendar/moon/ajax-loader.gif"></p>');
+        var img = new Image();
+        img.src = pathLayoutMenu +  '/images/ajax-loader.gif';
+        $('#ajax-loader').attr('src', img.src);
         this.pathUrlAsset = pathUrlAsset;
         var d = new Date();
         var day = d.getDate();
@@ -18,7 +18,7 @@ var Moon = {
         year = this.getYear(startDate);
         var html = this.render(year);
 
-        $('#ajax-loader').remove();
+        $('#ajax-loader').parent().remove();
         $('<h2>', {
             style: 'margin-bottom: 50px'
         }).append($('<img>', {
