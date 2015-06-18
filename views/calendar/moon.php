@@ -105,6 +105,7 @@ $dayWeekList = [
     </style>
 
     <div class="row">
+        <div id="lastDay" class="hide"></div>
         <div class="col-lg-10" id="main-content">
 
             <p><img src="" id="ajax-loader"></p>
@@ -112,6 +113,8 @@ $dayWeekList = [
             <table class="calendar">
 
             </table>
+
+            <button class="btn btn-default" id="buttonNextYear">Следующий год</button>
 
             <hr>
             <?= $this->render('../blocks/share', [

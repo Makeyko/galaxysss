@@ -6,6 +6,47 @@ var Moon = {
 
     init: function (pathUrlAsset) {
 
+        var magnificPopupOptions = {
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in',
+
+            callbacks: {
+                beforeOpen: function(e,i) {
+                    var thisDayLink = this.items[this.index];
+                    var thisDayImg = $(thisDayLink.firstChild);
+                    $(thisDayImg).tooltip('hide');
+                    var day = thisDayImg.data('day');
+                    var modalDialog = $('#small-dialog');
+                    modalDialog.html('');
+                    modalDialog.append($('<h1>').html(day.maya.stamp.data[0]));
+                    if (typeof day.maya.dayOfMoon == 'undefined') {
+                        modalDialog.append($('<p>').html('День вне времени'));
+                    } else {
+                        modalDialog.append($('<p>').html(day.maya.dayOfMoon + '\'' + day.maya.moon.id + '\'' + day.year));
+                    }
+                    modalDialog.append($('<p>').html(thisDayImg.clone()));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[1]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[2]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[3]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[4]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[5]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[6]));
+                    modalDialog.append($('<p>').html(day.maya.stamp.data[7]));
+                }
+            }
+        };
+
         var img = new Image();
         img.src = pathLayoutMenu +  '/images/ajax-loader.gif';
         $('#ajax-loader').attr('src', img.src);
@@ -18,6 +59,26 @@ var Moon = {
         year = this.getYear(startDate);
         var html = this.render(year);
 
+        $('#lastDay').html(year.dayOutOfTime.day + '.' + year.dayOutOfTime.month + '.' + year.dayOutOfTime.year);
+
+        // кнопка "следующий год"
+        $('#buttonNextYear').click(function() {
+            var nextDate = $('#lastDay').html().split('.');
+            var d = new Date();
+            var day = parseInt(nextDate[0]) + 1;
+            d.setDate(day);
+            d.setMonth(nextDate[1]);
+            d.setYear(nextDate[2]);
+            year = Moon.getYear(d);
+            var html = Moon.render(year);
+            var objectHtml = $(html);
+            objectHtml.find('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
+            objectHtml.find('.js-stamp').tooltip();
+            $('table.calendar').append(objectHtml);
+
+            $('#lastDay').html(year.dayOutOfTime.day + '.' + year.dayOutOfTime.month + '.' + year.dayOutOfTime.year);
+        });
+
         $('#ajax-loader').parent().remove();
         $('<h2>', {
             style: 'margin-bottom: 50px'
@@ -25,7 +86,7 @@ var Moon = {
             src: Moon.pathUrlAsset + '/images/stamp2/' + year.monthList[0][0][0].stamp + '.jpg',
             height: 200
         })).insertBefore($('table.calendar'));
-        $('table.calendar').html(html);
+        $('table.calendar').append(html);
         $('.js-stamp').tooltip();
         var offset = $('#today').offset();
         offset = offset.top - (($(window).height() - $('#today').height()) / 2);
@@ -34,46 +95,7 @@ var Moon = {
             duration: 500,
             onAfter: function() {
                 $('#today').css('background-color', '#c0c0c0');
-                $('.popup-with-zoom-anim').magnificPopup({
-                    type: 'inline',
-
-                    fixedContentPos: false,
-                    fixedBgPos: true,
-
-                    overflowY: 'auto',
-
-                    closeBtnInside: true,
-                    preloader: false,
-
-                    midClick: true,
-                    removalDelay: 300,
-                    mainClass: 'my-mfp-zoom-in',
-
-                    callbacks: {
-                        beforeOpen: function(e,i) {
-                            var thisDayLink = this.items[this.index];
-                            var thisDayImg = $(thisDayLink.firstChild);
-                            $(thisDayImg).tooltip('hide');
-                            var day = thisDayImg.data('day');
-                            var modalDialog = $('#small-dialog');
-                            modalDialog.html('');
-                            modalDialog.append($('<h1>').html(day.maya.stamp.data[0]));
-                            if (typeof day.maya.dayOfMoon == 'undefined') {
-                                modalDialog.append($('<p>').html('День вне времени'));
-                            } else {
-                                modalDialog.append($('<p>').html(day.maya.dayOfMoon + '\'' + day.maya.moon.id + '\'' + day.year));
-                            }
-                            modalDialog.append($('<p>').html(thisDayImg.clone()));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[1]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[2]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[3]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[4]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[5]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[6]));
-                            modalDialog.append($('<p>').html(day.maya.stamp.data[7]));
-                        }
-                    }
-                });
+                $('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
             }
         });
 
@@ -157,7 +179,7 @@ var Moon = {
             'stamp': stamp,
             'isPortal': ($.inArray(kin, Maya.portalList) == -1) ? false : true,
             'day': dateGrisha.getDate(),
-            'month': dateGrisha.getMonth(),
+            'month': dateGrisha.getMonth() + 1,
             'year': dateGrisha.getFullYear(),
             'date': Moon.getDateByFormat(dateGrisha),
             'isToday': false,
