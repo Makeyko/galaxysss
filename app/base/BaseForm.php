@@ -622,11 +622,10 @@ class BaseForm extends Model
     public function insert($fieldsCols = null)
     {
         if (!$this->validate()) {
-            \cs\services\VarDumper::dump($this);
-
             return false;
         }
         $beforeInsert = null;
+        $beforeUpdate = null;
 
         if (is_null($fieldsCols)) {
             $fieldsCols = static::$fields;
@@ -635,6 +634,9 @@ class BaseForm extends Model
             if (isset($fieldsCols['beforeInsert'])) {
                 $beforeInsert = $fieldsCols['beforeInsert'];
                 $fieldsCols = static::$fields;
+            }
+            if (isset($fieldsCols['beforeUpdate'])) {
+                $beforeUpdate = $fieldsCols['beforeUpdate'];
             }
         }
         $fields = $this->getFieldsFromFormInsert($fieldsCols);
@@ -657,6 +659,9 @@ class BaseForm extends Model
                     }
                 }
             }
+        }
+        if (!is_null($beforeUpdate)) {
+            $fieldsUpdate = call_user_func($beforeUpdate, $fieldsUpdate);
         }
         if (count($fieldsUpdate) > 0) {
             (new Query())->createCommand()->update(static::TABLE, $fieldsUpdate, ['id' => $fields['id']])->execute();

@@ -102,6 +102,13 @@ class Article extends \cs\base\BaseForm
     {
         return parent::insert([
             'beforeInsert' => function ($fields) {
+                $fields['date_insert'] = gmdate('YmdHis');
+                $fields['id_string'] = Str::rus2translit($fields['header']);
+                $fields['date'] = gmdate('Y-m-d');
+
+                return $fields;
+            },
+            'beforeUpdate' => function ($fields) {
                 if (Str::pos('<', $fields['content']) === false) {
                     $rows = explode("\r", $fields['content']);
                     $rows2 = [];
@@ -111,12 +118,8 @@ class Article extends \cs\base\BaseForm
                     $fields['content'] = join("\r\r", $rows2);
                 }
 
-                $fields['date_insert'] = gmdate('YmdHis');
-                $fields['id_string'] = Str::rus2translit($fields['header']);
-                $fields['date'] = gmdate('Y-m-d');
-
                 return $fields;
-            }
+            },
         ]);
     }
 
