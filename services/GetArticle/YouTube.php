@@ -45,10 +45,12 @@ class YouTube implements ExtractorInterface
         $urlObject = new Url($url);
         if ($urlObject->host == 'www.youtube.com') {
             $this->idString = $urlObject->getParam('v');
+
             return;
         }
         if ($urlObject->host == 'youtu.be') {
             $this->idString = ltrim($urlObject->path, '/');
+
             return;
         }
         throw new ExitException('Ссылку можно использовать только youtube.com, youtu.be');
@@ -70,7 +72,7 @@ class YouTube implements ExtractorInterface
             'image'       => $this->getImage(),
             'header'      => $this->getHeader(),
             'content'     => $this->getContent(),
-            'description' => 'Undefined',
+            'description' => $this->getDescription(),
         ];
     }
 
@@ -81,7 +83,7 @@ class YouTube implements ExtractorInterface
 
     public function getContent()
     {
-        return '<iframe width="640" height="360" src="https://www.youtube.com/embed/'.$this->idString.'" frameborder="0" allowfullscreen></iframe>';
+        return '<iframe width="640" height="360" src="https://www.youtube.com/embed/' . $this->idString . '" frameborder="0" allowfullscreen></iframe>';
     }
 
     /**
@@ -111,20 +113,20 @@ class YouTube implements ExtractorInterface
      *
      * @return \stdClass
     {
-    "provider_url": "http://www.youtube.com/",
-    "title": "СБОРНИК НЕПРЕРЫВНОГО СМЕХА  Игорь Маменко Новое 2015 года",
-    "thumbnail_url": "https://i.ytimg.com/vi/pdjU7Ao2itE/hqdefault.jpg",
-    "thumbnail_width": 480,
-    "author_name": "ЮМОР И СМЕХ",
-    "height": 344,
-    "version": "1.0",
-    "thumbnail_height": 360,
-    "width": 459,
-    "author_url": "http://www.youtube.com/channel/UCXQtFaBlKQk2GtUzBRMpqsg",
-    "provider_name": "YouTube",
-    "html": "<iframe width=\"459\" height=\"344\" src=\"https://www.youtube.com/embed/pdjU7Ao2itE?feature=oembed\" frameborder=\"0\" allowfullscreen></iframe>",
-    "type": "video"
-    }
+     * "provider_url": "http://www.youtube.com/",
+     * "title": "СБОРНИК НЕПРЕРЫВНОГО СМЕХА  Игорь Маменко Новое 2015 года",
+     * "thumbnail_url": "https://i.ytimg.com/vi/pdjU7Ao2itE/hqdefault.jpg",
+     * "thumbnail_width": 480,
+     * "author_name": "ЮМОР И СМЕХ",
+     * "height": 344,
+     * "version": "1.0",
+     * "thumbnail_height": 360,
+     * "width": 459,
+     * "author_url": "http://www.youtube.com/channel/UCXQtFaBlKQk2GtUzBRMpqsg",
+     * "provider_name": "YouTube",
+     * "html": "<iframe width=\"459\" height=\"344\" src=\"https://www.youtube.com/embed/pdjU7Ao2itE?feature=oembed\" frameborder=\"0\" allowfullscreen></iframe>",
+     * "type": "video"
+     * }
      */
     public function getDocument()
     {
