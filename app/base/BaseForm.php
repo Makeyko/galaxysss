@@ -667,7 +667,7 @@ class BaseForm extends Model
             (new Query())->createCommand()->update(static::TABLE, $fieldsUpdate, ['id' => $fields['id']])->execute();
         }
 
-        return $fields;
+        return ArrayHelper::merge($fieldsUpdate, $fields);
     }
 
     /**
