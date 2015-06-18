@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
     'upload/upload'                                                                        => 'upload/upload',
     'upload/HtmlContent2'                                                                  => 'html_content/upload',
@@ -93,7 +94,6 @@ return [
     'comment/send'                                                                         => 'comment/send',
     'news'                                                                                 => 'page/news',
     'chenneling'                                                                           => 'page/chenneling',
-    'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'objects'                                                                              => 'cabinet/objects',
     'objects/<id:\\d+>/edit'                                                               => 'cabinet/objects_edit',
     'objects/add'                                                                          => 'cabinet/objects_add',
