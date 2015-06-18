@@ -570,6 +570,11 @@ class Maya
                 'date'     => $todayGrisha->format('Y-m-d'),
             ];
             $todayGrisha->add(new \DateInterval("P1D"));
+            if ($days[ $row ][ $col ]['month'] == 2) {
+                if ($days[ $row ][ $col ]['day'] == 29) {
+                    $todayGrisha->add(new \DateInterval("P1D"));
+                }
+            }
             $stamp++;
             $ton++;
             if ($stamp > 20) $stamp = 1;
