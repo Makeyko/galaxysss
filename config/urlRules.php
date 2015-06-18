@@ -106,6 +106,7 @@ return [
     'music'                                                                                => 'page/music',
     'services'                                                                             => 'page/services',
     'services/<id:\\d+>'                                                                   => 'page/services_item',
+    'page/<action>'                                                                        => 'page/<action>',
 
     'comment/send'                                                                         => 'comment/send',
 
