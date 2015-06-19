@@ -19,12 +19,10 @@ GS.calendar.maya.driver1 = {
         var direction; // 1 = date > dateBegin, -1 = dateBegin < date
         var dateBegin = new Date();
 
-        dateBegin.setDate(19);
-        dateBegin.setMonth(6 - 1);
-        dateBegin.setYear(2015);
+        dateBegin = [19, 6, 2015];
         console.log(dateBegin);
 
-        if ((date.getTime() - dateBegin.getTime()) > 0) {
+        if (GS.calendar.maya.driver1.compare(dateBegin,date)) {
             begin = dateBegin;
             end = date;
             direction = 1;
@@ -84,7 +82,15 @@ GS.calendar.maya.driver1 = {
      * @return int
      */
     calcDiff: function (begin, end) {
-        return Math.floor((end.getTime() - begin.getTime() + (1000 * 30)) / 24 / 60 / 60 / 1000);
+        var dd1 = new Date();
+        dd1.setDate(begin[0]);
+        dd1.setMonth(begin[1]);
+        dd1.setFullYear(begin[2]);
+        var dd2 = new Date();
+        dd2.setDate(end[0]);
+        dd2.setMonth(end[1]);
+        dd2.setFullYear(end[2]);
+        return Math.floor((dd2.getTime() - dd1.getTime() + (1000 * 30)) / 24 / 60 / 60 / 1000);
     },
 
     /**
@@ -134,11 +140,11 @@ GS.calendar.maya.driver1 = {
      */
     getNormalizedEndYear: function(date)
     {
-        var year = date.getFullYear();
+        var year = date[2];
         // если это високосный год?
         if (year % 4 == 0) {
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
+            var month = date[1];
+            var day = date[0];
             if (month == 2 && day == 28) {
                 return year - 4;
             }
@@ -171,13 +177,11 @@ GS.calendar.maya.driver1 = {
      */
     getNormalizedBeginYear: function(date)
     {
-        console.log('date');
-        console.log(date);
-        var year = date.getFullYear();
+        var year = date[2];
         // если это високосный год?
         if (year % 4 == 0) {
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
+            var month = date[1];
+            var day = date[0];
             if (month == 2 && day == 28) {
                 return year;
             }
@@ -196,6 +200,19 @@ GS.calendar.maya.driver1 = {
             return year + incEndYearVisokos;
         }
 
+    },
+
+    compare: function(d1,d2)
+    {
+        var dd1 = new Date();
+        dd1.setDate(d1[0]);
+        dd1.setMonth(d1[1]);
+        dd1.setFullYear(d1[2]);
+        var dd2 = new Date();
+        dd2.setDate(d2[0]);
+        dd2.setMonth(d2[1]);
+        dd2.setFullYear(d2[2]);
+        return ((dd2.getTime() - dd1.getTime()) > 0);
     }
 };
 
@@ -206,7 +223,7 @@ $(document).ready(function () {
     dateBegin.setDate(29);
     dateBegin.setMonth(2 - 1);
     dateBegin.setYear(2012);
-    console.log(GS.calendar.maya.driver1.calc(dateBegin));
+    console.log(GS.calendar.maya.driver1.calc([29,2,2012]));
 
 
 });
