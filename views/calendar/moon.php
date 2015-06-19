@@ -8,6 +8,11 @@ use cs\models\Calendar\Maya;
 
 $this->title = 'Календарь';
 
+$this->registerJsFile('/js/pages/calendar/spyral.js', [
+        'depends' => [
+            'yii\web\JqueryAsset',
+        ]
+    ]);
 $this->registerJsFile('/js/pages/calendar/moon.js', [
         'depends' => [
             'app\assets\LayoutMenu\Asset',
