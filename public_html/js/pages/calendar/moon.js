@@ -67,7 +67,7 @@ var Moon = {
             var d = new Date();
             var day = parseInt(nextDate[0]) + 1;
             d.setDate(day);
-            d.setMonth(nextDate[1]);
+            d.setMonth(nextDate[1] - 1);
             d.setYear(nextDate[2]);
             year = Moon.getYear(d);
             var html = Moon.render(year);
@@ -108,9 +108,11 @@ var Moon = {
     getYear: function (d) {
         var todayString = this.getDateByFormat(new Date());
         console.log(todayString);
-        var maya = Maya.calc(d.getDate(), d.getMonth() + 1, d.getFullYear());
+        //var maya = Maya.calc(d.getDate(), d.getMonth() + 1, d.getFullYear());
+        console.log([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
+        var maya = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
+        console.log(maya);
         var kin = maya.kin;
-        kin = 9;
         var ton = kin % 13;
         if (ton == 0) ton = 13;
         var stamp = kin % 20;
