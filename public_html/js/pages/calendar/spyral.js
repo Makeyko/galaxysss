@@ -1,13 +1,21 @@
-var GS = {
+var GSSS = {
     calendar: {
         maya: {}
     }
 };
-GS.calendar.maya.driver1 = {
+GSSS.calendar.maya.driver1 = {
+
+
+    /**
+     * Список кинов порталов галактической активации
+     */
+    portalList: [1, 22, 43, 64, 85, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 96, 77, 58, 39, 20, 88, 69, 50, 51, 72, 93,
+        241, 222, 203, 184, 165, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 176, 197, 218, 239, 260, 168, 189, 210, 211, 192, 173
+    ],
 
     /**
      * Вычисляет майянскую дату
-     * @param date Date
+     * @param date array [day, month, year]
      */
     calc: function (date) {
         // сегодняшняя дата 19-06-2015
@@ -19,10 +27,13 @@ GS.calendar.maya.driver1 = {
         var direction; // 1 = date > dateBegin, -1 = dateBegin < date
         var dateBegin = new Date();
 
-        dateBegin = [19, 6, 2015];
-        console.log(dateBegin);
+        if (date[0] == 29 && date[1] == 2) {
+            date[0] = 28;
+        }
 
-        if (GS.calendar.maya.driver1.compare(dateBegin,date)) {
+        dateBegin = [19, 6, 2015];
+
+        if (GSSS.calendar.maya.driver1.compare(dateBegin, date)) {
             begin = dateBegin;
             end = date;
             direction = 1;
@@ -33,26 +44,12 @@ GS.calendar.maya.driver1 = {
         }
 
         /** int количество дней между датами dateBegin и date */
-        var allDays = GS.calendar.maya.driver1.calcDiff(begin, end);
-        console.log('allDays');
-        console.log(allDays);
-
-        var visokosDays = GS.calendar.maya.driver1.calcDiffVisokos(begin, end);
-        console.log('visokosDays');
-        console.log(visokosDays);
-
+        var allDays = GSSS.calendar.maya.driver1.calcDiff(begin, end);
+        var visokosDays = 0;
         var normalizedDays = allDays - visokosDays;
-        console.log('normalizedDays');
-        console.log(normalizedDays);
-
         var ostatokKin = normalizedDays % 260;
-        console.log('ostatokKin');
-        console.log(ostatokKin);
-
         var kin = (startKin + (direction * ostatokKin)) % 260;
         if (kin < 0) kin = 260 + kin;
-        console.log('kin');
-        console.log(kin);
 
         tmp1 = kin % 13;
         if (tmp1 == 0) {
@@ -68,7 +65,8 @@ GS.calendar.maya.driver1 = {
         return {
             ton: tmp1,
             kin: kin,
-            stamp: tmp2
+            stamp: tmp2,
+            nearPortal: GSSS.calendar.maya.driver1.nearPortal(kin)
         };
     },
 
@@ -82,149 +80,90 @@ GS.calendar.maya.driver1 = {
      * @return int
      */
     calcDiff: function (begin, end) {
-        var dd1 = new Date();
-        dd1.setDate(begin[0]);
-        dd1.setMonth(begin[1]);
-        dd1.setFullYear(begin[2]);
-        var dd2 = new Date();
-        dd2.setDate(end[0]);
-        dd2.setMonth(end[1]);
-        dd2.setFullYear(end[2]);
-        return Math.floor((dd2.getTime() - dd1.getTime() + (1000 * 30)) / 24 / 60 / 60 / 1000);
-    },
+        var days = [
+            31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+        ];
 
-    /**
-     * Вычисляет количество високосных дней между датами
-     * например между датами 20-02-2012 и 21-06-2016 результат = 2 дня
-     *
-     * @param begin Date
-     * @param end   Date
-     *
-     * @return int
-     */
-    calcDiffVisokos: function (begin, end) {
-
-        // "день високоса" - 29 февраля - день добавляемый в високосный год
-
-        // вычисляю количество високосных дней в промежутке "нормализованных годов" daysVisokosBetweenNormalizedYears
-        // например если normalizedBeginYear = 2012 а normalizedEndYear = 2016 то daysVisokosBetweenNormalizedYears = 1
-        var daysVisokosBetweenNormalizedYears;
-        {
-            // normalizedBeginYear - год даты "дня високоса" после вычисляемой вычисляемой
-            var normalizedBeginYear = GS.calendar.maya.driver1.getNormalizedBeginYear(begin);
-            console.log('normalizedBeginYear');
-            console.log(normalizedBeginYear);
-
-            // normalizedEndYear - год даты "дня високоса" до вычисляемой
-            var normalizedEndYear = GS.calendar.maya.driver1.getNormalizedEndYear(end);
-            console.log('normalizedEndYear');
-            console.log(normalizedEndYear);
-
-            if (normalizedEndYear >= normalizedBeginYear) {
-                return ((normalizedEndYear - normalizedBeginYear) / 4) + 1;
+        var endYear = end[2];
+        var endMonth = end[1];
+        var endDay = end[0];
+        var beginYear = begin[2];
+        var beginMonth = begin[1];
+        var beginDay = begin[0];
+        // в одном году
+        if (beginYear == endYear) {
+            if (beginMonth < endMonth) {
+                var days2 = 0;
+                for (var h = beginMonth; h < (endMonth - 1); h++) {
+                    days2 += days[h];
+                }
+                return days2 + (days[beginMonth - 1] - beginDay + 1) + (endDay - 1);
             } else {
-                return 0;
+                return endDay - beginDay;
             }
-        }
-    },
-
-    /**
-     * Вычисляет ближайший високосный год до переданной даты по алгоритму
-     * Если end = 2084-02-27, то normalizedEndYear = 2080
-     * Если end = 2084-02-28, то normalizedEndYear = 2080
-     * Если end = 2084-02-29, то normalizedEndYear = 2084
-     * Если end = 2084-03-01, то normalizedEndYear = 2084
-
-     * @param date Date
-     * @returns int
-     */
-    getNormalizedEndYear: function(date)
-    {
-        var year = date[2];
-        // если это високосный год?
-        if (year % 4 == 0) {
-            var month = date[1];
-            var day = date[0];
-            if (month == 2 && day == 28) {
-                return year - 4;
-            }
-            if (month == 2 && day == 29) {
-                return year;
-            }
-            // дата то високосной даты
-            if ((month == 2 && day < 28) || (month < 2)) {
-                return year - 4;
-            }
-            // дата после високосной даты
-            return year;
         } else {
-            var decEndYearVisokos = year % 4;
+            // кол-во дней до конца года начальной даты
+            var startDays = 0;
+            for (var i = begin[1]; i < 12; i++) {
+                startDays += days[i];
+            }
+            startDays += days[begin[1] - 1] - begin[0] + 1;
+            // кол-во дней до начала года конечной даты
+            var finishDays = 0;
+            for (var j = 0; j < (end[1] - 1); j++) {
+                finishDays += days[j];
+            }
+            finishDays += end[0] - 1;
 
-            return year - decEndYearVisokos;
+            return (endYear - beginYear - 1) * 365 + startDays + finishDays;
         }
-
     },
 
-    /**
-     * Вычисляет ближайший високосный год после переданной даты по алгоритму
-     * Если end = 2016-02-27, то normalizedEndYear = 2016
-     * Если end = 2016-02-28, то normalizedEndYear = 2016
-     * Если end = 2016-02-29, то normalizedEndYear = 2020
-     * Если end = 2016-03-01, то normalizedEndYear = 2020
-     *
-     * @param date Date
-     * @returns int
-     */
-    getNormalizedBeginYear: function(date)
-    {
-        var year = date[2];
-        // если это високосный год?
-        if (year % 4 == 0) {
-            var month = date[1];
-            var day = date[0];
-            if (month == 2 && day == 28) {
-                return year;
-            }
-            if (month == 2 && day == 29) {
-                return year;
-            }
-            // дата то високосной даты
-            if ((month == 2 && day < 28) || (month < 2)) {
-                return year;
-            }
-            // дата после високосной даты
-            return year + 4;
-        } else {
-            var incEndYearVisokos = 4 - (year % 4);
+    compare: function (d1, d2) {
 
-            return year + incEndYearVisokos;
-        }
-
-    },
-
-    compare: function(d1,d2)
-    {
         var dd1 = new Date();
         dd1.setDate(d1[0]);
         dd1.setMonth(d1[1]);
         dd1.setFullYear(d1[2]);
+
         var dd2 = new Date();
         dd2.setDate(d2[0]);
         dd2.setMonth(d2[1]);
         dd2.setFullYear(d2[2]);
+
         return ((dd2.getTime() - dd1.getTime()) > 0);
+    },
+
+
+    /**
+     * Вычисляет количество дней до ближайшего портала галактической активации
+     *
+     * @param kin кин на сегодня
+     *
+     * @return int количество дней до портала. 0 - сегодня портал
+     */
+    nearPortal: function (kin) {
+        var arr = GSSS.calendar.maya.driver1.portalList.sort(function sortFunction(a, b) {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+        });
+
+        for (i = 0; i < arr.length; i++) {
+            var item = arr[i];
+            if (item == kin) return 0;
+            if (item < kin && arr[i + 1] > kin) {
+                return arr[i + 1] - kin;
+            }
+        }
     }
+
 };
 
 $(document).ready(function () {
 
-
     var dateBegin = new Date();
-    dateBegin.setDate(29);
-    dateBegin.setMonth(2 - 1);
-    dateBegin.setYear(2012);
-    console.log(GS.calendar.maya.driver1.calc([29,2,2012]));
-
+    console.log(GSSS.calendar.maya.driver1.calc([21, 4, 2015]));
 
 });
 
