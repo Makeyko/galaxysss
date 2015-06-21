@@ -90,6 +90,9 @@ return [
     'tv'                                                                                   => 'page/tv',
     'declaration'                                                                          => 'page/declaration',
     'residence'                                                                            => 'page/residence',
+    'manifest'                                                                             => 'page/manifest',
+
+
     'pledge'                                                                               => 'page/pledge',
     'program'                                                                              => 'page/program',
     'hymn'                                                                                 => 'page/hymn',

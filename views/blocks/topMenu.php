@@ -36,6 +36,7 @@ use yii\helpers\Url;
     <ul class="dropdown-menu" role="menu">
 
         <li><a href="<?= Url::to(['page/declaration']) ?>">Декларация</a></li>
+        <li><a href="<?= Url::to(['page/manifest']) ?>">Манифест</a></li>
         <li><a href="<?= Url::to(['page/codex']) ?>">Кодекс</a></li>
         <li><a href="<?= Url::to(['page/residence']) ?>">Резиденция</a></li>
         <li><a href="<?= Url::to(['page/hymn']) ?>">Гимн</a></li>
