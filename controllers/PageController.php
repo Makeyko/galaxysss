@@ -72,6 +72,11 @@ class PageController extends BaseController
         return $this->render();
     }
 
+    public function actionManifest()
+    {
+        return $this->render();
+    }
+
     public function actionServices()
     {
         return $this->render([
