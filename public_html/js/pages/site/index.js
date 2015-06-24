@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var date0 = new Date(2012, 12 - 1, 21);
-    var date80 = new Date(2025, 1 - 1, 1);
+    var date80 = new Date(2017, 10 - 1, 1);
     var dateNow = new Date();
     var timeOC = date80.getTime() - date0.getTime();
     var timeOB = dateNow.getTime() - date0.getTime();
