@@ -73,9 +73,9 @@ class GsssHtml
      *
      * @return string
      */
-    private function getUnionUrl($row)
+    private static function getUnionUrl($row)
     {
-        $url = Url::current();
+        $url = Url::current([], true);
         $oUrl = new \cs\services\Url($url);
         $arr = explode('/', $oUrl->path);
         if ($arr[1] == 'category') {
