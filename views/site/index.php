@@ -162,11 +162,20 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 </center>
 <div class="row">
     <div class="col-lg-4">
-        <h3>Мандала фест</h3>
+        <h3>ChillOut Planet Festival</h3>
+        <p>с 17 по 27 июля</p>
+        <p>
+            <a href="http://chilloutplanet.ru/" target="_blank">
+                <img src="/images/index/events/sun1.png" width="100%" alt="">
+            </a>
+        </p>
+    </div>
+    <div class="col-lg-4">
+        <h3>Мандала Фестваль</h3>
         <p>с 29 июля по 2 августа</p>
         <p>
             <a href="/events/2015/mandala_festival">
-                <img class="thumbnail" src="/images/index/events/mandala.png" width="100%" alt="">
+                <img src="/images/index/events/mandala.png" width="100%" alt="">
             </a>
         </p>
     </div>
