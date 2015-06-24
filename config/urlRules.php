@@ -92,6 +92,7 @@ return [
     'residence'                                                                            => 'page/residence',
     'manifest'                                                                             => 'page/manifest',
 
+    'events/2015/mandala_festival'                                                         => 'calendar/events_mandala_festival',
 
     'pledge'                                                                               => 'page/pledge',
     'program'                                                                              => 'page/program',

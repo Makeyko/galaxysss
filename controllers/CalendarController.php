@@ -54,6 +54,16 @@ class CalendarController extends BaseController
         return $this->render();
     }
 
+    /**
+     * Выводит год по лунам
+     *
+     * @return string
+     */
+    public function actionEvents_mandala_festival()
+    {
+        return $this->render();
+    }
+
     public function actionIndex()
     {
         return $this->redirect(['calendar/moon']);
