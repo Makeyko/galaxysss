@@ -86,6 +86,7 @@ function draw($item)
     </div>
     <p class="lead">Новое прогрессивное телевидение открывающее новые горизонты осприятия мира и обучающее счастью, любви и радости
         жизни.</p>
+    <p><img src="/images/page/time/3406595251.jpg" width="100%" class="thumbnail"></p>
 
 
     <div class="row">

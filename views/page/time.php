@@ -12,7 +12,7 @@ $this->title = 'Время';
     </div>
     <p class="lead">Когда время согласовано с ритмами природы, тогда мы можем мыслить в масштабах Вечности.</p>
 
-    <p><img src="/images/page/time/3406595251.jpg" width="100%" class="thumbnail"></p>
+    <p><img src="/images/page/time/2.jpg" width="100%" class="thumbnail"></p>
 
     <div class="row">
         <?php
