@@ -156,6 +156,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 </div>
 
 
+<a name="events"></a>
 <hr class="featurette-divider" style="margin-bottom: 100px;">
 <center>
     <h1>Предстоящие события</h1>
