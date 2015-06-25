@@ -171,7 +171,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     src="/images/index/events/8.jpg"
                     width="100%"
                     alt=""
-                    class="thumbnail1"
+                    class="thumbnail"
                     >
             </a>
         </p>
@@ -185,7 +185,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     src="/images/index/events/sun1.png"
                     width="100%"
                     alt=""
-                    class="thumbnail1"
+                    class="thumbnail"
                     >
             </a>
         </p>
@@ -199,7 +199,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     src="/images/index/events/mandala.png"
                     width="100%"
                     alt=""
-                    class="thumbnail1"
+                    class="thumbnail"
                     >
             </a>
         </p>
@@ -226,7 +226,6 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                         <img
                             src="/images/index/partners/logo.png"
                             height="100"
-                            class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -242,7 +241,6 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                         <img
                             src="/images/index/partners/resonance-project-vector-equilibrium-logo-sigil.png"
                             height="100"
-                            class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -257,7 +255,6 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     <center>
                         <img src="/images/index/partners/122250502_(1)1.png"
                              height="100"
-                             class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -274,7 +271,6 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
                     <center>
                         <img
                             src="/images/index/partners/122250502_(1)2.png" height="100"
-                            class="thumbnail1"
                             >
                     </center>
                 </a>
