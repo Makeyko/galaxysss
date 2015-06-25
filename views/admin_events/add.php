@@ -32,15 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'header')->label('Название') ?>
-                <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 20]) ?>
-                <?= $form->field($model, 'content')->label('Полно')->textarea(['rows' => 20]) ?>
-                <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
-                    'tableName' => 'gs_unions_tree',
-                    'select'    => 'id, header as name',
-                ]) ?>
+                <?= $model->field($form, 'name') ?>
+                <?= $model->field($form, 'start_date') ?>
+                <?= $model->field($form, 'start_time') ?>
+                <?= $model->field($form, 'end_date') ?>
+                <?= $model->field($form, 'end_time') ?>
+                <?= $model->field($form, 'content') ?>
+                <?= $model->field($form, 'image') ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Добавить', [
