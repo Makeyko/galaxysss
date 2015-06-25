@@ -167,7 +167,12 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
         <p>27 июня</p>
         <p>
             <a href="https://www.facebook.com/events/381500285382245/" target="_blank">
-                <img src="/images/index/events/8.jpg" width="100%" alt="">
+                <img
+                    src="/images/index/events/8.jpg"
+                    width="100%"
+                    alt=""
+                    class="thumbnail1"
+                    >
             </a>
         </p>
     </div>
@@ -176,7 +181,12 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
         <p>с 17 по 27 июля</p>
         <p>
             <a href="http://chilloutplanet.ru/" target="_blank">
-                <img src="/images/index/events/sun1.png" width="100%" alt="">
+                <img
+                    src="/images/index/events/sun1.png"
+                    width="100%"
+                    alt=""
+                    class="thumbnail1"
+                    >
             </a>
         </p>
     </div>
@@ -185,7 +195,12 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
         <p>с 29 июля по 2 августа</p>
         <p>
             <a href="/events/2015/mandala_festival">
-                <img src="/images/index/events/mandala.png" width="100%" alt="">
+                <img
+                    src="/images/index/events/mandala.png"
+                    width="100%"
+                    alt=""
+                    class="thumbnail1"
+                    >
             </a>
         </p>
     </div>
