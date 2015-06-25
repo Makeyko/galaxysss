@@ -71,7 +71,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 
             <h2>ТелеВидение</h2>
 
-            <p>Новое прогрессивное телевидение открывающее новые горизонты осприятия мира и обучающее счастью, любви и радости жизни.</p>
+            <p>Новое прогрессивное телевидение открывающее новые горизонты восприятия мира и обучающее счастью, любви и радости жизни.</p>
 
             <p><a class="btn btn-default" href="/tv" role="button">Подробнее &raquo;</a></p>
         </div>
@@ -163,7 +163,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 </center>
 <div class="row">
     <div class="col-lg-4">
-        <h3>Галактическая Манифестация Рая</h3>
+        <h3>Галактическая Манифестация</h3>
         <p>27 июня</p>
         <p>
             <a href="https://www.facebook.com/events/381500285382245/" target="_blank">
