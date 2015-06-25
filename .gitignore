@@ -32,3 +32,8 @@ public_html/cgi-bin
 
 updateComposer.sh
 updateFiles.sh
+
+
+# Remote
+access_log
+error_log
