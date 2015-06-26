@@ -42,7 +42,11 @@ class Event extends \cs\base\BaseForm
                 'start_date',
                 'Старт. Дата',
                 0,
-                'date'
+                'widget' => [
+                    'cs\Widget\DatePicker\DatePicker', [
+                        'dateFormat' => 'php:d.m.Y',
+                    ]
+                ],
             ],
             [
                 'start_time',
@@ -55,7 +59,11 @@ class Event extends \cs\base\BaseForm
                 'end_date',
                 'Старт. Дата',
                 0,
-                'date'
+                'widget' => [
+                    'cs\Widget\DatePicker\DatePicker', [
+                        'dateFormat' => 'php:d.m.Y',
+                    ]
+                ],
             ],
             [
                 'end_time',

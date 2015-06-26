@@ -10,7 +10,7 @@ class ClearJuiJsAsset extends AssetBundle
         'jquery-ui.js',
     ];
     public $css = [
-
+        'themes/base/datepicker.css'
     ];
     public $depends = [
         'yii\web\JqueryAsset',

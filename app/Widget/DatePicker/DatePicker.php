@@ -15,7 +15,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use cs\assets\ClearJuiJsAsset as JuiAsset;
+use yii\jui\JuiAsset;
 
 /**
  * DatePicker renders a `datepicker` jQuery UI widget.
@@ -118,6 +118,8 @@ class DatePicker extends \yii\jui\InputWidget
      * with the [[dateFormat]] if it is not null.
      */
     public $value;
+
+    public $options = ['class' => 'form-control'];
 
 
     /**
@@ -293,27 +295,14 @@ class DatePicker extends \yii\jui\InputWidget
     }
 
     /**
-     * @param array           $field
-     * @param \yii\base\Model $model
-     *
-     * @return array поля для обновления в БД
+     * @inheritdoc
      */
     public static function onLoadDb($field, $model)
     {
         $fieldName = $field[ \cs\base\BaseForm::POS_DB_NAME ];
-
-        $array = Yii::$app->request->post($model->formName());
-        $value = ArrayHelper::getValue($array, $fieldName, '');
-        if ($value == '') {
-            $model->$fieldName = null;
-        } else {
-            $dateFormat = ArrayHelper::getValue($field, 'widget.1.dateFormat', 'php:d.m.Y');
-            if (strncmp($dateFormat, 'php:', 4) === 0) {
-                $dateFormat = substr($dateFormat, 4);
-            } else {
-                $dateFormat = FormatConverter::convertDateIcuToPhp($dateFormat);
-            }
-            $model->$fieldName = \DateTime::createFromFormat($dateFormat, $value);
+        $value = $model->row[$fieldName];
+        if (!is_null($value)) {
+            $model->$fieldName = new \DateTime($value);
         }
     }
 }
