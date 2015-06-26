@@ -107,6 +107,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                                 <li><a href="<?= Url::to(['admin_article/index']) ?>">Статьи</a></li>
                                 <li><a href="<?= Url::to(['admin_category/index']) ?>">Категории</a></li>
                                 <li><a href="<?= Url::to(['admin_service/index']) ?>">Услуги</a></li>
+                                <li><a href="<?= Url::to(['admin_events/index']) ?>">События</a></li>
 
                                 <li class="divider"></li>
 

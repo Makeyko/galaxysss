@@ -48,7 +48,7 @@ class Event extends \cs\base\BaseForm
                 'start_time',
                 'Старт. Время',
                 0,
-                'string',
+                'string',[],
                 'формат чч:мм',
             ],
             [
@@ -61,7 +61,7 @@ class Event extends \cs\base\BaseForm
                 'end_time',
                 'Старт. Время',
                 0,
-                'string',
+                'string',[],
                 'формат чч:мм',
 
             ],

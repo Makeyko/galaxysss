@@ -141,6 +141,7 @@ class BaseForm extends Model
                 ];
                 if (isset($field[ self::POS_PARAMS ])) {
                     if (count($field[ self::POS_PARAMS ]) > 0) {
+                        \cs\services\VarDumper::dump($field);
                         foreach ($field[ self::POS_PARAMS ] as $key => $value) $item[ $key ] = $value;
                     }
                 }

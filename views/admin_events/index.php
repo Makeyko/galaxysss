@@ -4,9 +4,9 @@ use yii\helpers\Url;
 use app\services\GsssHtml;
 use yii\helpers\Html;
 
-$this->title = 'Статьи';
+$this->title = 'События';
 
-$this->registerJsFile('/js/pages/admin/article_list.js', [
+$this->registerJsFile('/js/pages/admin_events/index.js', [
     'depends' => [
         'app\assets\App\Asset',
         'app\assets\ModalBoxNew\Asset'
@@ -16,7 +16,7 @@ $this->registerJsFile('/js/pages/admin/article_list.js', [
 
 <div class="container">
     <div class="page-header">
-        <h1>Статьи</h1>
+        <h1><?= $this->title ?></h1>
     </div>
 
 
@@ -26,7 +26,7 @@ $this->registerJsFile('/js/pages/admin/article_list.js', [
         foreach ($items as $item) {
             ?>
             <a href="<?= Url::to([
-                    'admin_article/edit',
+                    'admin_events/edit',
                     'id' => $item['id']
                 ]) ?>" class="list-group-item" id="newsItem-<?= $item['id'] ?>">
                 <h4><?= $item['header'] ?></h4>
@@ -56,17 +56,8 @@ $this->registerJsFile('/js/pages/admin/article_list.js', [
 
     <div class="col-lg-6">
         <div class="row">
-            <!-- Split button -->
             <div class="btn-group">
-                <a href="<?= Url::to(['admin_article/add'])?>" class="btn btn-default">Добавить</a>
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="<?= Url::to(['admin_article/add_from_page', 'page' => 'youtube'])?>">Добавить с YouTube</a></li>
-                    <li><a href="<?= Url::to(['admin_article/add_from_page', 'page' => 'verhosvet'])?>">Добавить с Verhosvet</a></li>
-                </ul>
+                <a href="<?= Url::to(['admin_events/add'])?>" class="btn btn-default">Добавить</a>
             </div>
         </div>
     </div>
