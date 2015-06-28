@@ -7,7 +7,7 @@ use app\models\UnionCategory;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = 'Редактирование профиля';
 $this->params['breadcrumbs'][] = $this->title;
@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'name_first')->label('Имя') ?>
                 <?= $form->field($model, 'name_last')->label('Фамилия') ?>
                 <?= $form->field($model, 'avatar')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
+                <?= $model->field($form, 'birth_date') ?>
 
                 <?php if (isset($model->vk_id)) { ?>
                     <p>Профиль: <?= $model->vk_id ?> </p>
