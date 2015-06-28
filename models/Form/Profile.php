@@ -46,6 +46,7 @@ class Profile extends BaseForm
             ['avatar', 'Картинка', 0, 'string', 'widget' => [FileUpload::className(), ['options' => [
                 'small' => \app\services\GsssHtml::$formatIcon
             ]]]],
+            ['birth_date', 'Дата рождения', 0, 'string', 'widget' => [\cs\Widget\DatePicker\DatePicker::className(), ['dateFormat' => 'php:d.m.Y']]],
         ];
         parent::__construct($fields);
     }
