@@ -116,6 +116,7 @@ class DatePicker extends \yii\jui\InputWidget
      */
     public $value;
 
+    public $options = ['class' => 'form-control'];
 
     /**
      * @inheritdoc
