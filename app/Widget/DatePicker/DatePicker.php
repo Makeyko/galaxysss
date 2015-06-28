@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use cs\assets\ClearJuiJsAsset as JuiAsset;
+use yii\jui\JuiAsset;
 
 /**
  * DatePicker renders a `datepicker` jQuery UI widget.
