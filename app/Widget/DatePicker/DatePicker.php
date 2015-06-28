@@ -7,6 +7,7 @@
 
 namespace cs\Widget\DatePicker;
 
+use cs\base\BaseForm;
 use cs\services\VarDumper;
 use Yii;
 use yii\base\InvalidParamException;
@@ -14,10 +15,12 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use cs\assets\ClearJuiJsAsset as JuiAsset;
+use yii\jui\JuiAsset;
 
 /**
  * DatePicker renders a `datepicker` jQuery UI widget.
+ *
+ * В модели значение хранится в формате \DateTime
  *
  * For example to use the datepicker with a [[yii\base\Model|model]]:
  *
@@ -115,6 +118,8 @@ class DatePicker extends \yii\jui\InputWidget
      * with the [[dateFormat]] if it is not null.
      */
     public $value;
+
+    public $options = ['class' => 'form-control'];
 
 
     /**
@@ -248,6 +253,19 @@ class DatePicker extends \yii\jui\InputWidget
      */
     public static function onUpdate($field, $model)
     {
+        $fieldName = $field[ \cs\base\BaseForm::POS_DB_NAME ];
+        if ($model->$fieldName) {
+            /** @var \DateTime $objectDateTime */
+            $objectDateTime = $model->$fieldName;
+
+            return [
+                $fieldName => $objectDateTime->format('Ymd'),
+            ];
+        } else {
+            return [
+                $fieldName => null,
+            ];
+        }
 
     }
 
@@ -260,36 +278,31 @@ class DatePicker extends \yii\jui\InputWidget
     public static function onLoad($field, $model)
     {
         $fieldName = $field[ \cs\base\BaseForm::POS_DB_NAME ];
-        $value = $model->$fieldName;
-        $dateFormat = ArrayHelper::getValue($field, 'widget.1.dateFormat');
-        if ($dateFormat != '') {
-            $model->$fieldName = \Yii::$app->formatter->asDate($value, $dateFormat);
+
+        $array = Yii::$app->request->post($model->formName());
+        $value = ArrayHelper::getValue($array, $fieldName, '');
+        if ($value == '') {
+            $model->$fieldName = null;
+        } else {
+            $dateFormat = ArrayHelper::getValue($field, 'widget.1.dateFormat', 'php:d.m.Y');
+            if (strncmp($dateFormat, 'php:', 4) === 0) {
+                $dateFormat = substr($dateFormat, 4);
+            } else {
+                $dateFormat = FormatConverter::convertDateIcuToPhp($dateFormat);
+            }
+            $model->$fieldName = \DateTime::createFromFormat($dateFormat, $value);
         }
     }
 
     /**
-     * Рисует просмотр файла для детального просмотра
-     *
-     * @param \yii\base\Model $model
-     * @param array           $field
-     *
-     * @return string
+     * @inheritdoc
      */
-    public static function drawDetailView($model, $field)
+    public static function onLoadDb($field, $model)
     {
-        return 'FileUploadMany';
-    }
-
-    /**
-     * Рисует просмотр файла для детального просмотра
-     *
-     * @param \yii\base\Model $model
-     * @param array           $field
-     *
-     * @return string
-     */
-    public static function onDetailView($model, $field)
-    {
-        return self::drawDetailView($model, $field);
+        $fieldName = $field[ \cs\base\BaseForm::POS_DB_NAME ];
+        $value = $model->row[$fieldName];
+        if (!is_null($value)) {
+            $model->$fieldName = new \DateTime($value);
+        }
     }
 }
