@@ -513,9 +513,11 @@ var Maya123 = {
         maya = this.calc(day, m + 1, y);
         url = '//img.galaxysss.ru/maya/ton/' + maya.ton + '.gif';
         document.write('<img src="'+url+'" width="20">');
+        document.write('тон:' + Maya123.tonList[maya.ton-1][0]);
         document.write('<br>');
         url = '//img.galaxysss.ru/maya/stamp/' + maya.stamp + '.jpg';
         document.write('<img src="'+url+'" width="30">');
+        document.write('печать:' + Maya123.stampList[maya.stamp-1][0]);
 
     }
 };
