@@ -162,15 +162,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
     <h1>Предстоящие события</h1>
 </center>
 <div class="row">
-    <div class="col-lg-4">
-        <h3>Галактическая Манифестация</h3>
-        <p>27 июня</p>
-        <p>
-            <a href="https://www.facebook.com/events/381500285382245/" target="_blank">
-                <img src="/images/index/events/8.jpg" width="100%" alt="">
-            </a>
-        </p>
-    </div>
+
     <div class="col-lg-4">
         <h3>ChillOut Planet Festival</h3>
         <p>с 17 по 27 июля</p>
