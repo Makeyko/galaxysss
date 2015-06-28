@@ -512,12 +512,26 @@ var Maya123 = {
         var url;
         maya = this.calc(day, m + 1, y);
         url = '//img.galaxysss.ru/maya/ton/' + maya.ton + '.gif';
+
+        document.write('<table border="0">');
+        document.write('<tr>');
+        document.write('<td style="text-align: center;">');
         document.write('<img src="'+url+'" width="20" title="'+Maya123.tonList[maya.ton-1][0]+'">');
-        document.write(' тон: ' + Maya123.tonList[maya.ton-1][0]);
-        document.write('<br>');
+        document.write('</td>');
+        document.write('<td style="padding-left: 10px;">');
+        document.write('тон: ' + Maya123.tonList[maya.ton-1][0]);
+        document.write('</td>');
+        document.write('</tr>');
+        document.write('<tr>');
+        document.write('<td>');
         url = '//img.galaxysss.ru/maya/stamp/' + maya.stamp + '.jpg';
         document.write('<img src="'+url+'" width="30" title="'+Maya123.stampList[maya.stamp-1][0]+'">');
-        document.write(' печать: ' + Maya123.stampList[maya.stamp-1][0]);
+        document.write('</td>');
+        document.write('<td style="padding-left: 10px;">');
+        document.write('печать: ' + Maya123.stampList[maya.stamp-1][0]);
+        document.write('</td>');
+        document.write('</tr>');
+        document.write('</table>');
     }
 };
 
