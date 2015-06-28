@@ -30,4 +30,10 @@ phpunit.phar
 
 public_html/cgi-bin
 
-update.sh
+updateComposer.sh
+updateFiles.sh
+
+
+# Remote
+access_log
+error_log
