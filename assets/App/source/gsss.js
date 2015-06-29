@@ -1,8 +1,10 @@
-/**
- *
- * @param options
- * @returns {*}
- */
+
+var GSSS = {
+    calendar: {
+        maya: {}
+    }
+};
+
 
 function ajaxJson(options) {
 

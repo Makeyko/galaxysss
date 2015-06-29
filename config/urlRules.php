@@ -37,6 +37,7 @@ return [
     'calendar/colkin'                                                                      => 'calendar/colkin',
     'calendar/colkin/more'                                                                 => 'calendar/colkin_more',
     'calendar/spyral'                                                                      => 'calendar/spyral',
+    'calendar/orakul'                                                                      => 'calendar/orakul',
 
     'moderator/unionList'                                                                  => 'moderator_unions/index',
     'moderator/unionList/<id:\\d+>/accept'                                                 => 'moderator_unions/accept',

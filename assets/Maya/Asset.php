@@ -20,6 +20,7 @@ class Asset extends AssetBundle
     ];
     public $js      = [
         'maya.js',
+        'driver1.js',
     ];
     public $depends = [
     ];

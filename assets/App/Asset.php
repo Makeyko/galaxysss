@@ -15,7 +15,7 @@ class Asset extends AssetBundle
     public $css      = [
     ];
     public $js       = [
-        'cs.js',
+        'gsss.js',
     ];
     public $depends  = [
         'yii\web\YiiAsset',
