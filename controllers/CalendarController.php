@@ -55,6 +55,16 @@ class CalendarController extends BaseController
     }
 
     /**
+     * Выводит Оракул дня
+     *
+     * @return string
+     */
+    public function actionOrakul()
+    {
+        return $this->render();
+    }
+
+    /**
      * Выводит год по лунам
      *
      * @return string
