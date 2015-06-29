@@ -34,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $form->field($model, 'url')->label('Ссылка') ?>
                 <?= $form->field($model, 'provider')->hiddenInput()->label('', ['class' => 'hide']) ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxListMask\CheckBoxListMask', [
-                    'rows' => (new Query())->select('id, name')->from('gs_cheneling_tree')->all()
+                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
+                    'tableName' => 'gs_cheneling_tree'
                 ]) ?>
 
                 <div class="form-group">

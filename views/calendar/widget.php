@@ -30,7 +30,7 @@ $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->ba
             1.
         </div>
         <div class="col-lg-3">
-            <script src='//www.galaxysss.ru/js/widget/maya-today.js'></script>
+            <script src='/js/widget/maya-today.js'></script>
         </div>
         <div class="col-lg-8">
             <textarea rows="5"

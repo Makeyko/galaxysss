@@ -1,8 +1,3 @@
-var GSSS = {
-    calendar: {
-        maya: {}
-    }
-};
 
 GSSS.calendar.maya.driver1 = {
 
@@ -16,7 +11,15 @@ GSSS.calendar.maya.driver1 = {
 
     /**
      * Вычисляет майянскую дату
-     * @param date array [day, month, year]
+     *
+     * @param date array [day (1-31), month (1-12), year (1 - ...)]
+     * @return
+     * {
+     *  ton: 1-13
+     *  stamp: 1-20
+     *  kin: 1-260
+     *  nearPortal: int - количество дней до ближайшего портала (0 - сегодня)
+     * }
      */
     calc: function (date) {
         // сегодняшняя дата 19-06-2015
@@ -161,10 +164,4 @@ GSSS.calendar.maya.driver1 = {
 
 };
 
-$(document).ready(function () {
-
-    var dateBegin = new Date();
-    console.log(GSSS.calendar.maya.driver1.calc([21, 4, 2015]));
-
-});
 
