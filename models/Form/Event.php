@@ -28,6 +28,7 @@ class Event extends \cs\base\BaseForm
     public $content;
     public $image;
     public $user_id;
+    public $date_insert;
 
     function __construct($fields = [])
     {

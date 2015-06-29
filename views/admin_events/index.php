@@ -29,7 +29,7 @@ $this->registerJsFile('/js/pages/admin_events/index.js', [
                     'admin_events/edit',
                     'id' => $item['id']
                 ]) ?>" class="list-group-item" id="newsItem-<?= $item['id'] ?>">
-                <h4><?= $item['header'] ?></h4>
+                <h4><?= $item['name'] ?></h4>
 
                 <div class="row">
                     <div class="col-lg-3">

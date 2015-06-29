@@ -9,7 +9,7 @@ use yii\db\Query;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
 
-$this->title = $model->header;
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
