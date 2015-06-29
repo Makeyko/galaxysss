@@ -7,7 +7,7 @@ use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = 'Добавить ченнелинг';
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,9 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'source')->label('Источник') ?>
                 <?= $form->field($model, 'content')->label('Содержание')->textarea(['rows' => 20]) ?>
                 <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxListMask\CheckBoxListMask', [
-                        'rows' => (new Query())->select('id, name')->from('gs_cheneling_tree')->all()
-                    ]) ?>
+                <?= $model->field($form, 'tree_node_id_mask') ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Добавить', [

@@ -80,9 +80,9 @@ class Chenneling extends \cs\base\BaseForm
                 0,
                 'cs\Widget\CheckBoxListMask\Validator',
                 'widget' => [
-                    'cs\Widget\CheckBoxListMask\CheckBoxListMask',
+                    'cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask',
                     [
-                        'rows' => (new Query())->select('id, name')->from('gs_cheneling_tree')->all()
+                        'tableName' => 'gs_cheneling_tree'
                     ]
                 ]
             ],
