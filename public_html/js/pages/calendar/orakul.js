@@ -32,6 +32,23 @@ $(document).ready(function () {
             setStamp('#antipod .stamp', antipod);
         }
 
+        // Оккультный учитель
+        {
+            var okkult = 21 - todayMaya.stamp;
+            var okkultTon = 14 - todayMaya.ton;
+
+            setTon('#okkult .ton', okkultTon);
+            setStamp('#okkult .stamp', okkult);
+        }
+
+        // Ведущий учитель
+        {
+            var vedun = 21 - todayMaya.stamp;
+
+            setTon('#vedun .ton', todayMaya.ton);
+            setStamp('#vedun .stamp', vedun);
+        }
+
     }
 
     function setTon(selector, ton) {
