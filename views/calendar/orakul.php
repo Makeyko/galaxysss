@@ -10,6 +10,7 @@ $this->title = 'Оракул дня';
 
 $this->registerJsFile('/js/pages/calendar/orakul.js', [
     'depends' => [
+        'app\assets\App\Asset',
         'app\assets\Maya\Asset',
         'yii\web\JqueryAsset',
     ]
@@ -28,7 +29,12 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     <div class="page-header">
         <h1><?= $this->title ?></h1>
     </div>
-
+<style>
+    .oracul .item {
+        padding: 0px 10px 10px 10px;
+        text-align: center;
+    }
+</style>
 
     <div class="row">
         <div class="col-lg-10">
@@ -36,20 +42,35 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
         <div class="row">
             <div id="orakul-div" class="col-lg-4">
-                <table id="orakul-table">
+                <table id="orakul-table" class="oracul">
                     <tr>
                         <td></td>
-                        <td id="vedun"><img src="/assets/c0320fe1/images/stamp3/7.gif"  alt=""></td>
+                        <td id="vedun" class="item">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/5.gif"  alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/7.gif"  alt="" class="stamp">
+                        </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td id="antipod"><img src="/assets/c0320fe1/images/stamp3/7.gif"  alt=""></td>
-                        <td><img src="/assets/c0320fe1/images/stamp3/7.gif"  alt=""></td>
-                        <td id="analog"><img src="/assets/c0320fe1/images/stamp3/7.gif"  alt=""></td>
+                        <td id="antipod" class="item">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/5.gif"  alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/7.gif"  alt="" class="stamp">
+                        </td>
+                        <td id="today" class="item">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/5.gif"  alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/7.gif"  alt="" class="stamp">
+                        </td>
+                        <td id="analog" class="item">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/5.gif"  alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/7.gif"  alt="" class="stamp">
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td id="okkult"><img src="/assets/c0320fe1/images/stamp3/7.gif"  alt=""></td>
+                        <td id="okkult" class="item">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/5.gif"  alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/7.gif"  alt="" class="stamp">
+                        </td>
                         <td></td>
                     </tr>
                 </table>
