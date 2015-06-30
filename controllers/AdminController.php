@@ -74,6 +74,7 @@ class AdminController extends AdminBaseController
         $model = new \app\models\Form\Chenneling();
         if ($model->load(Yii::$app->request->post()) && $model->insert()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
+            \app\models\Chenneling::clearCache();
 
             return $this->refresh();
         } else {
@@ -88,6 +89,7 @@ class AdminController extends AdminBaseController
         $model = new \app\models\Form\ChennelingFromPage();
         if ($model->load(Yii::$app->request->post()) && $model->insert()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
+            \app\models\Chenneling::clearCache();
 
             return $this->refresh();
         } else {
@@ -103,6 +105,7 @@ class AdminController extends AdminBaseController
         $model = \app\models\Form\Chenneling::find($id);
         if ($model->load(Yii::$app->request->post()) && $model->update()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
+            \app\models\Chenneling::clearCache();
 
             return $this->refresh();
         } else {
@@ -115,6 +118,7 @@ class AdminController extends AdminBaseController
     public function actionChenneling_list_delete($id)
     {
         \app\models\Form\Chenneling::find($id)->delete();
+        \app\models\Chenneling::clearCache();
 
         return self::jsonSuccess();
     }

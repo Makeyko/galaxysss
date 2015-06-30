@@ -393,8 +393,14 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        return $this->render([
-            'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all()
-        ]);
+        $cache = Yii::$app->cache->get(\app\models\Chenneling::MEMCACHE_KEY_LIST);
+        if ($cache === false) {
+            $cache = $this->render([
+                'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all()
+            ]);
+            Yii::$app->cache->set(\app\models\Chenneling::MEMCACHE_KEY_LIST, $cache);
+        }
+
+        return $cache;
     }
 }
