@@ -3,6 +3,8 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
+/* @var array $events gs_events */
+
 $this->title = 'Галактический Союз Сил Света';
 
 $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryAsset']]);
@@ -163,6 +165,22 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 </center>
 <div class="row">
 
+    <?php foreach($events as $event) { ?>
+<!--    <div class="col-lg-4">-->
+<!--        <h3>--><?//= $event['name'] ?><!--</h3>-->
+<!--        <p>с 17 по 27 июля</p>-->
+<!--        <p>-->
+<!--            <a href="--><?//= $event['link'] ?><!--" target="_blank">-->
+<!--                <img-->
+<!--                    src="--><?//= $event['image'] ?><!--"-->
+<!--                    width="100%"-->
+<!--                    alt=""-->
+<!--                    class="thumbnail"-->
+<!--                    >-->
+<!--            </a>-->
+<!--        </p>-->
+<!--    </div>-->
+    <?php } ?>
     <div class="col-lg-4">
         <h3>ChillOut Planet Festival</h3>
         <p>с 17 по 27 июля</p>

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Form\Event;
 use app\models\User;
 use app\services\GetArticle\YouTube;
 use cs\base\BaseController;
@@ -38,7 +39,9 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'events' => \app\models\Event::query()->limit(3)->orderBy(['date_insert' => SORT_DESC])->all(),
+        ]);
     }
 
     public function actionContact()
