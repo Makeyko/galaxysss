@@ -46,7 +46,6 @@ use yii\jui\DatePicker;
 use cs\Widget\FileUpload\FileUpload;
 use cs\Widget\RadioList\RadioList;
 use cs\Widget\Place\Place;
-use CreditSystem\App as CApplication;
 
 class BaseForm extends Model
 {
@@ -141,7 +140,6 @@ class BaseForm extends Model
                 ];
                 if (isset($field[ self::POS_PARAMS ])) {
                     if (count($field[ self::POS_PARAMS ]) > 0) {
-                        \cs\services\VarDumper::dump($field);
                         foreach ($field[ self::POS_PARAMS ] as $key => $value) $item[ $key ] = $value;
                     }
                 }
