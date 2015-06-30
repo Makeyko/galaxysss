@@ -29,6 +29,7 @@ class Event extends \cs\base\BaseForm
     public $image;
     public $user_id;
     public $date_insert;
+    public $link;
 
     function __construct($fields = [])
     {
@@ -84,6 +85,12 @@ class Event extends \cs\base\BaseForm
                     [
                     ]
                 ]
+            ],
+            [
+                'link',
+                'Ссылка',
+                0,
+                'url',
             ],
             [
                 'image',
