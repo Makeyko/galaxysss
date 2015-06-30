@@ -53,7 +53,19 @@ $config = [
                     'class'  => 'yii\log\FileTarget',
                     'levels' => [
                         'error',
-                        'warning'
+                        'warning',
+                    ],
+                ],
+                [
+                    'class'   => 'yii\log\EmailTarget',
+                    'levels'  => [
+                        'error',
+                        'warning',
+                    ],
+                    'message' => [
+                        'from'    => ['admin@galaxysss.ru'],
+                        'to'      => ['god@galaxysss.ru'],
+                        'subject' => 'GALAXYSSS.RU ERROR',
                     ],
                 ],
             ],
