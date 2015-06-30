@@ -28,6 +28,7 @@ class Event extends \cs\base\BaseForm
     public $content;
     public $image;
     public $user_id;
+    public $date_insert;
 
     function __construct($fields = [])
     {
@@ -42,26 +43,34 @@ class Event extends \cs\base\BaseForm
                 'start_date',
                 'Старт. Дата',
                 0,
-                'date'
+                'widget' => [
+                    'cs\Widget\DatePicker\DatePicker', [
+                        'dateFormat' => 'php:d.m.Y',
+                    ]
+                ],
             ],
             [
                 'start_time',
                 'Старт. Время',
                 0,
-                'string',
+                'string',[],
                 'формат чч:мм',
             ],
             [
                 'end_date',
                 'Старт. Дата',
                 0,
-                'date'
+                'widget' => [
+                    'cs\Widget\DatePicker\DatePicker', [
+                        'dateFormat' => 'php:d.m.Y',
+                    ]
+                ],
             ],
             [
                 'end_time',
                 'Старт. Время',
                 0,
-                'string',
+                'string',[],
                 'формат чч:мм',
 
             ],

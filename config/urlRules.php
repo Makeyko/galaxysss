@@ -48,10 +48,17 @@ return [
     'admin/serviceList/add'                                                                => 'admin_service/add',
     'admin/serviceList/<id:\\d+>/delete'                                                   => 'admin_service/delete',
     'admin/serviceList/<id:\\d+>/edit'                                                     => 'admin_service/edit',
+
     'admin/news'                                                                           => 'admin/news',
     'admin/news/add'                                                                       => 'admin/news_add',
     'admin/news/<id:\\d+>/delete'                                                          => 'admin/news_delete',
     'admin/news/<id:\\d+>/edit'                                                            => 'admin/news_edit',
+
+    'admin/events'                                                                         => 'admin_events/index',
+    'admin/events/add'                                                                     => 'admin_events/add',
+    'admin/events/<id:\\d+>/delete'                                                        => 'admin_events/delete',
+    'admin/events/<id:\\d+>/edit'                                                          => 'admin_events/edit',
+
     'admin/chennelingList'                                                                 => 'admin/chenneling_list',
     'admin/chennelingList/add'                                                             => 'admin/chenneling_list_add',
     'admin/chennelingList/addFromPage'                                                     => 'admin/chenneling_list_add_from_page',

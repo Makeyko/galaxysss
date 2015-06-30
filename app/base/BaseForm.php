@@ -46,7 +46,6 @@ use yii\jui\DatePicker;
 use cs\Widget\FileUpload\FileUpload;
 use cs\Widget\RadioList\RadioList;
 use cs\Widget\Place\Place;
-use CreditSystem\App as CApplication;
 
 class BaseForm extends Model
 {
