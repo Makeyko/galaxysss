@@ -68,6 +68,8 @@ class HtmlContent extends InputWidget
         \cs\Widget\HtmlContent\Asset::register($this->view);
         $js = <<<JS
         CKEDITOR.config.filebrowserUploadUrl = '{$this->uploadUrl}';
+        CKEDITOR.config.allowedContent = true;
+        CKEDITOR.config.disallowedContent = true;
         CKEDITOR.replace( '{$this->fieldId}' );
 JS;
         $this->getView()->registerJs($js);
