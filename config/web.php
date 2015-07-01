@@ -62,6 +62,7 @@ $config = [
                         'error',
                         'warning',
                     ],
+                    'categories' => ['yii\db\*'],
                     'message' => [
                         'from'    => ['admin@galaxysss.ru'],
                         'to'      => ['god@galaxysss.ru'],

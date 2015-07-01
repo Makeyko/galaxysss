@@ -10,7 +10,6 @@
 
 namespace app\models;
 
-
 use yii\helpers\VarDumper;
 
 trait UserCache
@@ -29,11 +28,11 @@ trait UserCache
         }
 
         $keyName = 'user/'.$id;
-        $user = \Yii::$app->cache->get($keyName);
+        $user = \Yii::$app->session->get($keyName, false);
         \Yii::info(VarDumper::dumpAsString($user), 'gsss/UserCache');
         if ($user === false) {
             $user = parent::_find($id);
-            \Yii::$app->cache->set($keyName,$user);
+            \Yii::$app->session->set($keyName,$user);
         }
 
         return new static($user);
@@ -49,7 +48,7 @@ trait UserCache
     public function update($fields)
     {
         $keyName = 'user/'.$this->getId();
-        \Yii::$app->cache->delete($keyName);
+        \Yii::$app->session->remove($keyName);
         foreach($fields as $k => $v) {
             $this->fields[$k] = $v;
         }
