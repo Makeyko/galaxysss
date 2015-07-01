@@ -25,7 +25,7 @@ class m150701_065855_chenneling extends Migration
                 6
             ]
         ]);
-        $this->execute('update gs_cheneling_list set tree_node_id_mask=tree_node_id_mask & :mask', [':mask' => (new \cs\services\BitMask([$id]))->getMask()]);
+        $this->execute('update gs_cheneling_list set tree_node_id_mask=tree_node_id_mask | :mask', [':mask' => (new \cs\services\BitMask([$id]))->getMask()]);
     }
 
     public function down()
