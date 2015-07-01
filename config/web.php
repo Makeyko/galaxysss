@@ -32,7 +32,7 @@ $config = [
             'loginUrl'        => ['auth/login'],
         ],
         'errorHandler'         => [
-            'errorAction' => 'error/error',
+            'errorAction' => 'site/error',
         ],
         'urlManager'           => [
             'enablePrettyUrl'     => true,
