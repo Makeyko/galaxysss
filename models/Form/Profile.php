@@ -38,6 +38,10 @@ class Profile extends BaseForm
     public $fb_link;
     public $birth_date;
 
+    public $subscribe_is_news;
+    public $subscribe_is_site_update;
+    public $subscribe_is_mailing;
+
     function __construct($fields = [])
     {
         static::$fields = [
