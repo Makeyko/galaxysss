@@ -90,6 +90,11 @@ class Chenneling extends \cs\base\BaseForm
         parent::__construct($fields);
     }
 
+    /**
+     * @param null $fieldsCols
+     *
+     * @return \app\models\Chenneling
+     */
     public function insert($fieldsCols = null)
     {
         $row =  parent::insert([
