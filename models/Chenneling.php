@@ -10,6 +10,7 @@ namespace app\models;
 
 
 use app\services\Subscribe;
+use cs\services\Url;
 
 class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
 {
@@ -35,6 +36,15 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
         return $this->getField('header');
     }
 
+    public function getImage($isScheme = false)
+    {
+        if ($isScheme) {
+            return \yii\helpers\Url::to($this->getField('img'), true);
+        }
+
+        return $this->getField('img');
+    }
+
     /**
      * @inheritdoc
      */
@@ -43,7 +53,10 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
         // шаблон
         $view = '';
         // опции шаблона
-        $options = [];
+        $options = [
+            'item' => $this,
+            'user' => \Yii::$app->user->identity,
+        ];
 
         /** @var \yii\swiftmailer\Mailer $mailer */
         $mailer = \Yii::$app->mailer;
@@ -57,5 +70,28 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
         $subscribeItem->type = Subscribe::TYPE_SITE_UPDATE;
 
         return $subscribeItem;
+    }
+
+    /**
+     * Возвращает ссылку на ченелинг
+     *
+     * @param bool $isScheme надо ли добавлять полный путь
+     *
+     * @return string
+     */
+    public function getLink($isScheme = false)
+    {
+        $date = $this->getField('date');
+        $year = substr($date, 0, 4);
+        $month = substr($date, 5, 2);
+        $day = substr($date, 8, 2);
+
+        return \yii\helpers\Url::to([
+            'page/chenneling_item',
+            'year'  => $year,
+            'month' => $month,
+            'day'   => $day,
+            'id'    => $this->getField('id_string'),
+        ], $isScheme);
     }
 }
