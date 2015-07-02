@@ -152,7 +152,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 <center>
     <p class="lead text-center">Мы строим мир гармонично развивающий все сферы организации жизни.</p>
 </center>
-<div class="row">
+<div class="row featurette">
     <center>
         <?php if ($isMobile) { ?>
             <div class="list-group">
