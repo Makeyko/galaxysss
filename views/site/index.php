@@ -191,6 +191,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 
 <a name="events"></a>
 <hr class="featurette-divider" style="margin-bottom: 100px;">
+<div class="container">
 <center>
     <h1>Предстоящие события</h1>
 </center>
@@ -240,6 +241,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
             </a>
         </p>
     </div>
+</div>
 </div>
 
 
