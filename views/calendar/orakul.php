@@ -76,8 +76,10 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
                 </table>
             </div>
             <div class="col-lg-4">
-                День: <input type="text" id="day" class="form-control">
-                Месяц: <select id="month" class="form-control">
+                <span style="color: #aaaaaa;">День:</span>
+                <input type="text" id="day" class="form-control">
+                <span style="color: #aaaaaa;">Месяц:</span>
+                <select id="month" class="form-control">
                     <option value="1">Январь</option>
                     <option value="2">Февраль</option>
                     <option value="3">Март</option>
@@ -91,7 +93,8 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
                     <option value="11">Ноябрь</option>
                     <option value="12">Декабрь</option>
                 </select>
-                Год: <input type="text" id="year" class="form-control">
+                <span style="color: #aaaaaa;">Год:</span>
+                <input type="text" id="year" class="form-control">
             </div>
         </div>
 
