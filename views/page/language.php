@@ -17,13 +17,13 @@ $this->title = 'Язык';
     <p><img src="/images/page/language/LNL0D495Xko.jpg" width="100%" class="thumbnail"></p>
 
 
-    <div class="row featurette">
+    <div style="display: table">
         <?php
-    foreach(\app\models\UnionCategory::getRows(1) as $item) {
-        echo \app\services\GsssHtml::unityCategoryItem($item);
-    }
-    ?>
-    <?= \app\services\GsssHtml::unionCategoryItems(1) ?>
+        foreach(\app\models\UnionCategory::getRows(1) as $item) {
+            echo \app\services\GsssHtml::unityCategoryItem($item);
+        }
+        ?>
+        <?= \app\services\GsssHtml::unionCategoryItems(1) ?>
     </div>
 
     <div class="page-header">
