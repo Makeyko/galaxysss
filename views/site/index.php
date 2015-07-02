@@ -11,9 +11,14 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 ?>
 <center>
     <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
-        <img
-            src="/images/index/slider/1.jpg"
-            width="100%">
+        <div class="row">
+            <div class="col-lg-12">
+                <img
+                    src="/images/index/slider/1.jpg"
+                    width="100%">
+            </div>
+        </div>
+
     <?php } else { ?>
         <div class="bs-example" data-example-id="carousel-with-captions" style="width: 1200px; margin-top: 80px;">
             <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
@@ -135,31 +140,45 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 
 
 
+
 <hr class="featurette-divider" style="margin-bottom: 100px;">
 <center>
     <p class="lead text-center">Мы строим мир гармонично развивающий все сферы организации жизни.</p>
 </center>
 <div class="row">
     <center>
-        <p class="text-center"><img
-                src="/images/page/mission/1415014_551550491597436_590146424_o.jpg"
-                usemap="#Map"
-                width="610"
-                title="Выберите интересующую вас сферу жизни"
-                id="imageSfera"
-                data-toggle="tooltip" data-placement="right"
-                ></p>
-        <map name="Map" id="Map">
-            <area shape="poly" coords="319,122,345,131,335,185,304,181" href="/language" alt="Язык">
-            <area shape="poly" coords="382,226,443,166,461,191,402,245" href="/energy" alt="Энергия">
-            <area shape="poly" coords="421,293,488,293,489,316,422,319" href="/time" alt="Время">
-            <area shape="poly" coords="385,356,482,439,453,455,359,380" href="/house" alt="Пространство">
-            <area shape="poly" coords="300,422,341,409,359,499,322,507" href="/study" alt="Обучение">
-            <area shape="poly" coords="226,378,282,416,227,509,168,477" href="/forgive" alt="Прощающая система">
-            <area shape="poly" coords="105,358,193,328,201,357,121,386" href="/money" alt="Деньги">
-            <area shape="poly" coords="116,223,213,255,198,283,101,255" href="/medical" alt="Здоровье">
-            <area shape="poly" coords="213,129,273,198,222,219,184,145" href="/food" alt="Питание">
-        </map>
+        <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
+            <p><a href="/language">Язык</a></p>
+            <p><a href="/energy">Энергия</a></p>
+            <p><a href="/time">Время</a></p>
+            <p><a href="/house">Пространство</a></p>
+            <p><a href="/study">Обучение</a></p>
+            <p><a href="/forgive">Прощающая система</a></p>
+            <p><a href="/money">Деньги</a></p>
+            <p><a href="/medical">Здоровье</a></p>
+            <p><a href="/food">Питание</a></p>
+        <?php } else { ?>
+            <p class="text-center"><img
+                    src="/images/page/mission/1415014_551550491597436_590146424_o.jpg"
+                    usemap="#Map"
+                    width="610"
+                    title="Выберите интересующую вас сферу жизни"
+                    id="imageSfera"
+                    data-toggle="tooltip" data-placement="right"
+                    ></p>
+            <map name="Map" id="Map">
+                <area shape="poly" coords="319,122,345,131,335,185,304,181" href="/language" alt="Язык">
+                <area shape="poly" coords="382,226,443,166,461,191,402,245" href="/energy" alt="Энергия">
+                <area shape="poly" coords="421,293,488,293,489,316,422,319" href="/time" alt="Время">
+                <area shape="poly" coords="385,356,482,439,453,455,359,380" href="/house" alt="Пространство">
+                <area shape="poly" coords="300,422,341,409,359,499,322,507" href="/study" alt="Обучение">
+                <area shape="poly" coords="226,378,282,416,227,509,168,477" href="/forgive" alt="Прощающая система">
+                <area shape="poly" coords="105,358,193,328,201,357,121,386" href="/money" alt="Деньги">
+                <area shape="poly" coords="116,223,213,255,198,283,101,255" href="/medical" alt="Здоровье">
+                <area shape="poly" coords="213,129,273,198,222,219,184,145" href="/food" alt="Питание">
+            </map>
+        <?php } ?>
+
     </center>
 </div>
 
