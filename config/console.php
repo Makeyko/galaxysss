@@ -14,6 +14,11 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
+        'mailer'               => [
+            'class'            => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport'        => require(__DIR__ . '/mailerTransport.php'),
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
