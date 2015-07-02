@@ -12,7 +12,7 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
 <center>
     <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="margin-top: 60px;">
                 <img
                     src="/images/index/slider/1.jpg"
                     width="100%">
@@ -354,13 +354,22 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
         <center>
             <p class="lead text-center">Представляем Полеты в Космос в Сфере Света</p>
             <p>«Космическая Лётная Академия Вознесённых Владык»</p>
-            <iframe
-            width="640"
-            height="360"
-            src="https://www.youtube.com/embed/fPyKJdFN91c"
-            frameborder="0"
-            allowfullscreen
-            ></iframe>
+            <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
+                <iframe
+                    width="100%"
+                    height="360"
+                    src="https://www.youtube.com/embed/fPyKJdFN91c"
+                    frameborder="0"
+                    allowfullscreen
+                    ></iframe><?php } else { ?>
+                <iframe
+                    width="640"
+                    height="360"
+                    src="https://www.youtube.com/embed/fPyKJdFN91c"
+                    frameborder="0"
+                    allowfullscreen
+                    ></iframe><?php } ?>
+
             <br>
             <br>
             <br>
