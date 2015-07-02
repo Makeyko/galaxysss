@@ -26,8 +26,8 @@ $this->title = 'Язык';
         <?= \app\services\GsssHtml::unionCategoryItems(1) ?>
     </div>
 
-    <div class="page-header">
-        <h2>Статьи</h2>
+    <div class="col-lg-12">
+        <h2 class="page-header">Статьи</h2>
     </div>
 
     <div style="display: table">
