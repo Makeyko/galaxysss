@@ -17,7 +17,7 @@ $this->title = 'Язык';
     <p><img src="/images/page/language/LNL0D495Xko.jpg" width="100%" class="thumbnail"></p>
 
 
-    <div class="row">
+    <div class="row featurette">
         <?php
         foreach(\app\models\UnionCategory::getRows(1) as $item) {
             echo \app\services\GsssHtml::unityCategoryItem($item);
