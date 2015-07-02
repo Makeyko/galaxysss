@@ -10,51 +10,57 @@ $this->title = 'Галактический Союз Сил Света';
 $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryAsset']]);
 ?>
 <center>
-    <div class="bs-example" data-example-id="carousel-with-captions" style="width: 1200px; margin-top: 80px;">
-        <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-captions" data-slide-to="1" class=""></li>
-                <li data-target="#carousel-example-captions" data-slide-to="2" class=""></li>
-                <li data-target="#carousel-example-captions" data-slide-to="3" class=""></li>
-                <li data-target="#carousel-example-captions" data-slide-to="4" class=""></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img
-                         src="/images/index/slider/1.jpg"
-                         data-holder-rendered="true">
+    <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
+        <img
+            src="/images/index/slider/1.jpg"
+            width="100%">
+    <?php } else { ?>
+        <div class="bs-example" data-example-id="carousel-with-captions" style="width: 1200px; margin-top: 80px;">
+            <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="2" class=""></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="3" class=""></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="4" class=""></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img
+                            src="/images/index/slider/1.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/2.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/3.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/4.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/5.jpg"
+                            data-holder-rendered="true">
+                    </div>
                 </div>
-                <div class="item">
-                    <img
-                         src="/images/index/slider/2.jpg"
-                         data-holder-rendered="true">
-                </div>
-                <div class="item">
-                    <img
-                         src="/images/index/slider/3.jpg"
-                         data-holder-rendered="true">
-                </div>
-                <div class="item">
-                    <img
-                         src="/images/index/slider/4.jpg"
-                         data-holder-rendered="true">
-                </div>
-                <div class="item">
-                    <img
-                         src="/images/index/slider/5.jpg"
-                         data-holder-rendered="true">
-                </div>
+                <a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev"> <span
+                        class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
+                        class="sr-only">Previous</span> </a> <a class="right carousel-control"
+                                                                href="#carousel-example-captions" role="button"
+                                                                data-slide="next"> <span
+                        class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span
+                        class="sr-only">Next</span> </a>
             </div>
-            <a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev"> <span
-                    class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
-                    class="sr-only">Previous</span> </a> <a class="right carousel-control"
-                                                            href="#carousel-example-captions" role="button"
-                                                            data-slide="next"> <span
-                    class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span
-                    class="sr-only">Next</span> </a>
         </div>
-    </div>
+    <?php } ?>
 </center>
 
 
