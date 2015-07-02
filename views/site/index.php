@@ -135,7 +135,11 @@ $this->registerJsFile('/js/pages/site/index.js', ['depends' => ['yii\web\JqueryA
     <p class="lead text-center">Представляем вам прототип «Новой Земли 4D».</p>
     <p class="text-center">Инструкции для перехода на «Новую Землю 4D» уже передаются нами через Высшие Силы Света Истока Первотворца на «Землю 3D».</p>
 
-    <iframe width="640" height="360" src="https://www.youtube.com/embed/vq7oIM-XvRQ?rel=0" frameborder="0" allowfullscreen></iframe>
+    <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
+        <iframe width="100%" height="360" src="https://www.youtube.com/embed/vq7oIM-XvRQ?rel=0" frameborder="0" allowfullscreen></iframe>
+    <?php } else { ?>
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/vq7oIM-XvRQ?rel=0" frameborder="0" allowfullscreen></iframe>
+    <?php }  ?>
 </center>
 
 
