@@ -25,15 +25,15 @@ $this->title = 'Язык';
         ?>
         <?= \app\services\GsssHtml::unionCategoryItems(1) ?>
     </div>
-    <div class="row featurette">
-        <div class="page-header">
-            <h2>Статьи</h2>
 
-        </div>
-        <div class="row featurette">
-            <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'language');
-            } ?>
-        </div>
+
+    <div class="page-header">
+        <h2>Статьи</h2>
     </div>
+    <div class="row featurette">
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, 'language');
+        } ?>
+    </div>
+
 </div>
