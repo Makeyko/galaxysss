@@ -148,21 +148,24 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 
 
 <hr class="featurette-divider" style="margin-bottom: 100px;">
+<div class="container">
 <center>
     <p class="lead text-center">Мы строим мир гармонично развивающий все сферы организации жизни.</p>
 </center>
 <div class="row">
     <center>
         <?php if ($isMobile) { ?>
-            <p><a href="/language">Язык</a></p>
-            <p><a href="/energy">Энергия</a></p>
-            <p><a href="/time">Время</a></p>
-            <p><a href="/house">Пространство</a></p>
-            <p><a href="/study">Обучение</a></p>
-            <p><a href="/forgive">Прощающая система</a></p>
-            <p><a href="/money">Деньги</a></p>
-            <p><a href="/medical">Здоровье</a></p>
-            <p><a href="/food">Питание</a></p>
+            <div class="list-group">
+                <a class="list-group-item" href="/language">Язык</a>
+                <a class="list-group-item" href="/energy">Энергия</a>
+                <a class="list-group-item" href="/time">Время</a>
+                <a class="list-group-item" href="/house">Пространство</a>
+                <a class="list-group-item" href="/study">Обучение</a>
+                <a class="list-group-item" href="/forgive">Прощающая система</a>
+                <a class="list-group-item" href="/money">Деньги</a>
+                <a class="list-group-item" href="/medical">Здоровье</a>
+                <a class="list-group-item" href="/food">Питание</a>
+            </div>
         <?php } else { ?>
             <p class="text-center"><img
                     src="/images/page/mission/1415014_551550491597436_590146424_o.jpg"
@@ -186,6 +189,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
         <?php } ?>
 
     </center>
+</div>
 </div>
 
 
