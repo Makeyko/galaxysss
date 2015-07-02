@@ -66,6 +66,10 @@ $config = [
                     ],
                 ],
                 [
+                    'class'  => 'yii\log\DbTarget',
+                    'categories' => ['gs\statistic\*'],
+                ],
+                [
                     'class'      => 'yii\log\EmailTarget',
                     'levels'     => [
                         'error',
