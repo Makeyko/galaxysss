@@ -117,7 +117,9 @@ $config = [
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
     'on beforeRequest' => function ($event) {
-        //\cs\Application::checkForIp();
+        if ($_SERVER['REQUEST_URI'] == '/news/2015/06/30/naivysshaya_tochka_budet_dosti') {
+            Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER), 'gs\statistic\news');
+        }
     }
 ];
 
