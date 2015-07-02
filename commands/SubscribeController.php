@@ -5,6 +5,7 @@ namespace app\commands;
 use app\models\SubscribeMailItem;
 use yii\console\Controller;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 
 /**
  * Занимается рассылкой писем
@@ -17,6 +18,7 @@ class SubscribeController extends Controller
     public function actionSend()
     {
         $list = SubscribeMailItem::query()->limit(100)->orderBy(['date_insert' => SORT_DESC])->all();
+
         foreach($list as $mailItem) {
             \Yii::$app->mailer
                 ->compose()
