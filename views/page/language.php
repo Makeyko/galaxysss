@@ -8,14 +8,11 @@ $this->title = 'Язык';
 
 <div class="container">
 
-    <div class="page-header">
-        <h1>Язык</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Язык</h1>
+        <p class="lead">Язык определяет наши архетипы сознания, а значит слова это матрицы программирующие нашу реальность.</p>
+        <p><img src="/images/page/language/LNL0D495Xko.jpg" width="100%" class="thumbnail"></p>
     </div>
-
-    <p class="lead">Язык определяет наши архетипы сознания, а значит слова это матрицы программирующие нашу реальность.</p>
-
-    <p><img src="/images/page/language/LNL0D495Xko.jpg" width="100%" class="thumbnail"></p>
-
 
     <div style="display: table">
         <?php
