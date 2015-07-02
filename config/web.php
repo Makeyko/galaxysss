@@ -19,8 +19,17 @@ $config = [
             'enableCookieValidation' => false,
             'enableCsrfValidation'   => false,
         ],
-        'cache'                => [
+        'cache'                => (YII_ENV == 'dev') ? [
             'class' => 'yii\caching\FileCache',
+        ] : [
+            'class'   => 'yii\caching\MemCache',
+            'servers' => [
+                [
+                    'host' => 'ultra.timeweb.ru',
+                    'port' => 11211,
+                ],
+            ],
+
         ],
         'deviceDetect'         => [
             'class'     => 'app\services\DeviceDetect',
@@ -57,13 +66,13 @@ $config = [
                     ],
                 ],
                 [
-                    'class'   => 'yii\log\EmailTarget',
-                    'levels'  => [
+                    'class'      => 'yii\log\EmailTarget',
+                    'levels'     => [
                         'error',
                         'warning',
                     ],
                     'categories' => ['yii\db\*'],
-                    'message' => [
+                    'message'    => [
                         'from'    => ['admin@galaxysss.ru'],
                         'to'      => ['god@galaxysss.ru'],
                         'subject' => 'GALAXYSSS.RU ERROR',

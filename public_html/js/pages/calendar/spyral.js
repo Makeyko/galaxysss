@@ -160,11 +160,3 @@ GSSS.calendar.maya.driver1 = {
     }
 
 };
-
-$(document).ready(function () {
-
-    var dateBegin = new Date();
-    console.log(GSSS.calendar.maya.driver1.calc([21, 4, 2015]));
-
-});
-
