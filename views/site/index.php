@@ -358,7 +358,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
             <p>«Космическая Лётная Академия Вознесённых Владык»</p>
             <?php if ($isMobile) { ?>
                 <iframe
-                    width="100%"
+                    width="640"
                     height="360"
                     src="https://www.youtube.com/embed/fPyKJdFN91c"
                     frameborder="0"
@@ -366,7 +366,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                     ></iframe>
             <?php } else { ?>
                 <iframe
-                    width="640"
+                    width="100%"
                     height="360"
                     src="https://www.youtube.com/embed/fPyKJdFN91c"
                     frameborder="0"
