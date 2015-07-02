@@ -19,8 +19,17 @@ $config = [
             'enableCookieValidation' => false,
             'enableCsrfValidation'   => false,
         ],
-        'cache'                => [
+        'cache'                => (YII_ENV == 'dev') ? [
             'class' => 'yii\caching\FileCache',
+        ] : [
+            'class'   => 'yii\caching\MemCache',
+            'servers' => [
+                [
+                    'host' => 'ultra.timeweb.ru',
+                    'port' => 11211,
+                ],
+            ],
+
         ],
         'deviceDetect'         => [
             'class'     => 'app\services\DeviceDetect',
@@ -57,13 +66,17 @@ $config = [
                     ],
                 ],
                 [
-                    'class'   => 'yii\log\EmailTarget',
-                    'levels'  => [
+                    'class'  => 'yii\log\DbTarget',
+                    'categories' => ['gs\statistic\*'],
+                ],
+                [
+                    'class'      => 'yii\log\EmailTarget',
+                    'levels'     => [
                         'error',
                         'warning',
                     ],
                     'categories' => ['yii\db\*'],
-                    'message' => [
+                    'message'    => [
                         'from'    => ['admin@galaxysss.ru'],
                         'to'      => ['god@galaxysss.ru'],
                         'subject' => 'GALAXYSSS.RU ERROR',
@@ -108,7 +121,10 @@ $config = [
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
     'on beforeRequest' => function ($event) {
-        //\cs\Application::checkForIp();
+        if (\cs\services\Str::isContain($_SERVER['REQUEST_URI'], '/news/2015/06/30/naivysshaya_tochka_budet_dosti')) {
+            Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER), 'gs\statistic\news');
+            Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER['REMOTE_ADDR']), 'gs\statistic\ip');
+        }
     }
 ];
 

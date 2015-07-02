@@ -32,6 +32,49 @@ $(document).ready(function () {
             setStamp('#antipod .stamp', antipod);
         }
 
+        // Ведущий учитель
+        {
+            var vedun;
+            switch (todayMaya.ton % 5) {
+                case 0:
+                    // + 8 печатей
+                    vedun = todayMaya.stamp + 8;
+                    if (vedun > 20) {
+                        vedun = vedun - 20;
+                    }
+                    break;
+                case 1:
+                    // та же печать
+                    vedun = todayMaya.stamp;
+                    break;
+                case 2:
+                    // - 8 печатей
+                    vedun = todayMaya.stamp - 8;
+                    if (vedun <= 0) {
+                        vedun = 20 - vedun;
+                    }
+                    break;
+                case 3:
+                    // + 4 печати
+                    console.log(todayMaya);
+                    vedun = todayMaya.stamp + 4;
+                    if (vedun > 20) {
+                        vedun = vedun - 20;
+                    }
+                    break;
+                case 4:
+                    // - 4 печати
+                    vedun = todayMaya.stamp - 4;
+                    if (vedun <= 0) {
+                        vedun = 20 - vedun;
+                    }
+                    break;
+            }
+            console.log(vedun);
+            setTon('#vedun .ton', todayMaya.ton);
+            setStamp('#vedun .stamp', vedun);
+        }
+
         // Оккультный учитель
         {
             var okkult = 21 - todayMaya.stamp;
@@ -39,14 +82,6 @@ $(document).ready(function () {
 
             setTon('#okkult .ton', okkultTon);
             setStamp('#okkult .stamp', okkult);
-        }
-
-        // Ведущий учитель
-        {
-            var vedun = 21 - todayMaya.stamp;
-
-            setTon('#vedun .ton', todayMaya.ton);
-            setStamp('#vedun .stamp', vedun);
         }
 
     }
@@ -77,10 +112,6 @@ $(document).ready(function () {
     $('#year').on('input', functionSetDate);
 
     var d = new Date();
-
-    d.setDate(23);
-    d.setMonth(12 - 1);
-    d.setFullYear(1980);
 
     setDate(d);
 });

@@ -67,10 +67,10 @@ GSSS.calendar.maya.driver1 = {
         tmp2 = tmp2 + "";
 
         return {
-            ton: tmp1,
-            kin: kin,
-            stamp: tmp2,
-            nearPortal: GSSS.calendar.maya.driver1.nearPortal(kin)
+            ton: parseInt(tmp1),
+            kin: parseInt(kin),
+            stamp: parseInt(tmp2),
+            nearPortal: parseInt(GSSS.calendar.maya.driver1.nearPortal(kin))
         };
     },
 
