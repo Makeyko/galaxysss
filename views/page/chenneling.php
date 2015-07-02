@@ -16,21 +16,19 @@ $this->params['breadcrumbs'][] = $this->title;
             height: 650px;
             border-bottom: 1px solid #eee;
         }
+
         .chennelingItem .header {
             height: 70px;
             vertical-align: bottom;
         }
     </style>
-    <div class="site-about">
-        <div class="page-header">
-            <h1>Послания</h1>
-        </div>
 
-        <?php
-        foreach($items as $item) {
-            echo \app\services\GsssHtml::chennelingItem($item);
-        }
-        ?>
-
+    <div class="col-lg-12">
+        <h1 class="page-header">Послания</h1>
     </div>
+    <?php
+    foreach ($items as $item) {
+        echo \app\services\GsssHtml::chennelingItem($item);
+    }
+    ?>
 </div>
