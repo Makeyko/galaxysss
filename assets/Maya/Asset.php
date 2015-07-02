@@ -23,6 +23,7 @@ class Asset extends AssetBundle
         'driver1.js',
     ];
     public $depends = [
+        'app\assets\App\Asset',
     ];
 
     public function getStampSrc($stamp)
