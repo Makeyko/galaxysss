@@ -194,7 +194,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 <center>
     <h1>Предстоящие события</h1>
 </center>
-<div class="row">
+<div class="row featurette">
 
     <?php foreach($events as $event) { ?>
 <!--    <div class="col-lg-4">-->
