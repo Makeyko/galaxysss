@@ -13,18 +13,17 @@ $this->title = 'Энергия';
             Богатство Чистейшей Энергии.</p>
 
         <p><img src="/images/page/energy/1405027_571610319578558_903459749_o1.jpg" width="100%" class="thumbnail"></p>
+    </div>
 
-
-        <div style="display: table;">
-            <?= \app\services\GsssHtml::unionCategoryItems(7) ?>
+    <div style="display: table;">
+        <?= \app\services\GsssHtml::unionCategoryItems(7) ?>
+    </div>
+    <div style="display: table;">
+        <div class="col-lg-12">
+            <h2 class="page-header">Статьи</h2>
         </div>
-        <div style="display: table;">
-            <div class="col-lg-12">
-                <h2 class="page-header">Статьи</h2>
-            </div>
-            <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'energy');
-            } ?>
-        </div>
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, 'energy');
+        } ?>
     </div>
 </div>
