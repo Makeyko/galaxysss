@@ -95,6 +95,20 @@ class CabinetController extends BaseController
         }
     }
 
+    public function actionProfile_subscribe()
+    {
+        $model = \app\models\Form\ProfileSubscribe::find(Yii::$app->user->getId());
+        if ($model->load(Yii::$app->request->post()) && $model->update()) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        } else {
+            return $this->render([
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * Удаляет объединение
      *

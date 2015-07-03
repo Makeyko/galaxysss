@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\services\Subscribe;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -72,9 +73,11 @@ class AdminController extends AdminBaseController
     public function actionChenneling_list_add()
     {
         $model = new \app\models\Form\Chenneling();
-        if ($model->load(Yii::$app->request->post()) && $model->insert()) {
+        if ($model->load(Yii::$app->request->post()) && ($item = $model->insert())) {
             Yii::$app->session->setFlash('contactFormSubmitted');
             \app\models\Chenneling::clearCache();
+            // добавляю в рассылку
+            Subscribe::add($item->getMailContent());
 
             return $this->refresh();
         } else {
