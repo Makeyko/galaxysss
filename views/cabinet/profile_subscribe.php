@@ -9,7 +9,7 @@ use app\models\UnionCategory;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
 
-$this->title = 'Редактирование профиля';
+$this->title = 'Редактирование рассылок';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
@@ -31,24 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'name_first')->label('Имя') ?>
-                <?= $form->field($model, 'name_last')->label('Фамилия') ?>
-                <?= $form->field($model, 'avatar')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $model->field($form, 'birth_date') ?>
-
-                <?php if (isset($model->vk_id)) { ?>
-                    <p>Профиль: <?= $model->vk_id ?> </p>
-                <?php } else { ?>
-                    <p><a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
-                            профиль</a></p>
-                <?php } ?>
-
-                <?php if (isset($model->fb_id)) { ?>
-                    <p>Профиль: <?= $model->fb_id ?> </p>
-                <?php } else { ?>
-                    <p><a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
-                            профиль</a></p>
-                <?php } ?>
+                <?= $model->field($form, 'subscribe_is_news')->checkbox() ?>
+                <?= $model->field($form, 'subscribe_is_site_update')->checkbox() ?>
 
 
                 <hr class="featurette-divider">
@@ -66,4 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+
+
 </div>

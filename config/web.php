@@ -19,17 +19,8 @@ $config = [
             'enableCookieValidation' => false,
             'enableCsrfValidation'   => false,
         ],
-        'cache'                => (YII_ENV == 'dev') ? [
+        'cache'                => [
             'class' => 'yii\caching\FileCache',
-        ] : [
-            'class'   => 'yii\caching\MemCache',
-            'servers' => [
-                [
-                    'host' => 'ultra.timeweb.ru',
-                    'port' => 11211,
-                ],
-            ],
-
         ],
         'deviceDetect'         => [
             'class'     => 'app\services\DeviceDetect',
@@ -70,8 +61,8 @@ $config = [
                     'categories' => ['gs\statistic\*'],
                 ],
                 [
-                    'class'      => 'yii\log\EmailTarget',
-                    'levels'     => [
+                    'class'   => 'yii\log\EmailTarget',
+                    'levels'  => [
                         'error',
                         'warning',
                     ],

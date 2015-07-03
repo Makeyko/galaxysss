@@ -87,11 +87,17 @@ $(document).ready(function () {
     }
 
     function setTon(selector, ton) {
+        $(selector).tooltip('destroy');
         $(selector).attr('src', MayaAssetUrl + '/images/ton/' + ton + '.gif');
+        $(selector).attr('title', GSSS.calendar.maya.tonList[ton - 1][0]);
+        $(selector).tooltip();
     }
 
     function setStamp(selector, stamp) {
+        $(selector).tooltip('destroy');
         $(selector).attr('src', MayaAssetUrl + '/images/stamp3/' + stamp + '.gif');
+        $(selector).attr('title', GSSS.calendar.maya.stampList[stamp - 1][0]);
+        $(selector).tooltip();
     }
 
     /**

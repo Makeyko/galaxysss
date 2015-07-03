@@ -156,6 +156,11 @@ class DbRecord
         return new static($fields);
     }
 
+    public static function batchInsert($columns, $rows)
+    {
+        (new Query())->createCommand()->batchInsert(static::TABLE,$columns, $rows)->execute();
+    }
+
     /**
      * Сохраняет параметры $set в таблицу,
      * если они уже есть ($where) то обновляются данные (update)

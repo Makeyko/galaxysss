@@ -126,6 +126,7 @@ return [
     'objects/<id:\\d+>/delete'                                                             => 'cabinet/objects_delete',
     'cabinet/passwordChange'                                                               => 'cabinet/password_change',
     'cabinet/profile'                                                                      => 'cabinet/profile',
+    'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',
     'cabinet/poseleniya'                                                                   => 'cabinet/poseleniya',
     'cabinet/poseleniya/add'                                                               => 'cabinet/poseleniya_add',
