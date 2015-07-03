@@ -120,12 +120,9 @@ $config = [
         'comment'      => 'app\modules\Comment\Controller',
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
-    'on beforeRequest' => function ($event) {
-        if (\cs\services\Str::isContain($_SERVER['REQUEST_URI'], '/news/2015/06/30/naivysshaya_tochka_budet_dosti')) {
-            Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER), 'gs\statistic\news');
-            Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER['REMOTE_ADDR']), 'gs\statistic\ip');
-        }
-    }
+//    'on beforeRequest' => function ($event) {
+//
+//    }
 ];
 
 if (YII_ENV_DEV) {
