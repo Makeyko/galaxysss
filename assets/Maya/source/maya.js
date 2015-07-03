@@ -503,5 +503,9 @@ var Maya = {
             }
         }
     }
-};
+}
 
+GSSS.calendar.maya.plazmaList = Maya.plazmaList;
+GSSS.calendar.maya.tonList = Maya.tonList;
+GSSS.calendar.maya.stampList = Maya.stampList;
+GSSS.calendar.maya.portalList = Maya.portalList;
