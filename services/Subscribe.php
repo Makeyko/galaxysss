@@ -34,7 +34,7 @@ class Subscribe
                 break;
         }
 
-        $emailList = User::query($where)->select('email')->column();
+        $emailList = User::query($where)->select('email')->andWhere(['not', ['email' => null]])->column();
 
         $rows = [];
         foreach ($emailList as $email) {

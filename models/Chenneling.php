@@ -51,7 +51,7 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
     public function getMailContent()
     {
         // шаблон
-        $view = '';
+        $view = 'subscribe/channeling';
         // опции шаблона
         $options = [
             'item' => $this,
