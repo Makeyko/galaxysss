@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="col-lg-8">
                 <?= $item['content'] ?>
+                <hr>
                 <?php if (isset($item['source'])): ?>
                     <?php if ($item['source'] != ''): ?>
                         <?= Html::a('Ссылка на источник »', $item['source'], [
@@ -35,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
 
 
-                <hr>
                 <?= $this->render('../blocks/share', [
                     'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false) ,
                     'url'         => Url::current([], true),

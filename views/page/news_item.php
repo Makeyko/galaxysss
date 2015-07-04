@@ -24,6 +24,7 @@ $this->registerJs("$('#share').popover()");
 
             <div class="col-lg-8">
                 <?= $newsItem['content'] ?>
+                <hr>
                 <?php if (isset($newsItem['source'])): ?>
                     <?php if ($newsItem['source'] != ''): ?>
                         <?= Html::a('Ссылка на источник »', $newsItem['source'], [
@@ -32,7 +33,6 @@ $this->registerJs("$('#share').popover()");
                         ]) ?>
                     <?php endif; ?>
                 <?php endif; ?>
-                <hr>
                 <?= $this->render('../blocks/share', [
                     'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false),
                     'url'         => Url::current([], true),
