@@ -82,7 +82,7 @@ $config = [
         ],
         'formatter'            => [
             'dateFormat'        => 'dd.MM.yyyy',
-            'timeFormat'        => 'H:i:s',
+            'timeFormat'        => 'php:H:i:s',
             'datetimeFormat'    => 'php:d.m.Y H:i',
             'decimalSeparator'  => '.',
             'thousandSeparator' => ' ',
