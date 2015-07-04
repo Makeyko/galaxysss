@@ -112,17 +112,17 @@ $(document).ready(function () {
         // проверки
         {
             if (day == '') {
-                setError('Не верная дата');
+                setError('Поле не может быть пустым');
                 return;
             }
             if (year == '') {
-                setError('Не верная дата');
+                setError('Поле не может быть пустым');
                 return;
             }
             // для високосного года
             if (month == 2) {
                 if (day > 29) {
-                    setError('Не верная дата');
+                    setError('В феврале не может быть более 29 дней');
                     return;
                 }
                 if (day > 28) {
@@ -132,16 +132,8 @@ $(document).ready(function () {
                     }
                 }
             } else {
-                if (month < 1) {
-                    setError('Не верная дата');
-                    return;
-                }
-                if (month > 12) {
-                    setError('Не верная дата');
-                    return;
-                }
                 if (day < 1) {
-                    setError('Не верная дата');
+                    setError('День не может быть отрицательным');
                     return;
                 }
                 if (day > monthDays[month - 1]) {

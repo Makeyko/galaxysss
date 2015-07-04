@@ -34,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 $image = $item['img'];
                 ?>
 
+
+                <hr>
                 <?= $this->render('../blocks/share', [
                     'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false) ,
                     'url'         => Url::current([], true),
