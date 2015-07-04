@@ -25,6 +25,7 @@ return [
     'about'                                                                                => 'site/about',
     'captcha'                                                                              => 'site/captcha',
     'log'                                                                                  => 'site/log',
+    'logDb'                                                                                => 'site/log_db',
 
     'calendar'                                                                             => 'calendar/index',
     'calendar/friends'                                                                     => 'calendar/friends',

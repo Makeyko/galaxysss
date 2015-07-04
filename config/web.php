@@ -58,7 +58,7 @@ $config = [
                 ],
                 [
                     'class'  => 'yii\log\DbTarget',
-                    'categories' => ['gs\statistic\*'],
+                    'categories' => ['gs\\*'],
                 ],
                 [
                     'class'   => 'yii\log\EmailTarget',
