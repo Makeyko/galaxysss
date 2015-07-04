@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $form->field($model, 'header')->label('Название') ?>
                 <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'content')->label('Содержание')->textarea(['rows' => 20]) ?>
+                <?= $form->field($model, 'content')->label('Содержание')->widget('cs\Widget\HtmlContent\HtmlContent') ?>
                 <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
 
                 <div class="form-group">
