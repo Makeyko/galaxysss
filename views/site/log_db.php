@@ -23,13 +23,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'level',
             'category',
             [
-                'header' => 'Время',
+                'label'   => 'date',
                 'contentOptions' => [
-                    'nowrap' => 'nowrap'
+                    'nowrap' => 'nowrap',
                 ],
                 'content' => function ($model, $key, $index, $column) {
-                    return Yii::$app->formatter->asDatetime((int)$model['log_time']); // $data['name'] for array data, e.g. using SqlDataProvider.
-                },
+                    return \Yii::$app->formatter->asDate((int)$model['log_time']);
+                }
+            ],
+            [
+                'label'   => 'time',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap',
+                ],
+                'content' => function ($model, $key, $index, $column) {
+                    $isViewMilliseconds = true;
+
+                    $suffix = '';
+                    if ($isViewMilliseconds) {
+                        $decimal = $model['log_time'] - (int)$model['log_time'];
+                        $suffix = substr($decimal, 1, 4);
+                    }
+                    return \Yii::$app->formatter->asTime((int)$model['log_time']) . $suffix;
+                }
             ],
             [
                 'header' => 'Сообщение',
