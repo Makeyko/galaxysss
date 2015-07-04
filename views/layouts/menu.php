@@ -15,6 +15,8 @@ use yii\widgets\Breadcrumbs;
 
 /** @var \app\assets\Maya\Asset $mayaAsset */
 $mayaAsset = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset');
+$LayoutMenuAsset = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset');
+$LayoutMenuAssetPath = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset')->baseUrl;
 $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\View::POS_HEAD );
 
 ?>
@@ -191,7 +193,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">
-                <p>&copy; 2015 Галактический союз сил света.</p>
+                <p>&copy; 2015 Галактический Союз Сил Света</p>
             </div>
             <div class="col-lg-4">
                 <a
@@ -205,9 +207,12 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                 <a href="<?= Url::to(['site/contact']) ?>">Контакты</a>
             </div>
         </div>
-        <div class="row" style="margin-top: 20px; background-color: #f5f5f5;">
+        <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4 col-lg-offset-4">
+                <center>
                 <script type="text/javascript" src="//ra.revolvermaps.com/0/0/6.js?i=0cp3ra9ti27&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
+                </center>
+                <p class="text-center"><img src="<?= $LayoutMenuAssetPath ?>/images/merkaba-2nd.gif"></p>
             </div>
         </div>
     </div>
