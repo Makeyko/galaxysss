@@ -95,6 +95,7 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
                 </select>
                 <span style="color: #aaaaaa;">Год:</span>
                 <input type="text" id="year" class="form-control">
+                <span id="error" class="label-danger label"></span>
             </div>
         </div>
 
