@@ -182,6 +182,7 @@ JS;
                     $element->attr['width'] = '100%';
                     $element->attr['class'] = 'thumbnail';
                 } catch (\Exception $e) {
+                    Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
 //                    $element->attr['src'] = '';
                 }
             } else {

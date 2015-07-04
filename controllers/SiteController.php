@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Form\Event;
+use app\models\Log;
 use app\models\User;
 use app\services\GetArticle\YouTube;
 use cs\base\BaseController;
@@ -13,6 +14,7 @@ use cs\services\VarDumper;
 use Yii;
 use yii\base\Exception;
 use yii\base\UserException;
+use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
@@ -68,6 +70,18 @@ class SiteController extends BaseController
     {
         return $this->render([
             'log' => file_get_contents(Yii::getAlias('@runtime/logs/app.log')),
+        ]);
+    }
+
+    public function actionLog_db()
+    {
+        return $this->render([
+            'dataProvider' => new ActiveDataProvider([
+                'query' => Log::query()->orderBy(['log_time' => SORT_DESC]),
+                'pagination' => [
+                    'pageSize' => 100,
+                ],
+            ])
         ]);
     }
 }
