@@ -35,6 +35,7 @@ $(document).ready(function () {
         // Ведущий учитель
         {
             var vedun;
+
             switch (todayMaya.ton % 5) {
                 case 0:
                     // + 8 печатей
@@ -51,12 +52,11 @@ $(document).ready(function () {
                     // - 8 печатей
                     vedun = todayMaya.stamp - 8;
                     if (vedun <= 0) {
-                        vedun = 20 - vedun;
+                        vedun = 20 + vedun;
                     }
                     break;
                 case 3:
                     // + 4 печати
-                    console.log(todayMaya);
                     vedun = todayMaya.stamp + 4;
                     if (vedun > 20) {
                         vedun = vedun - 20;
@@ -70,7 +70,6 @@ $(document).ready(function () {
                     }
                     break;
             }
-            console.log(vedun);
             setTon('#vedun .ton', todayMaya.ton);
             setStamp('#vedun .stamp', vedun);
         }
@@ -105,13 +104,64 @@ $(document).ready(function () {
      */
     var functionSetDate = function() {
         var d = new Date();
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var day = $('#day').val();
+        var monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-        d.setDate($('#day').val());
-        d.setMonth($('#month').val() - 1);
-        d.setFullYear($('#year').val());
+        // проверки
+        {
+            if (day == '') {
+                setError('Не верная дата');
+                return;
+            }
+            if (year == '') {
+                setError('Не верная дата');
+                return;
+            }
+            // для високосного года
+            if (month == 2) {
+                if (day > 29) {
+                    setError('Не верная дата');
+                    return;
+                }
+                if (day > 28) {
+                    if (year % 4 > 0) {
+                        setError('В не високосном году только 28 дней в феврале');
+                        return;
+                    }
+                }
+            } else {
+                if (month < 1) {
+                    setError('Не верная дата');
+                    return;
+                }
+                if (month > 12) {
+                    setError('Не верная дата');
+                    return;
+                }
+                if (day < 1) {
+                    setError('Не верная дата');
+                    return;
+                }
+                if (day > monthDays[month - 1]) {
+                    setError('В этом месяце меньше дней чем вы указали');
+                    return;
+                }
+            }
+        }
+
+        setError('');
+        d.setFullYear(year);
+        d.setMonth(month - 1);
+        d.setDate(day);
 
         setDate(d);
     };
+
+    function setError(message){
+        $('#error').html(message);
+    }
 
     $('#day').on('input', functionSetDate);
     $('#month').on('change', functionSetDate);
