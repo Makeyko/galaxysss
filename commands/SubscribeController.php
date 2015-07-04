@@ -34,6 +34,6 @@ class SubscribeController extends Controller
             'in', 'id', ArrayHelper::getColumn($list, 'id')
         ]);
 
-        \Yii::info('Рассылка писем ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\subscribe');
+        \Yii::info('Рассылка писем ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\subscribe');
     }
 }
