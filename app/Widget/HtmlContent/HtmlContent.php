@@ -176,9 +176,9 @@ JS;
 
             if (!Str::isContain($element->attr['src'], $destination->getPath())) {
                 try {
-                    $destination->add($imagePath->getFileName());
-                    self::resizeImage($imagePath->getPathFull(), $destination->getPathFull());
-                    $element->attr['src'] = $destination->getPath();
+                    $destinationFile = $destination->cloneObject()->add($imagePath->getFileName());
+                    self::resizeImage($imagePath->getPathFull(), $destinationFile->getPathFull());
+                    $element->attr['src'] = $destinationFile->getPath();
                 } catch (\Exception $e) {
                     Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
                 }
