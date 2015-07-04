@@ -13,6 +13,9 @@ $config = [
         '@upload' => __DIR__ . '/public_html/upload',
     ],
     'components'       => [
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
         'request'              => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey'    => '',
