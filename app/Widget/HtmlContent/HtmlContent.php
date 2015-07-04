@@ -183,6 +183,7 @@ JS;
                     $element->attr['class'] = 'thumbnail';
                 } catch (\Exception $e) {
                     Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
+                    Yii::warning(\yii\helpers\VarDumper::dumpAsString($e), 'gs\\HtmlContent\\copyImages');
 //                    $element->attr['src'] = '';
                 }
             } else {
