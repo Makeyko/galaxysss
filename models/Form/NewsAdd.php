@@ -38,7 +38,7 @@ class NewsAdd extends \cs\base\BaseForm
         static::$fields = [
             ['header', 'Название', 1, 'string'],
             ['source', 'Ссылка', 0, 'url'],
-            ['content', 'Описание', 1, 'string'],
+            ['content', 'Описание', 1, 'string', 'widget' => ['cs\Widget\HtmlContent\HtmlContent']],
             ['img', 'Картинка', 0, 'string', 'widget' => [FileUpload::className(), ['options' => [
                 'small' => \app\services\GsssHtml::$formatIcon
             ]]]],

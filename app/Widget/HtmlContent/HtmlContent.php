@@ -6,6 +6,7 @@ use cs\services\Security;
 use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
+use yii\debug\models\search\Debug;
 use yii\helpers\Html;
 use cs\base\BaseForm;
 use cs\services\UploadFolderDispatcher;
@@ -175,27 +176,12 @@ JS;
 
             if (!Str::isContain($element->attr['src'], $destination->getPath())) {
                 try {
-                    Yii::info(1, 'gs\\HtmlContent\\copyImages');
                     $destination->add($imagePath->getFileName());
-                    Yii::info(2, 'gs\\HtmlContent\\copyImages');
                     self::resizeImage($imagePath->getPathFull(), $destination->getPathFull());
-                    Yii::info(3, 'gs\\HtmlContent\\copyImages');
                     $element->attr['src'] = $destination->getPath();
-                    Yii::info(4, 'gs\\HtmlContent\\copyImages');
-                    unset($element->attr['style']);
-                    Yii::info(5, 'gs\\HtmlContent\\copyImages');
-                    $element->attr['width'] = '100%';
-                    Yii::info(6, 'gs\\HtmlContent\\copyImages');
-                    $element->attr['class'] = 'thumbnail';
                 } catch (\Exception $e) {
                     Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
-                    Yii::warning(\yii\helpers\VarDumper::dumpAsString($e), 'gs\\HtmlContent\\copyImages');
-//                    $element->attr['src'] = '';
                 }
-            } else {
-                unset($element->attr['style']);
-                $element->attr['width'] = '100%';
-                $element->attr['class'] = 'thumbnail';
             }
         }
 
