@@ -32,7 +32,7 @@ $this->registerJs("$('#share').popover()");
                         ]) ?>
                     <?php endif; ?>
                 <?php endif; ?>
-                <hr`>
+                <hr>
                 <?= $this->render('../blocks/share', [
                     'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false),
                     'url'         => Url::current([], true),
