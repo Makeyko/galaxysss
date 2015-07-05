@@ -6,35 +6,35 @@ $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
 return [
-    'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'gii'],
+    'id'                  => 'basic-console',
+    'basePath'            => dirname(__DIR__),
+    'bootstrap'           => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
-    'modules' => [
+    'modules'             => [
         'gii' => 'yii\gii\Module',
     ],
-    'components' => [
-        'mailer'               => [
+    'components'          => [
+        'mailer' => [
             'class'            => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
             'transport'        => require(__DIR__ . '/mailerTransport.php'),
         ],
-        'cache' => [
+        'cache'  => [
             'class' => 'yii\caching\FileCache',
         ],
-        'log' => [
+        'log'    => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
                 [
-                    'class'  => 'yii\log\DbTarget',
+                    'class'      => 'yii\log\DbTarget',
                     'categories' => ['gs\\*'],
                 ],
             ],
         ],
-        'db' => $db,
+        'db'     => $db,
     ],
-    'params' => $params,
+    'params'              => $params,
 ];
