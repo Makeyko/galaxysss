@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\Service;
 use app\models\Union;
 use app\models\UnionCategory;
+use cs\Application;
 use cs\services\Str;
 use cs\services\VarDumper;
 use cs\web\Exception;
@@ -393,14 +394,12 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $cache = Yii::$app->cache->get(\app\models\Chenneling::MEMCACHE_KEY_LIST);
-        if ($cache === false) {
-            $cache = $this->render([
+        $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(BaseController $controller) {
+            return $controller->renderFile('@app/views/page/chenneling_cache.php', [
                 'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all()
             ]);
-            Yii::$app->cache->set(\app\models\Chenneling::MEMCACHE_KEY_LIST, $cache);
-        }
+        }, $this);
 
-        return $cache;
+        return $this->render(['html' => $cache]);
     }
 }

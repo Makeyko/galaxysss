@@ -2,6 +2,7 @@
 
 namespace cs;
 
+use cs\services\VarDumper;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -47,6 +48,22 @@ class Application
                 'Чтобы получить доступ напишите письмо на god@galaxysss.ru.',
             ];
             throw new \cs\web\Exception(join("\r\r", $messages));
+        }
+    }
+
+    public static function cache($key, $functionGet, $options = null)
+    {
+        $isUseCache = true;
+
+        if ($isUseCache) {
+            $cache = Yii::$app->cache->get($key);
+            if ($cache === false) {
+                $cache = $functionGet($options);
+                Yii::$app->cache->set($key, $cache);
+            }
+            return $cache;
+        } else {
+            return $functionGet($options);
         }
     }
 
