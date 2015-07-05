@@ -50,7 +50,7 @@ class Subscribe
                 $subscribeItem->html,
                 $subscribeItem->subject,
                 $email,
-                gmdate('YmdHis'),
+                time(),
             ];
         }
         SubscribeMailItem::batchInsert([
