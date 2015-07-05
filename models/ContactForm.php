@@ -51,8 +51,8 @@ class ContactForm extends Model
     {
         if ($this->validate()) {
             Yii::info(VarDumper::dumpAsString([$email,[$this->email => $this->name], $this->subject, $this->body, Yii::$app->mailer->compose()
+                ->setFrom($this->email)
                 ->setTo($email)
-                ->setFrom([$this->email => $this->name])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send()]), 'gs\\subscribe');
