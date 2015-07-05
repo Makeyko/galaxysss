@@ -31,7 +31,7 @@ class Union extends \cs\base\DbRecord
                 'concat("<h5>",point_address,"</h5>") as html',
             ];
         }
-
+        \Yii::$app->cache->delete(self::PREFIX_CACHE_OFFICE_LIST . $this->getId());
         return Application::cache(self::PREFIX_CACHE_OFFICE_LIST . $this->getId(), function($options) {
             $query = UnionOffice::query(['union_id' => $options['union_id']]);
 
