@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use cs\Application;
 use Yii;
 use yii\base\Model;
 use yii\helpers\VarDumper;
@@ -50,12 +51,8 @@ class ContactForm extends Model
     public function contact($email)
     {
         if ($this->validate()) {
-            Yii::info(VarDumper::dumpAsString([$email,[$this->email => $this->name], $this->subject, $this->body, Yii::$app->mailer->compose()
-                ->setFrom($this->email)
-                ->setTo($email)
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
-                ->send()]), 'gs\\subscribe');
+
+            Application::mail($email, $this->subject,'contact', ['text' => $this->body]);
 
             return true;
         } else {
