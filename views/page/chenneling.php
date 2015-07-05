@@ -4,31 +4,11 @@ use yii\bootstrap\ButtonDropdown;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $items array gs_chaneling_list.* */
+/* @var $html string код html */
 
 $this->title = 'Послания';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="container">
-    <style>
-        .chennelingItem {
-            height: 650px;
-            border-bottom: 1px solid #eee;
-        }
 
-        .chennelingItem .header {
-            height: 70px;
-            vertical-align: bottom;
-        }
-    </style>
-
-    <div class="col-lg-12">
-        <h1 class="page-header">Послания</h1>
-    </div>
-    <?php
-    foreach ($items as $item) {
-        echo \app\services\GsssHtml::chennelingItem($item);
-    }
-    ?>
-</div>
+<?= $html ?>
