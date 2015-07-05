@@ -1,5 +1,35 @@
 $(document).ready(function () {
 
+    /**
+     * Устанавливает волну
+     * прописывает в таблицу #wave все печати с тонами
+     */
+    function setWave(d) {
+        var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
+        var objTable = $('#wave');
+        // вычисляю первую печать
+        var stamp = mayaDate.stamp - (mayaDate.ton - 1);
+        if (stamp <= 0) stamp = 20 + stamp;
+        // вычисляю первый кин
+        var kin = mayaDate.kin - (mayaDate.ton - 1);
+
+        objTable.find('td').each(function(i, v) {
+            var objectTd = $(v);
+            if ((i + 1) == mayaDate.ton) {
+                objectTd.css('background-color', '#cccccc');
+            } else {
+                objectTd.css('background-color', '#ffffff');
+            }
+            setTon2(objectTd, i + 1);
+            setStamp2(objectTd, stamp);
+            setKin2(objectTd, kin);
+            stamp++;
+            kin++;
+            if (stamp > 20) stamp = 1;
+
+        });
+    }
+
     function setDate(d) {
         $('#day').val(d.getDate());
         $('#month').val(d.getMonth() + 1);
@@ -26,7 +56,7 @@ $(document).ready(function () {
         // антипод
         {
             var antipod = ((todayMaya.stamp == 20) ? 0 : todayMaya.stamp);
-            antipod = parseInt(antipod) + parseInt(((antipod > 10)? -1: 1)*10);
+            antipod = parseInt(antipod) + parseInt(((antipod > 10) ? -1 : 1) * 10);
 
             setTon('#antipod .ton', todayMaya.ton);
             setStamp('#antipod .stamp', antipod);
@@ -78,9 +108,10 @@ $(document).ready(function () {
         {
             var okkult = 21 - todayMaya.stamp;
             var okkultTon = 14 - todayMaya.ton;
+            var objectOkkult = $('#okkult');
 
-            setTon('#okkult .ton', okkultTon);
-            setStamp('#okkult .stamp', okkult);
+            setTon2(objectOkkult, okkultTon);
+            setStamp2(objectOkkult, okkult);
         }
 
     }
@@ -90,6 +121,33 @@ $(document).ready(function () {
         $(selector).attr('src', MayaAssetUrl + '/images/ton/' + ton + '.gif');
         $(selector).attr('title', GSSS.calendar.maya.tonList[ton - 1][0]);
         $(selector).tooltip();
+    }
+
+    function setTon2(object, ton) {
+        var objectTon = object.find('.ton');
+
+        objectTon.tooltip('destroy');
+        objectTon.attr('src', MayaAssetUrl + '/images/ton/' + ton + '.gif');
+        objectTon.attr('title', GSSS.calendar.maya.tonList[ton - 1][0]);
+        objectTon.tooltip();
+    }
+
+    function setStamp2(object, stamp) {
+        var objectStamp = object.find('.stamp');
+
+        objectStamp.tooltip('destroy');
+        objectStamp.attr('src', MayaAssetUrl + '/images/stamp3/' + stamp + '.gif');
+        objectStamp.attr('title', GSSS.calendar.maya.stampList[stamp - 1][0]);
+        objectStamp.tooltip();
+    }
+
+    function setKin2(object, kin) {
+        var objectStamp = object.find('.kin');
+
+        objectStamp.tooltip('destroy');
+        objectStamp.html(kin);
+        objectStamp.attr('title', 'Кин дня');
+        objectStamp.tooltip();
     }
 
     function setStamp(selector, stamp) {
@@ -102,12 +160,12 @@ $(document).ready(function () {
     /**
      * Устанавливает оракул из значений полей формы
      */
-    var functionSetDate = function() {
+    var functionSetDate = function () {
         var d = new Date();
         var year = $('#year').val();
         var month = $('#month').val();
         var day = $('#day').val();
-        var monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+        var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
         // проверки
         {
@@ -148,10 +206,13 @@ $(document).ready(function () {
         d.setMonth(month - 1);
         d.setDate(day);
 
+        console.log(d);
         setDate(d);
+        console.log(d);
+        setWave(d);
     };
 
-    function setError(message){
+    function setError(message) {
         $('#error').html(message);
     }
 
@@ -162,4 +223,5 @@ $(document).ready(function () {
     var d = new Date();
 
     setDate(d);
+    setWave(d);
 });
