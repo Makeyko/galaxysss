@@ -20,12 +20,9 @@ class Application
      *
      * @return boolean
      */
-    public static function mail($email, $subject, $view, $options = [], $from = null)
+    public static function mail($email, $subject, $view, $options = [])
     {
-        if (is_null($from)) {
-            $from = \Yii::$app->params['mailer']['from'];
-        }
-        \Yii::info(\yii\helpers\VarDumper::dumpAsString($from), 'gs\\mail');
+        $from = \Yii::$app->params['mailer']['from'];
 
         /** @var \yii\swiftmailer\Mailer $mailer */
         $mailer = Yii::$app->mailer;
