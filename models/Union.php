@@ -4,6 +4,7 @@
 namespace app\models;
 
 
+use cs\Application;
 use cs\services\VarDumper;
 
 class Union extends \cs\base\DbRecord
@@ -18,26 +19,27 @@ class Union extends \cs\base\DbRecord
 
     /**
      * @param array | string $select поля для выборки
+     *                               должны быть возвращены lat, lng, html
      * @return array
      */
     public function getOfficeList($select = null)
     {
-        $key = self::PREFIX_CACHE_OFFICE_LIST.$this->getId();
-        $rows = \Yii::$app->cache->get($key);
-        if ($rows === false) {
-            $query = UnionOffice::query(['union_id' => $this->getId()]);
-            if (is_null($select)) {
-                $select = [
-                    'point_lat as lat',
-                    'point_lng as lng',
-                    'concat("<h5>",point_address,"</h5>") as html',
-                ];
-            }
-            $rows = $query->select($select)->all();
-            \Yii::$app->cache->set($key, $rows);
+        if (is_null($select)) {
+            $select = [
+                'point_lat as lat',
+                'point_lng as lng',
+                'concat("<h5>",point_address,"</h5>") as html',
+            ];
         }
 
-        return $rows;
+        return Application::cache(self::PREFIX_CACHE_OFFICE_LIST . $this->getId(), function($options) {
+            $query = UnionOffice::query(['union_id' => $options['union_id']]);
+
+            return $query->select($options['select'])->all();
+        }, [
+            'select'   => $select,
+            'union_id' => $this->getId(),
+        ]);
     }
 
     /**
