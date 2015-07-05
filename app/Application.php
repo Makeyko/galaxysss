@@ -38,19 +38,15 @@ class Application
         return $result;
     }
 
-    public static function checkForIp()
-    {
-        if (!in_array($_SERVER['HTTP_X_REAL_IP'], Yii::$app->params['allowedIpList'])) {
-            $messages = [
-                'В этом пространстве ведутся работы по активации ДНК, манифестации новой парадигмы реальности "Земля 4D" и построению фрактального общества звездной Семьи Любви и Света.',
-                'Ваш IP: ' . $_SERVER['HTTP_X_REAL_IP'] . '.',
-
-                'Чтобы получить доступ напишите письмо на god@galaxysss.ru.',
-            ];
-            throw new \cs\web\Exception(join("\r\r", $messages));
-        }
-    }
-
+    /**
+     * Кеширует даные при помощи $functionGet
+     *
+     * @param string    $key ключ для кеша
+     * @param \Closure  $functionGet функция для получения данных кеша
+     * @param mixed     $options данные которыебудут переданы в функцию $functionGet
+     *
+     * @return mixed
+     */
     public static function cache($key, $functionGet, $options = null)
     {
         $isUseCache = true;
