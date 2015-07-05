@@ -39,6 +39,13 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         padding: 10px 20px 10px 10px;
         text-align: center;
     }
+
+    .wave2 td {
+        padding: 0px 20px 0px 20px;
+        text-align: center;
+        width: 30px;
+        height: 40px;
+    }
 </style>
 
 <div class="row">
@@ -105,7 +112,50 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 </div>
 <div class="col-lg-12">
 
+<hr>
+
 <p>Волна</p>
+
+
+
+<table class="wave2">
+    <tr>
+        <td></td>
+        <td class="wave-cell-12"></td>
+        <td class="wave-cell-11"></td>
+        <td class="wave-cell-10"></td>
+        <td class="wave-cell-9"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="wave-cell-13"></td>
+        <td></td>
+        <td></td>
+        <td class="wave-cell-8"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="wave-cell-7"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="wave-cell-6"></td>
+    </tr>
+    <tr>
+        <td class="wave-cell-1"></td>
+        <td class="wave-cell-2"></td>
+        <td class="wave-cell-3"></td>
+        <td class="wave-cell-4"></td>
+        <td class="wave-cell-5"></td>
+    </tr>
+</table>
+<hr>
 <table id="wave">
     <tr>
         <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>

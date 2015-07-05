@@ -23,11 +23,34 @@ $(document).ready(function () {
             setTon2(objectTd, i + 1);
             setStamp2(objectTd, stamp);
             setKin2(objectTd, kin);
+
+            setWave2Cell(i + 1, stamp, kin, mayaDate.ton);
+
             stamp++;
             kin++;
             if (stamp > 20) stamp = 1;
 
         });
+    }
+
+    function setWave2Cell(ton,stamp,kin, todayTon)
+    {
+        var objectCell = $('.wave-cell-' + ton);
+        objectCell
+            .html('')
+            .append($('<img>', {
+                src: MayaAssetUrl + '/images/ton/' + ton + '.gif',
+                title: GSSS.calendar.maya.tonList[ton - 1][0],
+                width: 20
+            }).tooltip())
+            .append($('<img>', {
+                src: MayaAssetUrl + '/images/stamp3/' + stamp + '.gif',
+                title: GSSS.calendar.maya.stampList[stamp - 1][0],
+                width: 20
+            }).tooltip())
+            .append($('<div>', {title: 'Кин дня'}).html(kin).tooltip())
+            .css('background-color', (todayTon == ton)? '#cccccc': '#ffffff')
+        ;
     }
 
     function setDate(d) {
