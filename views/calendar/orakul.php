@@ -583,7 +583,15 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 <p>
     Оккультным учителем – вы являетесь оккультным учителем тем, кто для вас оккультным учителем </p>
 </div>
+public_html
 
+<hr>
+<?= $this->render('../blocks/share', [
+    'image'       => \yii\helpers\Url::to('/images/calendar/orakul/share.jpg' , true),
+    'url'         => \yii\helpers\Url::current([], true),
+    'title'       => $this->title,
+    'description' => 'Прочтение Оракула Кина Судьбы или Кина дня – это передача импульса (переход на новый уровень сознания, новую частоту вибраций) и введение в космологию времени и синхронный планетарный порядок. ',
+]) ?>
 </div>
 <?= $this->render('_menu') ?>
 </div>
