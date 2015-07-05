@@ -52,7 +52,7 @@ class ContactForm extends Model
     {
         if ($this->validate()) {
             Yii::info(VarDumper::dumpAsString([$this->email => $this->name]), 'gs\\contact');
-            Application::mail(
+            Yii::info(VarDumper::dumpAsString(Application::mail(
                 $email,
                 'Письмо с сайта galaxysss.ru: ' .$this->subject,
                 'contact',
@@ -63,8 +63,9 @@ class ContactForm extends Model
                         'name'  => $this->name,
                     ],
                 ]
-//                , [$this->email => $this->name]
-            );
+                , [$this->email => $this->name]
+            )), 'gs\\contact2');
+
 
             return true;
         } else {
