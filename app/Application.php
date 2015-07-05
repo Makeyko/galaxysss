@@ -25,6 +25,7 @@ class Application
         if (is_null($from)) {
             $from = \Yii::$app->params['mailer']['from'];
         }
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString($from, 'gs\\mail'));
 
         /** @var \yii\swiftmailer\Mailer $mailer */
         $mailer = Yii::$app->mailer;
