@@ -120,39 +120,39 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
 <table class="wave2">
     <tr>
+        <td class="wave-cell-1"></td>
         <td></td>
-        <td class="wave-cell-12"></td>
-        <td class="wave-cell-11"></td>
-        <td class="wave-cell-10"></td>
-        <td class="wave-cell-9"></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
+        <td class="wave-cell-2"></td>
+        <td></td>
         <td></td>
         <td class="wave-cell-13"></td>
-        <td></td>
-        <td></td>
-        <td class="wave-cell-8"></td>
+        <td class="wave-cell-12"></td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="wave-cell-7"></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="wave-cell-6"></td>
-    </tr>
-    <tr>
-        <td class="wave-cell-1"></td>
-        <td class="wave-cell-2"></td>
         <td class="wave-cell-3"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="wave-cell-11"></td>
+    </tr>
+    <tr>
         <td class="wave-cell-4"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="wave-cell-10"></td>
+    </tr>
+    <tr>
         <td class="wave-cell-5"></td>
+        <td class="wave-cell-6"></td>
+        <td class="wave-cell-7"></td>
+        <td class="wave-cell-8"></td>
+        <td class="wave-cell-9"></td>
     </tr>
 </table>
 <hr>
