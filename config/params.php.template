@@ -1,0 +1,14 @@
+<?php
+
+return [
+    'adminEmail'    => 'admin@galaxysss.ru',
+    'mailList'    => [
+        'contact' => 'god@galaxysss.ru',
+    ],
+    'mailer'        => [
+        // адрес который будет указан как адрес отправителя для писем и рассылок
+        'from' => [
+            'no-reply@galaxysss.ru' => 'Галактический союз сил света'
+        ]
+    ],
+];
