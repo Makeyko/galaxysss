@@ -215,9 +215,10 @@ class PageController extends BaseController
         return $this->render([
             'item'        => $item,
             'officeList'  => $item->getOfficeList([
+                'id',
                 'point_lat as lat',
                 'point_lng as lng',
-                'concat("<h5>",name,"</h5><div>",content,"</div><p>",point_address,"</p>") as html',
+                'concat("<h5>",name,"</h5><div>",ifnull(content,""),"</div><p>",point_address,"</p>") as html',
             ]),
             'breadcrumbs' => [
                 'label' => $categoryObject->getField('header'),
