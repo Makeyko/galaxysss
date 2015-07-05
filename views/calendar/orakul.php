@@ -43,8 +43,8 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     .wave2 td {
         padding: 0px 20px 0px 20px;
         text-align: center;
-        width: 30px;
-        height: 40px;
+        width: 64px;
+        height: 64px;
     }
 </style>
 
@@ -583,7 +583,6 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 <p>
     Оккультным учителем – вы являетесь оккультным учителем тем, кто для вас оккультным учителем </p>
 </div>
-public_html
 
 <hr>
 <?= $this->render('../blocks/share', [
