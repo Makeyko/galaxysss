@@ -15,7 +15,16 @@ if ($content == '') {
 ?>
 
 <h1><?= $item->getName() ?></h1>
-<p><img src="<?= $item->getImage(true) ?>"/></p>
+<p><img src="<?= $item->getImage(true) ?>" style="display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;"/></p>
 <?= $content ?>
 <p><a href="<?= $item->getLink(true) ?>" style="
             text-decoration: none;

@@ -4,6 +4,7 @@ namespace app\commands;
 
 use app\models\SubscribeMailItem;
 use yii\console\Controller;
+use yii\console\Response;
 use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 
@@ -33,8 +34,9 @@ class SubscribeController extends Controller
         SubscribeMailItem::deleteByCondition([
             'in', 'id', ArrayHelper::getColumn($list, 'id')
         ]);
-        echo(1);
-        echo("\n");
+
         \Yii::info('Рассылка писем ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\subscribe');
+
+        \Yii::$app->end();
     }
 }
