@@ -12,15 +12,20 @@ class Application
     /**
      * Отправляет письмо в формате html и text
      *
-     * @param string $email   куда
-     * @param string $subject тема
-     * @param string $view    шаблон, лежит в /mail/html и /mail/text
-     * @param array  $options параметры для шаблона
+     * @param string       $email   куда
+     * @param string       $subject тема
+     * @param string       $view    шаблон, лежит в /mail/html и /mail/text
+     * @param array        $options параметры для шаблона
+     * @param array|string $from    параметры отправителя
      *
      * @return boolean
      */
-    public static function mail($email, $subject, $view, $options = [])
+    public static function mail($email, $subject, $view, $options = [], $from = null)
     {
+        if (is_null($from)) {
+            $from = \Yii::$app->params['mailer']['from'];
+        }
+
         /** @var \yii\swiftmailer\Mailer $mailer */
         $mailer = Yii::$app->mailer;
         $text = $mailer->render('text/' . $view, $options, 'layouts/text');
@@ -28,7 +33,7 @@ class Application
 
         $result = \Yii::$app->mailer
             ->compose()
-            ->setFrom(\Yii::$app->params['mailer']['from'])
+            ->setFrom($from)
             ->setTo($email)
             ->setSubject($subject)
             ->setTextBody($text)
