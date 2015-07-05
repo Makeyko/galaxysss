@@ -34,6 +34,10 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         padding: 0px 10px 10px 10px;
         text-align: center;
     }
+    #wave td {
+        padding: 10px 20px 10px 10px;
+        text-align: center;
+    }
 </style>
 
     <div class="row">
@@ -99,7 +103,24 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
             </div>
         </div>
 
-
+        <h4>Волна</h4>
+        <table id="wave">
+            <tr>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+                <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br><div class="kin"></div></td>
+            </tr>
+        </table>
         <h2>Определение Оракула</h2>
         <p>
             Прочтение Оракула Кина Судьбы или Кина дня – это передача импульса (переход на новый уровень сознания, новую
