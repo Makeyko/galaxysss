@@ -1,6 +1,8 @@
 
-GSSS.calendar.maya.driver1 = {
 
+
+
+GSSS.calendar.maya.driver1 = {
 
     /**
      * Список кинов порталов галактической активации
@@ -37,7 +39,7 @@ GSSS.calendar.maya.driver1 = {
 
         dateBegin = [19, 6, 2015];
 
-        if (GSSS.calendar.maya.driver1.compare(dateBegin, date)) {
+        if (GSSS.calendar.maya.driver1.isMore(dateBegin, date)) {
             begin = dateBegin;
             end = date;
             direction = 1;
@@ -53,7 +55,7 @@ GSSS.calendar.maya.driver1 = {
         var normalizedDays = allDays - visokosDays;
         var ostatokKin = normalizedDays % 260;
         var kin = (startKin + (direction * ostatokKin)) % 260;
-        if (kin < 0) kin = 260 + kin;
+        if (kin <= 0) kin = 260 + kin;
 
         tmp1 = kin % 13;
         if (tmp1 == 0) {
@@ -123,17 +125,26 @@ GSSS.calendar.maya.driver1 = {
         }
     },
 
-    compare: function (d1, d2) {
+    /**
+     * Сравнивает две даты
+     * Отвечает на вопрос: вторая дата больше?
+     * @param d1 array
+     * @param d2 array
+     * @returns {boolean}
+     * true - d1 < d2
+     * false - d1 > d2
+     */
+    isMore: function (d1, d2) {
 
         var dd1 = new Date();
-        dd1.setDate(d1[0]);
-        dd1.setMonth(d1[1]);
         dd1.setFullYear(d1[2]);
+        dd1.setMonth(d1[1]);
+        dd1.setDate(d1[0]);
 
         var dd2 = new Date();
-        dd2.setDate(d2[0]);
-        dd2.setMonth(d2[1]);
         dd2.setFullYear(d2[2]);
+        dd2.setMonth(d2[1]);
+        dd2.setDate(d2[0]);
 
         return ((dd2.getTime() - dd1.getTime()) > 0);
     },
@@ -163,5 +174,4 @@ GSSS.calendar.maya.driver1 = {
     }
 
 };
-
 

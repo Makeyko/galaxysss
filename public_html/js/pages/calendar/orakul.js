@@ -206,9 +206,7 @@ $(document).ready(function () {
         d.setMonth(month - 1);
         d.setDate(day);
 
-        console.log(d);
         setDate(d);
-        console.log(d);
         setWave(d);
     };
 
