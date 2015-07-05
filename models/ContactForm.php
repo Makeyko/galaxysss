@@ -51,6 +51,7 @@ class ContactForm extends Model
     public function contact($email)
     {
         if ($this->validate()) {
+            Yii::info(VarDumper::dumpAsString([$this->email => $this->name], 'gs\\contact'));
             Application::mail(
                 $email,
                 'Письмо с сайта galaxysss.ru: ' .$this->subject,
