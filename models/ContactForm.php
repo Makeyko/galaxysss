@@ -55,8 +55,8 @@ class ContactForm extends Model
                 $email,
                 'Письмо с сайта galaxysss.ru: ' .$this->subject,
                 'contact',
-                ['text' => $this->body],
-                [$this->email => $this->name]
+                ['text' => $this->body]
+//                , [$this->email => $this->name]
             );
 
             return true;
