@@ -140,7 +140,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                 }
 
                 if (Yii::$app->deviceDetect->isMobile()) {
-                    $link = '/calendar';
+                    $link = Url::to(['calendar/index']);
                     $options = [];
                 } else {
                     $link = 'javascript:void(0);';

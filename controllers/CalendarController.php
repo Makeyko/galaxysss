@@ -76,7 +76,7 @@ class CalendarController extends BaseController
 
     public function actionIndex()
     {
-        return $this->redirect(['calendar/moon']);
+        return $this->redirect(['calendar/orakul']);
     }
 
     public function actionColkin()

@@ -51,8 +51,13 @@ class ContactForm extends Model
     public function contact($email)
     {
         if ($this->validate()) {
-
-            Application::mail($email, $this->subject,'contact', ['text' => $this->body]);
+            Application::mail(
+                $email,
+                'Письмо с сайта galaxysss.ru: ' .$this->subject,
+                'contact',
+                ['text' => $this->body],
+                [$this->email => $this->name]
+            );
 
             return true;
         } else {
