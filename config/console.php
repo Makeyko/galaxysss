@@ -28,6 +28,10 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class'  => 'yii\log\DbTarget',
+                    'categories' => ['gs\\*'],
+                ],
             ],
         ],
         'db' => $db,
