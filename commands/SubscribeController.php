@@ -33,7 +33,8 @@ class SubscribeController extends Controller
         SubscribeMailItem::deleteByCondition([
             'in', 'id', ArrayHelper::getColumn($list, 'id')
         ]);
-
+        echo(1);
+        echo("\n");
         \Yii::info('Рассылка писем ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\subscribe');
     }
 }
