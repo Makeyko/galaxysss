@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'header' => 'Сообщение',
                 'content' => function ($model, $key, $index, $column) {
-                    return Html::tag('pre',$model['message']); // $data['name'] for array data, e.g. using SqlDataProvider.
+                    return Html::tag('pre', Html::encode($model['message'])); // $data['name'] for array data, e.g. using SqlDataProvider.
                 }
             ],
         ],
