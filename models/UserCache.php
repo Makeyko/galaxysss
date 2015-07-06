@@ -29,7 +29,8 @@ trait UserCache
 
         $keyName = 'user/'.$id;
         $user = \Yii::$app->session->get($keyName, false);
-        \Yii::info(VarDumper::dumpAsString($user), 'gsss/UserCache');
+//        \cs\services\VarDumper::dump($_SESSION);
+        \Yii::info(VarDumper::dumpAsString($user), 'gsss\\UserCache');
         if ($user === false) {
             $user = parent::_find($id);
             \Yii::$app->session->set($keyName,$user);
@@ -49,9 +50,18 @@ trait UserCache
     {
         $keyName = 'user/'.$this->getId();
         \Yii::$app->session->remove($keyName);
+
         foreach($fields as $k => $v) {
             $this->fields[$k] = $v;
         }
+        parent::update($fields);
+
         return true;
+    }
+
+    public function cacheClear()
+    {
+        $keyName = 'user/'.$this->getId();
+        \Yii::$app->session->remove($keyName);
     }
 }

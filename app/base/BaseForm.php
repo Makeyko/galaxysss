@@ -584,7 +584,7 @@ class BaseForm extends Model
     /**
      * Обновляет запись в таблицу
      *
-     * @return boolean результат операции
+     * @return boolean | array поля или false если небыло пройдена валидация формы
      */
     public function update($fieldsCols = null)
     {
@@ -608,7 +608,7 @@ class BaseForm extends Model
         }
         (new Query())->createCommand()->update(static::TABLE, $fields, ['id' => $this->id])->execute();
 
-        return true;
+        return $fields;
     }
 
     /**

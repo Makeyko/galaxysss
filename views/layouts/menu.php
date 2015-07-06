@@ -80,7 +80,10 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                             </ul>
                         </div>
                     </li>
-                <?php else: ?>
+                <?php else:
+
+
+                    ?>
                     <li class="dropdown">
                         <a
                             href="#"
@@ -88,11 +91,12 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                             data-toggle="dropdown"
                             aria-expanded="false"
                             role="button"
-                            style="padding: 10px;"
+                            style="padding: 5px 10px 5px 10px;"
                             >
                             <?= Html::img(Yii::$app->user->identity->getAvatar(), [
-                                'height' => '30px',
+                                'height' => '40px',
                                 'style' => 'border: 1px solid #000000;',
+                                'class' => 'img-circle'
                             ]) ?>
                             <span class="caret"></span>
                         </a>

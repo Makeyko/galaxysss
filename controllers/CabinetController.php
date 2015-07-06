@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -84,7 +85,8 @@ class CabinetController extends BaseController
     public function actionProfile()
     {
         $model = \app\models\Form\Profile::find(Yii::$app->user->getId());
-        if ($model->load(Yii::$app->request->post()) && $model->update()) {
+        if ($model->load(Yii::$app->request->post()) && ($fields = $model->update())) {
+            Yii::$app->user->identity->cacheClear();
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();

@@ -117,10 +117,10 @@ class Chenneling extends \cs\base\BaseForm
         ]);
 
         $item = new \app\models\Chenneling($row);
-        $item->update(['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img'))), [
+        $item->update(['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
                 'class' => 'thumbnail',
                 'style' => 'width:100%;',
-            ]) . $item->getField('content') ]);
+            ])) . $item->getField('content') ]);
 
         return $item;
     }
