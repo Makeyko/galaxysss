@@ -72,7 +72,8 @@ GSSS.calendar.maya.driver1 = {
             ton: parseInt(tmp1),
             kin: parseInt(kin),
             stamp: parseInt(tmp2),
-            nearPortal: parseInt(GSSS.calendar.maya.driver1.nearPortal(kin))
+            nearPortal: parseInt(GSSS.calendar.maya.driver1.nearPortal(kin)),
+            nearPolar: parseInt(GSSS.calendar.maya.driver1.nearPolar(kin))
         };
     },
 
@@ -158,7 +159,30 @@ GSSS.calendar.maya.driver1 = {
      * @return int количество дней до портала. 0 - сегодня портал
      */
     nearPortal: function (kin) {
-        var arr = GSSS.calendar.maya.driver1.portalList.sort(function sortFunction(a, b) {
+        var arr = GSSS.calendar.maya.portalList.sort(function sortFunction(a, b) {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+        });
+
+        for (i = 0; i < arr.length; i++) {
+            var item = arr[i];
+            if (item == kin) return 0;
+            if (item < kin && arr[i + 1] > kin) {
+                return arr[i + 1] - kin;
+            }
+        }
+    },
+
+    /**
+     * Вычисляет количество дней до ближайшего портала галактической активации
+     *
+     * @param kin кин на сегодня
+     *
+     * @return int количество дней до портала. 0 - сегодня портал
+     */
+    nearPolar: function (kin) {
+        var arr = GSSS.calendar.maya.polarList.sort(function sortFunction(a, b) {
             if (a < b) return -1;
             if (a > b) return 1;
             return 0;

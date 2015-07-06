@@ -3,6 +3,8 @@ $(document).ready(function () {
     /**
      * Устанавливает волну
      * прописывает в таблицу #wave все печати с тонами
+     *
+     * @param d Date()
      */
     function setWave(d) {
         var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
@@ -32,6 +34,70 @@ $(document).ready(function () {
 
         });
     }
+
+    /**
+     * Устанавливает песню дня
+     *
+     * @param d MayaDate
+     */
+    function setPesnya(d) {
+        console.log(d);
+        var objPesnya = $('#pesnya');
+        var pesnya = [
+            'Я {1}, дабы {2},',
+            '{3} {4}.',
+            'Я опечатываю {5} {6} {7}',
+            'Я ведом силой {6}.'
+            ];
+        var equal = [
+            'ton.creativePower', // 1
+            'stamp.action',      // 2
+            'ton.action',        // 3
+            'stamp.feature',     // 4
+            'stamp.cageTime',    // 5
+            'stamp.power',       // 6
+            'ton.name',          // 7
+        ];
+        var tonToday = GSSS.calendar.maya.pesnya.ton[d.ton-1];
+        var stampToday = GSSS.calendar.maya.pesnya.stamp[d.stamp-1];
+        // во всех строках делаю замену
+        for (var i = 0; i < pesnya.length; i++) {
+            for (var j = 0; j < equal.length; j++) {
+                pesnya[i] = pesnya[i].replace('{1}', tonToday.creativePower );
+                pesnya[i] = pesnya[i].replace('{2}', stampToday.action );
+                pesnya[i] = pesnya[i].replace('{3}', tonToday.action );
+                pesnya[i] = pesnya[i].replace('{4}', stampToday.feature );
+                pesnya[i] = pesnya[i].replace('{5}', stampToday.cageTime );
+                pesnya[i] = pesnya[i].replace('{6}', stampToday.power );
+                pesnya[i] = pesnya[i].replace('{7}', tonToday.name );
+            }
+        }
+        if (d.nearPortal == 0) {
+            pesnya.push('Я Есмь Портал Галактической Активации - войди в меня!');
+        }
+        if (d.nearPolar == 0) {
+            var string = 'Я Есмь Полярный кин. Я {1} {2} галактический спектр';
+            var v1 = '';
+            var v2 = '';
+            switch(d.ton) {
+                case 3: v1 = 'устанавливаю';break;
+                case 10: v1 = 'расширяю';break;
+                case 4: v1 = 'преобразую';break;
+                case 11: v1 = 'перемещаю';break;
+            }
+            switch (d.stamp % 4) {
+                case 0: v2 = 'красный'; break;
+                case 1: v2 = 'белый'; break;
+                case 2: v2 = 'синий'; break;
+                case 3: v2 = 'желтый'; break;
+            }
+            string = string.replace('{1}', v1).replace('{2}', v2);
+            pesnya.push(string);
+        }
+
+        objPesnya.html(pesnya.join('<br>'));
+    }
+
 
     function setWave2Cell(ton,stamp,kin, todayTon)
     {
@@ -231,6 +297,7 @@ $(document).ready(function () {
 
         setDate(d);
         setWave(d);
+        setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
     };
 
     function setError(message) {
@@ -245,4 +312,5 @@ $(document).ready(function () {
 
     setDate(d);
     setWave(d);
+    setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
 });

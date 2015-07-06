@@ -213,6 +213,9 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     </tr>
 </table>
 <hr>
+<p><b>Песня дня</b></p>
+<p id="pesnya"></p>
+<hr>
 <h2>Определение Оракула</h2>
 
 <p>

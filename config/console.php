@@ -10,6 +10,11 @@ return [
     'basePath'            => dirname(__DIR__),
     'bootstrap'           => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
+    'aliases'          => [
+        '@web'    => __DIR__ . '/../public_html/',
+        '@csRoot' => __DIR__ . '/../../app',
+        '@upload' => __DIR__ . '/../public_html/upload',
+    ],
     'modules'             => [
         'gii' => 'yii\gii\Module',
     ],
