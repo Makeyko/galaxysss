@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'image') ?>
                 <?= $model->field($form, 'link') ?>
+                <?= $model->field($form, 'date') ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Обновить', [
