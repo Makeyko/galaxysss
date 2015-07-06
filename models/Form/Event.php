@@ -70,9 +70,9 @@ class Event extends \cs\base\BaseForm
             ],
             [
                 'end_time',
-                'Старт. Время',
+                'Старт. Окончание',
                 0,
-                'string',[],
+                'string', [],
                 'формат чч:мм',
 
             ],
@@ -92,6 +92,12 @@ class Event extends \cs\base\BaseForm
                 'Ссылка',
                 0,
                 'url',
+            ],
+            [
+                'date',
+                'Дата',
+                0,
+                'string',
             ],
             [
                 'image',
