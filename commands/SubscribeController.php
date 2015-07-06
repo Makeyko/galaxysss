@@ -18,6 +18,7 @@ class SubscribeController extends Controller
      */
     public function actionSend()
     {
+        $time = microtime(true);
         $list = SubscribeMailItem::query()->limit(100)->orderBy(['date_insert' => SORT_DESC])->all();
 
         foreach($list as $mailItem) {
@@ -35,7 +36,9 @@ class SubscribeController extends Controller
             'in', 'id', ArrayHelper::getColumn($list, 'id')
         ]);
 
-        \Yii::info('Рассылка писем ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\subscribe');
+        if (count($list) > 0) {
+            \Yii::info('Рассылка писем ' . VarDumper::dumpAsString([ArrayHelper::getColumn($list, 'id'),microtime(true)-$time]), 'gs\\subscribe');
+        }
 
         \Yii::$app->end();
     }
