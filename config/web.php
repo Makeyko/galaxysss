@@ -41,11 +41,7 @@ $config = [
             'suffix'              => '',
             'rules'               => require(__DIR__ . '/urlRules.php'),
         ],
-        'mailer'               => [
-            'class'            => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-            'transport'        => require(__DIR__ . '/mailerTransport.php'),
-        ],
+        'mailer'               => require(__DIR__ . '/mailerTransport.php'),
         'log'                  => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [

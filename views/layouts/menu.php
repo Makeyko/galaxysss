@@ -54,9 +54,12 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
             <a
                 class="navbar-brand"
                 href="/"
-                style="padding: 10px 10px 0px 10px;"
+                style="padding: 5px 10px 5px 10px;"
                 >
-                <img src="/images/ico.jpg" height="30">
+                <img
+                    src="/images/ico.jpg"
+                    height="40"
+                    >
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -80,7 +83,10 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                             </ul>
                         </div>
                     </li>
-                <?php else: ?>
+                <?php else:
+
+
+                    ?>
                     <li class="dropdown">
                         <a
                             href="#"
@@ -88,11 +94,11 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
                             data-toggle="dropdown"
                             aria-expanded="false"
                             role="button"
-                            style="padding: 10px;"
+                            style="padding: 5px 10px 5px 10px;"
                             >
                             <?= Html::img(Yii::$app->user->identity->getAvatar(), [
-                                'height' => '30px',
-                                'style' => 'border: 1px solid #000000;',
+                                'height' => '40px',
+                                'class' => 'img-circle'
                             ]) ?>
                             <span class="caret"></span>
                         </a>
