@@ -102,6 +102,7 @@ return [
     'manifest'                                                                             => 'page/manifest',
 
     'events/2015/mandala_festival'                                                         => 'calendar/events_mandala_festival',
+    'events/<id:\\d+>'                                                                     => 'calendar/events_item',
 
     'pledge'                                                                               => 'page/pledge',
     'program'                                                                              => 'page/program',

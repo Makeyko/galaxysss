@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Event;
 use cs\models\Calendar\Maya;
 use cs\services\VarDumper;
+use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
 use yii\filters\AccessControl;
@@ -72,6 +74,26 @@ class CalendarController extends BaseController
     public function actionEvents_mandala_festival()
     {
         return $this->render();
+    }
+
+    /**
+     * Выводит событие
+     *
+     * @param int $id идентификатор события
+     *
+     * @return string
+     * @throws \cs\web\Exception
+     */
+    public function actionEvents_item($id)
+    {
+        $item = Event::find($id);
+        if (is_null($item)) {
+            throw new Exception('Событие не найдено');
+        }
+
+        return $this->render([
+            'item' => $item
+        ]);
     }
 
     public function actionIndex()
