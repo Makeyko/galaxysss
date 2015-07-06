@@ -30,6 +30,7 @@ class Event extends \cs\base\BaseForm
     public $user_id;
     public $date_insert;
     public $link;
+    public $date;
 
     function __construct($fields = [])
     {
