@@ -201,50 +201,28 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 </center>
 <div class="row featurette">
 
-    <?php foreach($events as $event) { ?>
-<!--    <div class="col-lg-4">-->
-<!--        <h3>--><?//= $event['name'] ?><!--</h3>-->
-<!--        <p>с 17 по 27 июля</p>-->
-<!--        <p>-->
-<!--            <a href="--><?//= $event['link'] ?><!--" target="_blank">-->
-<!--                <img-->
-<!--                    src="--><?//= $event['image'] ?><!--"-->
-<!--                    width="100%"-->
-<!--                    alt=""-->
-<!--                    class="thumbnail"-->
-<!--                    >-->
-<!--            </a>-->
-<!--        </p>-->
-<!--    </div>-->
+    <?php foreach($events as $event) {
+        $link = $event['link'] . '';
+        if ($link == '') {
+            $link = '/events/' . $event['id'];
+        }
+        ?>
+    <div class="col-lg-4">
+        <h3><?= $event['name'] ?></h3>
+        <p><?= $event['date'] ?></p>
+        <p>
+            <a href="<?= $link ?>" target="_blank">
+                <img
+                    src="<?= $event['image'] ?>"
+                    width="100%"
+                    alt=""
+                    class="thumbnail"
+                    >
+            </a>
+        </p>
+    </div>
     <?php } ?>
-    <div class="col-lg-4">
-        <h3>ChillOut Planet Festival</h3>
-        <p>с 17 по 27 июля</p>
-        <p>
-            <a href="http://chilloutplanet.ru/" target="_blank">
-                <img
-                    src="/images/index/events/sun1.png"
-                    width="100%"
-                    alt=""
-                    class="thumbnail"
-                    >
-            </a>
-        </p>
-    </div>
-    <div class="col-lg-4">
-        <h3>Мандала Фестваль</h3>
-        <p>с 29 июля по 2 августа</p>
-        <p>
-            <a href="/events/2015/mandala_festival">
-                <img
-                    src="/images/index/events/mandala.png"
-                    width="100%"
-                    alt=""
-                    class="thumbnail"
-                    >
-            </a>
-        </p>
-    </div>
+
 </div>
 </div>
 
