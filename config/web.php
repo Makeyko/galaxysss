@@ -3,16 +3,19 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'               => 'basic',
-    'basePath'         => dirname(__DIR__),
-    'bootstrap'        => ['log'],
-    'language'         => 'ru',
-    'aliases'          => [
+    'id'            => 'basic',
+    'basePath'      => dirname(__DIR__),
+    'bootstrap'     => ['log'],
+    'language'      => 'ru',
+    'aliases'       => [
         '@web'    => __DIR__ . '/public_html/',
         '@csRoot' => __DIR__ . '/../app',
         '@upload' => __DIR__ . '/public_html/upload',
     ],
-    'components'       => [
+    'components'    => [
+        'assetManager'         => [
+            'appendTimestamp' => true,
+        ],
         'request'              => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey'    => '',
@@ -53,12 +56,12 @@ $config = [
                     ],
                 ],
                 [
-                    'class'  => 'yii\log\DbTarget',
+                    'class'      => 'yii\log\DbTarget',
                     'categories' => ['gs\\*'],
                 ],
                 [
-                    'class'   => 'yii\log\EmailTarget',
-                    'levels'  => [
+                    'class'      => 'yii\log\EmailTarget',
+                    'levels'     => [
                         'error',
                         'warning',
                     ],
@@ -101,15 +104,15 @@ $config = [
         ],
 
     ],
-    'params'           => $params,
-    'controllerMap'    => [
+    'params'        => $params,
+    'controllerMap' => [
         'upload'       => 'cs\Widget\FileUploadMany\UploadController',
         'comment'      => 'app\modules\Comment\Controller',
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
-//    'on beforeRequest' => function ($event) {
-//
-//    }
+    //    'on beforeRequest' => function ($event) {
+    //
+    //    }
 ];
 
 if (YII_ENV_DEV) {
