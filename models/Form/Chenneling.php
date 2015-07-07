@@ -52,7 +52,12 @@ class Chenneling extends \cs\base\BaseForm
                 'content',
                 'Описание',
                 1,
-                'string'
+                'string',
+                'widget' => [
+                    'cs\Widget\HtmlContent\HtmlContent',
+                    [
+                    ]
+                ]
             ],
             [
                 'description',
