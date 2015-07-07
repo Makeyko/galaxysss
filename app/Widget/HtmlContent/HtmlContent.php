@@ -28,14 +28,17 @@ class HtmlContent extends InputWidget
 
     public static $uploadFolder = 'HtmlContent';
 
+    /** @var int $quality качество изображения */
+    public static $quality = 100;
+
     public $uploadUrl = '/upload/HtmlContent2';
 
     private $fieldId;
     private $fieldName;
 
     public static $resizeBox = [
-        1024,
-        768
+        1200,
+        1200
     ];
 
     /**
@@ -197,7 +200,7 @@ JS;
         $imagine = new \Imagine\Gd\Imagine();
         $size = new \Imagine\Image\Box(static::$resizeBox[0], static::$resizeBox[1]);
         $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
-        $imagine->open($sourcePathFull)->thumbnail($size, $mode)->save($destinationPathFull);
+        $imagine->open($sourcePathFull)->thumbnail($size, $mode)->save($destinationPathFull, ['quality' => self::$quality]);
     }
 
     /**
