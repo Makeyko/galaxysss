@@ -38,8 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
                 <?= $model->field($form, 'tree_node_id_mask') ?>
 
+                <hr>
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                        'class' => 'btn btn-default',
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>
