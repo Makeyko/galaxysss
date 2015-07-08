@@ -12,6 +12,7 @@ namespace app\services;
 use app\models\SubscribeMailItem;
 use app\models\User;
 use yii\db\Query;
+use yii\helpers\Url;
 
 class Subscribe
 {
@@ -45,9 +46,10 @@ class Subscribe
 
         $rows = [];
         foreach ($emailList as $email) {
+            $urlUnSubscribe = Url::to(['subscribe/unsubscribe', 'mail' => $email, 'type' => $subscribeItem->type, 'hash' => self::hashGenerate($email, $subscribeItem->type)], true);
             $rows[] = [
-                $subscribeItem->text,
-                $subscribeItem->html,
+                str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->text),
+                str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->html),
                 $subscribeItem->subject,
                 $email,
                 time(),
@@ -61,4 +63,34 @@ class Subscribe
             'date_insert',
         ], $rows);
     }
-} 
+
+    /**
+     * Генерирует hash для ссылки отписки
+     *
+     * @param string  $email почта клиента
+     * @param integer $type  имп рассылки \app\services\Subscribe::TYPE_*
+     *
+     * @return string
+     *
+     */
+    public static function hashGenerate($email, $type)
+    {
+        return md5($email . '_' . $type);
+    }
+
+    /**
+     * Проверяет hash для ссылки отписки
+     *
+     * @param string  $email почта клиента
+     * @param integer $type  имп рассылки \app\services\Subscribe::TYPE_*
+     * @param integer $hash
+     *
+     * @return boolean
+     * true - верный
+     * false - не верный
+     */
+    public static function hashValidate($email, $type, $hash)
+    {
+        return md5($email . '_' . $type) == $hash;
+    }
+}
