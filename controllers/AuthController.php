@@ -64,9 +64,6 @@ class AuthController extends BaseController
         $attributes = $client->getUserAttributes();
         /** @var \app\services\authclient\authClientInterface $client */
         $client->saveToken();
-        Yii::info(\yii\helpers\VarDumper::dumpAsString($client->getName()), 'gs\\auth');
-        Yii::info(\yii\helpers\VarDumper::dumpAsString($attributes), 'gs\\auth');
-        Yii::info(\yii\helpers\VarDumper::dumpAsString($client), 'gs\\auth');
         if (Yii::$app->user->isGuest) {
             $user = $client->login($attributes);
             if (is_null($user)) {

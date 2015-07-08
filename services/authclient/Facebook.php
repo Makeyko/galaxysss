@@ -11,6 +11,7 @@ namespace app\services\authclient;
 
 use app\models\User;
 use cs\services\VarDumper;
+use yii\helpers\ArrayHelper;
 
 class Facebook extends \yii\authclient\clients\Facebook implements authClientInterface
 {
@@ -46,7 +47,8 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
 
     public function register($attributes)
     {
-        $user = User::insert([
+
+        $fields = [
             'fb_id'             => $attributes['id'],
             'fb_link'           => $attributes['link'],
             'name_first'        => $attributes['first_name'],
@@ -55,7 +57,11 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_reg'      => gmdate('YmdHis'),
             'datetime_activate' => gmdate('YmdHis'),
             'is_active'         => 1,
-        ]);
+        ];
+        if (isset($attributes['email'])) {
+            $fields['email'] = $attributes['email'];
+        }
+        $user = User::insert($fields);
         $user->setAvatarFromUrl('https://graph.facebook.com/'.$attributes['id'].'/picture?type=large');
 
         return $user;
