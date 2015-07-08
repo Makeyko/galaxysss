@@ -36,20 +36,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'avatar')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
                 <?= $model->field($form, 'birth_date') ?>
 
-                <?php if (isset($model->vk_id)) { ?>
-                    <p>Профиль: <?= $model->vk_id ?> </p>
-                <?php } else { ?>
-                    <p><a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
-                            профиль</a></p>
-                <?php } ?>
-
-                <?php if (isset($model->fb_id)) { ?>
-                    <p>Профиль: <?= $model->fb_id ?> </p>
-                <?php } else { ?>
-                    <p><a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
-                            профиль</a></p>
-                <?php } ?>
-
+                <table class="table">
+                    <tr>
+                        <td>Facebook</td>
+                        <td><?php if (isset($model->fb_id)) { ?>
+                                <a href="https://www.facebook.com/profile.php?id=<?= $model->fb_id ?>" target="_blank">Профиль</a>
+                            <?php } else { ?>
+                                <a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
+                                    профиль</a>
+                            <?php } ?></td>
+                    </tr>
+                    <tr>
+                        <td>Vkontakte</td>
+                        <td><?php if (isset($model->vk_id)) { ?>
+                                <a href="https://vk.com/id<?= $model->vk_id ?>" target="_blank">Профиль</a>
+                            <?php } else { ?>
+                                <a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
+                                    профиль</a>
+                            <?php } ?></td>
+                    </tr>
+                </table>
 
                 <hr class="featurette-divider">
                 <div class="form-group">
