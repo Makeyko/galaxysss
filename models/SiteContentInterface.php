@@ -15,4 +15,15 @@ interface SiteContentInterface
      * @return SubscribeItem
      */
     public function getMailContent();
+
+
+    /**
+     * Генерирует данные для таблицы обновлений сайта
+     *
+     * @param bool $isScheme надо ли добавлять полный путь
+     *
+     * @return SiteUpdateItem
+     */
+    public function getSiteUpdateItem($isScheme = false);
+
 } 
