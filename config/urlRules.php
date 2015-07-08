@@ -27,6 +27,8 @@ return [
     'log'                                                                                  => 'site/log',
     'logDb'                                                                                => 'site/log_db',
 
+    'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
+
     'calendar'                                                                             => 'calendar/index',
     'calendar/friends'                                                                     => 'calendar/friends',
     'calendar/friends/vkontakte'                                                           => 'calendar/friends_vkontakte',
@@ -101,7 +103,6 @@ return [
     'residence'                                                                            => 'page/residence',
     'manifest'                                                                             => 'page/manifest',
 
-    'events/2015/mandala_festival'                                                         => 'calendar/events_mandala_festival',
     'events/<id:\\d+>'                                                                     => 'calendar/events_item',
 
     'pledge'                                                                               => 'page/pledge',

@@ -60,8 +60,8 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
 
         /** @var \yii\swiftmailer\Mailer $mailer */
         $mailer = \Yii::$app->mailer;
-        $text = $mailer->render('text/' . $view, $options, 'layouts/text');
-        $html = $mailer->render('html/' . $view, $options, 'layouts/html');
+        $text = $mailer->render('text/' . $view, $options, 'layouts/text/subscribe');
+        $html = $mailer->render('html/' . $view, $options, 'layouts/html/subscribe');
 
         $subscribeItem = new SubscribeItem();
         $subscribeItem->subject = $this->getName();
