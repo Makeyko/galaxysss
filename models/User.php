@@ -83,6 +83,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public static function registration($email, $password)
     {
+        $email = strtolower($email);
         $user = self::insert([
             'email'        => $email,
             'password'     => self::hashPassword($password),
@@ -92,11 +93,11 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
         ]);
         $fields = RegistrationDispatcher::add($user->getId());
         \cs\Application::mail($email, 'Подтверждение регистрации', 'registration', [
-            'url'         => Url::to([
+            'url'      => Url::to([
                 'auth/registration_activate',
                 'code' => $fields['code']
             ], true),
-            'user'        => $user,
+            'user'     => $user,
             'datetime' => \Yii::$app->formatter->asDatetime($fields['date_finish'])
         ]);
 
