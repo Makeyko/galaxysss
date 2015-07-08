@@ -38,8 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'tableName' => 'gs_cheneling_tree'
                 ]) ?>
 
+                <hr>
                 <div class="form-group">
-                    <?= Html::submitButton('Добавить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Добавить', [
+                        'class' => 'btn btn-default',
+                        'name' => 'contact-button',
+                        'style' => 'width:100%',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>
