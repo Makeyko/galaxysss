@@ -79,7 +79,7 @@ class SiteController extends BaseController
             'dataProvider' => new ActiveDataProvider([
                 'query' => Log::query()->orderBy(['log_time' => SORT_DESC]),
                 'pagination' => [
-                    'pageSize' => 100,
+                    'pageSize' => 50,
                 ],
             ])
         ]);
