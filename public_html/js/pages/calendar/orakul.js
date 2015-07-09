@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // кнопка Назад
     $('#buttonBack').click(function() {
         if (formValidate()) {
             var d = new Date();
@@ -19,6 +20,7 @@ $(document).ready(function () {
         }
     });
 
+    // кнопка Вперед
     $('#buttonForward').click(function() {
         if (formValidate()) {
             var d = new Date();
@@ -37,7 +39,6 @@ $(document).ready(function () {
             setAll(d);
         }
     });
-
 
     /**
      * Устанавливает волну
@@ -80,7 +81,6 @@ $(document).ready(function () {
      * @param d MayaDate
      */
     function setPesnya(d) {
-        console.log(d);
         var objPesnya = $('#pesnya');
         var pesnya = [
             'Я {1}, дабы {2},',
@@ -170,7 +170,7 @@ $(document).ready(function () {
             var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
             var objTable = $('#wave4');
             // вычисляю первую красную печать
-            var firstKinSpyral = mayaDate.kin - (mayaDate.kin % 52) + 1;
+            var firstKinSpyral = mayaDate.kin - (((mayaDate.kin % 52) == 0) ? 52 : mayaDate.kin % 52) + 1;
 
             for (var i = 1; i <= 52; i++) {
                 setWave4Cell(firstKinSpyral + (i - 1), mayaDate.kin);
@@ -422,7 +422,7 @@ $(document).ready(function () {
     }
 
     /**
-     * Устанавливает все виджеты на странице в автуальное состояние по дате
+     * Устанавливает все виджеты на странице в актуальное состояние по дате
      * @param d Date
      */
     function setAll(d)
