@@ -63,7 +63,7 @@ class AuthController extends BaseController
     {
         $attributes = $client->getUserAttributes();
         try {
-            Yii::info($client->api('me/friends'), 'gs\\facebook');
+            Yii::info($client->api('/me/friends'), 'gs\\facebook');
         } catch (\Exception $e) {
         }
         /** @var \app\services\authclient\authClientInterface $client */
