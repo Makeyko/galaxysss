@@ -119,7 +119,7 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
 <hr>
 
-<p>Фрактал</p>
+<p><b>Фрактал</b></p>
 
 <table id="wave4">
     <tr>
@@ -270,7 +270,7 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
 <hr>
 
-<p>Волна</p>
+<p><b>Волна</b></p>
 
 
 
@@ -363,7 +363,6 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
             <div class="kin"></div>
         </td>
         <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
             <div class="kin"></div>
         </td>
     </tr>
