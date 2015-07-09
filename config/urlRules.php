@@ -41,6 +41,7 @@ return [
     'calendar/colkin/more'                                                                 => 'calendar/colkin_more',
     'calendar/spyral'                                                                      => 'calendar/spyral',
     'calendar/orakul'                                                                      => 'calendar/orakul',
+    'calendar/13yasnihZnakov'                                                              => 'calendar/yasnih_znakov',
 
     'moderator/unionList'                                                                  => 'moderator_unions/index',
     'moderator/unionList/<id:\\d+>/accept'                                                 => 'moderator_unions/accept',

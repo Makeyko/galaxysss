@@ -9,5 +9,6 @@ use yii\helpers\Url;
         <a href="<?= Url::to(['calendar/moon']) ?>" class="list-group-item<?php if (Url::to(['calendar/moon']) == Url::to()) { echo ' active'; } ?>"> Год (по лунам) </a>
         <a href="<?= Url::to(['calendar/friends']) ?>" class="list-group-item<?php if (Url::to(['calendar/friends']) == Url::to()) { echo ' active'; } ?>"> Друзья </a>
         <a href="<?= Url::to(['calendar/orakul']) ?>" class="list-group-item<?php if (Url::to(['calendar/orakul']) == Url::to()) { echo ' active'; } ?>"> Оракул дня </a>
+        <a href="<?= Url::to(['calendar/yasnih_znakov']) ?>" class="list-group-item<?php if (Url::to(['calendar/yasnih_znakov']) == Url::to()) { echo ' active'; } ?>"> Ясные знаки </a>
     </div>
 </div>

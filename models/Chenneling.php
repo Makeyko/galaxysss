@@ -73,6 +73,19 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getSiteUpdateItem($isScheme = false)
+    {
+        $siteUpdateItem = new SiteUpdateItem();
+        $siteUpdateItem->name = $this->getName();
+        $siteUpdateItem->image = $this->getImage($isScheme);
+        $siteUpdateItem->link = $this->getLink($isScheme);
+
+        return $siteUpdateItem;
+    }
+
+    /**
      * Возвращает ссылку на ченелинг
      *
      * @param bool $isScheme надо ли добавлять полный путь

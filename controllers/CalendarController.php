@@ -250,6 +250,14 @@ class CalendarController extends BaseController
     }
 
     /**
+     * 13 Ясных Знаков Пакаль Вотана
+     */
+    public function actionYasnih_znakov()
+    {
+        return $this->render([]);
+    }
+
+    /**
      * Показывает значение в кеше
      */
     public function actionCache_delete()

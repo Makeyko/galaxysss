@@ -78,6 +78,7 @@ class AdminController extends AdminBaseController
             \app\models\Chenneling::clearCache();
             // добавляю в рассылку
             Subscribe::add($item->getMailContent());
+            \app\models\SiteUpdate::add($item);
 
             return $this->refresh();
         } else {
