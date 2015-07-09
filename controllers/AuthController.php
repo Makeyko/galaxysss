@@ -62,10 +62,6 @@ class AuthController extends BaseController
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        try {
-            Yii::info($client->api('/me/friends'), 'gs\\facebook');
-        } catch (\Exception $e) {
-        }
         /** @var \app\services\authclient\authClientInterface $client */
         $client->saveToken();
         if (Yii::$app->user->isGuest) {
