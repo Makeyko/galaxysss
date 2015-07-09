@@ -114,6 +114,10 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         <input type="text" id="year" class="form-control">
         <span id="error" class="label-danger label"></span>
     </div>
+    <div class="col-lg-4">
+        <button class="btn btn-default" id="buttonBack">Назад</button>
+        <button class="btn btn-default" id="buttonForward">Вперед</button>
+    </div>
 </div>
 <div class="col-lg-12">
 
