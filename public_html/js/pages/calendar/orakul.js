@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // кнопка Назад
     $('#buttonBack').click(function() {
         if (formValidate()) {
             var d = new Date();
@@ -19,6 +20,7 @@ $(document).ready(function () {
         }
     });
 
+    // кнопка Вперед
     $('#buttonForward').click(function() {
         if (formValidate()) {
             var d = new Date();
@@ -37,7 +39,6 @@ $(document).ready(function () {
             setAll(d);
         }
     });
-
 
     /**
      * Устанавливает волну
@@ -422,7 +423,7 @@ $(document).ready(function () {
     }
 
     /**
-     * Устанавливает все виджеты на странице в автуальное состояние по дате
+     * Устанавливает все виджеты на странице в актуальное состояние по дате
      * @param d Date
      */
     function setAll(d)
