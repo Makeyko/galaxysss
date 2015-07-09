@@ -1,5 +1,44 @@
 $(document).ready(function () {
 
+    $('#buttonBack').click(function() {
+        if (formValidate()) {
+            var d = new Date();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var day = $('#day').val();
+            d.setFullYear(year);
+            d.setMonth(month - 1);
+            d.setDate(day);
+            d.setTime(d.getTime() - 60*60*24*1000);
+
+            $('#year').val(d.getFullYear());
+            $('#month').val(d.getMonth() + 1);
+            $('#day').val(d.getDate());
+
+            setAll(d);
+        }
+    });
+
+    $('#buttonForward').click(function() {
+        if (formValidate()) {
+            var d = new Date();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var day = $('#day').val();
+            d.setFullYear(year);
+            d.setMonth(month - 1);
+            d.setDate(day);
+            d.setTime(d.getTime() + 60*60*24*1000);
+
+            $('#year').val(d.getFullYear());
+            $('#month').val(d.getMonth() + 1);
+            $('#day').val(d.getDate());
+
+            setAll(d);
+        }
+    });
+
+
     /**
      * Устанавливает волну
      * прописывает в таблицу #wave все печати с тонами
@@ -322,52 +361,77 @@ $(document).ready(function () {
         var year = $('#year').val();
         var month = $('#month').val();
         var day = $('#day').val();
+
+        if (formValidate()) {
+            d.setFullYear(year);
+            d.setMonth(month - 1);
+            d.setDate(day);
+
+            setAll(d);
+        }
+    };
+
+    /**
+     * Проверяет форму на валидность, если есть ошибка то устанавливает ее
+     *
+     * @return bool
+     * true - форма валидна
+     * false - ошибка в форме
+     */
+    function formValidate()
+    {
+        var d = new Date();
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var day = $('#day').val();
         var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-        // проверки
-        {
-            if (day == '') {
-                setError('Поле не может быть пустым');
-                return;
+        if (day == '') {
+            setError('Поле не может быть пустым');
+            return false;
+        }
+        if (year == '') {
+            setError('Поле не может быть пустым');
+            return false;
+        }
+        // для високосного года
+        if (month == 2) {
+            if (day > 29) {
+                setError('В феврале не может быть более 29 дней');
+                return false;
             }
-            if (year == '') {
-                setError('Поле не может быть пустым');
-                return;
+            if (day > 28) {
+                if (year % 4 > 0) {
+                    setError('В не високосном году только 28 дней в феврале');
+                    return false;
+                }
             }
-            // для високосного года
-            if (month == 2) {
-                if (day > 29) {
-                    setError('В феврале не может быть более 29 дней');
-                    return;
-                }
-                if (day > 28) {
-                    if (year % 4 > 0) {
-                        setError('В не високосном году только 28 дней в феврале');
-                        return;
-                    }
-                }
-            } else {
-                if (day < 1) {
-                    setError('День не может быть отрицательным');
-                    return;
-                }
-                if (day > monthDays[month - 1]) {
-                    setError('В этом месяце меньше дней чем вы указали');
-                    return;
-                }
+        } else {
+            if (day < 1) {
+                setError('День не может быть отрицательным');
+                return false;
+            }
+            if (day > monthDays[month - 1]) {
+                setError('В этом месяце меньше дней чем вы указали');
+                return false;
             }
         }
-
         setError('');
-        d.setFullYear(year);
-        d.setMonth(month - 1);
-        d.setDate(day);
 
+        return true;
+    }
+
+    /**
+     * Устанавливает все виджеты на странице в автуальное состояние по дате
+     * @param d Date
+     */
+    function setAll(d)
+    {
         setDate(d);
         setWave(d);
         setWave4(d);
         setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
-    };
+    }
 
     function setError(message) {
         $('#error').html(message);
