@@ -15,7 +15,7 @@ $(document).ready(function () {
         // вычисляю первый кин
         var kin = mayaDate.kin - (mayaDate.ton - 1);
 
-        objTable.find('td').each(function(i, v) {
+        objTable.find('td').each(function (i, v) {
             var objectTd = $(v);
             if ((i + 1) == mayaDate.ton) {
                 objectTd.css('background-color', '#cccccc');
@@ -36,19 +36,82 @@ $(document).ready(function () {
     }
 
     /**
+     * Устанавливает волну
+     * прописывает в таблицу #wave4 все печати с тонами
+     *
+     * @param d Date()
+     */
+    function setWave4(d) {
+        var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
+        var objTable = $('#wave4');
+        // вычисляю первую красную печать
+        var firstKinSpyral = mayaDate.kin - (mayaDate.kin % 52) + 1;
+
+        for (var i = 1; i <= 52; i++) {
+            setWave4Cell(firstKinSpyral + (i - 1), mayaDate.kin);
+        }
+
+    }
+
+    /**
+     * Устанавливает кин в таблицу фрактала
+     *
+     * @param kin - текущий кин
+     * @param todayKin - кин сегодня
+     */
+    function setWave4Cell(kin, todayKin) {
+        var stamp = kin % 20;
+        if (stamp == 0) stamp = 20;
+        var ton = kin % 13;
+        if (ton == 0) ton = 13;
+        var color = (kin - 1) % 52;
+        color = parseInt(color / 13);
+
+        switch (color) {
+            case 0:
+                color = 'red';
+                break;
+            case 1:
+                color = 'white';
+                break;
+            case 2:
+                color = 'blue';
+                break;
+            case 3:
+                color = 'yellow';
+                break;
+        }
+        var objectCell = $('.cell-' + color + '-' + ton);
+        var title = [
+            GSSS.calendar.maya.stampList[stamp - 1][0],
+            'Тон: ' + ton,
+            'Кин: ' + kin
+        ];
+        title = title.join(' ');
+        objectCell
+            .html('')
+            .append($('<img>', {
+                src: MayaAssetUrl + '/images/stamp3/' + stamp + '.gif',
+                title: title,
+                width: 20
+            }).tooltip())
+            .css('background-color', (todayKin == kin) ? '#cccccc' : '#ffffff')
+        ;
+    }
+
+    /**
      * Устанавливает песню дня
      *
      * @param d MayaDate
      */
     function setPesnya(d) {
-        console.log(d);
         var objPesnya = $('#pesnya');
         var pesnya = [
             'Я {1}, дабы {2},',
             '{3} {4}.',
             'Я опечатываю {5} {6} {7}',
             'Я ведом силой {6}.'
-            ];
+        ];
         var equal = [
             'ton.creativePower', // 1
             'stamp.action',      // 2
@@ -58,18 +121,18 @@ $(document).ready(function () {
             'stamp.power',       // 6
             'ton.name',          // 7
         ];
-        var tonToday = GSSS.calendar.maya.pesnya.ton[d.ton-1];
-        var stampToday = GSSS.calendar.maya.pesnya.stamp[d.stamp-1];
+        var tonToday = GSSS.calendar.maya.pesnya.ton[d.ton - 1];
+        var stampToday = GSSS.calendar.maya.pesnya.stamp[d.stamp - 1];
         // во всех строках делаю замену
         for (var i = 0; i < pesnya.length; i++) {
             for (var j = 0; j < equal.length; j++) {
-                pesnya[i] = pesnya[i].replace('{1}', tonToday.creativePower );
-                pesnya[i] = pesnya[i].replace('{2}', stampToday.action );
-                pesnya[i] = pesnya[i].replace('{3}', tonToday.action );
-                pesnya[i] = pesnya[i].replace('{4}', stampToday.feature );
-                pesnya[i] = pesnya[i].replace('{5}', stampToday.cageTime );
-                pesnya[i] = pesnya[i].replace('{6}', stampToday.power );
-                pesnya[i] = pesnya[i].replace('{7}', tonToday.name );
+                pesnya[i] = pesnya[i].replace('{1}', tonToday.creativePower);
+                pesnya[i] = pesnya[i].replace('{2}', stampToday.action);
+                pesnya[i] = pesnya[i].replace('{3}', tonToday.action);
+                pesnya[i] = pesnya[i].replace('{4}', stampToday.feature);
+                pesnya[i] = pesnya[i].replace('{5}', stampToday.cageTime);
+                pesnya[i] = pesnya[i].replace('{6}', stampToday.power);
+                pesnya[i] = pesnya[i].replace('{7}', tonToday.name);
             }
         }
         if (d.nearPortal == 0) {
@@ -79,17 +142,33 @@ $(document).ready(function () {
             var string = 'Я Есмь Полярный кин. Я {1} {2} галактический спектр';
             var v1 = '';
             var v2 = '';
-            switch(d.ton) {
-                case 3: v1 = 'устанавливаю';break;
-                case 10: v1 = 'расширяю';break;
-                case 4: v1 = 'преобразую';break;
-                case 11: v1 = 'перемещаю';break;
+            switch (d.ton) {
+                case 3:
+                    v1 = 'устанавливаю';
+                    break;
+                case 10:
+                    v1 = 'расширяю';
+                    break;
+                case 4:
+                    v1 = 'преобразую';
+                    break;
+                case 11:
+                    v1 = 'перемещаю';
+                    break;
             }
             switch (d.stamp % 4) {
-                case 0: v2 = 'красный'; break;
-                case 1: v2 = 'белый'; break;
-                case 2: v2 = 'синий'; break;
-                case 3: v2 = 'желтый'; break;
+                case 0:
+                    v2 = 'красный';
+                    break;
+                case 1:
+                    v2 = 'белый';
+                    break;
+                case 2:
+                    v2 = 'синий';
+                    break;
+                case 3:
+                    v2 = 'желтый';
+                    break;
             }
             string = string.replace('{1}', v1).replace('{2}', v2);
             pesnya.push(string);
@@ -98,9 +177,7 @@ $(document).ready(function () {
         objPesnya.html(pesnya.join('<br>'));
     }
 
-
-    function setWave2Cell(ton,stamp,kin, todayTon)
-    {
+    function setWave2Cell(ton, stamp, kin, todayTon) {
         var objectCell = $('.wave-cell-' + ton);
         objectCell
             .html('')
@@ -115,77 +192,9 @@ $(document).ready(function () {
                 width: 20
             }).tooltip())
             .append($('<div>', {title: 'Кин дня'}).html(kin).tooltip())
-            .css('background-color', (todayTon == ton)? '#cccccc': '#ffffff')
+            .css('background-color', (todayTon == ton) ? '#cccccc' : '#ffffff')
         ;
     }
-
-    // фрактал
-    {
-        /**
-         * Устанавливает волну
-         * прописывает в таблицу #wave4 все печати с тонами
-         *
-         * @param d Date()
-         */
-        function setWave4(d) {
-            var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
-            var objTable = $('#wave4');
-            // вычисляю первую красную печать
-            var firstKinSpyral = mayaDate.kin - (mayaDate.kin % 52) + 1;
-
-            for (var i = 1; i <= 52; i++) {
-                setWave4Cell(firstKinSpyral + (i - 1), mayaDate.kin);
-            }
-
-        }
-
-        /**
-         * Устанавливает кин в таблицу фрактала
-         *
-         * @param kin - текущий кин
-         * @param todayKin - кин сегодня
-         */
-        function setWave4Cell(kin, todayKin) {
-            var stamp = kin % 20;
-            if (stamp == 0) stamp = 20;
-            var ton = kin % 13;
-            if (ton == 0) ton = 13;
-            var color = (kin - 1) % 52;
-            color = parseInt(color / 13);
-
-            switch (color) {
-                case 0:
-                    color = 'red';
-                    break;
-                case 1:
-                    color = 'white';
-                    break;
-                case 2:
-                    color = 'blue';
-                    break;
-                case 3:
-                    color = 'yellow';
-                    break;
-            }
-            var objectCell = $('.cell-' + color + '-' + ton);
-            var title = [
-                GSSS.calendar.maya.stampList[stamp - 1][0],
-                'Тон: ' + ton,
-                'Кин: ' + kin
-            ];
-            title = title.join(' ');
-            objectCell
-                .html('')
-                .append($('<img>', {
-                    src: MayaAssetUrl + '/images/stamp3/' + stamp + '.gif',
-                    title: title,
-                    width: 20
-                }).tooltip())
-                .css('background-color', (todayKin == kin) ? '#cccccc' : '#ffffff')
-            ;
-        }
-    }
-
 
     function setDate(d) {
         $('#day').val(d.getDate());
@@ -365,7 +374,6 @@ $(document).ready(function () {
 
         setDate(d);
         setWave(d);
-        setWave4(d);
         setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
     };
 
@@ -381,6 +389,6 @@ $(document).ready(function () {
 
     setDate(d);
     setWave(d);
-    setWave4(d);
     setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
+    setWave4(d);
 });
