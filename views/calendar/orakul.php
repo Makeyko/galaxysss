@@ -46,6 +46,11 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         width: 64px;
         height: 64px;
     }
+
+    #wave4 td {
+        padding: 5px;
+        text-align: center;
+    }
 </style>
 
 <div class="row">
@@ -111,6 +116,157 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     </div>
 </div>
 <div class="col-lg-12">
+
+<hr>
+
+<p>Фрактал</p>
+
+<table id="wave4">
+    <tr>
+        <td></td>
+        <td class="cell-white-9"></td>
+        <td class="cell-white-8"></td>
+        <td class="cell-white-7"></td>
+        <td class="cell-white-6"></td>
+        <td class="cell-white-5"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="cell-white-10"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-white-4"></td>
+        <td></td>
+        <td class="cell-red-12"></td>
+        <td class="cell-red-11"></td>
+        <td class="cell-red-10"></td>
+        <td class="cell-red-9"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="cell-white-11"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-white-3"></td>
+        <td></td>
+        <td class="cell-red-13"></td>
+        <td></td>
+        <td></td>
+        <td class="cell-red-8"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="cell-white-12"></td>
+        <td class="cell-white-13"></td>
+        <td></td>
+        <td></td>
+        <td class="cell-white-2"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-red-7"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-white-1"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-red-6"></td>
+    </tr>
+    <tr class="center">
+        <td class="cell-blue-5"></td>
+        <td class="cell-blue-4"></td>
+        <td class="cell-blue-3"></td>
+        <td class="cell-blue-2"></td>
+        <td class="cell-blue-1"></td>
+        <td class="center"></td>
+        <td class="cell-red-1"></td>
+        <td class="cell-red-2"></td>
+        <td class="cell-red-3"></td>
+        <td class="cell-red-4"></td>
+        <td class="cell-red-5"></td>
+    </tr>
+    <tr>
+        <td class="cell-blue-6"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-1"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="cell-blue-7"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-2"></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-13"></td>
+        <td class="cell-yellow-12"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="cell-blue-8"></td>
+        <td></td>
+        <td></td>
+        <td class="cell-blue-13"></td>
+        <td></td>
+        <td class="cell-yellow-3"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-11"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="cell-blue-9"></td>
+        <td class="cell-blue-10"></td>
+        <td class="cell-blue-11"></td>
+        <td class="cell-blue-12"></td>
+        <td></td>
+        <td class="cell-yellow-4"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-10"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-yellow-5"></td>
+        <td class="cell-yellow-6"></td>
+        <td class="cell-yellow-7"></td>
+        <td class="cell-yellow-8"></td>
+        <td class="cell-yellow-9"></td>
+        <td></td>
+    </tr>
+</table>
+
 
 <hr>
 
