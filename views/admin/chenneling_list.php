@@ -45,6 +45,7 @@ $this->registerJsFile('/js/pages/admin/chenneling_list.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
+                        <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
                     </div>
                 </div>
             </a>
