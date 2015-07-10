@@ -1,29 +1,27 @@
 <?php
 
+use yii\helpers\Html;
+
 $this->title = 'Художники';
 
 ?>
 <div class="container">
-    <div class="page-header">
-        <h1>Художники</h1>
-    </div>
-    <p class="lead">Художники рисуют миры в которых мы живем.</p>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
 
-    <p><img src="/images/page/arts/header.png" width="100%" class="thumbnail"></p>
+        <p class="lead">Художники рисуют миры в которых мы живем.</p>
 
-    <div class="row">
-        <?= \app\services\GsssHtml::unionCategoryItems(12) ?>
+        <p><img src="/images/page/arts/header.png" width="100%" class="thumbnail"></p>
     </div>
+
+    <?= \app\services\GsssHtml::unionCategoryItems(12) ?>
+
     <?php if (count($articleList) > 0) { ?>
-        <div class="row">
-            <div class="page-header">
-                <h2>Статьи</h2>
-            </div>
-            <div class="row">
-                <?php foreach ($articleList as $item) {
-                    echo \app\services\GsssHtml::articleItem($item, 'arts');
-                } ?>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Статьи</h2>
+            <?php foreach ($articleList as $item) {
+                echo \app\services\GsssHtml::articleItem($item, 'arts');
+            } ?>
         </div>
     <?php } ?>
 </div>

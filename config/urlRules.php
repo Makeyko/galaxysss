@@ -68,7 +68,7 @@ return [
     'admin/chennelingList/addFromPage'                                                     => 'admin/chenneling_list_add_from_page',
     'admin/chennelingList/<id:\\d+>/delete'                                                => 'admin/chenneling_list_delete',
     'admin/chennelingList/<id:\\d+>/edit'                                                  => 'admin/chenneling_list_edit',
-    'admin/chennelingList/<id:\\d+>/subscribe'                                                  => 'admin/chenneling_list_subscribe',
+    'admin/chennelingList/<id:\\d+>/subscribe'                                             => 'admin/chenneling_list_subscribe',
     'admin/articleList'                                                                    => 'admin_article/index',
     'admin/articleList/add'                                                                => 'admin_article/add',
     'admin/articleList/addFromPage'                                                        => 'admin_article/add_from_page',

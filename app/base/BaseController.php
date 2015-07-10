@@ -49,7 +49,7 @@ class BaseController extends \yii\web\Controller
      *
      * @param mixed $data [optional] возвращаемые данные
      *
-     * @return string JSON
+     * @return \yii\web\Response json
      */
     public static function jsonSuccess($data = null)
     {
@@ -67,7 +67,7 @@ class BaseController extends \yii\web\Controller
      *                    'data' => данные при положительном срабатывании или сообщение об ошибке
      *                    ]
      *
-     * @return string JSON
+     * @return \yii\web\Response json
      */
     public function jsonController($data)
     {
@@ -86,7 +86,7 @@ class BaseController extends \yii\web\Controller
      *
      * @param \app\models\Response $response
      *
-     * @return string JSON
+     * @return \yii\web\Response json
      */
     public function jsonResponse($response)
     {
@@ -103,7 +103,7 @@ class BaseController extends \yii\web\Controller
      *
      * @param mixed $data [optional] возвращаемые данные
      *
-     * @return string JSON
+     * @return \yii\web\Response json
      */
     public static function jsonError($data = null)
     {
@@ -119,7 +119,7 @@ class BaseController extends \yii\web\Controller
      * @param integer $id   идентификатор ошибки
      * @param mixed   $data [optional] возвращаемые данные
      *
-     * @return string JSON
+     * @return \yii\web\Response json
      */
     public static function jsonErrorId($id, $data = null)
     {
@@ -135,13 +135,14 @@ class BaseController extends \yii\web\Controller
     /**
      * Закодировать в JSON
      *
-     * @return string json string
+     * @return \yii\web\Response json
      * */
     public static function json($array)
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->data = $array;
 
-        return $array;
+        return Yii::$app->response;
     }
 
     /**

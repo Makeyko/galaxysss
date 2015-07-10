@@ -18,6 +18,7 @@ use app\models\Chenneling;
 use cs\base\BaseController;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use app\models\SiteUpdate;
 
 class AdminController extends AdminBaseController
 {
@@ -70,15 +71,34 @@ class AdminController extends AdminBaseController
         ]);
     }
 
+    /**
+     * AJAX
+     * Добавляет site_update
+     * Делает рассылку
+     *
+     * @param integer $id - идентификатор послания
+     *
+     * @return string
+     */
+    public function actionChenneling_list_subscribe($id)
+    {
+        $item = Chenneling::find($id);
+        if (is_null($item)) {
+            return self::jsonError(101, 'Не найдено послание');
+        }
+        Subscribe::add($item);
+        SiteUpdate::add($item);
+        $item->update(['is_added_site_update' => 1]);
+
+        return self::jsonSuccess();
+    }
+
     public function actionChenneling_list_add()
     {
         $model = new \app\models\Form\Chenneling();
         if ($model->load(Yii::$app->request->post()) && ($item = $model->insert())) {
             Yii::$app->session->setFlash('contactFormSubmitted');
             \app\models\Chenneling::clearCache();
-            // добавляю в рассылку
-            Subscribe::add($item->getMailContent());
-            \app\models\SiteUpdate::add($item);
 
             return $this->refresh();
         } else {
