@@ -98,14 +98,14 @@ class AuthController extends BaseController
     /**
      * Провряет логин
      * REQUEST:
-     * - email
-     * - password
+     * - email - string - почта/логин
+     * - password - string - пароль
      *
      * @return string
      */
     public function actionLogin_ajax()
     {
-        $email = self::getParam('email');
+        $email = strtolower(self::getParam('email'));
         $password = self::getParam('password');
         $user = User::find([
             'email' => $email,
