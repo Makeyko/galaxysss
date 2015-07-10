@@ -315,62 +315,7 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         <td class="wave-cell-9"></td>
     </tr>
 </table>
-<hr>
-<table id="wave">
-    <tr>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
 
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-
-            <div class="kin"></div>
-        </td>
-        <td><img src="" alt="" class="ton" width="20"><br/><img src="" alt="" class="stamp" width="20"><br>
-            <div class="kin"></div>
-        </td>
-    </tr>
-</table>
 <hr>
 <p><b>Песня дня</b></p>
 <p id="pesnya"></p>

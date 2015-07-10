@@ -48,31 +48,19 @@ $(document).ready(function () {
      */
     function setWave(d) {
         var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
-        var objTable = $('#wave');
         // вычисляю первую печать
         var stamp = mayaDate.stamp - (mayaDate.ton - 1);
         if (stamp <= 0) stamp = 20 + stamp;
         // вычисляю первый кин
         var kin = mayaDate.kin - (mayaDate.ton - 1);
 
-        objTable.find('td').each(function(i, v) {
-            var objectTd = $(v);
-            if ((i + 1) == mayaDate.ton) {
-                objectTd.css('background-color', '#cccccc');
-            } else {
-                objectTd.css('background-color', '#ffffff');
-            }
-            setTon2(objectTd, i + 1);
-            setStamp2(objectTd, stamp);
-            setKin2(objectTd, kin);
-
+        for (var i = 0; i < 13; i++) {
             setWave2Cell(i + 1, stamp, kin, mayaDate.ton);
 
             stamp++;
             kin++;
             if (stamp > 20) stamp = 1;
-
-        });
+        }
     }
 
     /**
@@ -137,8 +125,14 @@ $(document).ready(function () {
         objPesnya.html(pesnya.join('<br>'));
     }
 
-
-    function setWave2Cell(ton,stamp,kin, todayTon)
+    /**
+     *
+     * @param ton int тон (от 1)
+     * @param stamp int печать (от 1)
+     * @param kin int кин для (от 1)
+     * @param todayTon int тон на сегодня (от 1)
+     */
+    function setWave2Cell(ton, stamp, kin, todayTon)
     {
         var objectCell = $('.wave-cell-' + ton);
         objectCell

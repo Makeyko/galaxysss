@@ -1,9 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Дмитрий
- * Date: 02.05.2015
- * Time: 19:32
+ * Facebook
+ *
+ * clientInfo
+ * [
+ * 'id' => '1395528674105616'
+ * 'email' => 'authclients@galaxysss.ru'
+ * 'first_name' => 'Ivan'
+ * 'gender' => 'male'
+ * 'last_name' => 'Vas'
+ * 'link' => 'https://www.facebook.com/app_scoped_user_id/1395528674105616/'
+ * 'locale' => 'ru_RU'
+ * 'name' => 'Ivan Vas'
+ * 'timezone' => 3
+ * 'updated_time' => '2015-05-02T16:04:48+0000'
+ * 'verified' => true
+ * ]
  */
 
 namespace app\services\authclient;
@@ -15,22 +27,6 @@ use yii\helpers\ArrayHelper;
 
 class Facebook extends \yii\authclient\clients\Facebook implements authClientInterface
 {
-    /**
-     *
-     * [
-     * 'id' => '1395528674105616'
-     * 'email' => 'authclients@galaxysss.ru'
-     * 'first_name' => 'Ivan'
-     * 'gender' => 'male'
-     * 'last_name' => 'Vas'
-     * 'link' => 'https://www.facebook.com/app_scoped_user_id/1395528674105616/'
-     * 'locale' => 'ru_RU'
-     * 'name' => 'Ivan Vas'
-     * 'timezone' => 3
-     * 'updated_time' => '2015-05-02T16:04:48+0000'
-     * 'verified' => true
-     * ]
-     */
 
     /**
      * @param array $attributes поля выдаваемые функцией getUserAttributes();
@@ -80,7 +76,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'fb_link' => $attributes['link'],
         ]);
         if (!$userIdentity->hasAvatar()) {
-            $userIdentity->setAvatarFromUrl('https://graph.facebook.com/'.$attributes['id'].'/picture?type=large', 'jpg');
+            $userIdentity->setAvatarFromUrl('https://graph.facebook.com/' . $attributes['id'] . '/picture?type=large', 'jpg');
         }
     }
 
