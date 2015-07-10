@@ -1,10 +1,9 @@
 <?php
 
-use Yii;
 
 $this->title = 'О нас';
 
-$isMobile = Yii::$app->deviceDetect->isMobile();
+$isMobile = \Yii::$app->deviceDetect->isMobile();
 
 ?>
 
