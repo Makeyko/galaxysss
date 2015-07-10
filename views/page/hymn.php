@@ -4,11 +4,12 @@ $this->title = 'Гимн мироздания';
 
 <div class="container">
 
-    <div class="page-header">
-        <h1><?= $this->title ?></h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
+
+        <p class="lead">Весь Космос на защиту встал, Союз Галактики восстал! Чтоб возродилася Земля, В Любви с Любовью поднялась!</p>
     </div>
 
-    <p class="lead">Весь Космос на защиту встал, Союз Галактики восстал! Чтоб возродилася Земля, В Любви с Любовью поднялась!</p>
 
     <iframe width="100%" height="480" src="https://www.youtube.com/embed/EnzFP8-wmrE" frameborder="0" allowfullscreen></iframe>
 

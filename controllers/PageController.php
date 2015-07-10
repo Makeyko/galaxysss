@@ -109,7 +109,9 @@ class PageController extends BaseController
 
     public function actionArts()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(12),
+        ]);
     }
 
     public function actionUp()

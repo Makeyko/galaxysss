@@ -9,6 +9,7 @@
 namespace app\services;
 
 
+use app\models\SiteContentInterface;
 use app\models\SubscribeMailItem;
 use app\models\User;
 use yii\db\Query;
@@ -22,10 +23,11 @@ class Subscribe
     /**
      * Добавляет записи для рассылки в таблицу рассылки
      *
-     * @param \app\models\SubscribeItem $subscribeItem тема письма
+     * @param SiteContentInterface $subscribeItem тема письма
      */
-    public static function add($subscribeItem)
+    public static function add(SiteContentInterface $item)
     {
+        $subscribeItem = $item->getMailContent();
         switch ($subscribeItem->type) {
             case self::TYPE_NEWS:
                 $where = ['subscribe_is_news' => 1];

@@ -12,51 +12,41 @@ $this->title = $item->getField('header');
 
 ?>
 <div class="container">
-    <div class="page-header">
-        <h1><?= $this->title ?></h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
+        <?= Breadcrumbs::widget([
+            'links' => [
+//                            $breadcrumbs,
+                $item->getField('header'),
+            ],
+        ]) ?>
     </div>
-    <?= Breadcrumbs::widget([
-        'links' => [
-//            $breadcrumbs,
-            $item->getField('header'),
-        ],
-    ]) ?>
-    <div class="row">
-        <div class="col-lg-4">
-            <img class="img-thumbnail" src="<?= $item->getField('image') ?>">
-        </div>
-        <div class="col-lg-8">
-            <div style="padding-bottom: 20px;">
-                <?= $item->getField('content') ?>
-            </div>
+    <div class="col-lg-4">
+        <img class="img-thumbnail" src="<?= $item->getField('image') ?>">
+    </div>
+    <div class="col-lg-8">
+        <div style="padding-bottom: 20px;">
+            <?= $item->getField('content') ?>
         </div>
     </div>
 
     <?php if (count($unionList) > 0) { ?>
-        <div class="row">
-            <div class="page-header">
-                <h2>Объединения</h2>
-            </div>
-            <div class="row">
-                <?php foreach ($unionList as $item) {
-                    echo \app\services\GsssHtml::unionItem($item);
-                } ?>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Объединения</h2>
         </div>
+        <?php foreach ($unionList as $item) {
+            echo \app\services\GsssHtml::unionItem($item);
+        } ?>
     <?php } ?>
 
 
     <?php if (count($articleList) > 0) { ?>
-        <div class="row">
-            <div class="page-header">
-                <h2>Статьи</h2>
-            </div>
-            <div class="row">
-                <?php foreach ($articleList as $item) {
-                    echo \app\services\GsssHtml::articleItem($item, $idString);
-                } ?>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Статьи</h2>
         </div>
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, $idString);
+        } ?>
     <?php } ?>
 
 </div>

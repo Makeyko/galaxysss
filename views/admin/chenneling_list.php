@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use app\services\GsssHtml;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Мои ченнелинги';
 
@@ -15,8 +16,8 @@ $this->registerJsFile('/js/pages/admin/chenneling_list.js', [
 ?>
 
 <div class="container">
-    <div class="page-header">
-        <h1>Мои ченнелинги</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
     </div>
 
 
@@ -45,7 +46,9 @@ $this->registerJsFile('/js/pages/admin/chenneling_list.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
-                        <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
+                        <?php if (\yii\helpers\ArrayHelper::getValue($item, 'is_added_site_update', 0) == 0) { ?>
+                            <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
+                        <?php } ?>
                     </div>
                 </div>
             </a>
