@@ -37,33 +37,31 @@ $this->title = $item->getField('name');
         if ($item->get('group_link_facebook') != '' || $item->get('group_link_vkontakte') != '' || $item->get('group_link_youtube') != '' || $item->get('group_link_google') != ''
         ) {
             ?>
-            <div class="col-lg-12">
-                <h2 class="page-header">Ссылки на соцсети</h2>
+            <h2 class="page-header">Ссылки на соцсети</h2>
 
-                <?php if ($item->get('group_link_facebook') != '') {
-                    ?>
-                    <p>facebook: <?= \yii\helpers\Html::a($item->get('group_link_facebook'), $item->get('group_link_facebook'),['target' => '_blank']) ?></p>
-                <?php
-                } ?>
+            <?php if ($item->get('group_link_facebook') != '') {
+                ?>
+                <p>facebook: <?= \yii\helpers\Html::a($item->get('group_link_facebook'), $item->get('group_link_facebook'),['target' => '_blank']) ?></p>
+            <?php
+            } ?>
 
-                <?php if ($item->get('group_link_vkontakte') != '') {
-                    ?>
-                    <p>vkontakte: <?= \yii\helpers\Html::a($item->get('group_link_vkontakte'), $item->get('group_link_vkontakte'),['target' => '_blank']) ?></p>
-                <?php
-                } ?>
+            <?php if ($item->get('group_link_vkontakte') != '') {
+                ?>
+                <p>vkontakte: <?= \yii\helpers\Html::a($item->get('group_link_vkontakte'), $item->get('group_link_vkontakte'),['target' => '_blank']) ?></p>
+            <?php
+            } ?>
 
-                <?php if ($item->get('group_link_youtube') != '') {
-                    ?>
-                    <p>youtube: <?= \yii\helpers\Html::a($item->get('group_link_youtube'), $item->get('group_link_youtube'),['target' => '_blank']) ?></p>
-                <?php
-                } ?>
+            <?php if ($item->get('group_link_youtube') != '') {
+                ?>
+                <p>youtube: <?= \yii\helpers\Html::a($item->get('group_link_youtube'), $item->get('group_link_youtube'),['target' => '_blank']) ?></p>
+            <?php
+            } ?>
 
-                <?php if ($item->get('group_link_google') != '') {
-                    ?>
-                    <p>google: <?= \yii\helpers\Html::a($item->get('group_link_google'), $item->get('group_link_google'),['target' => '_blank']) ?></p>
-                <?php
-                } ?>
-            </div>
+            <?php if ($item->get('group_link_google') != '') {
+                ?>
+                <p>google: <?= \yii\helpers\Html::a($item->get('group_link_google'), $item->get('group_link_google'),['target' => '_blank']) ?></p>
+            <?php
+            } ?>
         <?php
         }
         ?>
