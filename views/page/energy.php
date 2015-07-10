@@ -7,7 +7,7 @@ $this->title = 'Энергия';
 <div class="container">
 
     <div class="col-lg-12">
-        <h1 class="page-header">Энергетика</h1>
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
 
         <p class="lead">В каждой точке вселенной находится сверхизбыток энергии, а значит на Земле присутствует
             Богатство Чистейшей Энергии.</p>

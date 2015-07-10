@@ -3,7 +3,7 @@ $this->title = 'Кодекс света';
 ?>
 <div class="container">
     <div class="col-lg-12">
-        <h1 class="page-header">Кодекс света</h1>
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
         <p class="lead">Новые правила для работников света</p>
 
         <p><img src="/images/page/codex/header.jpg" width="100%" class="thumbnail"></p>
