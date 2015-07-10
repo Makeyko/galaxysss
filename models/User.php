@@ -138,7 +138,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     {
         $path = UploadFolderDispatcher::createFolder('FileUpload2', self::TABLE, $this->getId());
         $path->addAndCreate('small');
-        $path->add('avatar.'.$extension);
+        $path->add('avatar.' . $extension);
 
         file_put_contents($path->getPathFull(), $content);
         $this->update([
@@ -174,7 +174,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     {
         $avatar = $this->getField('avatar');
         if ($avatar.'' == '') {
-            return \Yii::$app->assetManager->getBundle(\app\assets\App\Asset::className())->baseUrl . '/images/iam.png';
+            return \Yii::$app->assetManager->getBundle('app\assets\App\Asset')->baseUrl . '/images/iam.png';
         }
         return Url::to($avatar, $isFullPath);
     }

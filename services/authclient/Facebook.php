@@ -57,6 +57,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_reg'      => gmdate('YmdHis'),
             'datetime_activate' => gmdate('YmdHis'),
             'is_active'         => 1,
+            'is_confirm'        => 1,
         ];
         if (isset($attributes['email'])) {
             $fields['email'] = $attributes['email'];
@@ -80,7 +81,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'fb_link' => $attributes['link'],
         ]);
         if (!$userIdentity->hasAvatar()) {
-            $userIdentity->setAvatarFromUrl('https://graph.facebook.com/'.$attributes['id'].'/picture?type=large', 'jpg');
+            $userIdentity->setAvatarFromUrl('https://graph.facebook.com/' . $attributes['id'] . '/picture?type=large', 'jpg');
         }
     }
 

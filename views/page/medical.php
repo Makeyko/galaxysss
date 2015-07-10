@@ -8,6 +8,8 @@ $this->title = 'Союз самоисцеления';
     .headerUnion {
         height: 70px;
     }
+
+
 </style>
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
