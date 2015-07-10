@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container">
 
     <div class="col-lg-12">
-        <h1 class="page-header"><?= Html::encode($item['header']) ?></h1>
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
     </div>
 
     <div class="col-lg-8">
