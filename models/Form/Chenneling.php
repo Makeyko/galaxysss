@@ -30,6 +30,7 @@ class Chenneling extends \cs\base\BaseForm
     public $view_counter;
     public $description;
     public $date;
+    public $is_added_site_update;
     /** @var  int маска которая содержит идентификаторы разделов к которому принадлежит ченелинг */
     public $tree_node_id_mask;
 
@@ -51,7 +52,7 @@ class Chenneling extends \cs\base\BaseForm
             [
                 'content',
                 'Описание',
-                1,
+                0,
                 'string',
                 'widget' => [
                     'cs\Widget\HtmlContent\HtmlContent',
