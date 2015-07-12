@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $items array gs_chaneling_list.* */
 
-$this->title = 'Новости';
+$this->title = 'Новости Земли';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
