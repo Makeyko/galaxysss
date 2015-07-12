@@ -20,16 +20,15 @@ $this->params['breadcrumbs'][] = $this->title;
         vertical-align: bottom;
     }
 </style>
-    <div class="site-about">
-        <div class="page-header">
-            <h1><?= $this->title ?></h1>
-        </div>
 
-        <?php
-        foreach($list as $item) {
-            echo \app\services\GsssHtml::serviceItem($item);
-        }
-        ?>
-
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= $this->title ?></h1>
     </div>
+
+    <?php
+    foreach($list as $item) {
+        echo \app\services\GsssHtml::serviceItem($item);
+    }
+    ?>
+
 </div>
