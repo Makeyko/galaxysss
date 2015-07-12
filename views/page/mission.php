@@ -10,9 +10,9 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
 <div class="container">
 
     <div class="col-lg-12">
-        <h1 class="page-header">Галактический союз сил света</h1>
+        <h1 class="page-header">Галактический Союз Сил Света</h1>
 
-        <p class="lead">Мы – люди нового времени. Мы манифестирум Свет, Любовь, Радость, Процветание, Счастье, Здороье,
+        <p class="lead">Мы – люди нового времени. Мы манифестирум Свет, Любовь, Радость, Процветание, Счастье, Здоровье,
             Ясность и многомерную эволюцию на Благо Мира.</p>
 
         <p><img src="/images/page/mission/ab.jpg" width="100%" class="thumbnail"></p>
