@@ -12,16 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
 
-    <div class="site-about">
-        <div class="page-header">
-            <h1>Новости</h1>
-        </div>
-
-        <?php
-        foreach($items as $item) {
-            echo \app\services\GsssHtml::newsItem($item);
-        }
-        ?>
-
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
     </div>
+
+    <?php
+    foreach($items as $item) {
+        echo \app\services\GsssHtml::newsItem($item);
+    }
+    ?>
+
 </div>
