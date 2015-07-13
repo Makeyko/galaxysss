@@ -10,7 +10,7 @@ $(document).ready(function () {
             d.setFullYear(year);
             d.setMonth(month - 1);
             d.setDate(day);
-            d.setTime(d.getTime() - 60*60*24*1000);
+            d.setTime(d.getTime() - 60 * 60 * 24 * 1000);
 
             $('#year').val(d.getFullYear());
             $('#month').val(d.getMonth() + 1);
@@ -30,7 +30,7 @@ $(document).ready(function () {
             d.setFullYear(year);
             d.setMonth(month - 1);
             d.setDate(day);
-            d.setTime(d.getTime() + 60*60*24*1000);
+            d.setTime(d.getTime() + 60 * 60 * 24 * 1000);
 
             $('#year').val(d.getFullYear());
             $('#month').val(d.getMonth() + 1);
@@ -256,6 +256,7 @@ $(document).ready(function () {
         {
             var vedun;
 
+            console.log(todayMaya);
             switch (todayMaya.ton % 5) {
                 case 0:
                     // + 8 печатей
@@ -286,7 +287,7 @@ $(document).ready(function () {
                     // - 4 печати
                     vedun = todayMaya.stamp - 4;
                     if (vedun <= 0) {
-                        vedun = 20 - vedun;
+                        vedun = 20 + vedun;
                     }
                     break;
             }
