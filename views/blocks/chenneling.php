@@ -16,26 +16,24 @@ $item2 = [
 ];
 
 ?>
-<div class="row">
-    <div class="thumbnail">
-        <a href="<?= "/chenneling/{$item2['year']}/{$item2['month']}/{$item2['day']}/{$item2['id']}" ?>">
-            <img
-                 src="<?= $item['img'] ?>"
-                 style="width: 100%; display: block;">
-        </a>
+<div class="thumbnail">
+    <a href="<?= "/chenneling/{$item2['year']}/{$item2['month']}/{$item2['day']}/{$item2['id']}" ?>">
+        <img
+            src="<?= $item['img'] ?>"
+            style="width: 100%; display: block;">
+    </a>
 
-        <div class="caption">
-            <h3><?= $item['header'] ?></h3>
+    <div class="caption">
+        <h3><?= $item['header'] ?></h3>
 
-            <p><?php
-                $string = '';
-                if ($item['description'] != '') {
-                    $string = \app\services\GsssHtml::getMiniText($item['description']);
-                } else {
-                    $string = \app\services\GsssHtml::getMiniText($item['content']);
-                }
-                echo $string;
-                ?></p>
-        </div>
+        <p><?php
+            $string = '';
+            if ($item['description'] != '') {
+                $string = \app\services\GsssHtml::getMiniText($item['description']);
+            } else {
+                $string = \app\services\GsssHtml::getMiniText($item['content']);
+            }
+            echo $string;
+            ?></p>
     </div>
 </div>
