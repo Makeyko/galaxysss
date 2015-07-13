@@ -14,7 +14,10 @@ if ($content == '') {
 }
 ?>
 
-<h1><?= $item->getName() ?></h1>
+<p>На инструмент Вознесения был добавлен следующее послание:</p>
+
+<h3 style="font-weight: normal;"><?= $item->getName() ?></h3>
+
 <p><img src="<?= $item->getImage(true) ?>" style="display: block;
   padding: 4px;
   margin-bottom: 20px;
@@ -25,7 +28,9 @@ if ($content == '') {
   -webkit-transition: border .2s ease-in-out;
   -o-transition: border .2s ease-in-out;
   transition: border .2s ease-in-out;"/></p>
+
 <?= $content ?>
+
 <p><a href="<?= $item->getLink(true) ?>" style="
             text-decoration: none;
             color: #fff;
