@@ -3,6 +3,7 @@
 /** @var array $articleList */
 
 use app\services\Page;
+use yii\helpers\Url;
 
 $this->title = 'Организация пространства';
 $height = 1150;
@@ -11,10 +12,8 @@ $height = 1150;
 
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
-
         <p class="lead">Когда пространство выстраивается согласно сакральной геометрии и принципам золотого сечения, тогда
             оно несет силу и красоту.</p>
-
         <p><img src="/images/page/house/house.jpg" width="100%" class="thumbnail"></p>
     </div>
 
@@ -120,5 +119,15 @@ $height = 1150;
             echo \app\services\GsssHtml::articleItem($item, 'house');
         } ?>
     <?php } ?>
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/house/house.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Когда пространство выстраивается согласно сакральной геометрии и принципам золотого сечения, тогда
+            оно несет силу и красоту.',
+    ]) ?>
 
 </div>

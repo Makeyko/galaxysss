@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Url;
+
 $this->title = 'Союз самоисцеления';
 
 ?>
@@ -30,4 +32,15 @@ $this->title = 'Союз самоисцеления';
             echo \app\services\GsssHtml::articleItem($item, 'medical');
         } ?>
     <?php } ?>
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/medical/parablev121.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Союз занимается восстанавлением
+            здоровья, настраивает тело на резонанс с высшими контурами сознания, регулирует течение внутренних и внешних
+            энергий человека.',
+    ]) ?>
 </div>

@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Url;
+
 $this->title = 'Одежда';
 ?>
 <div class="container">
@@ -19,4 +22,14 @@ $this->title = 'Одежда';
             echo \app\services\GsssHtml::articleItem($item, 'clothes');
         } ?>
     <?php } ?>
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/clothes/header2.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Одежда активирует энергетические центры и подчеркивает божественную красоту тела ангела.',
+    ]) ?>
+
 </div>

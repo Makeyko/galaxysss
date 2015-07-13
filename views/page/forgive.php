@@ -1,5 +1,6 @@
 <?php
 use app\services\Page;
+use yii\helpers\Url;
 
 $this->title = 'Прощающая система';
 ?>
@@ -80,4 +81,14 @@ $this->title = 'Прощающая система';
     <?php foreach ($articleList as $item) {
         echo \app\services\GsssHtml::articleItem($item, 'forgive');
     } ?>
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/forgive/-68GITqiv1c1.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Ошибок не существует. Закона не существует. Все есть непрерывное получение опыта и уроков для роста
+            Духа в Любви и Прощении.',
+    ]) ?>
 </div>
