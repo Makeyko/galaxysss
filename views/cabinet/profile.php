@@ -36,24 +36,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'avatar')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
                 <?= $model->field($form, 'birth_date') ?>
 
-                <table class="table">
+                <table class="table" style="width:auto;">
                     <tr>
                         <td>Facebook</td>
-                        <td><?php if (isset($model->fb_id)) { ?>
+                        <td>
+                            <?php if (isset($model->fb_id)) { ?>
                                 <a href="https://www.facebook.com/profile.php?id=<?= $model->fb_id ?>" target="_blank">Профиль</a>
                             <?php } else { ?>
                                 <a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
                                     профиль</a>
-                            <?php } ?></td>
+                            <?php } ?>
+                        </td>
                     </tr>
                     <tr>
                         <td>Vkontakte</td>
-                        <td><?php if (isset($model->vk_id)) { ?>
+                        <td>
+                            <?php if (isset($model->vk_id)) { ?>
                                 <a href="https://vk.com/id<?= $model->vk_id ?>" target="_blank">Профиль</a>
                             <?php } else { ?>
                                 <a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
                                     профиль</a>
-                            <?php } ?></td>
+                            <?php } ?>
+                        </td>
                     </tr>
                 </table>
 
