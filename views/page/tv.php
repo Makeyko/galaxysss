@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'ТелеВидение';
 
@@ -81,12 +82,12 @@ function draw($item)
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1>ТелеВидение</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
+        <p class="lead">Новое прогрессивное телевидение открывающее новые горизонты восприятия мира и обучающее счастью, любви и радости
+            жизни.</p>
+        <p><img src="/images/page/time/3406595251.jpg" width="100%" class="thumbnail"></p>
     </div>
-    <p class="lead">Новое прогрессивное телевидение открывающее новые горизонты восприятия мира и обучающее счастью, любви и радости
-        жизни.</p>
-    <p><img src="/images/page/time/3406595251.jpg" width="100%" class="thumbnail"></p>
 
 
     <div class="row">
@@ -109,4 +110,16 @@ function draw($item)
             </div>
         </div>
     <?php } ?>
+
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/time/3406595251.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Новое прогрессивное телевидение открывающее новые горизонты восприятия мира и обучающее счастью, любви и радости
+            жизни.',
+    ]) ?>
+
 </div>

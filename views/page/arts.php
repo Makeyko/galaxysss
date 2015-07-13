@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use cs\services\Str;
 
 $this->title = 'Художники';
 
@@ -24,6 +26,15 @@ $this->title = 'Художники';
             } ?>
         </div>
     <?php } ?>
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/arts/header.png', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Художники рисуют миры в которых мы живем.',
+    ]) ?>
+
 </div>
 
 

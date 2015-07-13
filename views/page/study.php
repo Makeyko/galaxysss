@@ -1,29 +1,36 @@
 <?php
+
+use yii\helpers\Url;
+
+
 $this->title = 'Обучение';
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1>Процесс обучения</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
+        <p class="lead">Новейшие космологические представления о Вселенной и человеке</p>
+        <p><img src="/images/page/study/8879600072.jpg" width="100%" class="thumbnail"></p>
     </div>
-    <p class="lead">Новейшие космологические представления о Вселенной и человеке</p>
 
-    <p><img src="/images/page/study/8879600072.jpg" width="100%" class="thumbnail"></p>
 
-    <div class="row">
-        <?= \app\services\GsssHtml::unionCategoryItems(11) ?>
-    </div>
+    <?= \app\services\GsssHtml::unionCategoryItems(11) ?>
+
     <?php if (count($articleList) > 0) { ?>
-        <div class="row">
-            <div class="page-header">
-                <h2>Статьи</h2>
-            </div>
-            <div class="row">
-                <?php foreach ($articleList as $item) {
-                    echo \app\services\GsssHtml::articleItem($item, 'study');
-                } ?>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Статьи</h2>
         </div>
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, 'study');
+        } ?>
     <?php } ?>
 
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/study/8879600072.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Новейшие космологические представления о Вселенной и человеке',
+    ]) ?>
 </div>

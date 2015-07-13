@@ -2,6 +2,8 @@
 
 /** @var array  $articleList */
 
+use yii\helpers\Url;
+
 
 $this->title = 'Время';
 ?>
@@ -34,5 +36,14 @@ $this->title = 'Время';
             </div>
         </div>
     <?php } ?>
+
+
+    <hr>
+    <?= $this->render('../blocks/share', [
+        'image'       => Url::to('/images/page/time/2.jpg', true),
+        'url'         => Url::current([], true),
+        'title'       => $this->title,
+        'description' => 'Когда время согласовано с ритмами природы, тогда мы можем мыслить в масштабах Вечности.',
+    ]) ?>
 
 </div>
