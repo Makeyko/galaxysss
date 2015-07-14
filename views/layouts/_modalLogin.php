@@ -43,8 +43,10 @@ use app\assets\App\Asset;
                 </div>
             </div>
             <div class="modal-footer">
-                <p style="text-align: left;"><a href="<?= Url::to(['auth/password_recover']) ?>">Восстановить пароль</a></p>
-                <p style="text-align: left;"><a href="<?= Url::to(['auth/registration']) ?>">Регистрация</a></p>
+                <div class="btn-group text-left" role="group" aria-label="...">
+                    <a href="<?= Url::to(['auth/password_recover']) ?>" class="btn btn-default">Восстановить пароль</a>
+                    <a href="<?= Url::to(['auth/registration']) ?>" class="btn btn-default">Регистрация</a>
+                </div>
                 <?= \yii\authclient\widgets\AuthChoice::widget([
                     'baseAuthUrl' => ['auth/auth']
                 ]); ?>
