@@ -424,14 +424,17 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
     </div>
 </div>
 
-<hr>
-
-
-<?= $this->render('../blocks/share', [
-    'image'       => \yii\helpers\Url::to('/images/index/slider/1.jpg', true) ,
-    'url'         => \yii\helpers\Url::current([], true),
-    'title'       => $this->title,
-    'description' => 'Галактический союз сил света – это живой организм объединяющий все силы света в единое целое служащий всеобщему процветанию и счастью каждого элемента входящего в его состав, построенный на основе естественных законах мироздания.',
-]) ?>
+<!-- share -->
+<div>
+    <div class="col-lg-12">
+        <hr class="featurette-divider">
+        <?= $this->render('../blocks/share', [
+            'image'       => \yii\helpers\Url::to('/images/index/slider/1.jpg', true),
+            'url'         => \yii\helpers\Url::current([], true),
+            'title'       => $this->title,
+            'description' => 'Галактический союз сил света – это живой организм объединяющий все силы света в единое целое служащий всеобщему процветанию и счастью каждого элемента входящего в его состав, построенный на основе естественных законах мироздания.',
+        ]) ?>
+    </div>
+</div>
 
 </div>
