@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Form\Event;
 use app\models\Log;
+use app\models\SiteUpdate;
 use app\models\User;
 use app\services\GetArticle\YouTube;
 use cs\base\BaseController;
@@ -49,6 +50,13 @@ class SiteController extends BaseController
     {
         return $this->render('index', [
             'events' => \app\models\Event::query()->limit(3)->orderBy(['date_insert' => SORT_DESC])->all(),
+        ]);
+    }
+
+    public function actionSite_update()
+    {
+        return $this->render([
+            'list' => SiteUpdate::query()->orderBy(['date_insert' => SORT_DESC])->all()
         ]);
     }
 
