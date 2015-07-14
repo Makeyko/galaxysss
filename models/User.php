@@ -85,11 +85,13 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     {
         $email = strtolower($email);
         $user = self::insert([
-            'email'        => $email,
-            'password'     => self::hashPassword($password),
-            'is_active'    => 0,
-            'is_confirm'   => 0,
-            'datetime_reg' => gmdate('YmdHis'),
+            'email'                    => $email,
+            'password'                 => self::hashPassword($password),
+            'is_active'                => 0,
+            'is_confirm'               => 0,
+            'datetime_reg'             => gmdate('YmdHis'),
+            'subscribe_is_site_update' => 1,
+            'subscribe_is_news'        => 1,
         ]);
         $fields = RegistrationDispatcher::add($user->getId());
         \cs\Application::mail($email, 'Подтверждение регистрации', 'registration', [
