@@ -405,17 +405,17 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 </div>
 
 <!-- Новости -->
-<hr class="featurette-divider">
-<div class="container">
-    <h1>Последние новости Планеты Земля</h1>
-
-    <div class="row featurette">
-        <?php
-        foreach (\app\models\NewsItem::query()->orderBy(['date_insert' => SORT_DESC])->limit(3)->all() as $row) {
-            echo \app\services\GsssHtml::newsItem($row);
-        }
-        ?>
-
+<div>
+    <hr class="featurette-divider">
+    <div class="col-lg-12">
+        <h1 class="page-header">Последние новости Планеты Земля</h1>
+    </div>
+    <?php
+    foreach (\app\models\NewsItem::query()->orderBy(['date_insert' => SORT_DESC])->limit(3)->all() as $row) {
+        echo \app\services\GsssHtml::newsItem($row);
+    }
+    ?>
+    <div class="col-lg-12">
         <a
             class="btn btn-default"
             style="width:100%"
