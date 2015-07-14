@@ -29,7 +29,7 @@ class SubscribeController extends BaseController
         self::validateRequestJson([
             [['mail','type','hash',],'required'],
             [['type'],'integer'],
-            [['mail','hash',],'string'],
+            [['mail',],'email '],
         ]);
         $mail = self::getParam('mail');
         $type = self::getParam('type');
