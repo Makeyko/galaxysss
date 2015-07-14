@@ -407,7 +407,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 <!-- Новости -->
 <hr class="featurette-divider">
 <div class="container">
-    <h1>Последние новости</h1>
+    <h1>Последние новости Планеты Земля</h1>
 
     <div class="row featurette">
         <?php
