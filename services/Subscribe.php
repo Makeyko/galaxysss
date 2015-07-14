@@ -57,6 +57,7 @@ class Subscribe
                 time(),
             ];
         }
+        \Yii::info($rows, 'gs\\subscribe');
         if (count($rows) > 0) {
             SubscribeMailItem::batchInsert([
                 'text',
