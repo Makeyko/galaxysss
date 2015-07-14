@@ -13,6 +13,7 @@ use app\models\SiteContentInterface;
 use app\models\SubscribeMailItem;
 use app\models\User;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 class Subscribe
@@ -57,7 +58,7 @@ class Subscribe
                 time(),
             ];
         }
-        \Yii::info($rows, 'gs\\subscribe');
+        \Yii::info(ArrayHelper::getColumn($rows,3), 'gs\\subscribe');
         if (count($rows) > 0) {
             SubscribeMailItem::batchInsert([
                 'text',
