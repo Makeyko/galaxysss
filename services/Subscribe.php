@@ -57,14 +57,15 @@ class Subscribe
                 time(),
             ];
         }
-        \Yii::info($rows,'gs\\insert');
-        SubscribeMailItem::batchInsert([
-            'text',
-            'html',
-            'subject',
-            'mail',
-            'date_insert',
-        ], $rows);
+        if (count($rows) > 0) {
+            SubscribeMailItem::batchInsert([
+                'text',
+                'html',
+                'subject',
+                'mail',
+                'date_insert',
+            ], $rows);
+        }
     }
 
     /**
