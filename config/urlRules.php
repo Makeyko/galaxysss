@@ -26,6 +26,7 @@ return [
     'captcha'                                                                              => 'site/captcha',
     'log'                                                                                  => 'site/log',
     'logDb'                                                                                => 'site/log_db',
+    'siteUpdate'                                                                           => 'site/site_update',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
 
