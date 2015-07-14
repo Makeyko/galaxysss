@@ -27,9 +27,9 @@ class SubscribeController extends BaseController
     public function actionUnsubscribe()
     {
         self::validateRequestJson([
-            [['mail','type','hash',],'required'],
-            [['type'],'integer'],
-            [['mail',],'email '],
+            [['mail', 'type', 'hash',], 'required'],
+            [['type'], 'integer'],
+            [['mail',], 'email'],
         ]);
         $mail = self::getParam('mail');
         $type = self::getParam('type');
