@@ -422,10 +422,11 @@ $(document).ready(function () {
      */
     function setAll(d)
     {
+        var mayaDate = GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]);
         setDate(d);
         setWave(d);
         setWave4(d);
-        setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
+        setPesnya(mayaDate);
     }
 
     function setError(message) {
@@ -438,8 +439,5 @@ $(document).ready(function () {
 
     var d = new Date();
 
-    setDate(d);
-    setWave(d);
-    setWave4(d);
-    setPesnya(GSSS.calendar.maya.driver1.calc([d.getDate(), d.getMonth() + 1, d.getFullYear()]));
+    setAll(d);
 });
