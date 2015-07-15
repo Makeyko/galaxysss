@@ -632,11 +632,11 @@ class BaseForm extends Model
         else {
             if (isset($fieldsCols['beforeInsert'])) {
                 $beforeInsert = $fieldsCols['beforeInsert'];
-                $fieldsCols = static::$fields;
             }
             if (isset($fieldsCols['beforeUpdate'])) {
                 $beforeUpdate = $fieldsCols['beforeUpdate'];
             }
+            $fieldsCols = static::$fields;
         }
         $fields = $this->getFieldsFromFormInsert($fieldsCols);
         if (!is_null($beforeInsert)) {
