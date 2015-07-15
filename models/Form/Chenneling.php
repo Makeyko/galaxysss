@@ -105,9 +105,14 @@ class Chenneling extends \cs\base\BaseForm
     {
         $row =  parent::insert([
             'beforeInsert' => function ($fields) {
-                Yii::info(\yii\helpers\VarDumper::dumpAsString($fields), 'gs\\chenneling');
+                $fields['date_insert'] = gmdate('YmdHis');
+                $fields['id_string'] = Str::rus2translit($fields['header']);
+                $fields['date'] = gmdate('Y-m-d');
+
+                return $fields;
+            },
+            'beforeUpdate' => function ($fields) {
                 if (Str::pos('<', $fields['content']) === false) {
-                    Yii::info(\yii\helpers\VarDumper::dumpAsString(1), 'gs\\chenneling');
                     $rows = explode("\r", $fields['content']);
                     $rows2 = [];
                     foreach ($rows as $row) {
@@ -116,17 +121,11 @@ class Chenneling extends \cs\base\BaseForm
                     $fields['content'] = join("\r\r", $rows2);
                 }
 
-                $fields['date_insert'] = gmdate('YmdHis');
-                $fields['id_string'] = Str::rus2translit($fields['header']);
-                $fields['date'] = gmdate('Y-m-d');
-
                 return $fields;
             }
         ]);
 
         $item = new \app\models\Chenneling($row);
-        Yii::info($item->getField('content'), 'gs\\chenneling');
-        Yii::info(\yii\helpers\VarDumper::dumpAsString($item), 'gs\\chenneling');
         $item->update(['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
                 'class' => 'thumbnail',
                 'style' => 'width:100%;',
