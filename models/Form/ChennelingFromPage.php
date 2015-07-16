@@ -77,7 +77,24 @@ class ChennelingFromPage extends BaseForm
             throw new Exception('Не верный extractor');
         }
         $row = $extractor->extract();
-        \Yii::info(\yii\helpers\VarDumper::dumpAsString($row), 'gs\\ChennelingFromPage');
+        if (is_null($row['image'])) {
+            throw new Exception('Нет картинки');
+        }
+        if ($row['image'] == '') {
+            throw new Exception('Нет картинки');
+        }
+        if (is_null($row['header'])) {
+            throw new Exception('Нет заголовка');
+        }
+        if ($row['header'] == '') {
+            throw new Exception('Нет заголовка');
+        }
+        if (is_null($row['description'])) {
+            throw new Exception('Нет описания');
+        }
+        if ($row['description'] == '') {
+            throw new Exception('Нет описания');
+        }
         $articleObject = Chenneling::insert([
             'header'            => $row['header'],
             'content'           => $row['content'],
