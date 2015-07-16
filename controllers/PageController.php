@@ -28,6 +28,9 @@ class PageController extends BaseController
 {
     public $layout = 'menu';
 
+    /** @var int количество посланий на странице */
+    public $itemsPerPage = 30;
+
     public function behaviors()
     {
         return [
@@ -397,17 +400,17 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $itemsPerPage = 30;
+        $itemsPerPage = $this->itemsPerPage;
         if (self::getParam('page', 1) == 1) {
             $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
-                $itemsPerPage = 30;
+                $itemsPerPage = $controller->itemsPerPage;
                 return $controller->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                     'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
                     'paginator' => [
                         'size' => $itemsPerPage
                     ]
                 ]));
-            }, $this,false);
+            }, $this, false);
         } else {
             $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                 'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
@@ -417,6 +420,19 @@ class PageController extends BaseController
             ]));
         }
         return $this->render(['html' => $cache]);
+    }
+
+    public function actionChenneling_ajax()
+    {
+        $itemsPerPage = $this->itemsPerPage;
+        $cache = $this->renderFile('@app/views/page/chenneling_cache_list.php', $this->pageCluster([
+            'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
+            'paginator' => [
+                'size' => $itemsPerPage
+            ]
+        ]));
+
+        return self::jsonSuccess($cache);
     }
 
     /**

@@ -197,7 +197,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
 <?php if (\Yii::$app->user->isGuest) : ?>
     <?= $this->render('_modalLogin') ?>
 <?php endif; ?>
-<footer class="footer">
+<footer class="footer" id="layoutMenuFooter">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">
