@@ -77,6 +77,7 @@ class ChennelingFromPage extends BaseForm
             throw new Exception('Не верный extractor');
         }
         $row = $extractor->extract();
+        \Yii::info(\cs\services\VarDumper::dumpAsString($row), 'gs\\ChennelingFromPage');
         $articleObject = Chenneling::insert([
             'header'            => $row['header'],
             'content'           => $row['content'],
