@@ -398,7 +398,7 @@ class PageController extends BaseController
     public function actionChenneling()
     {
         $itemsPerPage = 30;
-        if (self::getParam('page',1) == 1) {
+        if (self::getParam('page', 1) == 1) {
             $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
                 $itemsPerPage = 30;
                 return $controller->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
