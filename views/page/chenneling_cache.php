@@ -27,8 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1 class="page-header">Послания</h1>
     </div>
     <?php
-    foreach ($items as $item) {
+    foreach ($list as $item) {
         echo \app\services\GsssHtml::chennelingItem($item);
     }
     ?>
+
+    <nav>
+        <ul class="pagination">
+            <?php foreach ($pages['list'] as $num) { ?>
+                <?php if ($num == $pages['current']) {?>
+                    <li class="active"><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
+                <?php } else { ?>
+                    <li><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
+                <?php } ?>
+            <?php } ?>
+        </ul>
+    </nav>
 </div>

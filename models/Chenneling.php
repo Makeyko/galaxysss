@@ -107,4 +107,24 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
             'id'    => $this->getField('id_string'),
         ], $isScheme);
     }
+
+    /**
+     * @return \yii\db\Query
+     */
+    public static function queryList()
+    {
+        return self::query()->select([
+            'id',
+            'header',
+            'source',
+            'content',
+            'date_insert',
+            'id_string',
+            'img',
+            'view_counter',
+            'description',
+            'date',
+            'tree_node_id_mask',
+        ]);
+    }
 }
