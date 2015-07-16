@@ -29,7 +29,7 @@ class PageController extends BaseController
     public $layout = 'menu';
 
     /** @var int количество посланий на странице */
-    public $itemsPerPage = 30;
+    public $itemsPerPage = 9;
 
     public function behaviors()
     {
