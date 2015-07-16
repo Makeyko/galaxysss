@@ -18,6 +18,7 @@ $mayaAsset = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset');
 $LayoutMenuAsset = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset');
 $LayoutMenuAssetPath = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset')->baseUrl;
 $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\View::POS_HEAD );
+$this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii\web\View::POS_HEAD );
 
 ?>
 <?php $this->beginPage();
@@ -197,7 +198,7 @@ $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\Vi
 <?php if (\Yii::$app->user->isGuest) : ?>
     <?= $this->render('_modalLogin') ?>
 <?php endif; ?>
-<footer class="footer">
+<footer class="footer" id="layoutMenuFooter">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">

@@ -8,6 +8,7 @@ use DateTime;
 use DateTimeZone;
 use yii\base\Exception;
 use yii\helpers\ArrayHelper;
+use app\services\calendar\maya\Driver2;
 
 class Maya
 {
@@ -299,38 +300,19 @@ class Maya
     }
 
     /**
-     * @param DateTime $date UTC
+     * Расчитывает кин
      *
-     * @return array
-     */
-    public static function calc_type2($date)
-    {
-        $kin = 16;
-        $date2 = new DateTime('2014-04-01');
-        $period = $date2->diff($date);
-        $days = $period->days;
-        $daysOstatok = $days % 260;
-        if ($period->invert == 0) {
-            return $kin + $daysOstatok;
-        } else {
-            $temp = $kin - $daysOstatok;
-            if ($temp < 0) return 260 + $temp;
-            else return $temp;
-        }
-    }
-
-    /**
      * @param DateTime $date
      *
      * @return int
      */
     public static function calcKin($date)
     {
-        return self::calcKin1($date);
+        return Driver2::calc($date);
     }
 
     /**
-     * @param DateTime $date UTC
+     * @param DateTime $date
      *
      * @return int
      */

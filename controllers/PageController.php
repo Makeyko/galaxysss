@@ -13,6 +13,7 @@ use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
 use yii\filters\AccessControl;
+use yii\grid\DataColumn;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -27,6 +28,9 @@ use cs\base\BaseController;
 class PageController extends BaseController
 {
     public $layout = 'menu';
+
+    /** @var int количество посланий на странице */
+    public $itemsPerPage = 30;
 
     public function behaviors()
     {
@@ -397,18 +401,95 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(BaseController $controller) {
-            $itemsPerPage = 3 * 10;
-            return $controller->renderFile('@app/views/page/chenneling_cache.php', [
-                'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
-                'pages' => [
-                    'list' => [],
-                    'current' => 1,
-                    'itemsPerPage' => $itemsPerPage
+        $itemsPerPage = $this->itemsPerPage;
+        if (self::getParam('page', 1) == 1) {
+            $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
+                $itemsPerPage = $controller->itemsPerPage;
+                return $controller->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
+                    'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
+                    'paginator' => [
+                        'size' => $itemsPerPage
+                    ]
+                ]));
+            }, $this, false);
+        } else {
+            $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
+                'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
+                'paginator' => [
+                    'size' => $itemsPerPage
                 ]
-            ]);
-        }, $this);
-
+            ]));
+        }
         return $this->render(['html' => $cache]);
     }
+
+    public function actionChenneling_ajax()
+    {
+        $itemsPerPage = $this->itemsPerPage;
+        $cache = $this->renderFile('@app/views/page/chenneling_cache_list.php', $this->pageCluster([
+            'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
+            'paginator' => [
+                'size' => $itemsPerPage
+            ]
+        ]));
+
+        return self::jsonSuccess($cache);
+    }
+
+    /**
+     * Создает пагинацию запроса
+     *
+     * @param $options
+     *                         [
+     *                         'query' => Query
+     *                         'paginator' => [
+     *                         'size' => int
+     *                         ]
+     *                         ]
+     *
+     * @return array
+     * [
+     *    'list' =>
+     *    'pages' => [
+     *        'list' => [1,2,3, ...]
+     *        'current' => int
+     *    ]
+     * ]
+     */
+    public function pageCluster($options)
+    {
+        /** @var \yii\db\Query $query */
+        $query = $options['query'];
+        $paginatorSize = $options['paginator']['size'];
+
+        $page = (int)self::getParam('page', 1);
+        $countAll = $query->count();
+
+        // вычисляю количество страниц $pageCount
+        $count = $countAll - $paginatorSize;
+        if ($count > 0) {
+            $count += $paginatorSize - 1;
+            $pageCount = (int)($count / $paginatorSize);
+            $pageCount++;
+        }
+        else {
+            $pageCount = 1;
+        }
+        $offset = ($page - 1) * $paginatorSize;
+        $pages = [];
+        if ($pageCount >= 1) {
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $pages[] = $i;
+            }
+        }
+
+        return [
+            'list'  => $query->limit($paginatorSize)->offset($offset)->all(),
+            'pages' => [
+                'list'    => $pages,
+                'current' => $page,
+            ],
+        ];
+    }
+
 }

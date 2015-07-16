@@ -47,13 +47,12 @@ class Application
      * @param string    $key ключ для кеша
      * @param \Closure  $functionGet функция для получения данных кеша
      * @param mixed     $options данные которыебудут переданы в функцию $functionGet
+     * @param bool      $isUseCache использовать кеш?
      *
      * @return mixed
      */
-    public static function cache($key, $functionGet, $options = null)
+    public static function cache($key, $functionGet, $options = null, $isUseCache = true)
     {
-        $isUseCache = true;
-
         if ($isUseCache) {
             $cache = Yii::$app->cache->get($key);
             if ($cache === false) {
