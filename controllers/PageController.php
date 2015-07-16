@@ -13,6 +13,7 @@ use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
 use yii\filters\AccessControl;
+use yii\grid\DataColumn;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
