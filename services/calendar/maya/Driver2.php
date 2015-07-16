@@ -110,7 +110,7 @@ class Driver2
         else {
             // кол-во дней до конца года начальной даты
             $startDays = 0;
-            for ($i = $begin[1]; $i < 12; $i++) {
+            for ($i = $beginMonth; $i < 12; $i++) {
                 $startDays += $days[ $i ];
             }
             $startDays += $days[ $beginMonth - 1 ] - $beginDay + 1;
