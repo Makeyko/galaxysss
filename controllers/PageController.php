@@ -399,6 +399,7 @@ class PageController extends BaseController
     {
         $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(BaseController $controller) {
             $itemsPerPage = 3 * 10;
+
             return $controller->renderFile('@app/views/page/chenneling_cache.php', [
                 'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
                 'pages' => [
