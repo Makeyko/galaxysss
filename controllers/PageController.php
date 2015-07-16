@@ -397,23 +397,27 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
-            $itemsPerPage = 3 * 10;
-
-            return $controller->renderFile('@app/views/page/chenneling_cache.php', [
-                'items'       => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
-                'pageCluster' => $controller->pageCluster([
-                    'query'     => Chenneling::query()->orderBy(['date_insert' => SORT_DESC]),
+        $itemsPerPage = 3 * 10;
+        if (self::getParam('page',1) == 1) {
+            $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
+                $itemsPerPage = 3 * 10;
+                return $controller->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
+                    'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
                     'paginator' => [
                         'size' => $itemsPerPage
                     ]
-                ])
-            ]);
-        }, $this);
-
+                ]));
+            }, $this,false);
+        } else {
+            $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
+                'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
+                'paginator' => [
+                    'size' => $itemsPerPage
+                ]
+            ]));
+        }
         return $this->render(['html' => $cache]);
     }
-
 
     /**
      * Создает пагинацию запроса
@@ -441,7 +445,7 @@ class PageController extends BaseController
         $query = $options['query'];
         $paginatorSize = $options['paginator']['size'];
 
-        $page = self::getParam('page');
+        $page = (int)self::getParam('page');
         if (is_null($page)) $page = 1;
         $countAll = $query->count();
 
