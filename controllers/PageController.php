@@ -397,10 +397,10 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $itemsPerPage = 3 * 10;
-        if (self::getParam('page',1) == 1) {
+        $itemsPerPage = 30;
+        if (self::getParam('page', 1) == 1) {
             $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
-                $itemsPerPage = 3 * 10;
+                $itemsPerPage = 30;
                 return $controller->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                     'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
                     'paginator' => [
@@ -445,8 +445,7 @@ class PageController extends BaseController
         $query = $options['query'];
         $paginatorSize = $options['paginator']['size'];
 
-        $page = (int)self::getParam('page');
-        if (is_null($page)) $page = 1;
+        $page = (int)self::getParam('page', 1);
         $countAll = $query->count();
 
         // вычисляю количество страниц $pageCount
