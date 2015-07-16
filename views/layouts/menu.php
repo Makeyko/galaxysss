@@ -18,6 +18,7 @@ $mayaAsset = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset');
 $LayoutMenuAsset = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset');
 $LayoutMenuAssetPath = Yii::$app->assetManager->getBundle('app\assets\LayoutMenu\Asset')->baseUrl;
 $this->registerJs('var pathMaya = \'' . $mayaAsset->baseUrl . '\';', \yii\web\View::POS_HEAD );
+$this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii\web\View::POS_HEAD );
 
 ?>
 <?php $this->beginPage();

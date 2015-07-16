@@ -8,7 +8,6 @@ $(document).ready(function() {
         var sizeBottom = $('#layoutMenuFooter').height() + $('#layoutMenuFooter').find('.container').height() + 420;
         if ($(window).scrollTop() > $(document).height() - sizeBottom) {
 
-            console.log(12);
             if (isFinished == false) {
                 if (isStartLoad === false) {
                     isStartLoad = true;
@@ -19,8 +18,19 @@ $(document).ready(function() {
                         data: {
                             page: page
                         },
+                        beforeSend: function() {
+                            $('#channelingList').append(
+                                $('<div>', {
+                                    id: 'channelingListLoading',
+                                    class: 'col-lg-12'
+                                }).append(
+                                    $('<img>', {src: pathLayoutMenu + '/images/ajax-loader.gif'})
+                                )
+                            );
+                        },
                         success: function(ret) {
                             if (ret == '') isFinished = true;
+                            $('#channelingListLoading').remove();
                             $('#channelingList').append(ret);
                             isStartLoad = false;
                         }
