@@ -9,6 +9,12 @@ use yii\helpers\Url;
 $this->title = 'Послания';
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerJsFile('/js/pages/page/chenneling.js', [
+    'depends' => [
+        'yii\web\JqueryAsset',
+    ]
+]);
+
 ?>
 
 <?= $html ?>
