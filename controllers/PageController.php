@@ -397,19 +397,79 @@ class PageController extends BaseController
 
     public function actionChenneling()
     {
-        $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(BaseController $controller) {
+        $cache = Application::cache(\app\models\Chenneling::MEMCACHE_KEY_LIST, function(PageController $controller) {
             $itemsPerPage = 3 * 10;
 
             return $controller->renderFile('@app/views/page/chenneling_cache.php', [
-                'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
-                'pages' => [
-                    'list' => [],
-                    'current' => 1,
-                    'itemsPerPage' => $itemsPerPage
-                ]
+                'items'       => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
+                'pageCluster' => $controller->pageCluster([
+                    'query'     => Chenneling::query()->orderBy(['date_insert' => SORT_DESC]),
+                    'paginator' => [
+                        'size' => $itemsPerPage
+                    ]
+                ])
             ]);
         }, $this);
 
         return $this->render(['html' => $cache]);
     }
+
+
+    /**
+     * Создает пагинацию запроса
+     *
+     * @param $options
+     *                         [
+     *                         'query' => Query
+     *                         'paginator' => [
+     *                         'size' => int
+     *                         ]
+     *                         ]
+     *
+     * @return array
+     * [
+     *    'list' =>
+     *    'pages' => [
+     *        'list' => [1,2,3, ...]
+     *        'current' => int
+     *    ]
+     * ]
+     */
+    public function pageCluster($options)
+    {
+        /** @var \yii\db\Query $query */
+        $query = $options['query'];
+        $paginatorSize = $options['paginator']['size'];
+
+        $page = self::getParam('page');
+        if (is_null($page)) $page = 1;
+        $countAll = $query->count();
+
+        // вычисляю количество страниц $pageCount
+        $count = $countAll - $paginatorSize;
+        if ($count > 0) {
+            $count += $paginatorSize - 1;
+            $pageCount = (int)($count / $paginatorSize);
+            $pageCount++;
+        }
+        else {
+            $pageCount = 1;
+        }
+        $offset = ($page - 1) * $paginatorSize;
+        $pages = [];
+        if ($pageCount >= 1) {
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $pages[] = $i;
+            }
+        }
+
+        return [
+            'list'  => $query->limit($paginatorSize)->offset($offset)->all(),
+            'pages' => [
+                'list'    => $pages,
+                'current' => $page,
+            ],
+        ];
+    }
+
 }
