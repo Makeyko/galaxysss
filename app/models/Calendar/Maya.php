@@ -500,19 +500,19 @@ class Maya
      *
      * @param string|int|DateTime $date дата попадающая в цолькин
      *                              если строка то в формате 'yyyy-mm-dd'
-     *                              Если параметр не передан то считается что расчет ведется на текущую дату
+     *                              Если параметр не передан то считается что расчет ведется на текущую дату UTC
      *
      * @return array
      * двумерный массив [строка от 1][колонка от 1]
      * [
-     * 'ton' => int от 1
-     * 'kin' => int от 1
-     * 'stamp' => int от 1
-     * 'isPortal' => bool
-     * 'day' => int
-     * 'month' => int
-     * 'year' => int
-     * 'date' => 'yyyy-mm-dd'
+     * 'ton'       => int от 1
+     * 'kin'       => int от 1
+     * 'stamp'     => int от 1
+     * 'isPortal'  => bool
+     * 'day'       => int
+     * 'month'     => int
+     * 'year'      => int
+     * 'date'      => 'yyyy-mm-dd'
      * ]
      *
      * @throws \yii\base\Exception
