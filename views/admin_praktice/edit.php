@@ -9,7 +9,7 @@ use yii\db\Query;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
 
-$this->title = $model->name;
+$this->title = $model->header;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
@@ -32,20 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $model->field($form, 'name') ?>
-                <?= $model->field($form, 'start_date') ?>
-                <?= $model->field($form, 'start_time') ?>
-                <?= $model->field($form, 'end_date') ?>
-                <?= $model->field($form, 'end_time') ?>
+                <?= $model->field($form, 'header') ?>
+                <?= $model->field($form, 'source') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 10]) ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'image') ?>
-                <?= $model->field($form, 'link') ?>
-                <?= $model->field($form, 'date') ?>
 
                 <div class="form-group">
+                    <hr>
                     <?= Html::submitButton('Обновить', [
                             'class' => 'btn btn-default',
-                            'name'  => 'contact-button'
+                            'name'  => 'contact-button',
+                            'style' => 'width:100%',
                         ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
