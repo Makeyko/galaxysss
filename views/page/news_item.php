@@ -40,34 +40,32 @@ $this->registerJs("$('#share').popover()");
         <?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_NEWS, $item['id']); ?>
 
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4" style="padding-top: 30px;">
         <?php
         foreach ($lastList as $item) {
             ?>
-            <div class="row">
-                <div class="thumbnail">
-                    <a href="<?= \app\services\GsssHtml::getNewsUrl($item) ?>"><img
-                            src="<?= $item['img'] ?>"
-                            style="width: 100%; display: block;"
-                            > </a>
+            <div class="thumbnail">
+                <a href="<?= \app\services\GsssHtml::getNewsUrl($item) ?>"><img
+                        src="<?= $item['img'] ?>"
+                        style="width: 100%; display: block;"
+                        > </a>
 
-                    <div class="caption">
-                        <h3>
-                            <?= $item['header'] ?>
-                        </h3>
+                <div class="caption">
+                    <h3>
+                        <?= $item['header'] ?>
+                    </h3>
 
-                        <p>
-                            <?= \app\services\GsssHtml::getMiniText($item['content']); ?>
-                        </p>
+                    <p>
+                        <?= \app\services\GsssHtml::getMiniText($item['content']); ?>
+                    </p>
 
-                        <!--                                <p>-->
-                        <!--                                    <a href="#"-->
-                        <!--                                       class="btn btn-default"-->
-                        <!--                                       role="button"-->
-                        <!--                                        style="width: 100%"-->
-                        <!--                                        >Button</a>-->
-                        <!--                                </p>-->
-                    </div>
+                    <!--                                <p>-->
+                    <!--                                    <a href="#"-->
+                    <!--                                       class="btn btn-default"-->
+                    <!--                                       role="button"-->
+                    <!--                                        style="width: 100%"-->
+                    <!--                                        >Button</a>-->
+                    <!--                                </p>-->
                 </div>
             </div>
 
