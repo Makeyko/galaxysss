@@ -41,6 +41,15 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.4&appId=1132196000140882";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -217,11 +226,14 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
-            <div class="col-lg-4 col-lg-offset-4">
+            <div class="col-lg-4">
                 <center>
-                <script type="text/javascript" src="//ra.revolvermaps.com/0/0/6.js?i=0cp3ra9ti27&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
+                    <script type="text/javascript" src="//ra.revolvermaps.com/0/0/6.js?i=0cp3ra9ti27&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
                 </center>
                 <p class="text-center"><img src="<?= $LayoutMenuAssetPath ?>/images/merkaba-2nd.gif"></p>
+            </div>
+            <div class="col-lg-4">
+                <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
             </div>
         </div>
     </div>
