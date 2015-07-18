@@ -83,6 +83,7 @@ $this->title = 'Прощающая система';
     } ?>
 
 
+    <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/forgive/-68GITqiv1c1.jpg', true),
@@ -91,4 +92,5 @@ $this->title = 'Прощающая система';
         'description' => 'Ошибок не существует. Закона не существует. Все есть непрерывное получение опыта и уроков для роста
             Духа в Любви и Прощении.',
     ]) ?>
+</div>
 </div>

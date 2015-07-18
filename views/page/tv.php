@@ -99,20 +99,17 @@ function draw($item)
         <?= \app\services\GsssHtml::unionCategoryItems(10) ?>
     </div>
     <?php if (count($articleList) > 0) { ?>
-        <div class="row">
-            <div class="page-header">
-                <h2>Статьи</h2>
-            </div>
-            <div class="row">
-                <?php foreach ($articleList as $item) {
-                    echo \app\services\GsssHtml::articleItem($item, 'tv');
-                } ?>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Статьи</h2>
         </div>
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, 'tv');
+        } ?>
     <?php } ?>
 
 
 
+    <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/time/3406595251.jpg', true),
@@ -122,4 +119,5 @@ function draw($item)
             жизни.',
     ]) ?>
 
+</div>
 </div>

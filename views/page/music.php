@@ -23,11 +23,13 @@ $this->title = 'Музыка';
     <?php } ?>
 
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'url'         => Url::current([], true),
         'title'       => $this->title,
         'description' => 'Музыка высших сфер раскрывает сердца и расширяет сознание',
     ]) ?>
 
-</div>
+</    <div class="col-lg-12">
+        div>

@@ -50,7 +50,8 @@ $this->title = 'Деньги';
 
 
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/money/laxmi.jpg', true),
         'url'         => Url::current([], true),
@@ -58,4 +59,5 @@ $this->title = 'Деньги';
         'description' => 'Деньги – эквивалент вашей духовной силы и способности пропускать через себя большие потоки
             энергии.',
     ]) ?>
+</div>
 </div>
