@@ -41,6 +41,15 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.4&appId=1132196000140882";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -203,6 +212,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">
                 <p>&copy; 2015 Галактический Союз Сил Света</p>
+                <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
             </div>
             <div class="col-lg-4">
                 <a
