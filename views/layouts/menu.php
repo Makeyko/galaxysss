@@ -232,6 +232,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
     <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
 </div>
 
+<?php if (YII_ENV == 'prod' && !\cs\services\Str::isContain(Yii::$app->controller->id, 'admin')) {?>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
@@ -259,6 +260,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/30774383" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<?php } ?>
 
 <?php $this->endBody() ?>
 </body>
