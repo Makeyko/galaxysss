@@ -34,6 +34,7 @@ $this->title = 'Язык';
     ?>
 
 
+    <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/language/LNL0D495Xko.jpg', true),
@@ -42,4 +43,5 @@ $this->title = 'Язык';
         'description' => 'Язык определяет наши архетипы сознания, а значит слова это матрицы программирующие нашу реальность.',
     ]) ?>
 
+</div>
 </div>

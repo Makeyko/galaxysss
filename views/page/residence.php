@@ -39,37 +39,33 @@ $data = [
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1>Резиденция Галактического Союза Сил Света</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Резиденция Галактического Союза Сил Света</h1>
+        <p class="lead">Резиденция является одной из ключевых точек силы на Планете Земля.</p>
+        <p><img src="/images/page/residence/1/0.jpg" width="100%" class="thumbnail"></p>
     </div>
-    <p class="lead">Резиденция является одной из ключевых точек силы на Планете Земля.</p>
-
-    <p><img src="/images/page/residence/1/0.jpg" width="100%" class="thumbnail"></p>
 
 
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-            <p class="lead">Резиденция создана для проведения собраний Коалиционного Совета и Великого Содружества Сил
-                Света, провдения синхронизаций, активаций, инициаций, манифестаций и прямых контактов с Галактической Федерацией Света.</p>
-            <?php
-            for ($i = 1; $i <= 10; $i++) {
-                echo Html::tag('p', Html::img('/images/page/residence/1/' . $i . '.jpg', ['width' => '100%']));
-            }
-            ?>
-            <p> Автор проекта: Денис Дубинин <a href="http://dk.3dn.ru/">http://dk.3dn.ru/</a></p>
+    <div class="col-lg-8 col-lg-offset-2">
+        <p class="lead">Резиденция создана для проведения собраний Коалиционного Совета и Великого Содружества Сил
+            Света, провдения синхронизаций, активаций, инициаций, манифестаций и прямых контактов с Галактической Федерацией Света.</p>
+        <?php
+        for ($i = 1; $i <= 10; $i++) {
+            echo Html::tag('p', Html::img('/images/page/residence/1/' . $i . '.jpg', ['width' => '100%']));
+        }
+        ?>
+        <p> Автор проекта: Денис Дубинин <a href="http://dk.3dn.ru/">http://dk.3dn.ru/</a></p>
 
-            <hr>
+        <hr>
 
 
-            <?= $this->render('../blocks/share', [
-                'image'       => \yii\helpers\Url::to('/images/page/residence/1/0.jpg', true) ,
-                'url'         => \yii\helpers\Url::current([], true),
-                'title'       => $this->title,
-                'description' => 'Резиденция создана для проведения собраний Коалиционного Совета и Великого Содружества Сил
+        <?= $this->render('../blocks/share', [
+            'image'       => \yii\helpers\Url::to('/images/page/residence/1/0.jpg', true) ,
+            'url'         => \yii\helpers\Url::current([], true),
+            'title'       => $this->title,
+            'description' => 'Резиденция создана для проведения собраний Коалиционного Совета и Великого Содружества Сил
                 Света, провдения синхронизаций, активаций, инициаций, манифестаций и прямых контактов с Галактической Федерацией Света.',
-            ]) ?>
-        </div>
-
+        ]) ?>
     </div>
 
 

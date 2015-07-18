@@ -27,7 +27,8 @@ $this->title = 'Художники';
         </div>
     <?php } ?>
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/arts/header.png', true),
         'url'         => Url::current([], true),
@@ -35,6 +36,7 @@ $this->title = 'Художники';
         'description' => 'Художники рисуют миры в которых мы живем.',
     ]) ?>
 
+</div>
 </div>
 
 

@@ -113,6 +113,7 @@ function draw($item)
 
 
 
+    <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/time/3406595251.jpg', true),
@@ -122,4 +123,5 @@ function draw($item)
             жизни.',
     ]) ?>
 
+</div>
 </div>

@@ -24,7 +24,8 @@ $this->title = 'Одежда';
     <?php } ?>
 
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/clothes/header2.jpg', true),
         'url'         => Url::current([], true),
@@ -32,4 +33,5 @@ $this->title = 'Одежда';
         'description' => 'Одежда активирует энергетические центры и подчеркивает божественную красоту тела ангела.',
     ]) ?>
 
+</div>
 </div>

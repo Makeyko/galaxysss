@@ -26,11 +26,13 @@ $this->title = 'Обучение';
     <?php } ?>
 
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/study/8879600072.jpg', true),
         'url'         => Url::current([], true),
         'title'       => $this->title,
         'description' => 'Новейшие космологические представления о Вселенной и человеке',
     ]) ?>
+</div>
 </div>

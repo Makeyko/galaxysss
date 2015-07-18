@@ -38,7 +38,8 @@ $this->title = 'Время';
     <?php } ?>
 
 
-    <hr>
+    <div class="col-lg-12">
+        <hr>
     <?= $this->render('../blocks/share', [
         'image'       => Url::to('/images/page/time/2.jpg', true),
         'url'         => Url::current([], true),
@@ -46,4 +47,5 @@ $this->title = 'Время';
         'description' => 'Когда время согласовано с ритмами природы, тогда мы можем мыслить в масштабах Вечности.',
     ]) ?>
 
+</div>
 </div>
