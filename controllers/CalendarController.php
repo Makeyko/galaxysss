@@ -114,6 +114,17 @@ class CalendarController extends BaseController
         ]);
     }
 
+    /**
+     * Возвращает html для цолькина и дату следующую за ним
+     * REQUEST:
+     * - date - string - дата в формате 'yyyy-mm-dd'
+     *
+     * @return string json
+     *                [
+     *                 'html'     => string - html содержимое цолькина
+     *                 'nextDate' => string - дата в формате 'yyyy-mm-dd'
+     *                ]
+     */
     public function actionColkin_more()
     {
         $date = self::getParam('date');

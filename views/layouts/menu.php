@@ -163,10 +163,10 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                     ];
                 }
                 ?>
-                <li><?= Html::a(Html::tag('span', ($maya !== false) ?  $maya['date'] : '4 апр 2015 г.', [
+                <li><?= Html::a(Html::tag('span', ($maya !== false) ?  $maya['date'] : '# ### #### г.', [
                             'style' => Html::cssStyleFromArray(['padding-right' => '10px']),
                             'id'    => 'dateThis',
-                        ]) . Html::img( ($maya !== false) ? $mayaAsset->getStampSrc($maya['stamp']) : '/images/index/calendar/1.gif', [
+                        ]) . Html::img( $mayaAsset->getStampSrc(($maya !== false) ?  $maya['stamp'] : \cs\models\Calendar\Maya::calc()['stamp']), [
                             'height' => 20,
                             'id'     => 'calendarMayaStamp',
                         ]), $link, $options); ?></li>

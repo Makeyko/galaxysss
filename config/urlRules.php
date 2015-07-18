@@ -64,6 +64,11 @@ return [
     'admin/events/<id:\\d+>/delete'                                                        => 'admin_events/delete',
     'admin/events/<id:\\d+>/edit'                                                          => 'admin_events/edit',
 
+    'admin/praktice'                                                                       => 'admin_praktice/index',
+    'admin/praktice/add'                                                                   => 'admin_praktice/add',
+    'admin/praktice/<id:\\d+>/delete'                                                      => 'admin_praktice/delete',
+    'admin/praktice/<id:\\d+>/edit'                                                        => 'admin_praktice/edit',
+
     'admin/chennelingList'                                                                 => 'admin/chenneling_list',
     'admin/chennelingList/add'                                                             => 'admin/chenneling_list_add',
     'admin/chennelingList/addFromPage'                                                     => 'admin/chenneling_list_add_from_page',
