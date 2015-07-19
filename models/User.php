@@ -5,6 +5,7 @@ namespace app\models;
 use app\services\RegistrationDispatcher;
 use cs\services\SitePath;
 use cs\services\VarDumper;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use cs\services\UploadFolderDispatcher;
 
@@ -200,7 +201,18 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public function getEmail()
     {
-        $v = $this->getField('email');
-        return (is_null($v)) ? '' : $v;
+        return $this->getString('email');
+    }
+
+    /**
+     * Возвращает значение из $this->fields, если значение = null то возвращается пустая строка
+     *
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function getString($name)
+    {
+        return ArrayHelper::getValue($this->fields, $name, '');
     }
 }

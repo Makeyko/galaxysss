@@ -29,6 +29,8 @@ return [
     'siteUpdate'                                                                           => 'site/site_update',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
+    'subscribe/mail'                                                                       => 'subscribe/mail',
+    'subscribe/activate'                                                                   => 'subscribe/activate',
 
     'calendar'                                                                             => 'calendar/index',
     'calendar/friends'                                                                     => 'calendar/friends',
