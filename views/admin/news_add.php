@@ -36,8 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'content')->label('Содержание')->textarea(['rows' => 20]) ?>
                 <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
 
+                <hr>
                 <div class="form-group">
-                    <?= Html::submitButton('Добавить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Добавить', [
+                        'class' => 'btn btn-default',
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

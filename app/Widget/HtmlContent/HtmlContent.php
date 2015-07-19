@@ -7,6 +7,7 @@ use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
 use yii\debug\models\search\Debug;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use cs\base\BaseForm;
 use cs\services\UploadFolderDispatcher;
@@ -177,13 +178,19 @@ JS;
         foreach ($content->find('img') as $element) {
             $imagePath = new SitePath($element->attr['src']);
 
+            // картинка не содержит путь назначения?
             if (!Str::isContain($element->attr['src'], $destination->getPath())) {
-                try {
-                    $destinationFile = $destination->cloneObject()->add($imagePath->getFileName());
-                    self::resizeImage($imagePath->getPathFull(), $destinationFile->getPathFull());
-                    $element->attr['src'] = $destinationFile->getPath();
-                } catch (\Exception $e) {
-                    Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
+                $urlInfo = parse_url($element->attr['src']);
+                if (ArrayHelper::getValue($urlInfo, 'scheme', '') == '') {
+                    try {
+                        $destinationFile = $destination->cloneObject()->add($imagePath->getFileName());
+                        self::resizeImage($imagePath->getPathFull(), $destinationFile->getPathFull());
+                        $element->attr['src'] = $destinationFile->getPath();
+                    } catch (\Exception $e) {
+                        Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
+                    }
+                } else {
+                    // картинка на внешнем сервере, пока ничего не делаем
                 }
             }
         }
@@ -192,8 +199,8 @@ JS;
     }
 
     /**
-     * @param string $sourcePathFull
-     * @param string $destinationPathFull
+     * @param string $sourcePathFull      путь источника, должен быть локальным и полным
+     * @param string $destinationPathFull путь назначения, должен быть локальным и полным
      */
     public static function resizeImage($sourcePathFull, $destinationPathFull)
     {

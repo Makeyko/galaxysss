@@ -42,10 +42,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'select'    => 'id, header as name',
                 ]) ?>
 
+                <hr>
                 <div class="form-group">
                     <?= Html::submitButton('Добавить', [
                         'class' => 'btn btn-default',
-                        'name'  => 'contact-button'
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
                     ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
