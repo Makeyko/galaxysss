@@ -183,7 +183,9 @@ class PageController extends BaseController
 
     public function actionMoney()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(6),
+        ]);
     }
 
     public function actionFood()

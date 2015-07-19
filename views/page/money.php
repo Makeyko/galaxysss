@@ -39,11 +39,9 @@ $this->title = 'Деньги';
             <h2 class="page-header">Статьи</h2>
         </div>
 
-        <div class="row">
-            <?php foreach ($articleList as $item) {
-                echo \app\services\GsssHtml::articleItem($item, 'money');
-            } ?>
-        </div>
+        <?php foreach ($articleList as $item) {
+            echo \app\services\GsssHtml::articleItem($item, 'money');
+        } ?>
 
     <?php } ?>
 
@@ -52,12 +50,12 @@ $this->title = 'Деньги';
 
     <div class="col-lg-12">
         <hr>
-    <?= $this->render('../blocks/share', [
-        'image'       => Url::to('/images/page/money/laxmi.jpg', true),
-        'url'         => Url::current([], true),
-        'title'       => $this->title,
-        'description' => 'Деньги – эквивалент вашей духовной силы и способности пропускать через себя большие потоки
-            энергии.',
-    ]) ?>
-</div>
+        <?= $this->render('../blocks/share', [
+            'image'       => Url::to('/images/page/money/laxmi.jpg', true),
+            'url'         => Url::current([], true),
+            'title'       => $this->title,
+            'description' => 'Деньги – эквивалент вашей духовной силы и способности пропускать через себя большие потоки
+                энергии.',
+        ]) ?>
+    </div>
 </div>

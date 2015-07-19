@@ -71,15 +71,17 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
     public function register($attributes)
     {
         $user = User::insert([
-            'vk_id'             => $attributes['uid'],
-            'name_first'        => $attributes['first_name'],
-            'name_last'         => $attributes['last_name'],
-            'gender'            => ($attributes['sex'] == 0) ? null : (($attributes['sex'] == 1) ? 0 : 1),
-            'vk_link'           => $attributes['screen_name'],
-            'datetime_reg'      => gmdate('YmdHis'),
-            'datetime_activate' => gmdate('YmdHis'),
-            'is_active'         => 1,
-            'birth_date'        => $this->getBirthDate($attributes),
+            'vk_id'                    => $attributes['uid'],
+            'name_first'               => $attributes['first_name'],
+            'name_last'                => $attributes['last_name'],
+            'gender'                   => ($attributes['sex'] == 0) ? null : (($attributes['sex'] == 1) ? 0 : 1),
+            'vk_link'                  => $attributes['screen_name'],
+            'datetime_reg'             => gmdate('YmdHis'),
+            'datetime_activate'        => gmdate('YmdHis'),
+            'is_active'                => 1,
+            'birth_date'               => $this->getBirthDate($attributes),
+            'subscribe_is_site_update' => 1,
+            'subscribe_is_news'        => 1,
         ]);
         $user->setAvatarFromUrl($attributes['photo_200']);
 
@@ -88,6 +90,7 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
 
     /**
      * Возвращает дату рождения
+     *
      * @return string | null
      * формат 'yyyy-mm-dd'
      */

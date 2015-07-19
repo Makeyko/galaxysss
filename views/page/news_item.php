@@ -19,7 +19,7 @@ $this->registerJs("$('#share').popover()");
         <h1 class="page-header"><?= $this->title ?></h1>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-8" style="padding-bottom: 30px;">
         <?= $newsItem['content'] ?>
         <hr>
         <?php if (isset($newsItem['source'])): ?>
@@ -40,7 +40,7 @@ $this->registerJs("$('#share').popover()");
         <?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_NEWS, $item['id']); ?>
 
     </div>
-    <div class="col-lg-4" style="padding-top: 30px;">
+    <div class="col-lg-4">
         <?php
         foreach ($lastList as $item) {
             ?>
