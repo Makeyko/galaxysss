@@ -227,13 +227,51 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
         </div>
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">
+                <?php if (YII_ENV == 'prod') {?>
                 <center>
                     <script type="text/javascript" src="//ra.revolvermaps.com/0/0/6.js?i=0cp3ra9ti27&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
                 </center>
+                <?php }?>
                 <p class="text-center"><img src="<?= $LayoutMenuAssetPath ?>/images/merkaba-2nd.gif"></p>
-            </div> <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
                 <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
             </div>
+            <?php
+            $isShowForm = false;
+            if (Yii::$app->user->isGuest) {
+                if (!isset(Yii::$app->request->cookies['subscribeIsStarted'])) {
+                    $isShowForm = true;
+                }
+            } else if (Yii::$app->user->identity->getEmail() == '') {
+                $isShowForm = true;
+            }
+
+            if ($isShowForm) { ?>
+                <div class="col-lg-4">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Подписаться на рассылку</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form id="formSubscribe">
+                                <?php if (Yii::$app->user->isGuest) {?>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="formSubscribeName" placeholder="Имя">
+                                    <p class="help-block help-block-error hide">Это поле должно быть заполнено обязательно</p>
+                                </div>
+                                <?php }?>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="formSubscribeEmail" placeholder="Email">
+                                    <p class="help-block help-block-error hide">Это поле должно быть заполнено обязательно</p>
+                                </div>
+                                <button type="button" class="btn btn-default" style="width: 100%;" id="formSubscribeSubmit">Подписаться</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </footer>

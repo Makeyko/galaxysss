@@ -206,7 +206,7 @@ class AuthController extends BaseController
     {
         $row = RegistrationDispatcher::query(['code' => $code])->one();
         if ($row === false) {
-            throw new Exception('Не верный код активации');
+            throw new Exception('Срок ссылки истек или не верный код активации');
         }
         $user = User::find($row['parent_id']);
         if (is_null($user)) {
