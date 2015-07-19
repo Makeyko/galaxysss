@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
-                    'id' => 'contact-form',
+                    'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
                 <?= $form->field($model, 'header')->label('Название') ?>
@@ -42,11 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'select'    => 'id, header as name',
                 ]) ?>
 
+                <hr>
                 <div class="form-group">
                     <?= Html::submitButton('Обновить', [
-                            'class' => 'btn btn-default',
-                            'name'  => 'contact-button'
-                        ]) ?>
+                        'class' => 'btn btn-default',
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>
