@@ -45,14 +45,16 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
     {
 
         $fields = [
-            'fb_id'             => $attributes['id'],
-            'fb_link'           => $attributes['link'],
-            'name_first'        => $attributes['first_name'],
-            'name_last'         => $attributes['last_name'],
-            'gender'            => ($attributes['gender'] == '') ? null : (($attributes['gender'] == 'male') ? 1 : 0),
-            'datetime_reg'      => gmdate('YmdHis'),
-            'datetime_activate' => gmdate('YmdHis'),
-            'is_active'         => 1,
+            'fb_id'                    => $attributes['id'],
+            'fb_link'                  => $attributes['link'],
+            'name_first'               => $attributes['first_name'],
+            'name_last'                => $attributes['last_name'],
+            'gender'                   => ($attributes['gender'] == '') ? null : (($attributes['gender'] == 'male') ? 1 : 0),
+            'datetime_reg'             => gmdate('YmdHis'),
+            'datetime_activate'        => gmdate('YmdHis'),
+            'is_active'                => 1,
+            'subscribe_is_site_update' => 1,
+            'subscribe_is_news'        => 1,
         ];
         if (isset($attributes['email'])) {
             $fields['email'] = $attributes['email'];
