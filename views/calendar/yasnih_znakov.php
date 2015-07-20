@@ -9,9 +9,11 @@ $this->title = '13 Ясных Знаков Пакаль Вотана';
 
 ?>
 <div class="container">
-
     <div class="col-lg-12">
         <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+    </div>
+
+    <div class="col-lg-10">
 
         <div>
             <p><b>13 Ясных Знаков, высеченных на крышке саркофага Пакаль Вотана</b></p>
@@ -35,4 +37,5 @@ $this->title = '13 Ясных Знаков Пакаль Вотана';
         </div>
 
     </div>
+    <?= $this->render('_menu') ?>
 </div>

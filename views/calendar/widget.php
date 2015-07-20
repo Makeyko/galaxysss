@@ -21,11 +21,11 @@ $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->ba
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1><?= $this->title ?></h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= $this->title ?></h1>
     </div>
 
-    <div class="row">
+    <div class="col-lg-10">
         <div class="col-lg-1">
             1.
         </div>
@@ -40,5 +40,6 @@ $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->ba
             <button class="btn btn-default btn-sm buttonCopy1" id="copy1">Копировать в буфер</button>
         </div>
     </div>
+    <?= $this->render('_menu') ?>
 
 </div>

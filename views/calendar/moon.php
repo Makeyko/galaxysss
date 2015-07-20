@@ -44,8 +44,8 @@ $dayWeekList = [
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1>Календарь</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Календарь</h1>
     </div>
 
 
@@ -104,29 +104,27 @@ $dayWeekList = [
         }
     </style>
 
-    <div class="row">
-        <div id="lastDay" class="hide"></div>
-        <div class="col-lg-10" id="main-content">
+    <div id="lastDay" class="hide"></div>
+    <div class="col-lg-10" id="main-content">
 
-            <p><img src="" id="ajax-loader"></p>
+        <p><img src="" id="ajax-loader"></p>
 
-            <table class="calendar">
+        <table class="calendar">
 
-            </table>
+        </table>
 
-            <button class="btn btn-default" id="buttonNextYear">Следующий год</button>
+        <button class="btn btn-default" id="buttonNextYear">Следующий год</button>
 
-            <hr>
-            <?= $this->render('../blocks/share', [
-                'image'       => \yii\helpers\Url::to(Yii::$app->getAssetManager()->getBundle('app\assets\Maya\Asset')->get('/images/stamp2/9.jpg') , true),
-                'url'         => \yii\helpers\Url::current([], true),
-                'title'       => $this->title,
-                'description' => $this->title,
-            ]) ?>
+        <hr>
+        <?= $this->render('../blocks/share', [
+            'image'       => \yii\helpers\Url::to(Yii::$app->getAssetManager()->getBundle('app\assets\Maya\Asset')->get('/images/stamp2/9.jpg') , true),
+            'url'         => \yii\helpers\Url::current([], true),
+            'title'       => $this->title,
+            'description' => $this->title,
+        ]) ?>
 
-        </div>
-        <?= $this->render('_menu') ?>
     </div>
+    <?= $this->render('_menu') ?>
 
 
 
