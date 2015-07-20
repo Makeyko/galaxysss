@@ -19,22 +19,22 @@ class SubscribeController extends Controller
     public function actionSend()
     {
         $time = microtime(true);
-//        $list = SubscribeMailItem::query()
-//            ->limit(100)
-//            ->orderBy(['date_insert' => SORT_DESC])
-//            ->all();
-        $list = [];
+        $list = SubscribeMailItem::query()
+            ->limit(100)
+            ->orderBy(['date_insert' => SORT_DESC])
+            ->all();
+        \Yii::info(VarDumper::dumpAsString($list), 'gs\\sub');
 
-        foreach($list as $mailItem) {
-            \Yii::$app->mailer
-                ->compose()
-                ->setFrom(\Yii::$app->params['mailer']['from'])
-                ->setTo($mailItem['mail'])
-                ->setSubject($mailItem['subject'])
-                ->setTextBody($mailItem['text'])
-                ->setHtmlBody($mailItem['html'])
-                ->send();
-        }
+//        foreach($list as $mailItem) {
+//            \Yii::$app->mailer
+//                ->compose()
+//                ->setFrom(\Yii::$app->params['mailer']['from'])
+//                ->setTo($mailItem['mail'])
+//                ->setSubject($mailItem['subject'])
+//                ->setTextBody($mailItem['text'])
+//                ->setHtmlBody($mailItem['html'])
+//                ->send();
+//        }
 
         SubscribeMailItem::deleteByCondition([
             'in', 'id', ArrayHelper::getColumn($list, 'id')
