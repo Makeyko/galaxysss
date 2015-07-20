@@ -31,41 +31,39 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 ?>
 <div class="container">
 
-    <div class="page-header">
-        <h1>Друзья</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Друзья</h1>
     </div>
 
-    <div class="row">
-        <div class="col-lg-10">
-            <?php if (!\Yii::$app->user->isGuest) { ?>
-                <div class="hide" id="meBirthDate"><?= $me['birth_date'] ?></div>
-            <?php } ?>
+    <div class="col-lg-10">
+        <?php if (!\Yii::$app->user->isGuest) { ?>
+            <div class="hide" id="meBirthDate"><?= $me['birth_date'] ?></div>
+        <?php } ?>
 
-            <?php
-            if (\Yii::$app->authClientCollection->getClient('vkontakte')->isAuthorize()) { ?>
-                <button class="btn btn-default" id="buttonVkontakte">Вконтакте</button>
-            <?php } else { ?>
+        <?php
+        if (\Yii::$app->authClientCollection->getClient('vkontakte')->isAuthorize()) { ?>
+            <button class="btn btn-default" id="buttonVkontakte">Вконтакте</button>
+        <?php } else { ?>
 
-                <p>Извините вы не авторизованы через Vk, пожалуйста зайтите через Vk</p>
-                <?php $authAuthChoice = AuthChoice::begin([
-                    'baseAuthUrl' => ['auth/auth']
-                ]); ?>
-                    <?php foreach ($authAuthChoice->getClients() as $client) {
-                    /** @var \yii\authclient\ClientInterface $client  */
-                        if ($client instanceof \app\services\authclient\VKontakte) {
-                        ?>
-                        <li><?php $authAuthChoice->clientLink($client) ?></li>
-                    <?php  } ?>
-                    <?php  } ?>
-                <?php AuthChoice::end(); ?>
-            <?php } ?>
+            <p>Извините вы не авторизованы через Vk, пожалуйста зайтите через Vk</p>
+            <?php $authAuthChoice = AuthChoice::begin([
+                'baseAuthUrl' => ['auth/auth']
+            ]); ?>
+            <?php foreach ($authAuthChoice->getClients() as $client) {
+                /** @var \yii\authclient\ClientInterface $client  */
+                if ($client instanceof \app\services\authclient\VKontakte) {
+                    ?>
+                    <li><?php $authAuthChoice->clientLink($client) ?></li>
+                <?php  } ?>
+            <?php  } ?>
+            <?php AuthChoice::end(); ?>
+        <?php } ?>
 
-            <div id="friends" class="col-lg-8">
+        <div id="friends" class="col-lg-8">
 
-            </div>
         </div>
-        <?= $this->render('_menu') ?>
     </div>
+    <?= $this->render('_menu') ?>
 
 
 </div>

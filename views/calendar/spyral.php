@@ -24,11 +24,6 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
 ?>
 
-<div class="container">
-
-<div class="col-lg-12">
-    <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
-</div>
 <style>
     .oracul .item {
         padding: 0px 10px 10px 10px;
@@ -53,7 +48,12 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     }
 </style>
 
-<div class="row">
+<div class="container">
+
+<div class="col-lg-12">
+    <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+</div>
+
 <div class="col-lg-10">
 
 
@@ -115,12 +115,11 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
         <span id="error" class="label-danger label"></span>
     </div>
 </div>
-<div class="col-lg-12">
+<div class="col-lg-10">
 
 <hr>
 
 <p>Волна</p>
-
 
 
 <table id="wave4">
@@ -367,19 +366,18 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 </table>
 <hr>
 <p><b>Песня дня</b></p>
+
 <p id="pesnya"></p>
 
 
 <hr>
 <?= $this->render('../blocks/share', [
-    'image'       => \yii\helpers\Url::to('/images/calendar/orakul/share.jpg' , true),
+    'image'       => \yii\helpers\Url::to('/images/calendar/orakul/share.jpg', true),
     'url'         => \yii\helpers\Url::current([], true),
     'title'       => $this->title,
     'description' => 'Прочтение Оракула Кина Судьбы или Кина дня – это передача импульса (переход на новый уровень сознания, новую частоту вибраций) и введение в космологию времени и синхронный планетарный порядок.',
 ]) ?>
 </div>
+
 <?= $this->render('_menu') ?>
-</div>
-
-
 </div>

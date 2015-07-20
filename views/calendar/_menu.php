@@ -10,5 +10,6 @@ use yii\helpers\Url;
         <a href="<?= Url::to(['calendar/friends']) ?>" class="list-group-item<?php if (Url::to(['calendar/friends']) == Url::to()) { echo ' active'; } ?>"> Друзья </a>
         <a href="<?= Url::to(['calendar/orakul']) ?>" class="list-group-item<?php if (Url::to(['calendar/orakul']) == Url::to()) { echo ' active'; } ?>"> Оракул дня </a>
         <a href="<?= Url::to(['calendar/yasnih_znakov']) ?>" class="list-group-item<?php if (Url::to(['calendar/yasnih_znakov']) == Url::to()) { echo ' active'; } ?>"> Ясные знаки </a>
+        <a href="<?= Url::to(['calendar/widget']) ?>" class="list-group-item<?php if (Url::to(['calendar/widget']) == Url::to()) { echo ' active'; } ?>"> Виджеты </a>
     </div>
 </div>

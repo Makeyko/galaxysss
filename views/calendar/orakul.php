@@ -53,7 +53,6 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
     }
 </style>
 
-<div class="row">
 <div class="col-lg-10">
 
 
@@ -701,7 +700,6 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
 
 </div>
 <?= $this->render('_menu') ?>
-</div>
 
 
 </div>

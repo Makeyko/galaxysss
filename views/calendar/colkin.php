@@ -61,25 +61,24 @@ $mayaAssetUrl = \Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->ba
 <div class="container">
 
 
-    <div class="page-header">
-        <h1>Цолькин</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Цолькин</h1>
     </div>
     <div id="lastDate" style="display: none"><?= $nextDate ?></div>
     <div id="ajaxLoader" style="display: none"><img style="padding-left: 10px;padding-right: 10px;"
              src="<?= \Yii::$app->assetManager->getBundle(\app\assets\App\Asset::className())->baseUrl ?>/images/ajax-loader.gif"
              id=""></div>
 
-    <div class="btn-group" role="group" aria-label="Даты">
-        <button type="button" class="btn btn-default" id="buttonShow">Показать даты</button>
-        <button type="button" class="btn btn-default active" id="buttonHide">Скрыть даты</button>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-10">
-            <?= $this->render('colkin_more', ['days' => $days]) ?>
+
+    <div class="col-lg-10">
+        <div class="btn-group" role="group" aria-label="Даты">
+            <button type="button" class="btn btn-default" id="buttonShow">Показать даты</button>
+            <button type="button" class="btn btn-default active" id="buttonHide">Скрыть даты</button>
         </div>
-        <?= $this->render('_menu') ?>
+        <?= $this->render('colkin_more', ['days' => $days]) ?>
     </div>
+    <?= $this->render('_menu') ?>
 
 
 
