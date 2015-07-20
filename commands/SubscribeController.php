@@ -19,7 +19,11 @@ class SubscribeController extends Controller
     public function actionSend()
     {
         $time = microtime(true);
-        $list = SubscribeMailItem::query()->limit(100)->orderBy(['date_insert' => SORT_DESC])->all();
+//        $list = SubscribeMailItem::query()
+//            ->limit(100)
+//            ->orderBy(['date_insert' => SORT_DESC])
+//            ->all();
+        $list = [];
 
         foreach($list as $mailItem) {
             \Yii::$app->mailer
