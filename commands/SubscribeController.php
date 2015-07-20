@@ -25,16 +25,16 @@ class SubscribeController extends Controller
             ->all();
         \Yii::info(VarDumper::dumpAsString($list), 'gs\\sub');
 
-//        foreach($list as $mailItem) {
-//            \Yii::$app->mailer
-//                ->compose()
-//                ->setFrom(\Yii::$app->params['mailer']['from'])
-//                ->setTo($mailItem['mail'])
-//                ->setSubject($mailItem['subject'])
-//                ->setTextBody($mailItem['text'])
-//                ->setHtmlBody($mailItem['html'])
-//                ->send();
-//        }
+        foreach($list as $mailItem) {
+            \Yii::$app->mailer
+                ->compose()
+                ->setFrom(\Yii::$app->params['mailer']['from'])
+                ->setTo($mailItem['mail'])
+                ->setSubject($mailItem['subject'])
+                ->setTextBody($mailItem['text'])
+                ->setHtmlBody($mailItem['html'])
+                ->send();
+        }
 
         SubscribeMailItem::deleteByCondition([
             'in', 'id', ArrayHelper::getColumn($list, 'id')
