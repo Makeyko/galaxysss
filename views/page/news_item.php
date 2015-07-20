@@ -19,7 +19,7 @@ $this->registerJs("$('#share').popover()");
         <h1 class="page-header"><?= $this->title ?></h1>
     </div>
 
-    <div class="col-lg-8" style="padding-bottom: 30px;">
+    <div class="col-lg-8" style="padding-bottom: 50px;">
         <?= $newsItem['content'] ?>
         <hr>
         <?php if (isset($newsItem['source'])): ?>

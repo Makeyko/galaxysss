@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-8" style="padding-bottom: 50px;">
         <?= $item['content'] ?>
         <hr>
         <?php if (isset($item['source'])): ?>
