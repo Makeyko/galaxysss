@@ -38,10 +38,10 @@ class Subscribe
                 break;
         }
 
-        $emailList = User::query($where)
+
+            $emailList = User::query($where)
             ->select('email')
             ->andWhere(['not', ['email' => null]])
-            ->andWhere(['in', 'id', [41,48]])
             ->andWhere([
                 'is_active'  => 1,
                 'is_confirm' => 1,
