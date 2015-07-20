@@ -177,6 +177,38 @@ class GsssHtml
         return Html::tag('div', join('', $html), ['class' => 'col-lg-4 newsItem']);
     }
 
+    /**
+     * @param array $row gs_praktice
+     *
+     * @return string
+     */
+    public static function prakticeItem($row)
+    {
+        if (!is_array($row)) {
+            $id = $row;
+            $item = \app\models\Praktice::find($id);
+            if (is_null($item)) return '';
+            $row = $item->getFields();
+        }
+        // Заголовок
+        $html[] = Html::tag('div',Html::tag('h4', $row['header']), ['class' => 'header']);
+        // картинка с ссылкой
+        $html[] = Html::tag('p', Html::a(Html::img($row['image'], ['width' => '100%', 'class' => 'thumbnail']), self::getPrakticeUrl($row)));
+        // Описание
+        $html[] = Html::tag('p', $row['description']);
+
+        return Html::tag('div', join('', $html), ['class' => 'col-lg-4 prakticeItem']);
+    }
+
+    public static function getPrakticeUrl($row, $isFull = false)
+    {
+        $year = substr($row['date'], 0, 4);
+        $month = substr($row['date'], 5, 2);
+        $day = substr($row['date'], 8, 2);
+
+        return Url::to(['page/praktice_item', 'year' => $year, 'month' => $month, 'day' => $day, 'id' => $row['id_string']], $isFull);
+    }
+
     public static function getNewsUrl($row, $isFull = false)
     {
         $year = substr($row['date'], 0, 4);

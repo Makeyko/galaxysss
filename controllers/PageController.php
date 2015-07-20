@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\Praktice;
 use app\models\Service;
 use app\models\Union;
 use app\models\UnionCategory;
@@ -291,6 +292,42 @@ class PageController extends BaseController
     {
         return $this->render([
             'items' => NewsItem::query()->orderBy(['date_insert' => SORT_DESC])->all()
+        ]);
+    }
+
+    /**
+     * Страница Практик
+     *
+     * @return string
+     */
+    public function actionPraktice()
+    {
+        return $this->render([
+            'items' => Praktice::queryList()->orderBy(['date_insert' => SORT_DESC])->all()
+        ]);
+    }
+
+    public function actionPraktice_item($year, $month, $day, $id)
+    {
+        $date = $year . $month . $day;
+        $newsItem = Praktice::find([
+            'date'      => $date,
+            'id_string' => $id
+        ]);
+        if (is_null($newsItem)) {
+            throw new Exception('Нет такой прктики');
+        }
+        $newsItem->incViewCounter();
+
+        $row = $newsItem->getFields();
+
+        return $this->render([
+            'item' => $newsItem->getFields(),
+            'lastList' => Praktice::queryList()->where([
+                'not in',
+                'id',
+                $row['id']
+            ])->orderBy(['date_insert' => SORT_DESC])->limit(3)->all(),
         ]);
     }
 

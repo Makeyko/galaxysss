@@ -4,6 +4,7 @@ return [
     'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
     'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
+    'praktice/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                         => 'page/praktice_item',
 
     'upload/upload'                                                                        => 'upload/upload',
     'upload/HtmlContent2'                                                                  => 'html_content/upload',
@@ -93,6 +94,7 @@ return [
     'cabinet/officeList/<id:\\d+>/edit'                                                    => 'cabinet_office/edit',
 
 
+    'praktice'                                                                             => 'page/praktice',
     'house'                                                                                => 'page/house',
     'mission'                                                                              => 'page/mission',
     'medical'                                                                              => 'page/medical',
