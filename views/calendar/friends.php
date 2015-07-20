@@ -11,6 +11,7 @@ use cs\helpers\Html;
 use app\services\GsssHtml;
 use cs\models\Calendar\Maya;
 use yii\web\View;
+use yii\authclient\widgets\AuthChoice;
 
 $this->title = 'Календарь';
 
@@ -44,7 +45,19 @@ $this->registerJs("var LayoutAssetUrl='{$layoutAssetUrl}';", View::POS_HEAD);
             if (\Yii::$app->authClientCollection->getClient('vkontakte')->isAuthorize()) { ?>
                 <button class="btn btn-default" id="buttonVkontakte">Вконтакте</button>
             <?php } else { ?>
+
                 <p>Извините вы не авторизованы через Vk, пожалуйста зайтите через Vk</p>
+                <?php $authAuthChoice = AuthChoice::begin([
+                    'baseAuthUrl' => ['auth/auth']
+                ]); ?>
+                    <?php foreach ($authAuthChoice->getClients() as $client) {
+                    /** @var \yii\authclient\ClientInterface $client  */
+                        if ($client instanceof \app\services\authclient\VKontakte) {
+                        ?>
+                        <li><?php $authAuthChoice->clientLink($client) ?></li>
+                    <?php  } ?>
+                    <?php  } ?>
+                <?php AuthChoice::end(); ?>
             <?php } ?>
 
             <div id="friends" class="col-lg-8">
