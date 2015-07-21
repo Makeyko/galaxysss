@@ -46,7 +46,8 @@ class SubscribeController extends Controller
                 'in', 'id', ArrayHelper::getColumn($list, 'id')
             ]);
             \Yii::info('Осталось после рассылки: ' . SubscribeMailItem::query()->count(), 'gs\\app\\commands\\SubscribeController::actionSend');
-            \Yii::info('Затраченное время на расылку: ' . microtime(true)-$time, 'gs\\app\\commands\\SubscribeController::actionSend');
+            $time = microtime(true) - $time;
+            \Yii::info('Затраченное время на расылку: ' . $time, 'gs\\app\\commands\\SubscribeController::actionSend');
         }
 
         \Yii::$app->end();
