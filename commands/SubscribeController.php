@@ -20,7 +20,7 @@ class SubscribeController extends Controller
     {
         $time = microtime(true);
         $list = SubscribeMailItem::query()
-            ->limit(100)
+            ->limit(50)
             ->orderBy(['date_insert' => SORT_DESC])
             ->all();
         \Yii::info(VarDumper::dumpAsString($list), 'gs\\sub');

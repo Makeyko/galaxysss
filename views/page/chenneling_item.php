@@ -11,6 +11,7 @@ use cs\services\Str;
 
 $this->title = $item['header'];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="container">
 
