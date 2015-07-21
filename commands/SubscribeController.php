@@ -20,10 +20,11 @@ class SubscribeController extends Controller
     {
         $time = microtime(true);
         $list = SubscribeMailItem::query()
-            ->limit(50)
+            ->limit(10)
             ->orderBy(['date_insert' => SORT_DESC])
             ->all();
-        \Yii::info(VarDumper::dumpAsString($list), 'gs\\sub');
+        \Yii::info('Всего писем для рассылки: ' . count($list), 'gs\\app\\commands\\SubscribeController::actionSend');
+        \Yii::info('Список писем: ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'mail')), 'gs\\app\\commands\\SubscribeController::actionSend');
 
         foreach($list as $mailItem) {
             \Yii::$app->mailer
@@ -36,13 +37,12 @@ class SubscribeController extends Controller
                 ->send();
         }
 
+        \Yii::info(':Список писем для удаления: ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\app\\commands\\SubscribeController::actionSend');
         SubscribeMailItem::deleteByCondition([
             'in', 'id', ArrayHelper::getColumn($list, 'id')
         ]);
-
-        if (count($list) > 0) {
-            \Yii::info('Рассылка писем ' . VarDumper::dumpAsString([ArrayHelper::getColumn($list, 'id'),microtime(true)-$time]), 'gs\\subscribe');
-        }
+        \Yii::info('Осталось после рассылки: ' . SubscribeMailItem::query()->count(), 'gs\\app\\commands\\SubscribeController::actionSend');
+        \Yii::info('Затраченное время на расылку: ' . microtime(true)-$time, 'gs\\app\\commands\\SubscribeController::actionSend');
 
         \Yii::$app->end();
     }
