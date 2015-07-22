@@ -18,6 +18,8 @@ if ($content == '') {
 
 <?= $item->getName() ?>
 
+Краткое содержание:
 <?= $content ?>
 
-Читать далее: <?= $item->getLink(true) ?>
+Читать далее по ссылке:
+<?= $item->getLink(true) ?>
