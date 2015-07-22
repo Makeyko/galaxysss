@@ -18,7 +18,7 @@ if ($content == '') {
 
 <h3 style="font-weight: normal;"><?= $item->getName() ?></h3>
 
-<p><img src="<?= $item->getImage(true) ?>" style="display: block;
+<p><a href="<?= $item->getLink(true) ?>"><img src="<?= $item->getImage(true) ?>" style="display: block;
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
@@ -27,7 +27,7 @@ if ($content == '') {
   border-radius: 4px;
   -webkit-transition: border .2s ease-in-out;
   -o-transition: border .2s ease-in-out;
-  transition: border .2s ease-in-out;"/></p>
+  transition: border .2s ease-in-out;"/></a></p>
 
 <?= $content ?>
 

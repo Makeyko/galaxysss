@@ -126,6 +126,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                                 <li><a href="<?= Url::to(['admin_category/index']) ?>">Категории</a></li>
                                 <li><a href="<?= Url::to(['admin_service/index']) ?>">Услуги</a></li>
                                 <li><a href="<?= Url::to(['admin_events/index']) ?>">События</a></li>
+                                <li><a href="<?= Url::to(['admin_praktice/index']) ?>">Практики</a></li>
 
                                 <li class="divider"></li>
 
