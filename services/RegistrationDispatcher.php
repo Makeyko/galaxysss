@@ -12,7 +12,8 @@ class RegistrationDispatcher extends \cs\services\dispatcher\Registration
     public static function cron($isEcho = true)
     {
         $ids = (new Query())->select('parent_id')->from(static::TABLE)->where(['<', 'date_finish', gmdate('YmdHis')])->column();
-        \app\models\User::deleteByCondition(['in', 'id', $ids]);
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString($ids), 'gs\\app\\services\\RegistrationDispatcher::cron');
+        //\app\models\User::deleteByCondition(['in', 'id', $ids]);
 
         parent::cron($isEcho);
     }
