@@ -52,6 +52,9 @@ return [
     'moderator/unionList/<id:\\d+>/reject'                                                 => 'moderator_unions/reject',
     'moderator/unionList/<id:\\d+>/delete'                                                 => 'moderator_unions/delete',
 
+    'admin/subscribe'                                                                      => 'admin_subscribe/index',
+    'admin/subscribe/add'                                                                  => 'admin_subscribe/add',
+
     'admin/serviceList'                                                                    => 'admin_service/index',
     'admin/serviceList/add'                                                                => 'admin_service/add',
     'admin/serviceList/<id:\\d+>/delete'                                                   => 'admin_service/delete',
