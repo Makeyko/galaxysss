@@ -98,8 +98,7 @@ class Registration implements DispatcherInterface
     public static function cron($isEcho = true)
     {
         \Yii::info(\yii\helpers\VarDumper::dumpAsString((new Query())->select('*')->from(static::TABLE)->where(['<', 'date_finish', gmdate('YmdHis')])->all()), 'gs\\app\\services\\RegistrationDispatcher::cron');
-        //$count = (new Query())->createCommand()->delete(static::TABLE, ['<', 'date_finish', gmdate('YmdHis')])->execute();
-        $count = 0;
+        $count = (new Query())->createCommand()->delete(static::TABLE, ['<', 'date_finish', gmdate('YmdHis')])->execute();
         if ($isEcho) echo 'Удалено строк: ' . $count;
     }
 
