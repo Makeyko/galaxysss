@@ -29,7 +29,7 @@ class SubscribeHistory extends \cs\base\BaseForm
         static::$fields = [
             [
                 'content',
-                'Описание',
+                'Содержание',
                 0,
                 'string',
                 'widget' => [

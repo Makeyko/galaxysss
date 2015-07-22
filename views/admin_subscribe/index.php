@@ -26,20 +26,14 @@ $this->registerJsFile('/js/pages/admin_subscribe/index.js', [
         foreach ($items as $item) {
             ?>
             <a href="<?= Url::to([
-                    'admin_article/edit',
+                    'admin_subscribe/view',
                     'id' => $item['id']
                 ]) ?>" class="list-group-item" id="newsItem-<?= $item['id'] ?>">
-                <h4><?= $item['header'] ?></h4>
+                <h4><?= $item['subject'] ?></h4>
 
                 <div class="row">
-                    <div class="col-lg-3">
-                        <?php if ($item['image'] . '' != '') { ?>
-                            <img src="<?= $item['image'] ?>" class="thumbnail" width="80">
-                        <?php } ?>
-                    </div>
-
                     <div class="col-lg-9">
-                        <?= Html::tag('span', GsssHtml::dateString($item['date_insert']), ['style' => 'font-size: 80%; margin-bottom:10px; color: #c0c0c0;']) ?>
+                        <?= Html::tag('span', GsssHtml::dateString(date('Y-m-d',$item['date_insert'])), ['style' => 'font-size: 80%; margin-bottom:10px; color: #c0c0c0;']) ?>
                         <br>
                         <?= \cs\services\Str::sub(strip_tags($item['content']), 0, 200) . '...' ?>
                         <br>
@@ -58,15 +52,7 @@ $this->registerJsFile('/js/pages/admin_subscribe/index.js', [
         <div class="row">
             <!-- Split button -->
             <div class="btn-group">
-                <a href="<?= Url::to(['admin_article/add'])?>" class="btn btn-default">Добавить</a>
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="<?= Url::to(['admin_article/add_from_page', 'page' => 'youtube'])?>">Добавить с YouTube</a></li>
-                    <li><a href="<?= Url::to(['admin_article/add_from_page', 'page' => 'verhosvet'])?>">Добавить с Verhosvet</a></li>
-                </ul>
+                <a href="<?= Url::to(['admin_subscribe/add'])?>" class="btn btn-default">Добавить</a>
             </div>
         </div>
     </div>

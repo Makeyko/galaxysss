@@ -54,6 +54,7 @@ return [
 
     'admin/subscribe'                                                                      => 'admin_subscribe/index',
     'admin/subscribe/add'                                                                  => 'admin_subscribe/add',
+    'admin/subscribe/<id:\\d+>'                                                            => 'admin_subscribe/view',
 
     'admin/serviceList'                                                                    => 'admin_service/index',
     'admin/serviceList/add'                                                                => 'admin_service/add',

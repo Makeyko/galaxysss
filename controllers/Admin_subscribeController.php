@@ -27,4 +27,13 @@ class Admin_subscribeController extends AdminBaseController
             ]);
         }
     }
+
+    public function actionView($id)
+    {
+        $item = \app\models\SubscribeHistory::find($id);
+
+        return $this->render([
+            'item' => $item->getFields(),
+        ]);
+    }
 }

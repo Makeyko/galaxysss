@@ -6,8 +6,8 @@ use app\models\UnionCategory;
 use yii\db\Query;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $form cs\base\BaseForm */
+/* @var $model  */
 
 $this->title = 'Добавить статью';
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,15 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'header')->label('Название') ?>
-                <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 20]) ?>
-                <?= $form->field($model, 'content')->label('Полно')->widget('cs\Widget\HtmlContent\HtmlContent') ?>
-                <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
-                    'tableName' => 'gs_unions_tree',
-                    'select'    => 'id, header as name',
-                ]) ?>
+                <?= $model->field($form, 'subject') ?>
+                <?= $model->field($form, 'content') ?>
 
                 <hr>
                 <div class="form-group">
