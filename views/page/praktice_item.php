@@ -22,9 +22,9 @@ $this->registerJs("$('#share').popover()");
     <div class="col-lg-8" style="padding-bottom: 50px;">
         <?= $item['content'] ?>
         <hr>
-        <?php if (isset($newsItem['source'])): ?>
-            <?php if ($newsItem['source'] != ''): ?>
-                <?= Html::a('Ссылка на источник »', $newsItem['source'], [
+        <?php if (isset($item['source'])): ?>
+            <?php if ($item['source'] != ''): ?>
+                <?= Html::a('Ссылка на источник »', $item['source'], [
                     'class'  => 'btn btn-primary',
                     'target' => '_blank',
                 ]) ?>
