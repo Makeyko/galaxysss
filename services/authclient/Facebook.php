@@ -27,7 +27,6 @@ use yii\helpers\ArrayHelper;
 
 class Facebook extends \yii\authclient\clients\Facebook implements authClientInterface
 {
-
     /**
      * @param array $attributes поля выдаваемые функцией getUserAttributes();
      *
@@ -53,6 +52,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_reg'             => gmdate('YmdHis'),
             'datetime_activate'        => gmdate('YmdHis'),
             'is_active'                => 1,
+            'is_confirm'               => 1,
             'subscribe_is_site_update' => 1,
             'subscribe_is_news'        => 1,
         ];
@@ -73,10 +73,15 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
      */
     public function attach($attributes, $userIdentity)
     {
-        $userIdentity->update([
+        $fields = [
             'fb_id'   => $attributes['id'],
             'fb_link' => $attributes['link'],
-        ]);
+        ];
+        if ($userIdentity->getEmail() == '') {
+            $fields['email'] = $attributes['email'];
+            $fields['is_confirm'] = 1;
+        }
+        $userIdentity->update($fields);
         if (!$userIdentity->hasAvatar()) {
             $userIdentity->setAvatarFromUrl('https://graph.facebook.com/' . $attributes['id'] . '/picture?type=large', 'jpg');
         }
