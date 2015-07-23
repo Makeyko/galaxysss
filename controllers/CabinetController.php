@@ -234,6 +234,25 @@ class CabinetController extends BaseController
         }
     }
 
+    /**
+     * Отсоединяет профиль соц сети
+     * REQUEST:
+     * - name - string - название соц сети \yii\authclient\clients\*::defaultName()
+     */
+    public function actionProfile_unlink_social_network()
+    {
+        $name = self::getParam('name', '');
+        try {
+            /** @var \app\services\authclient\authClientInterface $client */
+            $client = Yii::$app->authClientCollection->getClient($name);
+            $client->unLink(Yii::$app->user->identity);
+
+            return self::jsonSuccess();
+        } catch (\yii\base\InvalidParamException $e) {
+            return self::jsonErrorId(101, 'Не найден клиент');
+        }
+    }
+
     public function actionMind_map()
     {
         return $this->render();

@@ -118,4 +118,17 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
 
         return ($value == 1);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function unLink($userIdentity)
+    {
+        $userIdentity->update([
+            'fb_id'   => null,
+            'fb_link' => null,
+        ]);
+
+        return true;
+    }
 }
