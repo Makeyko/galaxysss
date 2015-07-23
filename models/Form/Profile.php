@@ -41,6 +41,7 @@ class Profile extends BaseForm
     public $subscribe_is_news;
     public $subscribe_is_site_update;
     public $subscribe_is_mailing;
+    public $subscribe_is_manual;
 
     function __construct($fields = [])
     {

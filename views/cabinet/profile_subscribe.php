@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $model->field($form, 'subscribe_is_news')->checkbox() ?>
                 <?= $model->field($form, 'subscribe_is_site_update')->checkbox() ?>
+                <?= $model->field($form, 'subscribe_is_manual')->checkbox() ?>
 
 
                 <hr class="featurette-divider">
