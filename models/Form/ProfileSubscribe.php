@@ -45,8 +45,9 @@ class ProfileSubscribe extends BaseForm
     function __construct($fields = [])
     {
         static::$fields = [
-            ['subscribe_is_news', 'новости Планеты', 0, 'integer'],
-            ['subscribe_is_site_update', 'обновления сайта', 0, 'integer'],
+            ['subscribe_is_news', 'Новости Планеты', 0, 'integer'],
+            ['subscribe_is_site_update', 'Обновления сайта', 0, 'integer'],
+            ['subscribe_is_manual', 'Ручные рассылки', 0, 'integer'],
         ];
         parent::__construct($fields);
     }
