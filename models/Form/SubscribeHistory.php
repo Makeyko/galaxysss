@@ -3,7 +3,9 @@
 namespace app\models\Form;
 
 use app\models\NewsItem;
+use app\models\SubscribeItem;
 use app\models\User;
+use app\services\Subscribe;
 use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
@@ -11,6 +13,8 @@ use yii\base\Model;
 use cs\Widget\FileUpload2\FileUpload;
 use yii\db\Query;
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -57,6 +61,36 @@ class SubscribeHistory extends \cs\base\BaseForm
                 return $fields;
             },
         ]);
+        $class = new \app\models\SubscribeHistory($item);
+        // получаю content
+        {
+            $content = $class->getField('content');
+            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
+            $content = str_get_html($content);
+            foreach ($content->find('img') as $element) {
+                $src = $element->attr['src'];
+                if (StringHelper::startsWith($src, 'http') == false) {
+                    $element->attr['src'] = Url::to($src, true);
+                }
+            }
+            $content = $content->root->outertext();
+            $class->setContent($content);
+        }
+        // добавляю рассылку
+        {
+            $subscribeItem = new SubscribeItem();
+            $subscribeItem->subject = $class->getField('subject');
+            $subscribeItem->type = Subscribe::TYPE_MANUAL;
+
+            /** @var \yii\swiftmailer\Mailer $mailer */
+            $mailer = Yii::$app->mailer;
+            $view = 'subscribe/manual';
+            $options = [
+                'subscribeHistory' => $class
+            ];
+            $subscribeItem->html = $mailer->render('html/' . $view, $options, 'layouts/html');
+            Subscribe::add($subscribeItem);
+        }
 
         return $item;
     }

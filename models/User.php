@@ -3,11 +3,15 @@
 namespace app\models;
 
 use app\services\RegistrationDispatcher;
+use cs\services\Security;
 use cs\services\SitePath;
 use cs\services\VarDumper;
+use Imagine\Image\Box;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use cs\services\UploadFolderDispatcher;
+use yii\imagine\Image;
 
 class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
 {
@@ -154,6 +158,9 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     /**
      * Устанавливает новый аватар из адреса интернет
      *
+     * @param string $url       полный url на картинку, может быть прямоугольной
+     * @param string $extension расширение которое должно быть в результируеющем файле
+     *
      * @return \cs\services\SitePath
      */
     public function setAvatarFromUrl($url, $extension = null)
@@ -163,8 +170,13 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             $pathinfo = pathinfo($info['path']);
             $extension = $pathinfo['extension'];
         }
+        $image = new Image();
+        $imageFileName = \Yii::getAlias('@runtime/temp_images');
+        FileHelper::createDirectory($imageFileName);
+        $imageFileName = DIRECTORY_SEPARATOR . time() . '_' . Security::generateRandomString(10) . '.' . $extension;
+        $image->getImagine()->load(file_get_contents($url))->thumbnail(new Box(300, 300))->save($imageFileName, ['format' => 'jpg', 'quality' => 100]);
 
-        return $this->setAvatarAsContent(file_get_contents($url), $extension);
+        return $this->setAvatarAsContent(file_get_contents($imageFileName), $extension);
     }
 
     /**

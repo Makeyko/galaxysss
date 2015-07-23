@@ -20,21 +20,29 @@ class Subscribe
 {
     const TYPE_NEWS        = 1;
     const TYPE_SITE_UPDATE = 2;
+    const TYPE_MANUAL      = 3;
 
     /**
      * Добавляет записи для рассылки в таблицу рассылки
      *
-     * @param SiteContentInterface $subscribeItem тема письма
+     * @param SiteContentInterface | \app\models\SubscribeItem $item тема письма
      */
-    public static function add(SiteContentInterface $item)
+    public static function add($item)
     {
-        $subscribeItem = $item->getMailContent();
+        if ($item instanceof SiteContentInterface) {
+            $subscribeItem = $item->getMailContent();
+        } else {
+            $subscribeItem = $item;
+        }
         switch ($subscribeItem->type) {
             case self::TYPE_NEWS:
                 $where = ['subscribe_is_news' => 1];
                 break;
             case self::TYPE_SITE_UPDATE:
                 $where = ['subscribe_is_site_update' => 1];
+                break;
+            case self::TYPE_MANUAL:
+                $where = ['subscribe_is_manual' => 1];
                 break;
         }
 
