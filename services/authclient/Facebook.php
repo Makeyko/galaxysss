@@ -73,6 +73,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
      */
     public function attach($attributes, $userIdentity)
     {
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString([$attributes, $userIdentity]), 'gs\\user');
         $fields = [
             'fb_id'   => $attributes['id'],
             'fb_link' => $attributes['link'],
