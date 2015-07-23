@@ -36,5 +36,14 @@ interface authClientInterface
      */
     public function isAuthorize();
 
+    /**
+     * Отсоединяет профиль
+     *
+     * @param \app\models\User $userIdentity
+     *
+     * @return bool
+     */
+    public function unLink($userIdentity);
+
 
 } 

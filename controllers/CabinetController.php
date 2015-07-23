@@ -234,6 +234,16 @@ class CabinetController extends BaseController
         }
     }
 
+    /**
+     * Отсоединяет профиль соц сети
+     * REQUEST:
+     * - name - string - название соц сети
+     */
+    public function actionProfile_unlink_social_network()
+    {
+
+    }
+
     public function actionMind_map()
     {
         return $this->render();

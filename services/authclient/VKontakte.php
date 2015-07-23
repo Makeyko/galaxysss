@@ -154,4 +154,17 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
 
         return ($value == 1);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function unLink($userIdentity)
+    {
+        $userIdentity->update([
+            'vk_id'   => null,
+            'vk_link' => null,
+        ]);
+
+        return true;
+    }
 }
