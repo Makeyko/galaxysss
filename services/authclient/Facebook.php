@@ -53,6 +53,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_reg'             => gmdate('YmdHis'),
             'datetime_activate'        => gmdate('YmdHis'),
             'is_active'                => 1,
+            'is_confirm'               => 1,
             'subscribe_is_site_update' => 1,
             'subscribe_is_news'        => 1,
         ];
