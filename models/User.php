@@ -174,7 +174,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
         $image = new Image();
         $imageFileName = \Yii::getAlias('@runtime/temp_images');
         FileHelper::createDirectory($imageFileName);
-        $imageFileName = DIRECTORY_SEPARATOR . time() . '_' . Security::generateRandomString(10) . '.' . $extension;
+        $imageFileName .= DIRECTORY_SEPARATOR . time() . '_' . Security::generateRandomString(10) . '.' . $extension;
         \Yii::info(\yii\helpers\VarDumper::dumpAsString($imageFileName), 'gs\\user');
         $image->getImagine()->load(file_get_contents($url))->thumbnail(new Box(300, 300))->save($imageFileName, ['format' => 'jpg', 'quality' => 100]);
 
