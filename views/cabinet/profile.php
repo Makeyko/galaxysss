@@ -47,8 +47,8 @@ $this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
                     <tr>
                         <td>Facebook</td>
                         <td>
-                            <?php if (isset($model->fb_id)) { ?>
-                                <a href="https://www.facebook.com/profile.php?id=<?= $model->fb_id ?>" target="_blank">Профиль</a>
+                            <?php if (isset($model->fb_vink)) { ?>
+                                <a href="<?= $model->fb_vink ?>" target="_blank">Профиль</a>
                                 <button class="btn btn-default btn-xs buttonUnLink" data-name="facebook" style="margin-left: 10px;" type="button">Отсоединить</button>
                             <?php } else { ?>
                                 <a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
