@@ -64,8 +64,6 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
             'vk_id'     => $attributes['uid'],
             'is_active' => 1,
         ]);
-
-
     }
 
     public function register($attributes)
@@ -81,9 +79,10 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
             'is_active'                => 1,
             'is_confirm'               => 1,
             'birth_date'               => $this->getBirthDate($attributes),
-            'subscribe_is_site_update' => 1,
-            'subscribe_is_news'        => 1,
         ]);
+        foreach(\app\services\Subscribe::$userFieldList as $field) {
+            $fields[$field] = 1;
+        }
         $user->setAvatarFromUrl($attributes['photo_200']);
 
         return $user;
