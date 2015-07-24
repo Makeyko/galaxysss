@@ -81,6 +81,7 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
         $siteUpdateItem->name = $this->getName();
         $siteUpdateItem->image = $this->getImage($isScheme);
         $siteUpdateItem->link = $this->getLink($isScheme);
+        $siteUpdateItem->type = SiteUpdateItem::TYPE_CHANNELING;
 
         return $siteUpdateItem;
     }

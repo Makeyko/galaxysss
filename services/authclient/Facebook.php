@@ -54,6 +54,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'is_active'                => 1,
             'is_confirm'               => 1,
         ];
+        // добавляю поля для подписки
         foreach(\app\services\Subscribe::$userFieldList as $field) {
             $fields[$field] = 1;
         }

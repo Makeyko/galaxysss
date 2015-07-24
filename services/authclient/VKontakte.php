@@ -80,6 +80,7 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
             'is_confirm'               => 1,
             'birth_date'               => $this->getBirthDate($attributes),
         ]);
+        // добавляю поля для подписки
         foreach(\app\services\Subscribe::$userFieldList as $field) {
             $fields[$field] = 1;
         }
