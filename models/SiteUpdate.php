@@ -29,6 +29,7 @@ class SiteUpdate extends \cs\base\DbRecord
             'name'  => $item->name,
             'image' => $item->image,
             'link'  => $item->link,
+            'type'  => $item->type,
         ]);
     }
 }
