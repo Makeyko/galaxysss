@@ -98,6 +98,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             'is_confirm'               => 0,
             'datetime_reg'             => gmdate('YmdHis'),
         ];
+        // добавляю поля для подписки
         foreach(\app\services\Subscribe::$userFieldList as $field) {
             $fields[$field] = 1;
         }
