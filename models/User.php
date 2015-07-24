@@ -97,9 +97,10 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             'is_active'                => 0,
             'is_confirm'               => 0,
             'datetime_reg'             => gmdate('YmdHis'),
-            'subscribe_is_site_update' => 1,
-            'subscribe_is_news'        => 1,
         ];
+        foreach(\app\services\Subscribe::$userFieldList as $field) {
+            $fields[$field] = 1;
+        }
         \Yii::info('REQUEST: ' . \yii\helpers\VarDumper::dumpAsString($_REQUEST), 'gs\\user_registration');
         \Yii::info('Поля для регистрации: ' . \yii\helpers\VarDumper::dumpAsString($fields), 'gs\\user_registration');
         $user = self::insert($fields);

@@ -29,9 +29,21 @@ class SubscribeController extends BaseController
     public function actionUnsubscribe()
     {
         self::validateRequestJson([
-            ['required', ['mail', 'type', 'hash']],
-            ['integer', ['type']],
-            ['email', ['mail']],
+            ['required',
+             [
+                 'mail',
+                 'type',
+                 'hash'
+             ]
+            ],
+            [
+                'integer',
+                ['type']
+            ],
+            [
+                'email',
+                ['mail']
+            ],
         ]);
         $mail = self::getParam('mail');
         $type = self::getParam('type');
@@ -82,26 +94,29 @@ class SubscribeController extends BaseController
      */
     public function actionMail()
     {
-        $email =  self::getParam('email');
-        $name =  self::getParam('name');
+        $email = self::getParam('email');
+        $name = self::getParam('name');
 
         if (Yii::$app->user->isGuest) {
             $user = User::insert([
                 'email'                    => $email,
                 'subscribe_is_site_update' => 1,
                 'subscribe_is_news'        => 1,
+                'subscribe_is_manual'      => 1,
                 'datetime_reg'             => gmdate('YmdHis'),
                 'is_active'                => 0,
                 'is_confirm'               => 0,
                 'name_first'               => $name,
             ]);
-        } else {
+        }
+        else {
             /** @var \app\models\User $user */
             $user = Yii::$app->user->identity;
             $user->update([
                 'email'                    => $email,
                 'subscribe_is_site_update' => 1,
                 'subscribe_is_news'        => 1,
+                'subscribe_is_manual'      => 1,
                 'datetime_reg'             => gmdate('YmdHis'),
                 'is_active'                => 0,
                 'is_confirm'               => 0,

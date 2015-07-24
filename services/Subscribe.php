@@ -1,13 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: prog3
- * Date: 01.07.15
- * Time: 18:20
- */
+
 
 namespace app\services;
-
 
 use app\models\SiteContentInterface;
 use app\models\SubscribeMailItem;
@@ -21,6 +15,14 @@ class Subscribe
     const TYPE_NEWS        = 1;
     const TYPE_SITE_UPDATE = 2;
     const TYPE_MANUAL      = 3;
+
+    /** @var array Список полей для хранения информации о типах подписки */
+    public static $userFieldList = [
+        'subscribe_is_site_update',
+        'subscribe_is_news',
+        'subscribe_is_manual',
+    ];
+
 
     /**
      * Добавляет записи для рассылки в таблицу рассылки

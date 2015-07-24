@@ -53,9 +53,10 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_activate'        => gmdate('YmdHis'),
             'is_active'                => 1,
             'is_confirm'               => 1,
-            'subscribe_is_site_update' => 1,
-            'subscribe_is_news'        => 1,
         ];
+        foreach(\app\services\Subscribe::$userFieldList as $field) {
+            $fields[$field] = 1;
+        }
         if (isset($attributes['email'])) {
             $fields['email'] = $attributes['email'];
         }
