@@ -81,6 +81,8 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Регистрирует пользователей
+     *
      * @param $email
      * @param $password
      *
@@ -89,7 +91,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     public static function registration($email, $password)
     {
         $email = strtolower($email);
-        $user = self::insert([
+        $fields = [
             'email'                    => $email,
             'password'                 => self::hashPassword($password),
             'is_active'                => 0,
@@ -97,7 +99,10 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             'datetime_reg'             => gmdate('YmdHis'),
             'subscribe_is_site_update' => 1,
             'subscribe_is_news'        => 1,
-        ]);
+        ];
+        \Yii::info('REQUEST: ' . \yii\helpers\VarDumper::dumpAsString($_REQUEST), 'gs\\user_registration');
+        \Yii::info('Поля для регистрации: ' . \yii\helpers\VarDumper::dumpAsString($fields), 'gs\\user_registration');
+        $user = self::insert($fields);
         $fields = RegistrationDispatcher::add($user->getId());
         \cs\Application::mail($email, 'Подтверждение регистрации', 'registration', [
             'url'      => Url::to([
