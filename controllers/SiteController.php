@@ -53,6 +53,12 @@ class SiteController extends BaseController
         ]);
     }
 
+    public function actionTest()
+    {
+        Yii::$app->session->open();
+        VarDumper::dump(Yii::$app->cache->get(Yii::$app->session->getId() . '/maya'));
+    }
+
     public function actionSite_update()
     {
         return $this->render([

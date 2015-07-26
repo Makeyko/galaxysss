@@ -26,7 +26,7 @@ var LayoutMenu = {
 
         // установка popover
         if (typeof maya == 'undefined') {
-            maya = Maya.calc(day, m + 1, y);
+            maya = GSSS.calendar.maya.driver1.calc(day, m + 1, y);
             ajaxJson({
                 url: '/calendar/save',
                 data: {
@@ -42,7 +42,7 @@ var LayoutMenu = {
             $('#calendarMayaStamp').attr('src', pathMaya + '/images/stamp3/' + maya.stamp + '.gif');
         }
 
-        var stampItem = Maya.stampList[maya.stamp - 1];
+        var stampItem = GSSS.calendar.maya.stampList[maya.stamp - 1];
         var objPopover = $('#calendarMayaDescription');
         objPopover.find('h4').html(stampItem[0] + ' <sup title="Тон"><abbr>' + maya.ton + '</abbr></sup>');
         $(objPopover.find('p')[0]).html(stampItem[3]);

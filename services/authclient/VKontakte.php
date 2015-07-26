@@ -68,7 +68,7 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
 
     public function register($attributes)
     {
-        $user = User::insert([
+        $fields = [
             'vk_id'                    => $attributes['uid'],
             'name_first'               => $attributes['first_name'],
             'name_last'                => $attributes['last_name'],
@@ -77,13 +77,15 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements authClientI
             'datetime_reg'             => gmdate('YmdHis'),
             'datetime_activate'        => gmdate('YmdHis'),
             'is_active'                => 1,
-            'is_confirm'               => 1,
+            'is_confirm'               => 0,
             'birth_date'               => $this->getBirthDate($attributes),
-        ]);
+        ];
         // добавляю поля для подписки
         foreach(\app\services\Subscribe::$userFieldList as $field) {
             $fields[$field] = 1;
         }
+        $user = User::insert($fields);
+        \Yii::info('$fields: ' . \yii\helpers\VarDumper::dumpAsString($fields), 'gs\\fb_registration');
         $user->setAvatarFromUrl($attributes['photo_200']);
 
         return $user;

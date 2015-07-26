@@ -51,12 +51,15 @@ GSSS.calendar.maya.driver1 = {
 
         /** int количество дней между датами dateBegin и date */
         var allDays = GSSS.calendar.maya.driver1.calcDiff(begin, end);
+        console.log(allDays);
         var visokosDays = 0;
         var normalizedDays = allDays - visokosDays;
         var ostatokKin = normalizedDays % 260;
         var kin = (startKin + (direction * ostatokKin)) % 260;
         if (kin <= 0) kin = 260 + kin;
-
+        //kin--;
+        //if (kin <= 0) kin = 260 + kin;
+        console.log(kin);
         tmp1 = kin % 13;
         if (tmp1 == 0) {
             tmp1 = 13;
@@ -199,3 +202,4 @@ GSSS.calendar.maya.driver1 = {
 
 };
 
+console.log(GSSS.calendar.maya.driver1.calc([27, 7, 2015]));
