@@ -79,7 +79,7 @@ class Event extends \cs\base\BaseForm
             [
                 'content',
                 'Описание',
-                1,
+                0,
                 'string',
                 'widget' => [
                     'cs\Widget\HtmlContent\HtmlContent',

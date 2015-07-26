@@ -61,6 +61,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
         if (isset($attributes['email'])) {
             $fields['email'] = $attributes['email'];
         }
+        \Yii::info('$fields: ' . \yii\helpers\VarDumper::dumpAsString($fields), 'gs\\fb_registration');
         $user = User::insert($fields);
         $user->setAvatarFromUrl('https://graph.facebook.com/'.$attributes['id'].'/picture?type=large');
 
