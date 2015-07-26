@@ -3,11 +3,15 @@
 namespace app\models;
 
 use app\services\RegistrationDispatcher;
+use cs\services\Security;
 use cs\services\SitePath;
 use cs\services\VarDumper;
+use Imagine\Image\Box;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use cs\services\UploadFolderDispatcher;
+use yii\imagine\Image;
 
 class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
 {
@@ -77,6 +81,8 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Регистрирует пользователей
+     *
      * @param $email
      * @param $password
      *
@@ -85,15 +91,20 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     public static function registration($email, $password)
     {
         $email = strtolower($email);
-        $user = self::insert([
+        $fields = [
             'email'                    => $email,
             'password'                 => self::hashPassword($password),
             'is_active'                => 0,
             'is_confirm'               => 0,
             'datetime_reg'             => gmdate('YmdHis'),
-            'subscribe_is_site_update' => 1,
-            'subscribe_is_news'        => 1,
-        ]);
+        ];
+        // добавляю поля для подписки
+        foreach(\app\services\Subscribe::$userFieldList as $field) {
+            $fields[$field] = 1;
+        }
+        \Yii::info('REQUEST: ' . \yii\helpers\VarDumper::dumpAsString($_REQUEST), 'gs\\user_registration');
+        \Yii::info('Поля для регистрации: ' . \yii\helpers\VarDumper::dumpAsString($fields), 'gs\\user_registration');
+        $user = self::insert($fields);
         $fields = RegistrationDispatcher::add($user->getId());
         \cs\Application::mail($email, 'Подтверждение регистрации', 'registration', [
             'url'      => Url::to([
@@ -154,6 +165,9 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     /**
      * Устанавливает новый аватар из адреса интернет
      *
+     * @param string $url       полный url на картинку, может быть прямоугольной
+     * @param string $extension расширение которое должно быть в результируеющем файле
+     *
      * @return \cs\services\SitePath
      */
     public function setAvatarFromUrl($url, $extension = null)
@@ -163,8 +177,15 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             $pathinfo = pathinfo($info['path']);
             $extension = $pathinfo['extension'];
         }
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString($url), 'gs\\user');
+        $image = new Image();
+        $imageFileName = \Yii::getAlias('@runtime/temp_images');
+        FileHelper::createDirectory($imageFileName);
+        $imageFileName .= DIRECTORY_SEPARATOR . time() . '_' . Security::generateRandomString(10) . '.' . $extension;
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString($imageFileName), 'gs\\user');
+        $image->getImagine()->load(file_get_contents($url))->thumbnail(new Box(300, 300))->save($imageFileName, ['format' => 'jpg', 'quality' => 100]);
 
-        return $this->setAvatarAsContent(file_get_contents($url), $extension);
+        return $this->setAvatarAsContent(file_get_contents($imageFileName), $extension);
     }
 
     /**

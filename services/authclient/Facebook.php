@@ -27,7 +27,6 @@ use yii\helpers\ArrayHelper;
 
 class Facebook extends \yii\authclient\clients\Facebook implements authClientInterface
 {
-
     /**
      * @param array $attributes поля выдаваемые функцией getUserAttributes();
      *
@@ -53,9 +52,12 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
             'datetime_reg'             => gmdate('YmdHis'),
             'datetime_activate'        => gmdate('YmdHis'),
             'is_active'                => 1,
-            'subscribe_is_site_update' => 1,
-            'subscribe_is_news'        => 1,
+            'is_confirm'               => 1,
         ];
+        // добавляю поля для подписки
+        foreach(\app\services\Subscribe::$userFieldList as $field) {
+            $fields[$field] = 1;
+        }
         if (isset($attributes['email'])) {
             $fields['email'] = $attributes['email'];
         }
@@ -73,10 +75,16 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
      */
     public function attach($attributes, $userIdentity)
     {
-        $userIdentity->update([
+        \Yii::info(\yii\helpers\VarDumper::dumpAsString([$attributes, $userIdentity]), 'gs\\user');
+        $fields = [
             'fb_id'   => $attributes['id'],
             'fb_link' => $attributes['link'],
-        ]);
+        ];
+        if ($userIdentity->getEmail() == '') {
+            $fields['email'] = $attributes['email'];
+            $fields['is_confirm'] = 1;
+        }
+        $userIdentity->update($fields);
         if (!$userIdentity->hasAvatar()) {
             $userIdentity->setAvatarFromUrl('https://graph.facebook.com/' . $attributes['id'] . '/picture?type=large', 'jpg');
         }
@@ -111,5 +119,18 @@ class Facebook extends \yii\authclient\clients\Facebook implements authClientInt
         if (is_null($value)) return false;
 
         return ($value == 1);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function unLink($userIdentity)
+    {
+        $userIdentity->update([
+            'fb_id'   => null,
+            'fb_link' => null,
+        ]);
+
+        return true;
     }
 }

@@ -4,6 +4,7 @@ namespace app\models\Form;
 
 use app\models\User;
 use cs\base\BaseForm;
+use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
 use yii\base\Model;
@@ -40,13 +41,14 @@ class ProfileSubscribe extends BaseForm
 
     public $subscribe_is_news;
     public $subscribe_is_site_update;
-    public $subscribe_is_mailing;
+    public $subscribe_is_manual;
 
     function __construct($fields = [])
     {
         static::$fields = [
-            ['subscribe_is_news', 'новости Планеты', 0, 'integer'],
-            ['subscribe_is_site_update', 'обновления сайта', 0, 'integer'],
+            ['subscribe_is_news', 'Новости Планеты', 0, 'integer'],
+            ['subscribe_is_site_update', 'Обновления сайта', 0, 'integer'],
+            ['subscribe_is_manual', 'Ручные рассылки', 0, 'integer'],
         ];
         parent::__construct($fields);
     }

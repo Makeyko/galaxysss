@@ -9,4 +9,9 @@ class SubscribeHistory extends \cs\base\DbRecord
 {
     const TABLE = 'gs_subscribe_history';
 
+    public function setContent($data)
+    {
+        $this->fields['content'] = $data;
+    }
+
 }

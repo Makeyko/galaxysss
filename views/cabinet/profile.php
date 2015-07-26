@@ -11,6 +11,13 @@ use app\models\UnionCategory;
 
 $this->title = 'Редактирование профиля';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+
+$this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
+    'app\assets\App\Asset',
+]]);
+
 ?>
 <div class="container">
     <div class="page-header">
@@ -40,8 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <td>Facebook</td>
                         <td>
-                            <?php if (isset($model->fb_id)) { ?>
-                                <a href="https://www.facebook.com/profile.php?id=<?= $model->fb_id ?>" target="_blank">Профиль</a>
+                            <?php if (isset($model->fb_link)) { ?>
+                                <a href="<?= $model->fb_link ?>" target="_blank">Профиль</a>
+                                <button class="btn btn-default btn-xs buttonUnLink" data-name="facebook" style="margin-left: 10px;" type="button">Отсоединить</button>
                             <?php } else { ?>
                                 <a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
                                     профиль</a>
@@ -53,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>
                             <?php if (isset($model->vk_id)) { ?>
                                 <a href="https://vk.com/id<?= $model->vk_id ?>" target="_blank">Профиль</a>
+                                <button class="btn btn-default btn-xs buttonUnLink" data-name="vkontakte" style="margin-left: 10px;" type="button">Отсоединить</button>
                             <?php } else { ?>
                                 <a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
                                     профиль</a>
@@ -63,7 +72,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <hr class="featurette-divider">
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                        'class' => 'btn btn-default',
+                        'name' => 'contact-button',
+                        'style' => 'width: 100%;',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
 
