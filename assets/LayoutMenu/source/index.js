@@ -25,7 +25,7 @@ var LayoutMenu = {
         $('#dateThis').html(dayString);
 
         // установка popover
-        if (typeof maya == 'undefined' || true) {
+        if (typeof maya == 'undefined') {
             maya = GSSS.calendar.maya.driver1.calc([day, m + 1, y]);
             ajaxJson({
                 url: '/calendar/save',
