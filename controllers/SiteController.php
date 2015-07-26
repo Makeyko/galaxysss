@@ -57,6 +57,7 @@ class SiteController extends BaseController
     {
         Yii::$app->session->open();
         VarDumper::dump(Yii::$app->cache->get(Yii::$app->session->getId() . '/maya'));
+        Yii::$app->cache->delete(Yii::$app->session->getId() . '/maya');
     }
 
     public function actionSite_update()
