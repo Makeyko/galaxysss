@@ -7,6 +7,11 @@ use cs\models\Calendar\Maya;
 
 $this->title = 'Виджеты для календаря Майя';
 
+$this->registerJsFile('/js/driver1.js', [
+    'depends' => [
+        'app\assets\Maya\Asset',
+    ]
+]);
 $this->registerJsFile('/js/pages/calendar/widget.js', [
     'depends' => [
         'app\assets\LayoutMenu\Asset',
