@@ -97,7 +97,7 @@ class SiteController extends BaseController
         }
         $type = self::getParam('type', '');
         if ($type) {
-            switch() {
+            switch($type) {
                 case 'INFO':    $type = \yii\log\Logger::LEVEL_INFO; break;
                 case 'ERROR':   $type = \yii\log\Logger::LEVEL_ERROR; break;
                 case 'WARNING': $type = \yii\log\Logger::LEVEL_WARNING; break;
