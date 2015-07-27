@@ -112,7 +112,6 @@ $config = [
     ],
     'on beforeRequest' => function ($event) {
         try {
-            \Yii::info(\yii\helpers\VarDumper::dumpAsString($_SERVER) , 'gs\\statistic\\info');
             if (\cs\services\Str::isContain($_SERVER['REQUEST_URI'], '/news/2015/06/30/naivysshaya_tochka_budet_dosti')) {
                 \Yii::info(\yii\helpers\VarDumper::dumpAsString([
                     'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
