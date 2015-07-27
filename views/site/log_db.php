@@ -20,7 +20,25 @@ $this->params['breadcrumbs'][] = $this->title;
             // Simple columns defined by the data contained in $dataProvider.
             // Data from the model's column will be used.
             'id',
-            'level',
+            [
+                'label'   => 'level',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap',
+                ],
+                'content' => function ($model, $key, $index, $column) {
+                    switch($model['level']) {
+                        case \yii\log\Logger::LEVEL_INFO: $type = 'INFO';    break;
+                        case \yii\log\Logger::LEVEL_ERROR: $type = 'ERROR';    break;
+                        case \yii\log\Logger::LEVEL_WARNING: $type = 'WARNING';    break;
+                        case \yii\log\Logger::LEVEL_PROFILE: $type = 'PROFILE';    break;
+                        case \yii\log\Logger::LEVEL_PROFILE_BEGIN: $type = 'PROFILE_BEGIN';    break;
+                        case \yii\log\Logger::LEVEL_PROFILE_END: $type = 'PROFILE_END';    break;
+                        default:  $type = ''; break;
+                    }
+
+                    return $type;
+                }
+            ],
             'category',
             [
                 'label'   => 'date',
