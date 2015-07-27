@@ -108,7 +108,6 @@ class SiteController extends BaseController
                 $query->where(['type' => $type]);
             }
         }
-//        \Yii::info($query->createCommand()->getRawSql(), 'gs\\statistic\\sql');
 
         return $this->render([
             'dataProvider' => new ActiveDataProvider([

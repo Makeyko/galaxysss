@@ -111,16 +111,16 @@ $config = [
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
     'on beforeRequest' => function ($event) {
-        try {
-            if (\cs\services\Str::isContain($_SERVER['REQUEST_URI'], '/news/2015/06/30/naivysshaya_tochka_budet_dosti')) {
-                \Yii::info(\yii\helpers\VarDumper::dumpAsString([
-                    'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
-                    'REMOTE_ADDR'  => $_SERVER['REMOTE_ADDR'],
-                ]) , 'gs\\statistic\\portal888');
-            }
-        } catch(\Exception $e){
-            \Yii::info('error' , 'gs\\statistic\\portal888');
-        }
+//        try {
+//            if (\cs\services\Str::isContain($_SERVER['REQUEST_URI'], '/news/2015/06/30/naivysshaya_tochka_budet_dosti')) {
+//                \Yii::info(\yii\helpers\VarDumper::dumpAsString([
+//                    'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
+//                    'REMOTE_ADDR'  => $_SERVER['REMOTE_ADDR'],
+//                ]) , 'gs\\statistic\\portal888');
+//            }
+//        } catch(\Exception $e){
+//            \Yii::info('error' , 'gs\\statistic\\portal888');
+//        }
     }
 ];
 
