@@ -92,7 +92,7 @@ $(document).ready(function () {
             object = $('#formSubscribeName');
             if (object.length > 0) {
                 if (object.val() == '') {
-                    object.parent().addClass('has-error').find('.help-block-error').show().removeClass('hide');
+                    object.parent().addClass('has-error').find('.help-block-error').html('Это обязательное поле').show().removeClass('hide');
                     object.focus();
 
                     return;
@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
             object = $('#formSubscribeEmail');
             if (object.val() == '') {
-                object.parent().addClass('has-error').find('.help-block-error').show().removeClass('hide');
+                object.parent().addClass('has-error').find('.help-block-error').html('Это обязательное поле').show().removeClass('hide');
                 object.focus();
 
                 return;
@@ -115,6 +115,10 @@ $(document).ready(function () {
                     $('#formSubscribe').remove();
                     setCookie('subscribeIsStarted', 1);
                     infoWindow('Вам на почту выслано подтверждение, пройдите пожалуйста на почту');
+                },
+                errorScript: function(ret) {
+                    object = $('#formSubscribeEmail');
+                    object.parent().addClass('has-error').find('.help-block-error').html(ret.message).show().removeClass('hide');
                 }
             });
         });
