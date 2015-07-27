@@ -56,10 +56,7 @@ $config = [
                     ],
                 ],
                 [
-                    'class'  => 'yii\log\FileTarget',
-                    'levels' => [
-                        'info',
-                    ],
+                    'class'  => 'yii\log\DbTarget',
                     'categories' => ['gs\\*'],
                 ],
                 [
