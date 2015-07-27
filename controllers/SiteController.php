@@ -98,8 +98,8 @@ class SiteController extends BaseController
         $type = self::getParam('type', '');
         if ($type) {
             switch($type) {
-                case 'INFO':    $type = \yii\log\Logger::LEVEL_INFO; break;
-                case 'ERROR':   $type = \yii\log\Logger::LEVEL_ERROR; break;
+                case 'INFO':    $type = \yii\log\Logger::LEVEL_INFO;    break;
+                case 'ERROR':   $type = \yii\log\Logger::LEVEL_ERROR;   break;
                 case 'WARNING': $type = \yii\log\Logger::LEVEL_WARNING; break;
                 case 'PROFILE': $type = \yii\log\Logger::LEVEL_PROFILE; break;
                 default:  $type = null; break;
@@ -108,10 +108,11 @@ class SiteController extends BaseController
                 $query->where(['type' => $type]);
             }
         }
+//        \Yii::info($query->createCommand()->getRawSql(), 'gs\\statistic\\sql');
 
         return $this->render([
             'dataProvider' => new ActiveDataProvider([
-                'query' => Log::query()->orderBy(['log_time' => SORT_DESC]),
+                'query'      => $query,
                 'pagination' => [
                     'pageSize' => 50,
                 ],
