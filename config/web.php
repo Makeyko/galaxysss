@@ -3,16 +3,16 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'            => 'basic',
-    'basePath'      => dirname(__DIR__),
-    'bootstrap'     => ['log'],
-    'language'      => 'ru',
-    'aliases'       => [
+    'id'               => 'basic',
+    'basePath'         => dirname(__DIR__),
+    'bootstrap'        => ['log'],
+    'language'         => 'ru',
+    'aliases'          => [
         '@web'    => __DIR__ . '/public_html/',
         '@csRoot' => __DIR__ . '/../app',
         '@upload' => __DIR__ . '/public_html/upload',
     ],
-    'components'    => [
+    'components'       => [
         'assetManager'         => [
             'appendTimestamp' => true,
         ],
@@ -56,7 +56,10 @@ $config = [
                     ],
                 ],
                 [
-                    'class'      => 'yii\log\DbTarget',
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => [
+                        'info',
+                    ],
                     'categories' => ['gs\\*'],
                 ],
                 [
@@ -104,15 +107,20 @@ $config = [
         ],
 
     ],
-    'params'        => $params,
-    'controllerMap' => [
+    'params'           => $params,
+    'controllerMap'    => [
         'upload'       => 'cs\Widget\FileUploadMany\UploadController',
         'comment'      => 'app\modules\Comment\Controller',
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
-    //    'on beforeRequest' => function ($event) {
-    //
-    //    }
+    'on beforeRequest' => function ($event) {
+        if (\cs\services\Str::isContain($_REQUEST[], '/news/'))      {
+            \Yii::info(\yii\helpers\VarDumper::dumpAsString([
+                'HTTP_REFERER' => $_REQUEST['HTTP_REFERER'],
+                'REMOTE_ADDR' => $_REQUEST['REMOTE_ADDR'],
+            ]) , 'gs\\statistic\\portal888');
+        }
+    }
 ];
 
 if (YII_ENV_DEV) {
