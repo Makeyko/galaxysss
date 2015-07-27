@@ -114,12 +114,12 @@ $config = [
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
     'on beforeRequest' => function ($event) {
-        if (\cs\services\Str::isContain($_REQUEST[], '/news/'))      {
-            \Yii::info(\yii\helpers\VarDumper::dumpAsString([
-                'HTTP_REFERER' => $_REQUEST['HTTP_REFERER'],
-                'REMOTE_ADDR' => $_REQUEST['REMOTE_ADDR'],
-            ]) , 'gs\\statistic\\portal888');
-        }
+//        if (\cs\services\Str::isContain($_REQUEST[], '/news/'))      {
+//            \Yii::info(\yii\helpers\VarDumper::dumpAsString([
+//                'HTTP_REFERER' => $_REQUEST['HTTP_REFERER'],
+//                'REMOTE_ADDR' => $_REQUEST['REMOTE_ADDR'],
+//            ]) , 'gs\\statistic\\portal888');
+//        }
     }
 ];
 
