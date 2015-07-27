@@ -99,6 +99,7 @@ class SubscribeController extends BaseController
     {
         $email = self::getParam('email');
         $name = self::getParam('name');
+        $email = strtolower($email);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return self::jsonErrorId(101, 'Не корректная почта');
