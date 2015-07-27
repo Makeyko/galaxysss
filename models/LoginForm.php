@@ -48,6 +48,9 @@ class LoginForm extends Model
             if (is_null($user)) {
                 return $this->addError($attribute, 'Пользователь не найден');
             }
+            if ($user->getField('password') == '') {
+                return $this->addError($attribute, 'Вы  не завели себе пароль для аккаунта. Зайдите в восстановление пароля');
+            }
             if (!$user->validatePassword($this->password)) {
                 return $this->addError($attribute, 'Не верный пароль');
             }
