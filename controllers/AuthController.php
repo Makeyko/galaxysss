@@ -102,6 +102,12 @@ class AuthController extends BaseController
      * - password - string - пароль
      *
      * @return string
+     * errors
+     * 101, 'Пользователь не найден'
+     * 102, 'Пользователь не активирован'
+     * 103, 'Пользователь заблокирован'
+     * 104, 'Не верный пароль'
+     * 105, 'Вы  не завели себе пароль для аккаунта. Зайдите в восстановление пароля'
      */
     public function actionLogin_ajax()
     {
@@ -113,20 +119,14 @@ class AuthController extends BaseController
         if (is_null($user)) {
             return self::jsonErrorId(101, 'Пользователь не найден');
         }
-        $user = User::find([
-            'email'      => $email,
-            'is_confirm' => 1,
-        ]);
-        if (is_null($user)) {
+        if ($user->getField('is_confirm') != 1) {
             return self::jsonErrorId(102, 'Пользователь не активирован');
         }
-        $user = User::find([
-            'email'      => $email,
-            'is_confirm' => 1,
-            'is_active'  => 1,
-        ]);
-        if (is_null($user)) {
+        if ($user->getField('is_active') != 1) {
             return self::jsonErrorId(103, 'Пользователь заблокирован');
+        }
+        if ($user->getField('password') == '') {
+            return self::jsonErrorId(105, 'Вы  не завели себе пароль для аккаунта. Зайдите в восстановление пароля');
         }
         if ($user->validatePassword($password)) {
             Yii::$app->user->login($user);
