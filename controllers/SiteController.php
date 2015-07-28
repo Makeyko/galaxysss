@@ -51,7 +51,7 @@ class SiteController extends BaseController
         return $this->render('index', [
             'events' => \app\models\Event::query()
                 ->limit(3)
-                ->where(['>', 'end_date', gmdate('Ymd')])
+                ->where(['>=', 'end_date', gmdate('Ymd')])
                 ->orderBy([
                     'date_insert' => SORT_DESC,
                 ])
