@@ -49,7 +49,13 @@ class SiteController extends BaseController
     public function actionIndex()
     {
         return $this->render('index', [
-            'events' => \app\models\Event::query()->limit(3)->orderBy(['date_insert' => SORT_DESC])->all(),
+            'events' => \app\models\Event::query()
+                ->limit(3)
+                ->where(['>', 'end_date', gmdate('Ymd')])
+                ->orderBy([
+                    'date_insert' => SORT_DESC,
+                ])
+                ->all(),
         ]);
     }
 
