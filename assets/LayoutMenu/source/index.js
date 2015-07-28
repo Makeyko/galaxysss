@@ -118,7 +118,7 @@ $(document).ready(function () {
                 },
                 errorScript: function(ret) {
                     object = $('#formSubscribeEmail');
-                    object.parent().addClass('has-error').find('.help-block-error').html(ret.message).show().removeClass('hide');
+                    object.parent().addClass('has-error').find('.help-block-error').html(ret.data).show().removeClass('hide');
                 }
             });
         });
@@ -129,17 +129,17 @@ $(document).ready(function () {
 
 
 
-    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+            disableOn: 700,
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
 
-        fixedContentPos: false
-    });
+            fixedContentPos: false
+        });
 
-    function showError(message) {
+        function showError(message) {
         $('#loginFormError').html(message).show();
     }
     $('.footer')
