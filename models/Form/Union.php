@@ -74,7 +74,7 @@ class Union extends \cs\base\BaseForm
             ],
             [
                 'tree_node_id',
-                'Ссылка',
+                'Раздел',
                 0,
                 'integer',
                 'widget' => [
