@@ -40,6 +40,7 @@ use yii\helpers\Url;
         <li><a href="<?= Url::to(['page/codex']) ?>">Кодекс</a></li>
         <li><a href="<?= Url::to(['page/residence']) ?>">Резиденция</a></li>
         <li><a href="<?= Url::to(['page/hymn']) ?>">Гимн</a></li>
+        <li><a href="<?= Url::to(['page/history']) ?>">История Человечества</a></li>
 
     </ul>
 </li>

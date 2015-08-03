@@ -119,6 +119,7 @@ return [
     'declaration'                                                                          => 'page/declaration',
     'residence'                                                                            => 'page/residence',
     'manifest'                                                                             => 'page/manifest',
+    'history'                                                                              => 'page/history',
 
     'events/<id:\\d+>'                                                                     => 'calendar/events_item',
 
