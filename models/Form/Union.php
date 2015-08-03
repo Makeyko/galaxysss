@@ -3,6 +3,7 @@
 namespace app\models\Form;
 
 use app\models\User;
+use app\services\GsssHtml;
 use cs\services\VarDumper;
 use Yii;
 use yii\base\Model;
@@ -58,7 +59,12 @@ class Union extends \cs\base\BaseForm
                 'content',
                 'Подробности',
                 0,
-                'string'
+                'widget' => [
+                    'cs\Widget\HtmlContent\HtmlContent',
+                    [
+                    ]
+                ]
+
             ],
             [
                 'link',
@@ -68,14 +74,20 @@ class Union extends \cs\base\BaseForm
             ],
             [
                 'tree_node_id',
-                'Ссылка',
+                'Раздел',
                 0,
-                'integer'
+                'integer',
+                'widget' => [
+                    'cs\Widget\TreeSelect\TreeSelect',
+                    [
+                        'tableName' => 'gs_unions_tree'
+                    ]
+                ]
             ],
             [
                 'description',
                 'Описание',
-                1,
+                0,
                 'string'
             ],
             [
@@ -129,26 +141,33 @@ class Union extends \cs\base\BaseForm
 
     public function insert($fieldsCols = null)
     {
-        parent::insert([
+        $row = parent::insert([
             'beforeInsert' => function ($fields) {
                 $fields['user_id'] = Yii::$app->user->identity->getId();
                 $fields['date_insert'] = gmdate('YmdHis');
-                $fields['description'] = \app\services\Content::parseLink($fields['description']);
-                $fields['content'] = \app\services\Content::convertPlainTextToHtml($fields['content']);
 
                 return $fields;
             }
         ]);
 
-        return true;
+        $item = new \app\models\Union($row);
+        $fields = [];
+        if ($row['description'] == '') {
+            $item = new \app\models\Union($row);
+            $fields['description'] = GsssHtml::getMiniText($row['content']);
+            $item->update($fields);
+        }
+
+        return $item;
     }
 
     public function update($fieldsCols = null)
     {
         parent::update([
             'beforeUpdate' => function ($fields) {
-                $fields['description'] = \app\services\Content::parseLink($fields['description']);
-                $fields['content'] = \app\services\Content::convertPlainTextToHtml($fields['content']);
+                if ($fields['description'] == '') {
+                    $fields['description'] = GsssHtml::getMiniText($fields['content']);
+                }
 
                 return $fields;
             }
