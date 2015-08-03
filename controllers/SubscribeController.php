@@ -91,36 +91,49 @@ class SubscribeController extends BaseController
      * Создает подписку для авторизованного или неавторизованного пользователя
      * Высылает письмо подтверждения email
      *
+     * @return string json
+     *                error
+     *                101, 'Такая почта уже зарегистрирована'
      */
     public function actionMail()
     {
         $email = self::getParam('email');
         $name = self::getParam('name');
+        $email = strtolower($email);
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return self::jsonErrorId(101, 'Не корректная почта');
+        }
+        if (User::query(['email' => $email])->exists()) {
+            return self::jsonErrorId(101, 'Такая почта уже зарегистрирована');
+        }
 
         if (Yii::$app->user->isGuest) {
-            $user = User::insert([
+            $fields = [
                 'email'                    => $email,
-                'subscribe_is_site_update' => 1,
-                'subscribe_is_news'        => 1,
-                'subscribe_is_manual'      => 1,
                 'datetime_reg'             => gmdate('YmdHis'),
                 'is_active'                => 0,
                 'is_confirm'               => 0,
                 'name_first'               => $name,
-            ]);
+            ];
+            foreach(Subscribe::$userFieldList as $field) {
+                $fields[$field] = 1;
+            }
+            $user = User::insert($fields);
         }
         else {
             /** @var \app\models\User $user */
             $user = Yii::$app->user->identity;
-            $user->update([
+            $fields = [
                 'email'                    => $email,
-                'subscribe_is_site_update' => 1,
-                'subscribe_is_news'        => 1,
-                'subscribe_is_manual'      => 1,
                 'datetime_reg'             => gmdate('YmdHis'),
                 'is_active'                => 0,
                 'is_confirm'               => 0,
-            ]);
+            ];
+            foreach(Subscribe::$userFieldList as $field) {
+                $fields[$field] = 1;
+            }
+            $user->update($fields);
         }
         $fields = RegistrationDispatcher::add($user->getId());
         \cs\Application::mail($email, 'Подтверждение почты', 'subscribe_activate', [

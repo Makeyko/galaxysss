@@ -49,7 +49,13 @@ class SiteController extends BaseController
     public function actionIndex()
     {
         return $this->render('index', [
-            'events' => \app\models\Event::query()->limit(3)->orderBy(['date_insert' => SORT_DESC])->all(),
+            'events' => \app\models\Event::query()
+                ->limit(3)
+                ->where(['>=', 'end_date', gmdate('Ymd')])
+                ->orderBy([
+                    'date_insert' => SORT_DESC,
+                ])
+                ->all(),
         ]);
     }
 
@@ -90,9 +96,28 @@ class SiteController extends BaseController
 
     public function actionLog_db()
     {
+        $query = Log::query()->orderBy(['log_time' => SORT_DESC]);
+        $category = self::getParam('category', '');
+        if ($category) {
+            $query->where(['like', 'category', $category.'%', false]);
+        }
+        $type = self::getParam('type', '');
+        if ($type) {
+            switch($type) {
+                case 'INFO':    $type = \yii\log\Logger::LEVEL_INFO;    break;
+                case 'ERROR':   $type = \yii\log\Logger::LEVEL_ERROR;   break;
+                case 'WARNING': $type = \yii\log\Logger::LEVEL_WARNING; break;
+                case 'PROFILE': $type = \yii\log\Logger::LEVEL_PROFILE; break;
+                default:  $type = null; break;
+            }
+            if ($type) {
+                $query->where(['type' => $type]);
+            }
+        }
+
         return $this->render([
             'dataProvider' => new ActiveDataProvider([
-                'query' => Log::query()->orderBy(['log_time' => SORT_DESC]),
+                'query'      => $query,
                 'pagination' => [
                     'pageSize' => 50,
                 ],
