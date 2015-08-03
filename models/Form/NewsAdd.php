@@ -4,6 +4,7 @@ namespace app\models\Form;
 
 use app\models\NewsItem;
 use app\models\User;
+use app\services\GsssHtml;
 use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
@@ -19,26 +20,29 @@ class NewsAdd extends \cs\base\BaseForm
     const TABLE = 'gs_news';
 
     public $id;
+
     public $header;
-    public $sort_index;
+    public $source;
+    public $description;
     public $content;
+    public $img;
     public $date_insert;
+
+    public $sort_index;
     public $date_update;
     public $date;
     public $author;
-    public $img;
     public $is_show;
     public $id_string;
-    public $source;
     public $view_counter;
-    public $description;
 
     function __construct($fields = [])
     {
         static::$fields = [
             ['header', 'Название', 1, 'string'],
+            ['description', 'Описание краткое', 0, 'string', [], 'Без HTML'],
             ['source', 'Ссылка', 0, 'url'],
-            ['content', 'Описание', 1, 'string', 'widget' => ['cs\Widget\HtmlContent\HtmlContent']],
+            ['content', 'Описание', 0, 'string', 'widget' => ['cs\Widget\HtmlContent\HtmlContent']],
             ['img', 'Картинка', 0, 'string', 'widget' => [FileUpload::className(), ['options' => [
                 'small' => \app\services\GsssHtml::$formatIcon
             ]]]],
@@ -48,25 +52,37 @@ class NewsAdd extends \cs\base\BaseForm
 
     public function insert($fieldsCols = null)
     {
-        return  parent::insert([
+        $fields =  parent::insert([
             'beforeInsert' => function ($fields) {
-                if (Str::pos('<', $fields['content']) === false) {
-                    $rows = explode("\r", $fields['content']);
-                    $rows2 = [ ];
-                    foreach($rows as $row) {
-                        if (trim($row) != '') $rows2[] = Html::tag('p',  trim($row));
-                    }
-                    $fields['content'] = join("\r\r", $rows2);
-                }
-
                 $fields['date_insert'] = gmdate('YmdHis');
                 $fields['id_string'] =  Str::rus2translit($fields['header']);
                 $fields['is_show'] = 1;
                 $fields['date'] = gmdate('Y-m-d');
 
                 return $fields;
+            },
+
+        ]);
+
+        if ($fields['description'] == '') {
+            $item = new NewsItem($fields);
+            $fields['description'] = GsssHtml::getMiniText($fields['content']);
+            $item->update($fields);
+        }
+
+        return $fields;
+    }
+
+    public function update($fieldsCols = null)
+    {
+        return  parent::update([
+            'beforeUpdate' => function ($fields) {
+                if ($fields['description'] == '') {
+                    $fields['description'] = GsssHtml::getMiniText($fields['content']);
+                }
+
+                return $fields;
             }
         ]);
     }
-
 }

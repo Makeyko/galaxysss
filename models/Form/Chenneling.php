@@ -4,6 +4,7 @@ namespace app\models\Form;
 
 use app\models\NewsItem;
 use app\models\User;
+use app\services\GsssHtml;
 use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
@@ -111,25 +112,18 @@ class Chenneling extends \cs\base\BaseForm
 
                 return $fields;
             },
-            'beforeUpdate' => function ($fields) {
-                if (Str::pos('<', $fields['content']) === false) {
-                    $rows = explode("\r", $fields['content']);
-                    $rows2 = [];
-                    foreach ($rows as $row) {
-                        if (trim($row) != '') $rows2[] = Html::tag('p', trim($row));
-                    }
-                    $fields['content'] = join("\r\r", $rows2);
-                }
-
-                return $fields;
-            }
         ]);
 
         $item = new \app\models\Chenneling($row);
-        $item->update(['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
+        $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
                 'class' => 'thumbnail',
                 'style' => 'width:100%;',
-            ])) . $item->getField('content') ]);
+            ])) . $item->getField('content') ];
+        if ($row['description'] == '') {
+            $item = new NewsItem($row);
+            $fields['description'] = GsssHtml::getMiniText($row['content']);
+        }
+        $item->update($fields);
 
         return $item;
     }
@@ -138,13 +132,8 @@ class Chenneling extends \cs\base\BaseForm
     {
         return parent::update([
             'beforeUpdate' => function ($fields) {
-                if (Str::pos('<', $fields['content']) === false) {
-                    $rows = explode("\r", $fields['content']);
-                    $rows2 = [];
-                    foreach ($rows as $row) {
-                        if (trim($row) != '') $rows2[] = Html::tag('p', trim($row));
-                    }
-                    $fields['content'] = join("\r\r", $rows2);
+                if ($fields['description'] == '') {
+                    $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
 
                 return $fields;

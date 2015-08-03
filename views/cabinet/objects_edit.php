@@ -31,18 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'name')->label('Название') ?>
-                <?= $form->field($model, 'sub_name')->label('Мини описание') ?>
+                <?= $model->field($form, 'name') ?>
+                <?= $model->field($form, 'sub_name') ?>
+                <?= $model->field($form, 'link') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 10]) ?>
+                <?= $model->field($form, 'content') ?>
+                <?= $model->field($form, 'img') ?>
+                <?= $model->field($form, 'tree_node_id') ?>
 
-                <?= $form->field($model, 'link')->label('Ссылка') ?>
-                <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 10]) ?>
-                <?= $form->field($model, 'content')->label('Подробно')->textarea(['rows' => 10]) ?>
-                <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
-                <?= $form->field($model, 'tree_node_id')->label('Раздел')->widget('cs\Widget\TreeSelect\TreeSelect',
-                    [
-                        'tableName' => 'gs_unions_tree'
-                    ]
-                ) ?>
                 <hr class="featurette-divider">
                 <a class="btn btn-default" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
                    aria-controls="collapseExample"> Ссылки на соцсети<span class="caret"

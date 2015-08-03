@@ -6,7 +6,7 @@ use app\models\UnionCategory;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model app\models\Form\NewsAdd */
 
 $this->title = $model->header;
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,10 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'header')->label('Название') ?>
-                <?= $form->field($model, 'source')->label('Источник') ?>
-                <?= $form->field($model, 'content')->label('Содержание')->widget('cs\Widget\HtmlContent\HtmlContent') ?>
-                <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
+                <?= $model->field($form, 'header') ?>
+                <?= $model->field($form, 'source') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 10]) ?>
+                <?= $model->field($form, 'content') ?>
+                <?= $model->field($form, 'img') ?>
 
                 <hr>
                 <div class="form-group">

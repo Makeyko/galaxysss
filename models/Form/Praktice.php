@@ -4,6 +4,7 @@ namespace app\models\Form;
 
 use app\models\NewsItem;
 use app\models\User;
+use app\services\GsssHtml;
 use cs\services\Str;
 use cs\services\VarDumper;
 use Yii;
@@ -101,7 +102,7 @@ class Praktice extends \cs\base\BaseForm
 
     public function insert($fieldsCols = null)
     {
-        return parent::insert([
+        $row = parent::insert([
             'beforeInsert' => function ($fields) {
                 $fields['date_insert'] = time();
                 $fields['id_string'] = Str::rus2translit($fields['header']);
@@ -109,32 +110,28 @@ class Praktice extends \cs\base\BaseForm
 
                 return $fields;
             },
-            'beforeUpdate' => function ($fields) {
-                if (Str::pos('<', $fields['content']) === false) {
-                    $rows = explode("\r", $fields['content']);
-                    $rows2 = [];
-                    foreach ($rows as $row) {
-                        if (trim($row) != '') $rows2[] = Html::tag('p', trim($row));
-                    }
-                    $fields['content'] = join("\r\r", $rows2);
-                }
-
-                return $fields;
-            },
         ]);
+
+        $item = new \app\models\Praktice($row);
+        $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('image')), [
+                'class' => 'thumbnail',
+                'style' => 'width:100%;',
+            ])) . $item->getField('content') ];
+        if ($row['description'] == '') {
+            $item = new NewsItem($row);
+            $fields['description'] = GsssHtml::getMiniText($row['content']);
+        }
+        $item->update($fields);
+
+        return $item;
     }
 
     public function update($fieldsCols = null)
     {
         return parent::update([
             'beforeUpdate' => function ($fields) {
-                if (Str::pos('<', $fields['content']) === false) {
-                    $rows = explode("\r", $fields['content']);
-                    $rows2 = [];
-                    foreach ($rows as $row) {
-                        if (trim($row) != '') $rows2[] = Html::tag('p', trim($row));
-                    }
-                    $fields['content'] = join("\r\r", $rows2);
+                if ($fields['description'] == '') {
+                    $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
 
                 return $fields;
