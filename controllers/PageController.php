@@ -295,6 +295,11 @@ class PageController extends BaseController
         ]);
     }
 
+    public function actionHistory()
+    {
+        return $this->render();
+    }
+
     /**
      * Страница Практик
      *
