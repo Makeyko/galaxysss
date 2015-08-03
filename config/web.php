@@ -22,9 +22,20 @@ $config = [
             'enableCookieValidation' => false,
             'enableCsrfValidation'   => false,
         ],
-        'cache'                => [
-            'class' => 'yii\caching\FileCache',
-        ],
+        'cache' =>
+            (YII_ENV_PROD) ?
+                [
+                    'class'   => 'yii\caching\MemCache',
+                    'servers' => [
+                        [
+                            'host' => 'localhost',
+                            'port' => 11211,
+                        ],
+                    ],
+                ] :
+                [
+                    'class' => 'yii\caching\FileCache',
+                ],
         'deviceDetect'         => [
             'class'     => 'app\services\DeviceDetect',
             'setParams' => 'false',
@@ -54,6 +65,7 @@ $config = [
                         'error',
                         'warning',
                     ],
+                    'maxLogFiles' => 1,
                 ],
                 [
                     'class'  => 'yii\log\DbTarget',
