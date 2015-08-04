@@ -236,7 +236,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                 <?php }?>
                 <p class="text-center"><img src="<?= $LayoutMenuAssetPath ?>/images/merkaba-2nd.gif"></p>
             </div>
-            <div class="col-lg-4" style="padding-bottom: 20px;">
+            <div class="col-lg-4" style="padding-bottom: 40px;">
                 <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
             </div>
             <?php
