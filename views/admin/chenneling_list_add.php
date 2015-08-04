@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $model->field($form, 'header') ?>
                 <?= $model->field($form, 'source') ?>
-                <?= $model->field($form, 'description') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 10]) ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'img') ?>
                 <?= $model->field($form, 'tree_node_id_mask') ?>
