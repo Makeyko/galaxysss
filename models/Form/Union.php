@@ -59,6 +59,7 @@ class Union extends \cs\base\BaseForm
                 'content',
                 'Подробности',
                 0,
+                'string',
                 'widget' => [
                     'cs\Widget\HtmlContent\HtmlContent',
                     [
@@ -88,7 +89,7 @@ class Union extends \cs\base\BaseForm
                 'description',
                 'Описание',
                 0,
-                'string'
+                'string',
             ],
             [
                 'group_link_facebook',
