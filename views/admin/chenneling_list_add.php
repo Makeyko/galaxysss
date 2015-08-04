@@ -32,10 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'header')->label('Название') ?>
-                <?= $form->field($model, 'source')->label('Источник') ?>
+                <?= $model->field($form, 'header') ?>
+                <?= $model->field($form, 'source') ?>
+                <?= $model->field($form, 'description') ?>
                 <?= $model->field($form, 'content') ?>
-                <?= $form->field($model, 'img')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
+                <?= $model->field($form, 'img') ?>
                 <?= $model->field($form, 'tree_node_id_mask') ?>
 
                 <hr>
