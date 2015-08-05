@@ -329,6 +329,7 @@ class GsssHtml
         if (Str::length($strip) > $len) {
             return Str::sub($strip,0, $len) . ' ...';
         }
-        return $strip;
+
+        return trim($strip);
     }
 } 
