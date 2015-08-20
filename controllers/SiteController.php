@@ -69,8 +69,17 @@ class SiteController extends BaseController
     public function actionSite_update()
     {
         return $this->render([
-            'list' => SiteUpdate::query()->orderBy(['date_insert' => SORT_DESC])->all()
+            'list' => SiteUpdate::query()->orderBy(['date_insert' => SORT_DESC])->limit(50)->all()
         ]);
+    }
+
+    public function actionSite_update_ajax()
+    {
+        $typeId = self::getParam('id');
+
+        return self::jsonSuccess($this->renderFile('@app/views/site/site_update_ajax.php', [
+            'list' => SiteUpdate::query(['type' => $typeId])->orderBy(['date_insert' => SORT_DESC])->limit(50)->all()
+        ])) ;
     }
 
     public function actionContact()

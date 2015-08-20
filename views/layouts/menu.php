@@ -224,7 +224,8 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="<?= Url::to(['site/contact']) ?>">Контакты</a>
+                <p><a href="<?= Url::to(['site/contact']) ?>">Контакты</a></p>
+                <p><a href="<?= Url::to(['site/site_update']) ?>">Обновления</a></p>
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">

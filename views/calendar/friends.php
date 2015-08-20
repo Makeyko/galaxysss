@@ -2,6 +2,7 @@
 /** @var array $days */
 /** @var \Yii $app */
 /** @var $this yii\web\View */
+
 /** @var $me array[
  *  'birth_date' '2018-12-12'
  * ] будет присутствовать если пользователь авторизован

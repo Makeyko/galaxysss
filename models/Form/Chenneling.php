@@ -120,7 +120,6 @@ class Chenneling extends \cs\base\BaseForm
                 'style' => 'width:100%;',
             ])) . $item->getField('content') ];
         if ($row['description'] == '') {
-            $item = new NewsItem($row);
             $fields['description'] = GsssHtml::getMiniText($row['content']);
         }
         $item->update($fields);
