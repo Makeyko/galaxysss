@@ -28,6 +28,7 @@ return [
     'log'                                                                                  => 'site/log',
     'logDb'                                                                                => 'site/log_db',
     'siteUpdate'                                                                           => 'site/site_update',
+    'siteUpdateAjax'                                                                       => 'site/site_update_ajax',
     'test'                                                                                 => 'site/test',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',

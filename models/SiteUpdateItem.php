@@ -19,4 +19,13 @@ class SiteUpdateItem
     public $image;
     public $link;
     public $type;
+
+    public static $names = [
+        self::TYPE_CHANNELING => 'Послание',
+        self::TYPE_NEWS_ITEM  => 'Новость',
+        self::TYPE_ARTICLE    => 'Статья',
+        self::TYPE_CATEGORY   => 'Категория',
+        self::TYPE_EVENT      => 'Событие',
+        self::TYPE_PRAKTICE   => 'Практика',
+    ];
 }
