@@ -225,7 +225,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             </div>
             <div class="col-lg-4">
                 <p><a href="<?= Url::to(['site/contact']) ?>">Контакты</a></p>
-                <p><a href="<?= Url::to(['site/site_update']) ?>">Обновления</a></p>
+                <p><a href="<?= Url::to(['site/site_update']) ?>">Обновления</a><?php $c = \app\services\SiteUpdateItemsCounter::getValue(); if ($c > 0) { echo ' ('.$c.')'; }  ?></p>
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">

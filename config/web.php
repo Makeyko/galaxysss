@@ -122,7 +122,11 @@ $config = [
         'html_content' => 'cs\Widget\HtmlContent\Controller',
     ],
     'on ' . \yii\base\Application::EVENT_BEFORE_REQUEST => function ($event) {
-        \app\services\UserLastActive::update();
+        \Yii::$app->session->remove(\app\services\SiteUpdateItemsCounter::SESSION_KEY);
+        if (!\Yii::$app->user->isGuest) {
+            \app\services\SiteUpdateItemsCounter::calc();
+            \app\services\UserLastActive::update();
+        }
     }
 ];
 

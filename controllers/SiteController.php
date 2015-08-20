@@ -68,6 +68,7 @@ class SiteController extends BaseController
 
     public function actionSite_update()
     {
+        \app\services\SiteUpdateItemsCounter::clear();
         return $this->render([
             'list' => SiteUpdate::query()->orderBy(['date_insert' => SORT_DESC])->limit(50)->all()
         ]);
