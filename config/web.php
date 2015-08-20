@@ -114,9 +114,6 @@ $config = [
                 ],
             ],
         ],
-        'on beforeRequest' => function(){
-            \app\services\UserLastActive::update();
-        }
     ],
     'params'           => $params,
     'controllerMap'    => [
