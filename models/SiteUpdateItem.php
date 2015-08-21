@@ -28,5 +28,6 @@ class SiteUpdateItem
         self::TYPE_CATEGORY   => 'Категория',
         self::TYPE_EVENT      => 'Событие',
         self::TYPE_PRAKTICE   => 'Практика',
+        self::TYPE_SERVICE    => 'Услуга',
     ];
 }
