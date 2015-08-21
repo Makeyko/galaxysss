@@ -315,15 +315,28 @@ class GsssHtml
         return "{$day} {$month} {$year} г.";
     }
 
-    public static function getMiniText($text)
+    /**
+     * Создает краткое содержимое текста, которое может быть также и HTML
+     *
+     * @param string $text
+     * @param int $len
+     *
+     * @return string plain text
+     */
+    public static function getMiniText($text, $len = 200)
     {
+        $htmlSpecial = [
+            '&nbsp;' => ' ',
+        ];
         $strip = strip_tags($text);
-        $len = 200;
-
+        foreach ($htmlSpecial as $code => $replaceChar) {
+            $strip = str_replace($code, $replaceChar, $strip);
+        }
+        $strip = trim($strip);
         if (Str::length($strip) > $len) {
-            return Str::sub($strip,0, $len) . ' ...';
+            return Str::sub($strip, 0, $len) . ' ...';
         }
 
-        return trim($strip);
+        return $strip;
     }
 } 

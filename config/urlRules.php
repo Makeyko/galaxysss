@@ -62,6 +62,7 @@ return [
     'admin/serviceList/add'                                                                => 'admin_service/add',
     'admin/serviceList/<id:\\d+>/delete'                                                   => 'admin_service/delete',
     'admin/serviceList/<id:\\d+>/edit'                                                     => 'admin_service/edit',
+    'admin/serviceList/<id:\\d+>/subscribe'                                                => 'admin_service/subscribe',
 
     'admin/news'                                                                           => 'admin/news',
     'admin/news/add'                                                                       => 'admin/news_add',

@@ -25,6 +25,7 @@ class SiteUpdate extends \cs\base\DbRecord
     public static function add(SiteContentInterface $item)
     {
         $item = $item->getSiteUpdateItem();
+
         return self::insert([
             'name'  => $item->name,
             'image' => $item->image,
