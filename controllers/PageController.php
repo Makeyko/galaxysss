@@ -94,7 +94,6 @@ class PageController extends BaseController
                 'image',
                 'link',
                 'date_insert',
-                'id_string',
             ])->all(),
         ]);
     }
