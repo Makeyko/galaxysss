@@ -19,7 +19,7 @@ use yii\helpers\Html;
             </div>
 
             <div class="col-lg-9">
-                <p><?= Html::tag('span', GsssHtml::dateString(date('Y.m.d', $item['date_insert'])), ['style' => 'font-size: 80%; margin-bottom:10px; color: #c0c0c0;']) ?></p>
+                <p><?= Html::tag('span', GsssHtml::dateString($item['date_insert']), ['style' => 'font-size: 80%; margin-bottom:10px; color: #c0c0c0;']) ?></p>
                 <span class="btn btn-default btn-xs"><?= \app\models\SiteUpdateItem::$names[$item['type']] ?></span>
             </div>
         </div>
