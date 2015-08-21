@@ -14,6 +14,7 @@ class SiteUpdateItem
     const TYPE_CATEGORY   = 4;
     const TYPE_EVENT      = 5;
     const TYPE_PRAKTICE   = 6;
+    const TYPE_SERVICE    = 7;
 
     public $name;
     public $image;
