@@ -81,7 +81,8 @@ class Service extends \cs\base\BaseForm
     {
         $row = parent::insert([
             'beforeInsert' => function ($fields) {
-                $fields['date_insert'] = gmdate('YmdHis');
+                $fields['date_insert'] = time();
+                $fields['id_string'] = Str::rus2translit($fields['header']);
 
                 return $fields;
             }
@@ -90,10 +91,9 @@ class Service extends \cs\base\BaseForm
         $item = new \app\models\Service($row);
         $fields = [];
         if ($row['description'] == '') {
-            $item = new NewsItem($row);
             $fields['description'] = GsssHtml::getMiniText($row['content']);
-            $item->update($fields);
         }
+        $item->update($fields);
 
         return $item;
     }

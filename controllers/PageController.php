@@ -86,7 +86,16 @@ class PageController extends BaseController
     public function actionServices()
     {
         return $this->render([
-            'list' => Service::query()->all(),
+            'list' => Service::query()->select([
+                'id',
+                'header',
+                'description',
+                'if(length(ifnull(content, "")) > 0, 1, 0) as is_content',
+                'image',
+                'link',
+                'date_insert',
+                'id_string',
+            ])->all(),
         ]);
     }
 

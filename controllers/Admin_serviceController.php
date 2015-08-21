@@ -13,7 +13,7 @@ class Admin_serviceController extends AdminBaseController
     public function actionIndex()
     {
         return $this->render([
-            'items' => \app\models\Service::query()->all(),
+            'items' => \app\models\Service::query()->orderBy(['date_insert' => SORT_DESC])->all(),
         ]);
     }
 

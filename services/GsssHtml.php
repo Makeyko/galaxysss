@@ -119,7 +119,7 @@ class GsssHtml
     /**
      * Рисует услугу
      *
-     * @param $row
+     * @param integer|array $row
      *
      * @return string
      */
@@ -134,16 +134,9 @@ class GsssHtml
         $header = (isset($row['header'])) ? $row['header'] : $row['name'];
         // Заголовок
         $html[] = Html::tag('div',Html::tag('h2', $header), ['class' => 'header']);
-        // подзаголовок
-        if (ArrayHelper::keyExists('sub_header', $row)) $html[] = Html::tag('p', $row['sub_header']);
         // Ссылка
-        if ($row['content'].'' != ''){
-            $l = ['page/services_item', 'id' => $row['id']];
-            $html[] = Html::tag('p', Html::a(Html::img($row['image'], ['width' => '100%', 'class' => 'thumbnail']), $l));
-        } else {
-            $l = $row['link'];
-            $html[] = Html::tag('p', Html::a(Html::img($row['image'], ['width' => '100%', 'class' => 'thumbnail']), $l, ['target' => '_blank']));
-        }
+        $l = ['page/services_item', 'id' => $row['id']];
+        $html[] = Html::tag('p', Html::a(Html::img($row['image'], ['width' => '100%', 'class' => 'thumbnail']), $l));
         // Описание
         $html[] = $row['description'];
 
@@ -296,6 +289,7 @@ class GsssHtml
     {
         if (is_null($date)) return '';
         if ($date == '') return '';
+        if (!Str::isContain($date, '-')) $date = date('Y-m-d', $date);
 
         $year = substr($date, 0, 4);
         $month = substr($date, 5, 2);
