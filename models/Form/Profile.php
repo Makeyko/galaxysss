@@ -37,6 +37,7 @@ class Profile extends BaseForm
     public $fb_id;
     public $fb_link;
     public $birth_date;
+    public $last_action;
 
     public $subscribe_is_news;
     public $subscribe_is_site_update;
