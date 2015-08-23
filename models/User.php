@@ -52,7 +52,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return '658954523';
+        return md5($this->getEmail() . '12345');
     }
 
     /**
@@ -60,7 +60,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->getAuthKey() === $authKey;
+        return $this->getAuthKey() == $authKey;
     }
 
     /**
