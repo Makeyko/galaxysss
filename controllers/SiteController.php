@@ -48,6 +48,7 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
+        VarDumper::dump(urldecode('%5B%2241%22%2Cnull%2C315360000%5D'));
         return $this->render('index', [
             'events' => \app\models\Event::query()
                 ->limit(3)
