@@ -168,7 +168,8 @@ $(document).ready(function () {
                 url: '/loginAjax',
                 data: {
                     email: $('#field-email').val(),
-                    password: $('#field-password').val()
+                    password: $('#field-password').val(),
+                    is_stay: $('#loginFormIsStay').is(':checked')? 1:0
                 },
                 beforeSend: function () {
                     $('#buttonLogin').html($('#loginFormLoading').html());

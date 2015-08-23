@@ -100,6 +100,9 @@ class AuthController extends BaseController
      * REQUEST:
      * - email - string - почта/логин
      * - password - string - пароль
+     * - is_stay - int - оставаться в системе
+     * 0 - не запоминать меня
+     * 1 - запомнить меня на этом компьютере
      *
      * @return string
      * errors
@@ -129,7 +132,11 @@ class AuthController extends BaseController
             return self::jsonErrorId(105, 'Вы  не завели себе пароль для аккаунта. Зайдите в восстановление пароля');
         }
         if ($user->validatePassword($password)) {
-            Yii::$app->user->login($user);
+            $duration = 0;
+            if (self::getParam('is_stay', 0) == 1) {
+                $duration = 60*60*24*365*10;
+            }
+            Yii::$app->user->login($user, $duration);
 
             return self::jsonSuccess();
         }
