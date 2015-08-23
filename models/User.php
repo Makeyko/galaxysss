@@ -52,7 +52,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->getField('auth_key');
+        return '658954523';
     }
 
     /**
