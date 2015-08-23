@@ -7,6 +7,8 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\App\Asset;
 
+\cs\assets\CheckBox\Asset::register($this);
+
 ?>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -26,7 +28,7 @@ use app\assets\App\Asset;
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group input-group-lg  ">
+                    <div class="input-group input-group-lg">
                         <input type="password" class="form-control" placeholder="Пароль" id="field-password">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="buttonLogin" style="width: 100px;">
@@ -40,6 +42,12 @@ use app\assets\App\Asset;
                              id="">
                     </div>
                     <p class="text-danger" style="margin-top: 10px;display: none;" id="loginFormError">Здесь выводятся ошибки</p>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <p>Оставаться в системе?</p>
+                        <input type="checkbox" data-toggle="toggle" data-on="Да" data-off="Нет" id="loginFormIsStay" checked="checked">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
