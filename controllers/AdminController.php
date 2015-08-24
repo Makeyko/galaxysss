@@ -64,6 +64,28 @@ class AdminController extends AdminBaseController
         return self::jsonSuccess();
     }
 
+    /**
+     * AJAX
+     * Добавляет site_update
+     * Делает рассылку
+     *
+     * @param integer $id - идентификатор новости
+     *
+     * @return string
+     */
+    public function actionNews_subscribe($id)
+    {
+        $item = NewsItem::find($id);
+        if (is_null($item)) {
+            return self::jsonError(101, 'Не найдена новость');
+        }
+        Subscribe::add($item);
+        SiteUpdate::add($item);
+        $item->update(['is_added_site_update' => 1]);
+
+        return self::jsonSuccess();
+    }
+
     public function actionChenneling_list()
     {
         return $this->render([
