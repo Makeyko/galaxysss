@@ -35,6 +35,7 @@ class NewsAdd extends \cs\base\BaseForm
     public $is_show;
     public $id_string;
     public $view_counter;
+    public $is_added_site_update;
 
     function __construct($fields = [])
     {
