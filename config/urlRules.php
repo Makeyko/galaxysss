@@ -68,6 +68,7 @@ return [
     'admin/news/add'                                                                       => 'admin/news_add',
     'admin/news/<id:\\d+>/delete'                                                          => 'admin/news_delete',
     'admin/news/<id:\\d+>/edit'                                                            => 'admin/news_edit',
+    'admin/news/<id:\\d+>/subscribe'                                                       => 'admin/news_subscribe',
 
     'admin/events'                                                                         => 'admin_events/index',
     'admin/events/add'                                                                     => 'admin_events/add',
