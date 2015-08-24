@@ -14,7 +14,6 @@ use yii\web\UploadedFile;
 use yii\imagine\Image;
 use Imagine\Image\ManipulatorInterface;
 use cs\base\BaseForm;
-use CreditSystem\App as CApplication;
 
 /*
 $options = [
@@ -25,20 +24,11 @@ $options = [
 class CheckBox extends InputWidget
 {
     /**
-     * @var string the template for arranging the CAPTCHA image tag and the text input tag.
-     * In this template, the token `{image}` will be replaced with the actual image tag,
-     * while `{input}` will be replaced with the text input tag.
-     */
-    public $template = '{input}{label1}{label2}';
-    /**
      * @var array the HTML attributes for the input tag.
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $options = [
     ];
-
-    /** @var  bool */
-    public $checked;
 
     private $attrId;
     private $attrName;
@@ -62,12 +52,17 @@ class CheckBox extends InputWidget
      */
     public function run()
     {
+
         $this->registerClientScript();
-        $options = ArrayHelper::merge($this->options, ['data-toggle' => 'toggle']);
+        $options = ArrayHelper::merge($this->options, [
+            'data-toggle' => 'toggle',
+        ]);
+        $fieldName = $this->attribute;
+        if ($this->model->$fieldName) $options['checked'] = 'checked';
         if ($this->textOn) $options['data-on'] = $this->textOn;
         if ($this->textOff) $options['data-off'] = $this->textOff;
 
-        return Html::tag('div', Html::input('checkbox', $this->attrName, $this->checked, $options), ['style'=>'display:block;'] );
+        return Html::tag('div', Html::input('checkbox', $this->attrName, 1, $options), ['style' => 'display:block;'] );
     }
 
     /**
@@ -104,6 +99,23 @@ class CheckBox extends InputWidget
     }
 
     /**
+     * @param array             $field
+     * @param \cs\base\BaseForm $model
+     *
+     * @return array поля для обновления в БД
+     */
+    public static function onLoadDb($field, $model)
+    {
+        $fieldName = $field[ BaseForm::POS_DB_NAME ];
+        $row = $model->getRow();
+        if (isset($row[$fieldName])) {
+            $model->$fieldName = ($row[$fieldName] == 1);
+        } else {
+            $model->$fieldName = false;
+        }
+    }
+
+    /**
      * Берет значения из POST и возвраает знаяения для добавления в БД
      *
      * @param array           $field
@@ -114,12 +126,9 @@ class CheckBox extends InputWidget
     public static function onUpdate($field, $model)
     {
         $fieldName = $field[ BaseForm::POS_DB_NAME ];
-        $value = ArrayHelper::getValue(\Yii::$app->request->post(), $model->formName() . '.' . $fieldName, null);
-        if ($value == '') $value = 0;
-        if ($value == 1) $value = 1;
 
         return [
-            $fieldName => $value,
+            $fieldName => ($model->$fieldName)? 1 : 0,
         ];
     }
 }

@@ -69,6 +69,7 @@ class SiteController extends BaseController
     public function actionSite_update()
     {
         \app\services\SiteUpdateItemsCounter::clear();
+
         return $this->render([
             'list' => SiteUpdate::query()->orderBy(['date_insert' => SORT_DESC])->limit(50)->all()
         ]);
@@ -80,11 +81,12 @@ class SiteController extends BaseController
 
         return self::jsonSuccess($this->renderFile('@app/views/site/site_update_ajax.php', [
             'list' => SiteUpdate::query(['type' => $typeId])->orderBy(['date_insert' => SORT_DESC])->limit(50)->all()
-        ])) ;
+        ]));
     }
 
     public function actionContact()
     {
+        VarDumper::dump($_POST);
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['mailList']['contact'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -109,16 +111,26 @@ class SiteController extends BaseController
         $query = Log::query()->orderBy(['log_time' => SORT_DESC]);
         $category = self::getParam('category', '');
         if ($category) {
-            $query->where(['like', 'category', $category.'%', false]);
+            $query->where(['like', 'category', $category . '%', false]);
         }
         $type = self::getParam('type', '');
         if ($type) {
-            switch($type) {
-                case 'INFO':    $type = \yii\log\Logger::LEVEL_INFO;    break;
-                case 'ERROR':   $type = \yii\log\Logger::LEVEL_ERROR;   break;
-                case 'WARNING': $type = \yii\log\Logger::LEVEL_WARNING; break;
-                case 'PROFILE': $type = \yii\log\Logger::LEVEL_PROFILE; break;
-                default:  $type = null; break;
+            switch ($type) {
+                case 'INFO':
+                    $type = \yii\log\Logger::LEVEL_INFO;
+                    break;
+                case 'ERROR':
+                    $type = \yii\log\Logger::LEVEL_ERROR;
+                    break;
+                case 'WARNING':
+                    $type = \yii\log\Logger::LEVEL_WARNING;
+                    break;
+                case 'PROFILE':
+                    $type = \yii\log\Logger::LEVEL_PROFILE;
+                    break;
+                default:
+                    $type = null;
+                    break;
             }
             if ($type) {
                 $query->where(['type' => $type]);

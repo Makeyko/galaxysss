@@ -29,16 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin([
                     'id'      => 'contact-form',
-                    'options' => ['enctype' => 'multipart/form-data']
+                    'options' => ['enctype' => 'multipart/form-data'],
+                    'layout' => 'horizontal'
                 ]); ?>
-                <?= $model->field($form, 'subscribe_is_news')->checkbox() ?>
-                <?= $model->field($form, 'subscribe_is_site_update')->checkbox() ?>
-                <?= $model->field($form, 'subscribe_is_manual')->checkbox() ?>
+                <?= $model->field($form, 'subscribe_is_news') ?>
+                <?= $model->field($form, 'subscribe_is_site_update') ?>
+                <?= $model->field($form, 'subscribe_is_manual') ?>
 
 
                 <hr class="featurette-divider">
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                        'class' => 'btn btn-default',
+                        'name' => 'contact-button',
+                        'style' => 'width:100%',
+
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
 
