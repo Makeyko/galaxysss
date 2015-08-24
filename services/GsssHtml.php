@@ -327,6 +327,7 @@ class GsssHtml
     {
         $htmlSpecial = [
             '&nbsp;' => ' ',
+            '&#8212;' => '—',
         ];
         $strip = strip_tags($text);
         foreach ($htmlSpecial as $code => $replaceChar) {
