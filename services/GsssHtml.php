@@ -238,7 +238,7 @@ class GsssHtml
         }
         $html[] = Html::tag('p', $content);
 
-        return Html::tag('div', join('', $html), ['class' => 'col-lg-4 chennelingItem']);
+        return Html::tag('div', join('', $html), ['class' => 'col-sm-4 chennelingItem']);
     }
 
     public static function articleItem($row, $category)
