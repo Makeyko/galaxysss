@@ -60,7 +60,23 @@ $(document).ready(function(){
                                         .click(functionButton)
 
                                 );
-                            item.insertAfter($(that).parent());
+                            var next = $(that).parent()[0].nextSibling;
+                            while(next.nodeName == '#text') {
+                                if (next.nextSibling) {
+                                    next = next.nextSibling;
+                                } else {
+                                    next = null;
+                                }
+                            }
+                            if (next) {
+                                if (next.nodeName == 'LI') {
+                                    item.insertAfter($(that).parent());
+                                } else if (next.nodeName == 'UL') {
+                                    item.insertAfter($(next));
+                                }
+                            } else {
+                                item.insertAfter($(that).parent());
+                            }
                             that.popover('destroy');
                         }
                     });
