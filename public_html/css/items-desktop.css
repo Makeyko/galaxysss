@@ -1,0 +1,31 @@
+.newsItem {
+    height: 650px;
+}
+.newsItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.unityItem {
+    height: 650px;
+}
+.unityItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.unityCategoryItem {
+    height: 650px;
+}
+.unityCategoryItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.articleItem {
+    height: 650px;
+}
+.articleItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}

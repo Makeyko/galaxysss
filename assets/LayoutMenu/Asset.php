@@ -7,6 +7,7 @@
 
 namespace app\assets\LayoutMenu;
 
+use cs\services\VarDumper;
 use yii\web\AssetBundle;
 use yii\web\View;
 
@@ -27,4 +28,12 @@ class Asset extends AssetBundle
         'yii\web\JqueryAsset',
     ];
 
+    public function init()
+    {
+        if (\Yii::$app->deviceDetect->isDesktop()) {
+            \Yii::$app->view->registerCssFile('/css/items-desktop.css');
+        } else {
+            \Yii::$app->view->registerCssFile('/css/items-not-desktop.css');
+        }
+    }
 }
