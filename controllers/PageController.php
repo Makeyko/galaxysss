@@ -474,7 +474,7 @@ class PageController extends BaseController
         }
 
 
-        if (\Yii::$app->deviceDetect->isDesctop())
+        if (\Yii::$app->deviceDetect->isDesktop())
         {
             $css = <<<CSS
         .chennelingItem {
