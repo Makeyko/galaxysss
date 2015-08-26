@@ -58,4 +58,18 @@ class UnionCategory extends \cs\base\DbRecord
             ])
             ->all();
     }
+
+    /**
+     * Возвращает id_string по $id
+     *
+     * @param int $id идентификатор категории gs_unions_tree.id
+     *
+     * @return false|string
+     * false - категория не найдена
+     * string - возвращается название категории
+     */
+    public static function getIdStringById($id)
+    {
+        return self::query(['id' => $id])->select('id_string')->scalar();
+    }
 }

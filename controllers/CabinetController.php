@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Form\Union;
+use app\models\SiteUpdate;
 use app\models\User;
+use app\services\Subscribe;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -56,6 +59,26 @@ class CabinetController extends BaseController
         return $this->render([
             'items' => $items
         ]);
+    }
+
+    /**
+     * делает рассылку о том что добавлено объединение
+     *
+     * @param int $id идентификатор объединения
+     *
+     * @return \yii\web\Response
+     */
+    public function actionObjects_subscribe($id)
+    {
+        $item = \app\models\Union::find($id);
+        if (is_null($item)) {
+            return self::jsonError(101, 'Не найдено объединение');
+        }
+        Subscribe::add($item);
+        SiteUpdate::add($item);
+        $item->update(['is_added_site_update' => 1]);
+
+        return self::jsonSuccess();
     }
 
     public function actionPoseleniya()

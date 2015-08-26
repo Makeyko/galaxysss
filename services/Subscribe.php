@@ -6,6 +6,7 @@ namespace app\services;
 use app\models\SiteContentInterface;
 use app\models\SubscribeMailItem;
 use app\models\User;
+use cs\services\VarDumper;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;

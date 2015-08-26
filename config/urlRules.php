@@ -149,6 +149,7 @@ return [
     'objects/<id:\\d+>/edit'                                                               => 'cabinet/objects_edit',
     'objects/add'                                                                          => 'cabinet/objects_add',
     'objects/<id:\\d+>/delete'                                                             => 'cabinet/objects_delete',
+    'objects/<id:\\d+>/subscribe'                                                          => 'cabinet/objects_subscribe',
     'cabinet/passwordChange'                                                               => 'cabinet/password_change',
     'cabinet/profile'                                                                      => 'cabinet/profile',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',

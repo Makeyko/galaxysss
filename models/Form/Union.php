@@ -39,6 +39,7 @@ class Union extends \cs\base\BaseForm
     public $group_link_youtube;
     public $group_link_vkontakte;
     public $group_link_facebook;
+    public $is_added_site_update;
 
     function __construct($fields = [])
     {

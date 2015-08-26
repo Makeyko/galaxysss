@@ -4,10 +4,12 @@
 namespace app\models;
 
 
+use app\services\Subscribe;
 use cs\Application;
 use cs\services\VarDumper;
+use yii\helpers\Url;
 
-class Union extends \cs\base\DbRecord
+class Union extends \cs\base\DbRecord implements SiteContentInterface
 {
     const TABLE = 'gs_unions';
     const PREFIX_CACHE_OFFICE_LIST = '\app\controllers\PageController::actionFood_item::';
@@ -15,6 +17,86 @@ class Union extends \cs\base\DbRecord
     public function incViewCounter()
     {
         $this->update(['view_counter' => $this->getField('view_counter') + 1]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMailContent()
+    {
+        // шаблон
+        $view = 'subscribe/union';
+        // опции шаблона
+        $options = [
+            'item' => $this,
+            'user' => \Yii::$app->user->identity,
+        ];
+
+        /** @var \yii\swiftmailer\Mailer $mailer */
+        $mailer = \Yii::$app->mailer;
+        $text = $mailer->render('text/' . $view, $options, 'layouts/text/subscribe');
+        $html = $mailer->render('html/' . $view, $options, 'layouts/html/subscribe');
+
+        $subscribeItem = new SubscribeItem();
+        $subscribeItem->subject = $this->getName();
+        $subscribeItem->html = $html;
+        $subscribeItem->text = $text;
+        $subscribeItem->type = Subscribe::TYPE_SITE_UPDATE;
+
+        return $subscribeItem;
+    }
+
+    /**
+     * Возвращает имя объединения
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getField('name', '');
+    }
+
+    /**
+     * Возвращает картинку для объединения
+     * @param bool $isScheme
+     * @return string
+     */
+    public function getImage($isScheme = false)
+    {
+        $url = $this->getField('img', '');
+        if ($url == '') return '';
+
+        return Url::to($url, $isScheme);
+    }
+
+    /**
+     * Возвращает ссылку на объединение
+     *
+     * @param bool $isScheme
+     *
+     * @return string
+     */
+    public function getLink($isScheme = false)
+    {
+        $tree_node_id = $this->getField('tree_node_id');
+        $idString = UnionCategory::getIdStringById($tree_node_id);
+        if ($idString === false) return '';
+        $url = Url::to(['page/union_item', 'category' => $idString, 'id' => $this->getId()]);
+
+        return Url::to($url, $isScheme);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSiteUpdateItem($isScheme = false)
+    {
+        $siteUpdateItem = new SiteUpdateItem();
+        $siteUpdateItem->name = $this->getName();
+        $siteUpdateItem->image = $this->getImage($isScheme);
+        $siteUpdateItem->link = $this->getLink($isScheme);
+        $siteUpdateItem->type = SiteUpdateItem::TYPE_UNION;
+
+        return $siteUpdateItem;
     }
 
     /**

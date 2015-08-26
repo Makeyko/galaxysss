@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\SiteUpdate;
 use app\models\Union;
+use app\services\Subscribe;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -37,6 +39,13 @@ class Moderator_unionsController extends AdminBaseController
             \cs\Application::mail($item->getUser()->getEmail(), 'Ваше объединение прошло модерацию', 'moderator_unions/accept', [
                     'item' => $item
                 ]);
+
+            // делаю рассылку что добавлено такое объединение
+            {
+                Subscribe::add($item);
+                SiteUpdate::add($item);
+                $item->update(['is_added_site_update' => 1]);
+            }
         });
     }
 
