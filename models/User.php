@@ -237,4 +237,14 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     {
         return ArrayHelper::getValue($this->fields, $name, '');
     }
+
+    /**
+     * Пользователь админ?
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->getField('is_admin', 0) == 1;
+    }
 }

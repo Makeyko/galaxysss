@@ -15,6 +15,7 @@ class SiteUpdateItem
     const TYPE_EVENT      = 5;
     const TYPE_PRAKTICE   = 6;
     const TYPE_SERVICE    = 7;
+    const TYPE_UNION      = 8;
 
     public $name;
     public $image;
@@ -29,5 +30,6 @@ class SiteUpdateItem
         self::TYPE_EVENT      => 'Событие',
         self::TYPE_PRAKTICE   => 'Практика',
         self::TYPE_SERVICE    => 'Услуга',
+        self::TYPE_UNION      => 'Объединение',
     ];
 }

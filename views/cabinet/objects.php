@@ -33,7 +33,9 @@ $this->registerJsFile('/js/pages/cabinet/objects.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
-                    </div>
+                        <?php if (\yii\helpers\ArrayHelper::getValue($item, 'is_added_site_update', 0) == 0 && \Yii::$app->user->identity->isAdmin()) { ?>
+                            <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
+                        <?php } ?> </div>
                 </div>
             </a>
             <?php

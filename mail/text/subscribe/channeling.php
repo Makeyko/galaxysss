@@ -7,15 +7,13 @@
 use yii\helpers\Html;
 use app\services\GsssHtml;
 
-$content = $item->getField('description');
-$content = $content . '';
+$content = $item->getField('description', '');
 if ($content == '') {
     $content = GsssHtml::getMiniText($item->getField('content'));
 }
 ?>
 
 На инструмент Вознесения было добавлено следующее послание:
-
 <?= $item->getName() ?>
 
 Краткое содержание:
