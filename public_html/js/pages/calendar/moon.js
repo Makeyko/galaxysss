@@ -2,7 +2,7 @@ var Moon = {
 
     pathUrlAsset: null,
 
-    dayList: ['сб','вс','пн','вт','ср','чт','пт'],
+    dayList: ['вс','пн','вт','ср','чт','пт','сб'],
 
     init: function (pathUrlAsset) {
 
