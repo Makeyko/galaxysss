@@ -29,3 +29,11 @@
     height: 70px;
     vertical-align: bottom;
 }
+.chennelingItem {
+    height: 650px;
+    border-bottom: 1px solid #eee;
+}
+.chennelingItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}

@@ -22,3 +22,7 @@
 }
 .articleItem .header {
 }
+.chennelingItem {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 50px;
+}
