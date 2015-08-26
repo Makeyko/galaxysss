@@ -463,7 +463,7 @@ class PageController extends BaseController
                         'size' => $itemsPerPage
                     ]
                 ]));
-            }, $this, false);
+            }, $this, true);
         } else {
             $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                 'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
@@ -472,29 +472,6 @@ class PageController extends BaseController
                 ]
             ]));
         }
-
-
-        if (\Yii::$app->deviceDetect->isDesktop())
-        {
-            $css = <<<CSS
-        .chennelingItem {
-            height: 650px;
-            border-bottom: 1px solid #eee;
-        }
-        .chennelingItem .header {
-            height: 70px;
-            vertical-align: bottom;
-        }
-CSS;
-        } else {
-            $css = <<<CSS
-        .chennelingItem {
-            border-bottom: 1px solid #eee;
-            margin-bottom: 50px;
-        }
-CSS;
-        }
-        \Yii::$app->view->registerCss($css);
 
         return $this->render(['html' => $cache]);
     }
