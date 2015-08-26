@@ -1,28 +1,27 @@
 .newsItem {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .newsItem .header {
     vertical-align: bottom;
 }
 
 .unityItem {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .unityItem .header {
 }
 
 .unityCategoryItem {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .unityCategoryItem .header {
 }
 
 .articleItem {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .articleItem .header {
 }
 .chennelingItem {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
