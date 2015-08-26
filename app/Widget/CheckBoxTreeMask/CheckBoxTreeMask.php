@@ -73,6 +73,7 @@ class CheckBoxTreeMask extends InputWidget
 
         return $this->render($this->templateFile, [
             'rows'              => $rows,
+            'tableName'         => $this->tableName,
             'formName'          => $this->model->formName(),
             'model'             => $this->model,
             'attrId'            => $this->attrId,
@@ -105,7 +106,7 @@ class CheckBoxTreeMask extends InputWidget
      */
     public function registerClientScript()
     {
-
+        \cs\Widget\CheckBoxTreeMask\Asset::register(\Yii::$app->view);
     }
 
     /**
@@ -127,7 +128,12 @@ class CheckBoxTreeMask extends InputWidget
      */
     public function getRows($parentId)
     {
-        $rows = (new Query())->select($this->select)->from($this->tableName)->where(['parent_id' => $parentId])->all();
+        $rows = (new Query())
+            ->select($this->select)
+            ->from($this->tableName)
+            ->where(['parent_id' => $parentId])
+            ->orderBy(['sort_index' => SORT_ASC])
+            ->all();
         for($i = 0; $i < count($rows); $i++ ) {
             $item = &$rows[$i];
             $rows2 = $this->getRows($item['id']);
