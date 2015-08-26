@@ -472,6 +472,29 @@ class PageController extends BaseController
                 ]
             ]));
         }
+
+
+        if (\Yii::$app->deviceDetect->isDesctop())
+        {
+            $css = <<<CSS
+        .chennelingItem {
+            height: 650px;
+            border-bottom: 1px solid #eee;
+        }
+        .chennelingItem .header {
+            height: 70px;
+            vertical-align: bottom;
+        }
+CSS;
+        } else {
+            $css = <<<CSS
+        .chennelingItem {
+            border-bottom: 1px solid #eee;
+        }
+CSS;
+        }
+        \Yii::$app->view->registerCss($css);
+
         return $this->render(['html' => $cache]);
     }
 

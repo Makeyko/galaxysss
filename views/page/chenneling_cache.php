@@ -12,15 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
     <style>
-        .chennelingItem {
-            height: 650px;
-            border-bottom: 1px solid #eee;
-        }
 
-        .chennelingItem .header {
-            height: 70px;
-            vertical-align: bottom;
-        }
     </style>
 
     <div class="col-lg-12">
