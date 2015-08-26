@@ -28,6 +28,7 @@
 /** @var $templateVariables array */
 /** @var $model */
 /** @var $formName string */
+/** @var $tableName string */
 
 ?>
 
@@ -36,10 +37,24 @@
 <ul>
     <?php
     foreach ($rows as $item) { ?>
-        <li>
-            <input type="checkbox" id="<?= $attrId ?>-<?= $item['id'] ?>" name="<?= $attrName ?>[]"
-                   value="<?= $item['id'] ?>" <?= (\yii\helpers\ArrayHelper::getValue($item,'selected',false))? 'checked="checked"' : '' ?>> <label
-                for="<?= $attrId ?>-<?= $item['id'] ?>"><?= $item['name'] ?></label>
+        <li class="checkBoxTreeMaskLi">
+            <input
+                type="checkbox"
+                id="<?= $attrId ?>-<?= $item['id'] ?>"
+                name="<?= $attrName ?>[]"
+                value="<?= $item['id'] ?>"
+                <?= (\yii\helpers\ArrayHelper::getValue($item,'selected',false))? 'checked="checked"' : '' ?>
+                >
+            <label
+                for="<?= $attrId ?>-<?= $item['id'] ?>"
+                class="checkBoxTreeMaskLabel"
+                ><?= $item['name'] ?></label>
+            <a
+                href="javascript:void(0);"
+                class="btn btn-default btn-xs hide checkBoxTreeMaskButton"
+                data-id="<?= $item['id'] ?>"
+                data-table-name="<?= $tableName ?>"
+                >+</a>
 
         </li>
 
@@ -48,6 +63,7 @@
                 echo $this->render('template', [
                     'rows'              => $item['nodes'],
                     'formName'          => $formName,
+                    'tableName'         => $tableName,
                     'model'             => $model,
                     'attrId'            => $attrId,
                     'attrName'          => $attrName,
