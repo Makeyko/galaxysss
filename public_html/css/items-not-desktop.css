@@ -1,0 +1,24 @@
+.newsItem {
+    margin-bottom: 50px;
+}
+.newsItem .header {
+    vertical-align: bottom;
+}
+
+.unityItem {
+    margin-bottom: 50px;
+}
+.unityItem .header {
+}
+
+.unityCategoryItem {
+    margin-bottom: 50px;
+}
+.unityCategoryItem .header {
+}
+
+.articleItem {
+    margin-bottom: 50px;
+}
+.articleItem .header {
+}
