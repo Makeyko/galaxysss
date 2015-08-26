@@ -11,10 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="container">
-    <style>
-
-    </style>
-
     <div class="col-lg-12">
         <h1 class="page-header">Послания</h1>
     </div>

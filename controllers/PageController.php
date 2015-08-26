@@ -463,7 +463,7 @@ class PageController extends BaseController
                         'size' => $itemsPerPage
                     ]
                 ]));
-            }, $this, true);
+            }, $this, false);
         } else {
             $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                 'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
