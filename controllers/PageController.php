@@ -480,7 +480,6 @@ class PageController extends BaseController
         .chennelingItem {
             height: 650px;
             border-bottom: 1px solid #eee;
-            margin-bottom: 50px;
         }
         .chennelingItem .header {
             height: 70px;
@@ -491,6 +490,7 @@ CSS;
             $css = <<<CSS
         .chennelingItem {
             border-bottom: 1px solid #eee;
+            margin-bottom: 50px;
         }
 CSS;
         }
