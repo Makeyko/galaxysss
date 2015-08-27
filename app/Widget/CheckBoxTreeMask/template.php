@@ -54,7 +54,17 @@
                 class="btn btn-default btn-xs hide checkBoxTreeMaskButton"
                 data-id="<?= $item['id'] ?>"
                 data-table-name="<?= $tableName ?>"
-                >+</a>
+                >
+                <span class="glyphicon glyphicon-menu-down"></span>
+                </a>
+            <a
+                href="javascript:void(0);"
+                class="btn btn-default btn-xs hide checkBoxTreeMaskButton2"
+                data-id="<?= $item['id'] ?>"
+                data-table-name="<?= $tableName ?>"
+                >
+                <span class="glyphicon glyphicon-menu-right"></span>
+                </a>
 
         </li>
 
