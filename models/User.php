@@ -123,7 +123,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
         $this->update([
             'is_active'         => 1,
             'is_confirm'        => 1,
-            'datetime_activate' => 1,
+            'datetime_activate' => gmdate('YmdHis'),
         ]);
     }
 
