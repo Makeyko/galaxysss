@@ -239,7 +239,7 @@ class PageController extends BaseController
             ]),
             'breadcrumbs' => [
                 'label' => $categoryObject->getField('header'),
-                'url'   => '/' . $category,
+                'url'   => Url::to(['page/category', 'id' => $category]),
             ],
         ]);
     }
@@ -463,7 +463,7 @@ class PageController extends BaseController
                         'size' => $itemsPerPage
                     ]
                 ]));
-            }, $this, false);
+            }, $this, true);
         } else {
             $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                 'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),

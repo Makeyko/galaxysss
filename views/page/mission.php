@@ -105,7 +105,7 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <img src="/images/page/residence/2222.jpg" class="thumbnail" width="80">
+                        <img src="/images/page/mission/residence.jpg" class="thumbnail" width="80">
                     </div>
                     <div class="col-lg-9">
                         <p>Резиденция является одной из ключевых точек силы на Планете Земля.</p>

@@ -56,7 +56,7 @@ $(document).ready(function(){
                                 ).append(
                                     $('<label for="' + attrId + '" class="checkBoxTreeMaskLabel" style="margin-left: 4px;">' + text + '</label>')
                                 ).append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;">+</a>')
+                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>')
                                         .click(functionButton)
 
                                 );
