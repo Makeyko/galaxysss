@@ -6,7 +6,9 @@ return [
     'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
     'praktice/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                         => 'page/praktice_item',
 
-    'checkBoxTreeMask/add/ajax'                                                            => 'check_box_tree_mask/add',
+    'checkBoxTreeMask/add'                                                                 => 'check_box_tree_mask/add',
+    'checkBoxTreeMask/addInto'                                                             => 'check_box_tree_mask/add_into',
+    'checkBoxTreeMask/delete'                                                              => 'check_box_tree_mask/delete',
 
     'upload/upload'                                                                        => 'upload/upload',
     'upload/HtmlContent2'                                                                  => 'html_content/upload',

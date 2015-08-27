@@ -1,25 +1,22 @@
 <?php
 
 /**
+ * params:
  * [
- * 'rows'     => [
- * [
- * 'id'                 => '524'
- * 'name'               => '123456'
- * ...
- * 'selected'           => bool
- * ],...]
- * 'formName' => $this->model->formName(), // string
- * 'model'    => $this->model, // \yii\base\Model
- * 'attrId'   => $this->attrId, // attribute id
- * 'attrName' => $this->attrName, // attribute name
- * 'templateVariables' => []
+ *      'rows'     => [
+ *                       [
+ *                            'id'                 => '524'
+ *                            'name'               => '123456'
+ *                            ...
+ *                            'selected'           => bool
+ *                        ], ...
+ *                    ]
+ *     'formName'          => $this->model->formName(), // string
+ *     'model'             => $this->model,             // \yii\base\Model
+ *     'attrId'            => $this->attrId,            // attribute id
+ *     'attrName'          => $this->attrName,          // attribute name
+ *     'templateVariables' => []
  * ]
- *
- * Обязательные поля
- * <input type="checkbox" id="#{attrId}-check-all-input"> // поле общее для всех checkbox
- * <(label) id="'#{attrId}-check-all"> // поле на которое навешивается событие on click
-
  */
 
 /** @var $rows array */
@@ -64,6 +61,14 @@
                 data-table-name="<?= $tableName ?>"
                 >
                 <span class="glyphicon glyphicon-menu-right"></span>
+                </a>
+            <a
+                href="javascript:void(0);"
+                class="btn btn-default btn-xs hide checkBoxTreeMaskButtonRemove"
+                data-id="<?= $item['id'] ?>"
+                data-table-name="<?= $tableName ?>"
+                >
+                <span class="glyphicon glyphicon-remove"></span>
                 </a>
 
         </li>

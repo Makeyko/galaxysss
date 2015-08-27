@@ -34,7 +34,7 @@ class AdminBaseController extends BaseController
                         'matchCallback' => function() {
                             /** @var \app\models\User $user */
                             $user = \Yii::$app->user->identity;
-                            return ($user->getField('is_admin') == 1);
+                            return $user->isAdmin();
                         }
                     ],
                 ],

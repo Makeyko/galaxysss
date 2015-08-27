@@ -23,20 +23,18 @@ use yii\db\Query;
  * Виджет для вывода списка chackbox'ов по шаблону
  * Данные сохраняет в БД в виде маски
  *
+ * Можно на лету online добавлять новые элементы и удалять
+ * Обладать таким правом могут только админы
+ * в \cs\Widget\CheckBoxTreeMask\Controller указан фильтр доступа
  *
- * - tableName таблица
+ * - tableName - string - таблица
+ * - rootId - int - идентификатор корневой ветки
  *
- * - templateFile шаблон для виджета
+ * - templateFile - string - шаблон для виджета
  * - templateVariables - array - параметры передаваемые в шаблон
  */
 class CheckBoxTreeMask extends InputWidget
 {
-    /**
-     * @var array the HTML attributes for the input tag.
-     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     */
-    public $options = [];
-
     public $templateFile      = '@csRoot/Widget/CheckBoxTreeMask/template';
     public $templateVariables = [];
 
