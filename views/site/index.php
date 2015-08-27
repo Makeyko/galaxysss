@@ -252,6 +252,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                         <img
                             src="/images/index/partners/logo.png"
                             height="100"
+                            class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -267,6 +268,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                         <img
                             src="/images/index/partners/resonance-project-vector-equilibrium-logo-sigil.png"
                             height="100"
+                            class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -281,6 +283,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                     <center>
                         <img src="/images/index/partners/122250502_(1)1.png"
                              height="100"
+                             class="thumbnail1"
                             >
                     </center>
                 </a>
@@ -297,6 +300,7 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                     <center>
                         <img
                             src="/images/index/partners/122250502_(1)2.png" height="100"
+                            class="thumbnail1"
                             >
                     </center>
                 </a>
