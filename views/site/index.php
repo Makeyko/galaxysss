@@ -200,37 +200,39 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 
 
 <a name="events"></a>
-<hr class="featurette-divider" style="margin-bottom: 100px;">
-<div class="container">
-<center>
-    <h1>Предстоящие события</h1>
-</center>
-<div class="row featurette">
+<?php if (count($events) > 0) { ?>
+    <hr class="featurette-divider" style="margin-bottom: 100px;">
+    <div class="container">
+        <center>
+            <h1>Предстоящие события</h1>
+        </center>
+        <div class="row featurette">
+            <?php foreach ($events as $event) {
+                $link = $event['link'] . '';
+                if ($link == '') {
+                    $link = '/events/' . $event['id'];
+                }
+                ?>
+                <div class="col-lg-4">
+                    <h3><?= $event['name'] ?></h3>
 
-    <?php foreach($events as $event) {
-        $link = $event['link'] . '';
-        if ($link == '') {
-            $link = '/events/' . $event['id'];
-        }
-        ?>
-    <div class="col-lg-4">
-        <h3><?= $event['name'] ?></h3>
-        <p><?= $event['date'] ?></p>
-        <p>
-            <a href="<?= $link ?>" target="_blank">
-                <img
-                    src="<?= $event['image'] ?>"
-                    width="100%"
-                    alt=""
-                    class="thumbnail"
-                    >
-            </a>
-        </p>
+                    <p><?= $event['date'] ?></p>
+
+                    <p>
+                        <a href="<?= $link ?>" target="_blank">
+                            <img
+                                src="<?= $event['image'] ?>"
+                                width="100%"
+                                alt=""
+                                class="thumbnail"
+                                >
+                        </a>
+                    </p>
+                </div>
+            <?php } ?>
+        </div>
     </div>
-    <?php } ?>
-
-</div>
-</div>
+<?php } ?>
 
 
 <!--    Наши партнеры-->
