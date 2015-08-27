@@ -24,6 +24,7 @@
         "yiisoft/yii2-smarty": "*",
         "dixso/custombox": "*",
         "NorthwoodsSoftware/GoJS": "*",
+        "mistic100/Bootstrap-Confirmation": "*",
         "vlucas/valitron": "~1.2",
         "flesler/jquery.scrollTo": "*",
         "mobiledetect/mobiledetectlib": "*"
@@ -41,6 +42,18 @@
         }
     },
     "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "mistic100/Bootstrap-Confirmation",
+                "version" : "1.0.0",
+                "source": {
+                    "url": "https://github.com/mistic100/Bootstrap-Confirmation",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {
