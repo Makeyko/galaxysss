@@ -20,7 +20,8 @@ $this->registerJs("$('#share').popover()");
 $appAssetUrl = Yii::$app->assetManager->getBundle('app\assets\App\Asset')->baseUrl;
 ?>
 <?= ButtonDropdown::widget([
-    'label'       => "<img src='{$appAssetUrl}/images/share.png' height='20' style='padding-right: 5px;'> Поделиться",
+//    'label'       => "<img src='{$appAssetUrl}/images/share.png' height='20' style='padding-right: 5px;'> Поделиться",
+    'label'       => "<span class='glyphicon glyphicon-share-alt'></span> Поделиться",
     'encodeLabel' => false,
     'dropdown'    => [
         'options'      => ['class' => 'pull-top pull-center'],
