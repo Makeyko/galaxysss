@@ -95,6 +95,7 @@ return [
     'admin/articleList/addFromPage'                                                        => 'admin_article/add_from_page',
     'admin/articleList/<id:\\d+>/delete'                                                   => 'admin_article/delete',
     'admin/articleList/<id:\\d+>/edit'                                                     => 'admin_article/edit',
+    'admin/articleList/<id:\\d+>/subscribe'                                                => 'admin_article/subscribe',
     'admin/categoryList'                                                                   => 'admin_category/index',
     'admin/categoryList/add'                                                               => 'admin_category/add',
     'admin/categoryList/<id:\\d+>/delete'                                                  => 'admin_category/delete',

@@ -30,7 +30,6 @@ trait UserCache
         $keyName = 'user/'.$id;
         $user = \Yii::$app->session->get($keyName, false);
 //        \cs\services\VarDumper::dump($_SESSION);
-        \Yii::info(VarDumper::dumpAsString($user), 'gsss\\UserCache');
         if ($user === false) {
             $user = parent::_find($id);
             \Yii::$app->session->set($keyName,$user);
