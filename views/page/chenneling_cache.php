@@ -75,5 +75,9 @@ JS
     <div id="channelingList">
         <?= $this->render('chenneling_cache_list', ['list' => $list]); ?>
     </div>
-
+    <div id="chennelingPages">
+        <?php foreach ($pages['list'] as $num) { ?>
+            <a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a>
+        <?php } ?>
+    </div>
 </div>
