@@ -142,6 +142,8 @@ return [
     'music'                                                                                => 'page/music',
     'news'                                                                                 => 'page/news',
     'chenneling'                                                                           => 'page/chenneling',
+    'chenneling/search'                                                                    => 'page/chenneling_search',
+    'chenneling/search_ajax'                                                               => 'page/chenneling_search_ajax',
     'chenneling/ajax'                                                                      => 'page/chenneling_ajax',
     'services'                                                                             => 'page/services',
     'services/<id:\\d+>'                                                                   => 'page/services_item',

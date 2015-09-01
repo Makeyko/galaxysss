@@ -451,6 +451,45 @@ class PageController extends BaseController
         ]);
     }
 
+    /**
+     * AJAX
+     * Функция для обработки AutoComplete
+     *
+     * REQUEST:
+     * - term - string - строка запроса
+     */
+    public function actionChenneling_search_ajax()
+    {
+        $term = self::getParam('term');
+        if (is_null($term)) {
+            return self::jsonError('Нет обязательного параметра term');
+        }
+        $rows = Chenneling::query(['like', 'header', $term])
+            ->select('id, header as value, date, id_string')
+            ->limit(10)
+            ->all();
+
+        return self::jsonSuccess($rows);
+    }
+
+    /**
+     * Функция для вывода результатов поиска
+     *
+     * REQUEST:
+     * - term - string - строка запроса
+     */
+    public function actionChenneling_search()
+    {
+        $term = self::getParam('term');
+        if (is_null($term)) {
+            throw new Exception('Нет обязательного параметра term');
+        }
+
+        return $this->render([
+            'term' => $term,
+        ]);
+    }
+
     public function actionChenneling()
     {
         $itemsPerPage = $this->itemsPerPage;
@@ -463,7 +502,7 @@ class PageController extends BaseController
                         'size' => $itemsPerPage
                     ]
                 ]));
-            }, $this, true);
+            }, $this, false);
         } else {
             $cache = $this->renderFile('@app/views/page/chenneling_cache.php', $this->pageCluster([
                 'query'     => Chenneling::querylist()->orderBy(['date_insert' => SORT_DESC]),
