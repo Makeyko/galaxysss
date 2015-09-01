@@ -76,7 +76,6 @@ JS
         <?= $this->render('chenneling_cache_list', ['list' => $list]); ?>
     </div>
     <div class="col-lg-12" id="chennelingPages">
-        <ul class="pagination">
             <?php foreach ($pages['list'] as $num) { ?>
                 <?php if ($num == $pages['current']) {?>
                     <li class="active"><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
@@ -84,6 +83,5 @@ JS
                     <li><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
                 <?php } ?>
             <?php } ?>
-        </ul>
     </div>
 </div>
