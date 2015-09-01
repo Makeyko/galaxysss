@@ -17,8 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= \yii\grid\GridView::widget([
         'dataProvider' => new \yii\data\ActiveDataProvider([
             'query'      => \app\models\Chenneling::query(['like', 'header', $term])
-                ->orWhere(['like', 'content', $term])
-                ->select('id, img, header, date, id_string')
+            ->orWhere(['like', 'content', $term])
+            ->select('id, img, header, date, id_string')
+            ->orderBy(['date_insert' => SORT_DESC])
             ,
             'pagination' => [
                 'pageSize' => 20,
