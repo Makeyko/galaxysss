@@ -22,8 +22,8 @@
  *
  * @param bool $isIncludeScriptOnWindowClose Внедрять скрипт подтверждения при попытке закрыть окно браузера?
  *                                           Этот скипт обычно нужен если вы не хотите чтобы пользователь случайно закрыл окно браузера потеряв все введенные данные.
- *                                           true - скрипт будет внедрен
- *                                           false - ничего не будет добавлено, значение по умолчанию
+ *                                           true - скрипт будет внедрен, значение по умолчанию
+ *                                           false - ничего не будет добавлено
  *
  * @param string $confirmStringOnWindowClose Вопрос который будет спрошен в окне перед закрытием окна, если параметр $isIncludeScriptOnWindowClose == true
  * Insert
@@ -57,7 +57,7 @@ class BaseForm extends Model
 {
     protected $row;
 
-    public $isIncludeScriptOnWindowClose = false;
+    public $isIncludeScriptOnWindowClose = true;
 
     public static $fields = [];
 
