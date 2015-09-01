@@ -8,26 +8,82 @@ use yii\helpers\Url;
 
 $this->title = 'Послания';
 $this->params['breadcrumbs'][] = $this->title;
-
+$this->registerJs(<<<JS
+    $('#buttonSearchChanneling').click(function() {
+        var term = $('#inputSearchChanneling').val();
+        if (term == '') return;
+        var url = '/chenneling/search?term=' + encodeURIComponent(term);
+        window.location = url;
+    });
+JS
+);
 ?>
 <div class="container">
-    <div class="col-lg-12">
-        <h1 class="page-header">Послания</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <h1 style="margin-bottom: 0px; margin-top: 40px; margin-left: 15px;">Послания</h1>
+        </div>
+        <div class="col-lg-6">
+            <div class="input-group" style="margin-top: 45px;">
+                <?= \yii\jui\AutoComplete::widget([
+                    'model' => new \app\models\Form\ChennelingSearch(),
+                    'attribute' => 'search',
+                    'clientOptions' => [
+                        'source' => new \yii\web\JsExpression(<<<JS
+function( request, response ) {
+    ajaxJson({
+        url: '/chenneling/search_ajax',
+        data: {
+            term: request.term
+        },
+        success: function(ret) {
+            response(ret);
+        }
+    });
+     }
+JS
+),
+                        'select' => new \yii\web\JsExpression(<<<JS
+function(event, ui) {
+    var url = ui.item.date;
+    url = url.replace('-', '/');
+    url = url.replace('-', '/');
+    url = '/chenneling/' + url + '/' + ui.item.id_string;
+    window.location = url;
+}
+JS
+)
+                    ],
+                    'options' => [
+                        'class'       => 'form-control',
+                        'placeholder' => 'Искать...',
+                        'id' => 'inputSearchChanneling',
+                    ]
+                ]);
+                ?>
+                <span class="input-group-btn">
+                <button class="btn btn-default" id="buttonSearchChanneling"
+                type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
     </div>
+    <hr style="margin-bottom: 20px; margin-top: 9px; margin-left: 15px;">
+
+
+    <!-- /.row -->
     <div id="channelingList">
         <?= $this->render('chenneling_cache_list', ['list' => $list]); ?>
     </div>
     <div class="col-lg-12" id="chennelingPages">
-        <nav>
-            <ul class="pagination">
-                <?php foreach ($pages['list'] as $num) { ?>
-                    <?php if ($num == $pages['current']) {?>
-                        <li class="active"><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
-                    <?php } else { ?>
-                        <li><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
-                    <?php } ?>
+        <ul class="pagination">
+            <?php foreach ($pages['list'] as $num) { ?>
+                <?php if ($num == $pages['current']) {?>
+                    <li class="active"><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
+                <?php } else { ?>
+                    <li><a href="<?= Url::current(['page' => $num]) ?>"><?= $num ?></a></li>
                 <?php } ?>
-            </ul>
-        </nav>
+            <?php } ?>
+        </ul>
     </div>
 </div>

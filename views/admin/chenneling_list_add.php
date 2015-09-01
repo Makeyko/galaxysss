@@ -11,6 +11,7 @@ use yii\db\Query;
 
 $this->title = 'Добавить ченнелинг';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="container">
     <div class="page-header">
