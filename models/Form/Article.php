@@ -33,6 +33,7 @@ class Article extends \cs\base\BaseForm
     public $date;
     /** @var  int маска которая содержит идентификаторы разделов к которому принадлежит ченелинг */
     public $tree_node_id_mask;
+    public $is_added_site_update;
 
     function __construct($fields = [])
     {
