@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->title = 'Статьи';
 
-$this->registerJsFile('/js/pages/admin/article_list.js', [
+$this->registerJsFile('/js/pages/admin_article/index.js', [
     'depends' => [
         'app\assets\App\Asset',
         'app\assets\ModalBoxNew\Asset'
@@ -45,6 +45,9 @@ $this->registerJsFile('/js/pages/admin/article_list.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
+                        <?php if (\yii\helpers\ArrayHelper::getValue($item, 'is_added_site_update', 0) == 0) { ?>
+                            <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
+                        <?php } ?>
                     </div>
                 </div>
             </a>
