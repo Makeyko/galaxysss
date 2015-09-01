@@ -20,12 +20,6 @@
  *
  * Есть функция getTableName()
  *
- * @param bool $isIncludeScriptOnWindowClose Внедрять скрипт подтверждения при попытке закрыть окно браузера?
- *                                           Этот скипт обычно нужен если вы не хотите чтобы пользователь случайно закрыл окно браузера потеряв все введенные данные.
- *                                           true - скрипт будет внедрен, значение по умолчанию
- *                                           false - ничего не будет добавлено
- *
- * @param string $confirmStringOnWindowClose Вопрос который будет спрошен в окне перед закрытием окна, если параметр $isIncludeScriptOnWindowClose == true
  * Insert
  * если есть только onUpdate то вызывается после вставки
  * там где есть onInsert
@@ -57,8 +51,6 @@ class BaseForm extends Model
 {
     protected $row;
 
-    public $isIncludeScriptOnWindowClose = true;
-
     public static $fields = [];
 
     const POS_DB_NAME     = 0;
@@ -67,19 +59,6 @@ class BaseForm extends Model
     const POS_RULE        = 3;
     const POS_PARAMS      = 4;
     const POS_HINT        = 5;
-
-    public function init()
-    {
-        if ($this->isIncludeScriptOnWindowClose) {
-            Yii::$app->view->registerJs(<<<JS
-window.onbeforeunload = function() {
-    return confirm('Вы уверены что хотите уйти со страницы не закончив редактирование?');
-};
-JS
-            );
-        }
-        parent::init();
-    }
 
     /**
      * Возвращает идентификатор поля в форме, например `orderlombard-name`
