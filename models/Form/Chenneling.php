@@ -20,6 +20,8 @@ class Chenneling extends \cs\base\BaseForm
 {
     const TABLE = 'gs_cheneling_list';
 
+    public $isIncludeScriptOnWindowClose = true;
+
     public $id;
     public $header;
     public $sort_index;
