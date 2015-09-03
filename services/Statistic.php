@@ -44,7 +44,7 @@ class Statistic
                 $c++;
             } else {
                 $new[] = [
-                    'date' => $currentDateDT->format($dateFormatX),
+                    'date'  => $currentDateDT->format($dateFormatX),
                     'count' => $c,
                 ];
                 $nextDay = (new \DateTime($currentDate))->add(new \DateInterval('P1D'))->format('Y-m-d');
@@ -59,7 +59,7 @@ class Statistic
                         $new [] = [
                             'date' => $i->format($dateFormatX),
                             'count' => 0,
-                        ]   ;
+                        ];
                     }
                     $c = 1;
                     $currentDate = substr($item,0,10);
@@ -100,58 +100,15 @@ class Statistic
      */
     public static function getIncrementDataAllGraphic($rows, $dateFormatX = 'd.m.Y')
     {
-        // вычисляю минимальное и максимальное значение
-        sort($rows);
-        $min = $rows[0];
-        $max = $rows[count($rows) - 1];
-        $maxDateTime = new \DateTime($max);
-        $minDateTime = new \DateTime($min);
+        $data = self::getIncrementDataGraphic($rows, $dateFormatX);
         $c = 0;
-        $currentDateDT = $minDateTime;
-        $currentDate = $currentDateDT->format('Y-m-d');
         $new = [];
-        foreach($rows as $item) {
-            if (substr($item,0,10) == $currentDate) {
-                $c++;
-            } else {
-                $new[] = [
-                    'date' => $currentDateDT->format($dateFormatX),
-                    'count' => $c,
-                ];
-                $nextDay = (new \DateTime($currentDate))->add(new \DateInterval('P1D'))->format('Y-m-d');
-                // если следующий день из массива равен следующему календарному дню?
-                if ($nextDay == substr($item,0,10)) {
-                    $currentDate = $nextDay;
-                    $currentDateDT = new \DateTime($currentDate);
-                } else {
-                    // добавляем пустые значенияю в график
-                    for($i = new \DateTime($nextDay); $i->format('Y-m-d') != substr($item,0,10); $i->add(new \DateInterval('P1D'))) {
-                        $new [] = [
-                            'date' => $i->format($dateFormatX),
-                            'count' => $c,
-                        ]   ;
-                    }
-                    $currentDate = substr($item, 0, 10);
-                    $currentDateDT = new \DateTime($currentDate);
-                }
-            }
-        }
-        $new [] = [
-            'date' => $currentDateDT->format($dateFormatX),
-            'count' => $c,
-        ];
-
-        // преобразую $new в ['x' => array, 'y' => array]
-        $x = [];
-        $y = [];
-        foreach($new as $item) {
-            $x[] = $item['date'];
-            $y[] = $item['count'];
+        for($i = 0; $i < count($data['x']); $i++) {
+            $new['x'][$i] = $data['x'][$i];
+            $c += $data['y'][$i];
+            $new['y'][$i] = $c;
         }
 
-        return [
-            'x' => $x,
-            'y' => $y,
-        ];
+        return $new;
     }
 }
