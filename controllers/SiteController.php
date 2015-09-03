@@ -7,6 +7,7 @@ use app\models\Log;
 use app\models\SiteUpdate;
 use app\models\User;
 use app\services\GetArticle\YouTube;
+use app\services\GraphExporter;
 use cs\base\BaseController;
 use cs\helpers\Html;
 use cs\services\SitePath;
@@ -64,6 +65,36 @@ class SiteController extends BaseController
         Yii::$app->session->open();
         VarDumper::dump(Yii::$app->cache->get(Yii::$app->session->getId() . '/maya'));
         Yii::$app->cache->delete(Yii::$app->session->getId() . '/maya');
+    }
+
+    public function actionStatistic()
+    {
+        $data = User::query()
+            ->select([
+                'datetime_reg',
+            ])
+            ->column();
+        $data2 = \app\services\Statistic::getIncrementDataAllGraphic($data);
+        $data3 = GraphExporter::convert([
+            'rows' => [User::query()
+                ->select([
+                    'COUNT(id) as `kurs`',
+                    'DATE(datetime_reg) as `date`',
+                ])
+                ->groupBy('DATE(datetime_reg)')
+                ->all()],
+//            'start' => new \DateTime('2015-08-17'),
+            'start' => new \DateTime('2015-07-05'),
+            'isExcludeWeekend' => false,
+        ]);
+
+        return $this->render([
+            'lineArray' => $data3,
+            'lineArray2' => [
+                'x' => $data2['x'],
+                'y' => [$data2['y']],
+            ],
+        ]);
     }
 
     public function actionSite_update()

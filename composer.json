@@ -28,6 +28,7 @@
         "mistic100/Bootstrap-Confirmation": "*",
         "vlucas/valitron": "~1.2",
         "flesler/jquery.scrollTo": "*",
+        "nnnick/Chart.js": "1.0.1",
         "mobiledetect/mobiledetectlib": "*"
     },
     "require-dev": {
@@ -43,6 +44,22 @@
         }
     },
     "repositories": [
+        {
+            "url": "https://github.com/dram1008/library.git",
+            "type": "git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "nnnick/Chart.js",
+                "version": "1.0.1",
+                "source": {
+                    "url": "https://github.com/nnnick/Chart.js",
+                    "type": "git",
+                    "reference": "02f858b264de6c6c1af0579b05b7b5913d0d61ef"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {

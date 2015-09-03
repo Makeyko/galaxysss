@@ -275,6 +275,17 @@ class DatePicker extends \yii\jui\InputWidget
      *
      * @return array поля для обновления в БД
      */
+    public static function onInsert($field, $model)
+    {
+        return self::onUpdate($field, $model);
+    }
+
+    /**
+     * @param array           $field
+     * @param \yii\base\Model $model
+     *
+     * @return array поля для обновления в БД
+     */
     public static function onLoad($field, $model)
     {
         $fieldName = $field[ \cs\base\BaseForm::POS_DB_NAME ];
