@@ -22,6 +22,10 @@ class Admin_eventsController extends AdminBaseController
     public function actionAdd()
     {
         $model = new \app\models\Form\Event();
+
+        $model->load(Yii::$app->request->post());
+
+
         if ($model->load(Yii::$app->request->post()) && $model->insert()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 

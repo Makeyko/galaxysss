@@ -119,6 +119,10 @@ class Article extends \cs\base\DbRecord implements SiteContentInterface
             'month' => $month,
             'day'   => $day,
             'id'    => $this->getField('id_string'),
+            'category'    => UnionCategory::getIdStringById(
+                (new BitMask($this->getField('tree_node_id_mask')))
+                ->getArray()[0]
+            )
         ], $isScheme);
     }
 }

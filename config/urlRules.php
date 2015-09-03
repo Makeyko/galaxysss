@@ -34,6 +34,7 @@ return [
     'siteUpdate'                                                                           => 'site/site_update',
     'siteUpdateAjax'                                                                       => 'site/site_update_ajax',
     'test'                                                                                 => 'site/test',
+    'stat'                                                                                 => 'site/statistic',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',
