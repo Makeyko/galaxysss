@@ -228,65 +228,65 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                                 >
                         </a>
                     </p>
-                    <table>
-                        <tr>
-                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>
-                                12
-                            </td>
-                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>
-                                13
-                            </td>
-                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>
-
-                            </td>
-                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>
-                                23
-                            </td>
-                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>
-                                24
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/assets/57410080/images/ton/12.gif" width="20">
-                            </td>
-                            <td>
-                                <img src="/assets/57410080/images/ton/12.gif" width="20">
-                            </td>
-                            <td style="padding-right: 10px;padding-left: 5px;">
-                                <img src="/assets/57410080/images/ton/3.gif" width="20">
-                            </td>
-                            <td>
-                                <img src="/assets/57410080/images/ton/12.gif" width="20">
-                            </td>
-                            <td>
-
-                                <img src="/assets/57410080/images/ton/12.gif" width="20">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding-right: 5px;">
-                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">
-                            </td>
-                            <td style="padding-right: 5px;">
-                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">
-                            </td>
-                            <td>
-                            </td>
-                            <td style="padding-right: 5px;">
-                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">
-
-                            </td>
-                            <td>
-
-                                <img src="/assets/57410080/images/stamp3/12.gif" width="20" id="dd1">
-
-                                <div style="position: absolute; top: 508px;left: 136px; z-index: 999; ">
-                                    <img src="/assets/57410080/images/stamp3/13.gif" width="10" alt="dddd" onmouseover="" style="border-radius: 5px;">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+<!--                    <table>-->
+<!--                        <tr>-->
+<!--                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>-->
+<!--                                12-->
+<!--                            </td>-->
+<!--                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>-->
+<!--                                13-->
+<!--                            </td>-->
+<!--                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>-->
+<!---->
+<!--                            </td>-->
+<!--                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>-->
+<!--                                23-->
+<!--                            </td>-->
+<!--                            <td style='font-family: "courier new", "times new roman", monospace; font-size: 8pt;text-align: center;'>-->
+<!--                                24-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td>-->
+<!--                                <img src="/assets/57410080/images/ton/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <img src="/assets/57410080/images/ton/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td style="padding-right: 10px;padding-left: 5px;">-->
+<!--                                <img src="/assets/57410080/images/ton/3.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <img src="/assets/57410080/images/ton/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!---->
+<!--                                <img src="/assets/57410080/images/ton/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td style="padding-right: 5px;">-->
+<!--                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td style="padding-right: 5px;">-->
+<!--                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                            </td>-->
+<!--                            <td style="padding-right: 5px;">-->
+<!--                                <img src="/assets/57410080/images/stamp3/12.gif" width="20">-->
+<!---->
+<!--                            </td>-->
+<!--                            <td>-->
+<!---->
+<!--                                <img src="/assets/57410080/images/stamp3/12.gif" width="20" id="dd1">-->
+<!---->
+<!--                                <div style="position: absolute; top: 508px;left: 136px; z-index: 999; ">-->
+<!--                                    <img src="/assets/57410080/images/stamp3/13.gif" width="10" alt="dddd" onmouseover="" style="border-radius: 5px;">-->
+<!--                                </div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
                 </div>
             <?php } ?>
         </div>
