@@ -77,28 +77,28 @@ class SiteController extends BaseController
         $data2 = \app\services\Statistic::getIncrementDataAllGraphic($data, 'Y-m-d');
 
         $new = [];
-        for($i=0;$i<count($data2['x']);$i++) {
-            if ($data2['x'][$i] > '2015-07-18') {
-                $new['x'][] = (new \DateTime($data2['x'][$i]))->format('d.m');
-                $new['y'][] = $data2['y'][$i];
+        for ($i = 0; $i < count($data2['x']); $i++) {
+            if ($data2['x'][ $i ] > '2015-07-18') {
+                $new['x'][] = (new \DateTime($data2['x'][ $i ]))->format('d.m');
+                $new['y'][] = $data2['y'][ $i ];
             }
         }
         $data2 = $new;
         $data3 = GraphExporter::convert([
-            'rows' => [User::query()
+            'rows'             => [User::query()
                 ->select([
                     'COUNT(id) as `kurs`',
                     'DATE(datetime_reg) as `date`',
                 ])
                 ->groupBy('DATE(datetime_reg)')
                 ->all()],
-            'formatX' => 'd.m',
-            'start' => new \DateTime('2015-07-05'),
+            'formatX'          => 'd.m',
+            'start'            => new \DateTime('2015-07-05'),
             'isExcludeWeekend' => false,
         ]);
 
         return $this->render([
-            'lineArray' => $data3,
+            'lineArray'  => $data3,
             'lineArray2' => [
                 'x' => $data2['x'],
                 'y' => [$data2['y']],
