@@ -79,7 +79,7 @@ class SiteController extends BaseController
         $new = [];
         for($i=0;$i<count($data2['x']);$i++) {
             if ($data2['x'][$i] > '2015-07-18') {
-                $new['x'][] = $data2['x'][$i];
+                $new['x'][] = (new \DateTime($data2['x'][$i]))->format('d.m');
                 $new['y'][] = $data2['y'][$i];
             }
         }
