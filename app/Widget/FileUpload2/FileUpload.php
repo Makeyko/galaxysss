@@ -390,6 +390,7 @@ JSSS;
      */
     private static function getOriginalLocal($path)
     {
+        if ($path == '') return '';
         $path = ltrim($path, '/');
         $arr = explode('/', $path);
 
