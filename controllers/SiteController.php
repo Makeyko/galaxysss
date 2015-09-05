@@ -92,7 +92,7 @@ class SiteController extends BaseController
                 ])
                 ->groupBy('DATE(datetime_reg)')
                 ->all()],
-//            'start' => new \DateTime('2015-08-17'),
+            'formatX' => 'd.m',
             'start' => new \DateTime('2015-07-05'),
             'isExcludeWeekend' => false,
         ]);
