@@ -74,7 +74,16 @@ class SiteController extends BaseController
                 'datetime_reg',
             ])
             ->column();
-        $data2 = \app\services\Statistic::getIncrementDataAllGraphic($data);
+        $data2 = \app\services\Statistic::getIncrementDataAllGraphic($data, 'Y-m-d');
+
+        $new = [];
+        for($i=0;$i<count($data2['x']);$i++) {
+            if ($data2['x'][$i] > '2015-07-18') {
+                $new['x'][] = $data2['x'][$i];
+                $new['y'][] = $data2['y'][$i];
+            }
+        }
+        $data2 = $new;
         $data3 = GraphExporter::convert([
             'rows' => [User::query()
                 ->select([
