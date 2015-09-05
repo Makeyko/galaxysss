@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use app\services\GsssHtml;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use app\services\GetArticle\Collection;
 
 $this->title = 'Мои ченнелинги';
 
@@ -68,8 +69,9 @@ $this->registerJsFile('/js/pages/admin/chenneling_list.js', [
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="<?= Url::to(['admin/chenneling_list_add_from_page', 'page' => 'youtube'])?>">Добавить с YouTube</a></li>
-                    <li><a href="<?= Url::to(['admin/chenneling_list_add_from_page', 'page' => 'verhosvet'])?>">Добавить с Verhosvet</a></li>
+                    <?php foreach(Collection::getList() as $item) {?>
+                        <li><a href="<?= Url::to(['admin/chenneling_list_add_from_page', 'page' => $item['name']])?>">Добавить с <?= $item['title'] ?></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <br>

@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\Chenneling;
 use app\models\Union;
 use app\models\User;
+use app\services\GetArticle\Collection;
 use cs\base\BaseForm;
 use cs\services\BitMask;
 use cs\services\File;
@@ -61,28 +62,16 @@ class ChennelingFromPage extends BaseForm
         ];
     }
 
-    public function insert()
+    public function insert($fieldsCols = NULL)
     {
-        /** @var \app\services\GetArticle\ExtractorInterface $extractor */
-        $extractor = null;
-        switch ($this->provider) {
-            case 'verhosvet':
-                $extractor = new \app\services\GetArticle\Verhosvet($this->url);
-                break;
-            case 'youtube':
-                $extractor = new \app\services\GetArticle\YouTube($this->url);
-                break;
-        }
-        if (is_null($extractor)) {
+        $extractorConfig = Collection::find($this->provider);
+        if (is_null($extractorConfig)) {
             throw new Exception('Не верный extractor');
         }
+        $extractorClass = $extractorConfig['class'];
+        /** @var \app\services\GetArticle\ExtractorInterface $extractor */
+        $extractor = new $extractorClass($this->url);
         $row = $extractor->extract();
-        if (is_null($row['image'])) {
-            throw new Exception('Нет картинки');
-        }
-        if ($row['image'] == '') {
-            throw new Exception('Нет картинки');
-        }
         if (is_null($row['header'])) {
             throw new Exception('Нет заголовка');
         }
@@ -104,28 +93,31 @@ class ChennelingFromPage extends BaseForm
             'date_insert'       => gmdate('YmdHis'),
             'date'              => gmdate('Ymd'),
             'tree_node_id_mask' => (new BitMask($this->tree_node_id_mask))->getMask(),
+            'img'               => '',
         ]);
         $this->id = $articleObject->getId();
         $image = $row['image'];
-        $imageContent = file_get_contents($image);
-        $imageUrl = parse_url($image);
-        $pathInfo = pathinfo($imageUrl['path']);
-        $pathInfo['extension'];
-        $fields = \cs\Widget\FileUpload2\FileUpload::save(File::content($imageContent), $pathInfo['extension'], [
-            'img',
-            'Картинка',
-            0,
-            'string',
-            'widget' => [
-                FileUpload::className(),
-                [
-                    'options' => [
-                        'small' => \app\services\GsssHtml::$formatIcon
+        if ($image) {
+            $imageContent = file_get_contents($image);
+            $imageUrl = parse_url($image);
+            $pathInfo = pathinfo($imageUrl['path']);
+            $pathInfo['extension'];
+            $fields = \cs\Widget\FileUpload2\FileUpload::save(File::content($imageContent), $pathInfo['extension'], [
+                'img',
+                'Картинка',
+                0,
+                'string',
+                'widget' => [
+                    FileUpload::className(),
+                    [
+                        'options' => [
+                            'small' => \app\services\GsssHtml::$formatIcon
+                        ]
                     ]
                 ]
-            ]
-        ], $this);
-        $articleObject->update($fields);
+            ], $this);
+            $articleObject->update($fields);
+        }
 
         return true;
     }

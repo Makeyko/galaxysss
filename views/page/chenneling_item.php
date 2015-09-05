@@ -30,11 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
             <?php endif; ?>
         <?php endif;
-        $image = $item['img'];
+        $image = $item['img'] . '';
         ?>
 
         <?= $this->render('../blocks/share', [
-            'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false) ,
+            'image'       => ($image != '')? \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false) : '' ,
             'url'         => Url::current([], true),
             'title'       => $item['header'],
             'description' => trim(Str::sub(strip_tags($item['content']), 0, 200)),
