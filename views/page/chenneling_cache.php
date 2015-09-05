@@ -56,7 +56,7 @@ JS
                     ],
                     'options' => [
                         'class'       => 'form-control',
-                        'placeholder' => 'Искать...',
+                        'placeholder' => 'Искать по названию...',
                         'id' => 'inputSearchChanneling',
                     ]
                 ]);
