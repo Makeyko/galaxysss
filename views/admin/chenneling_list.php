@@ -11,7 +11,8 @@ $this->title = 'Мои ченнелинги';
 $this->registerJsFile('/js/pages/admin/chenneling_list.js', [
     'depends' => [
         'app\assets\App\Asset',
-        'app\assets\ModalBoxNew\Asset'
+        'app\assets\ModalBoxNew\Asset',
+        'cs\assets\Confirm\Asset'
     ]
 ]);
 ?>
