@@ -428,7 +428,7 @@ class PageController extends BaseController
     public function actionChenneling_item($year, $month, $day, $id)
     {
         $date = $year . $month . $day;
-        $pattern = '#^[a-z\d]+$#';
+        $pattern = '#^[a-z\d_-]+$#';
         if (!preg_match($pattern, $id)) {
             throw new BadRequestHttpException('Имеются запрещенные символы');
         }
