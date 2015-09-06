@@ -16,13 +16,9 @@ $(document).ready(function () {
     });
 
     // Сделать рассылку
-    $('.buttonAddSiteUpdate').confirmation({
-        btnOkLabel: 'Да',
-        btnCancelLabel: 'Нет',
-        title: 'Вы уверены',
-        popout: true,
-        onConfirm: function (e) {
-            e.preventDefault();
+    $('.buttonAddSiteUpdate').click(function (e) {
+        e.preventDefault();
+        if (confirm('Подтведите свое намерение')) {
             var buttonSubscribe = $(this);
             var id = $(this).data('id');
             ajaxJson({
