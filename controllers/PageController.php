@@ -17,6 +17,7 @@ use yii\filters\AccessControl;
 use yii\grid\DataColumn;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -24,6 +25,7 @@ use app\models\ContactForm;
 use app\models\NewsItem;
 use app\models\Chenneling;
 use cs\base\BaseController;
+use yii\web\HttpException;
 
 
 class PageController extends BaseController
@@ -426,12 +428,16 @@ class PageController extends BaseController
     public function actionChenneling_item($year, $month, $day, $id)
     {
         $date = $year . $month . $day;
-        $item = Chenneling::find([
-            'date'      => $date,
-            'id_string' => $id
-        ]);
+        try {
+            $item = Chenneling::find([
+                'date'      => $date,
+                'id_string' => $id
+            ]);
+        } catch (\PDOException $e) {
+            throw new HttpException(404, 'Нет такого послания');
+        }
         if (is_null($item)) {
-            throw new Exception('Нет такого послания');
+            throw new HttpException(404, 'Нет такого послания');
         }
         $item->incViewCounter();
         // похожие статьи
