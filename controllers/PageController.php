@@ -428,14 +428,14 @@ class PageController extends BaseController
     public function actionChenneling_item($year, $month, $day, $id)
     {
         $date = $year . $month . $day;
-        try {
-            $item = Chenneling::find([
-                'date'      => $date,
-                'id_string' => $id
-            ]);
-        } catch (\PDOException $e) {
-            throw new HttpException(404, 'Нет такого послания');
+        $pattern = '#^[a-z\d]+$#';
+        if (!preg_match($pattern, $id)) {
+            throw new BadRequestHttpException('Имеются запрещенные символы');
         }
+        $item = Chenneling::find([
+            'date'      => $date,
+            'id_string' => $id
+        ]);
         if (is_null($item)) {
             throw new HttpException(404, 'Нет такого послания');
         }
