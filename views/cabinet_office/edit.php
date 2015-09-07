@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,15 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'links' => [
             [
                 'label' => 'Объединения',
-                'url' => ['cabinet/objects'],
+                'url'   => ['cabinet/objects'],
             ],
             [
                 'label' => 'Объединение',
-                'url' => ['cabinet/objects_edit', 'id' => $model->union_id],
+                'url'   => ['cabinet/objects_edit', 'id' => $model->union_id],
             ],
             [
                 'label' => 'Офисы',
-                'url' => ['cabinet_office/index', 'unionId' => $model->union_id],
+                'url'   => ['cabinet_office/index', 'unionId' => $model->union_id],
             ],
             $model->name,
         ],
@@ -49,16 +49,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
-                    'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'name')->label('Название') ?>
-                <?= $form->field($model, 'point')->label('Местоположение')->widget('cs\Widget\PlaceMap\PlaceMap') ?>
+                <?= $model->field($form, 'name') ?>
+                <?= $model->field($form, 'point') ?>
                 <?= $model->field($form, 'content') ?>
 
                 <hr class="featurette-divider">
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                        'class' => 'btn btn-default',
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
+                    ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

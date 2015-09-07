@@ -20,10 +20,10 @@ JS
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-sm-6">
             <h1 style="margin-bottom: 0px; margin-top: 40px; margin-left: 15px;">Послания</h1>
         </div>
-        <div class="col-lg-6">
+        <div class="col-sm-6">
             <div class="input-group" style="margin-top: 45px;">
                 <?= \yii\jui\AutoComplete::widget([
                     'model' => new \app\models\Form\ChennelingSearch(),
