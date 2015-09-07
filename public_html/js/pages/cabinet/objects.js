@@ -18,6 +18,25 @@ $(document).ready(function () {
         }
     });
 
+
+    // Отправить на модерацию
+    $('.buttonSendModeration').click(function (e) {
+        e.preventDefault();
+        if (confirm('Подтвердите свой выбор')) {
+            var id = $(this).data('id');
+            var a = $(this).parent().parent().parent();
+            ajaxJson({
+                url: '/objects/' + id + '/sendModeration',
+                success: function (ret) {
+                    a.remove();
+                    infoWindow('Успешно', function() {
+
+                    });
+                }
+            });
+        }
+    });
+
     // Сделать рассылку
     $('.buttonAddSiteUpdate').click(function (e) {
         e.preventDefault();

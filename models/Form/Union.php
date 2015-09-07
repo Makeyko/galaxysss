@@ -4,6 +4,7 @@ namespace app\models\Form;
 
 use app\models\User;
 use app\services\GsssHtml;
+use cs\Application;
 use cs\services\VarDumper;
 use Yii;
 use yii\base\Model;
@@ -158,6 +159,13 @@ class Union extends \cs\base\BaseForm
             $item = new \app\models\Union($row);
             $fields['description'] = GsssHtml::getMiniText($row['content']);
             $item->update($fields);
+        }
+
+        // отправка письма
+        {
+            Application::mail(Yii::$app->params['moderator']['email'], 'Добавлено новое объединение', 'new_union', [
+                'union' => $item,
+            ]);
         }
 
         return $item;

@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\SiteUpdate;
 use app\models\Union;
 use app\services\Subscribe;
+use cs\Application;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -49,6 +50,16 @@ class Moderator_unionsController extends AdminBaseController
         });
     }
 
+    /**
+     * Отклоняет объединение
+     *
+     * REQUEST:
+     * - reason - str - причина отклонения
+     *
+     * @param int $id идентификатор объединения
+     *
+     * @return \yii\web\Response
+     */
     public function actionReject($id)
     {
         return self::doAction($id, function (\app\models\Union $item) {
