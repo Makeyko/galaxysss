@@ -6,19 +6,29 @@ use yii\helpers\Html;
 
 $this->title = 'Офисы';
 
-$this->registerJsFile('/js/pages/cabinet_office/index1.js', [
-    'depends' => [
-        'app\assets\App\Asset',
-        'app\assets\ModalBoxNew\Asset'
-    ]
-]);
+$this->registerJs(<<<JS
+$('.buttonDelete').click(function (e) {
+    if (confirm('Подтвердите удаление')) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        ajaxJson({
+            url: '/cabinet/officeList/' + id + '/delete',
+            success: function (ret) {
+                infoWindow('Успешно', function() {
+                    $('#newsItem-' + id).remove();
+                });
+            }
+        });
+    }
+});
+JS
+);
 ?>
 
 <div class="container">
-    <div class="page-header">
-        <h1>Офисы</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Офисы</h1>
     </div>
-
 
     <table class="table table-hover">
         <tr id="newsItem-<?= $item['id'] ?>">
@@ -53,7 +63,6 @@ $this->registerJsFile('/js/pages/cabinet_office/index1.js', [
             $c++;
         }?>
     </table>
-
 
     <div class="col-lg-6">
         <div class="row">

@@ -54,18 +54,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
-                    'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $form->field($model, 'name')->label('Название') ?>
-                <?= $form->field($model, 'point')->label('Местоположение')->widget('cs\Widget\PlaceMap\PlaceMap') ?>
+                <?= $model->field($form, 'name') ?>
+                <?= $model->field($form, 'point') ?>
                 <?= $model->field($form, 'content') ?>
 
                 <hr class="featurette-divider">
                 <div class="form-group">
                     <?= Html::submitButton('Добавить', [
                         'class' => 'btn btn-default',
-                        'name'  => 'contact-button'
+                        'name'  => 'contact-button',
+                        'style' => 'width:100%',
                     ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>

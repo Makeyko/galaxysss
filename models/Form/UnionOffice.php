@@ -23,6 +23,7 @@ class UnionOffice extends \cs\base\BaseForm
     public $point_lat;
     public $point_lng;
     public $content;
+    public $category;
 
     function __construct($fields = [])
     {
@@ -30,7 +31,7 @@ class UnionOffice extends \cs\base\BaseForm
             [
                 'name',
                 'Название',
-                1,
+                0,
                 'string'
             ],
             [
