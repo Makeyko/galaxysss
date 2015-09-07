@@ -12,8 +12,8 @@ $this->registerJsFile('/js/pages/moderator_unions/index.js', [
 
 ?>
 <div class="container">
-    <div class="page-header">
-        <h1>Объединения</h1>
+    <div class="col-lg-12">
+        <h1 class="page-header">Объединения</h1>
     </div>
 
 
@@ -42,5 +42,22 @@ $this->registerJsFile('/js/pages/moderator_unions/index.js', [
             <?php
             $c++;
         }?>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Причина отклонения</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary buttonSend">Отправить</button>
+            </div>
+        </div>
     </div>
 </div>

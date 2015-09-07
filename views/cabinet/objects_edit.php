@@ -51,10 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'group_link_google')->label('Ссылка на google') ?>
                 </div>
                 <hr class="featurette-divider">
-                <?= Html::a('Офисы',['cabinet_office/index', 'unionId' => $model->id], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('Офисы', ['cabinet_office/index', 'unionId' => $model->id], ['class' => 'btn btn-default']) ?>
                 <hr class="featurette-divider">
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', ['class' => 'btn btn-default', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Обновить', [
+                        'class' => 'btn btn-default',
+                        'name' => 'contact-button',
+                        'style' => 'width: 100%;'
+                    ]) ?>
+
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

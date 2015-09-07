@@ -6,6 +6,7 @@ use app\models\Form\Union;
 use app\models\SiteUpdate;
 use app\models\User;
 use app\services\Subscribe;
+use cs\Application;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -50,9 +51,9 @@ class CabinetController extends BaseController
     public function actionObjects()
     {
         $items = \app\models\Union::query([
-            'user_id'           => \Yii::$app->user->getId(),
-            'moderation_status' => 1,
+            'user_id' => \Yii::$app->user->getId(),
         ])
+            ->andWhere(['in', 'moderation_status', [0, 1]])
             ->orderBy(['date_insert' => SORT_DESC])
             ->all();
 
@@ -70,15 +71,41 @@ class CabinetController extends BaseController
      */
     public function actionObjects_subscribe($id)
     {
+        return self::doAction($id, function (\app\models\Union $item) {
+            Subscribe::add($item);
+            SiteUpdate::add($item);
+            $item->update(['is_added_site_update' => 1]);
+        });
+    }
+
+
+    private function doAction($id, $callback)
+    {
         $item = \app\models\Union::find($id);
         if (is_null($item)) {
-            return self::jsonError(101, 'Не найдено объединение');
+            return self::jsonErrorId(101, 'Не найдено объединение');
         }
-        Subscribe::add($item);
-        SiteUpdate::add($item);
-        $item->update(['is_added_site_update' => 1]);
+        $callback($item);
 
         return self::jsonSuccess();
+    }
+
+    /**
+     * AJAX
+     * @param $id
+     *
+     * @return \yii\web\Response
+     */
+    public function actionSend_moderation($id)
+    {
+        return self::doAction($id, function (\app\models\Union $item) {
+            $item->update(['moderation_status' => null]);
+
+            // высылаю письмо
+            Application::mail(Yii::$app->params['moderator']['email'], 'Обновлено объединение', 'update_union', [
+                'union' => $item,
+            ]);
+        });
     }
 
     public function actionPoseleniya()
@@ -144,6 +171,9 @@ class CabinetController extends BaseController
     public function actionObjects_delete($id)
     {
         $model = \app\models\Form\Union::find($id);
+        if (is_null($model)) {
+            return self::jsonErrorId(101, 'Не найдено объединение');
+        }
         $model->delete();
 
         return self::jsonSuccess();
