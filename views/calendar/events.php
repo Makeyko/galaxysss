@@ -100,6 +100,15 @@ $this->title = 'События';
         <?php } ?>
     <?php } ?>
 
+    <div class="col-lg-12 row">
+        <hr>
+        <?= $this->render('../blocks/share', [
+            'image'       => \yii\helpers\Url::to(\cs\Widget\FileUpload2\FileUpload::getOriginal('/images/calendar/events/header.jpg'), true),
+            'url'         => \yii\helpers\Url::current([], true),
+            'title'       => $this->title,
+            'description' => 'Предстоящие события на Планете Земля',
+        ]) ?>
+    </div>
 
 
 </div>
