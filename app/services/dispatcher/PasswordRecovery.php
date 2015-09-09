@@ -45,7 +45,7 @@ class PasswordRecovery implements DispatcherInterface
             $code = Security::generateRandomString(50);
         }
         $fields = [
-            'date_finish' => gmdate('YmdHis', $dateFinish),
+            'date_finish' => gmdate('Y-m-d H:i:s', $dateFinish),
             'code'        => $code,
         ];
         if ((new Query())->select('*')->from(static::TABLE)->where(['parent_id' => $id])->exists()) {
