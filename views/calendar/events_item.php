@@ -25,14 +25,15 @@ $this->title = $item->getField('name');
     <div class="col-lg-12">
         <div class="col-lg-10 col-lg-offset-1">
             <?= $item->getField('content') ?>
+            <hr>
+            <?= $this->render('../blocks/share', [
+                'image'       => ($item->getField('image') != '')? Url::to(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('image')), true) : '' ,
+                'url'         => Url::current([], true),
+                'title'       => $item->getField('name'),
+                'description' => trim(\cs\services\Str::sub(strip_tags($item->getField('content')), 0, 200)),
+            ]) ?>
         </div>
-        <hr>
-        <?= $this->render('../blocks/share', [
-            'image'       => ($image != '')? \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item->getField('image'), true), false) : '' ,
-            'url'         => Url::current([], true),
-            'title'       => $item->getField('name'),
-            'description' => trim(\cs\services\Str::sub(strip_tags($item->getField('content')), 0, 200)),
-        ]) ?>
+
     </div>
 
 </div>
