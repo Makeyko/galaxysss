@@ -13,9 +13,7 @@ $this->title = 'Редактирование рассылок';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
+    <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
 
     <div class="row">
         <div class="col-lg-8">
