@@ -26,6 +26,13 @@ $this->title = $item->getField('name');
         <div class="col-lg-10 col-lg-offset-1">
             <?= $item->getField('content') ?>
         </div>
+        <hr>
+        <?= $this->render('../blocks/share', [
+            'image'       => ($image != '')? \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item->getField('image'), true), false) : '' ,
+            'url'         => Url::current([], true),
+            'title'       => $item->getField('name'),
+            'description' => trim(\cs\services\Str::sub(strip_tags($item->getField('content')), 0, 200)),
+        ]) ?>
     </div>
 
 </div>

@@ -1,17 +1,10 @@
 {
     "name": "gsss/god",
-    "description": "Yii 2 Basic Application Template",
-    "keywords": ["yii2", "framework", "basic", "application template"],
-    "homepage": "http://www.yiiframework.com/",
+    "description": "Галактический Союз Сил Света",
+    "keywords": ["gsss"],
+    "homepage": "http://www.galaxysss.ru/",
     "type": "project",
     "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
@@ -29,7 +22,8 @@
         "vlucas/valitron": "~1.2",
         "flesler/jquery.scrollTo": "*",
         "nnnick/Chart.js": "1.0.1",
-        "mobiledetect/mobiledetectlib": "*"
+        "mobiledetect/mobiledetectlib": "*",
+        "mycompany/superlogger": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -45,8 +39,8 @@
     },
     "repositories": [
         {
-            "url": "https://github.com/dram1008/library.git",
-            "type": "git"
+            "type":"git",
+            "url":"http://github.com/pqr/superlogger"
         },
         {
             "type": "package",
