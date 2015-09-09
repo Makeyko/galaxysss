@@ -96,6 +96,25 @@ class CalendarController extends BaseController
         ]);
     }
 
+    /**
+     * Выводит события
+     *
+     * @return string
+     * @throws \cs\web\Exception
+     */
+    public function actionEvents()
+    {
+        return $this->render([
+            'items' => Event::query()
+                ->limit(12)
+                ->where(['>=', 'end_date', gmdate('Ymd')])
+                ->orderBy([
+                    'start_date' => SORT_ASC,
+                ])
+                ->all(),
+        ]);
+    }
+
     public function actionIndex()
     {
         return $this->redirect(['calendar/orakul']);

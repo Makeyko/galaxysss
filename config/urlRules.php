@@ -35,6 +35,7 @@ return [
     'siteUpdateAjax'                                                                       => 'site/site_update_ajax',
     'test'                                                                                 => 'site/test',
     'stat'                                                                                 => 'site/statistic',
+    'service'                                                                              => 'site/service',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',
@@ -130,6 +131,7 @@ return [
     'manifest'                                                                             => 'page/manifest',
     'history'                                                                              => 'page/history',
 
+    'events'                                                                               => 'calendar/events',
     'events/<id:\\d+>'                                                                     => 'calendar/events_item',
 
     'pledge'                                                                               => 'page/pledge',

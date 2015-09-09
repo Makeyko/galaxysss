@@ -48,3 +48,4 @@ use yii\helpers\Url;
 <li><a href="<?= Url::to(['page/chenneling']) ?>">Послания</a></li>
 <li><a href="<?= Url::to(['page/news']) ?>">Новости</a></li>
 <li><a href="<?= Url::to(['page/services']) ?>">Услуги</a></li>
+<li><a href="<?= Url::to(['calendar/events']) ?>">События</a></li>
