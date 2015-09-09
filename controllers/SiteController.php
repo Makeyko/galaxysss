@@ -60,6 +60,11 @@ class SiteController extends BaseController
         ]);
     }
 
+    public function actionService()
+    {
+        return $this->render();
+    }
+
     public function actionTest()
     {
         Yii::$app->session->open();
