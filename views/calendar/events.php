@@ -6,7 +6,7 @@ use cs\helpers\Html;
 use app\services\GsssHtml;
 use cs\models\Calendar\Maya;
 
-$this->title = 'События';
+$this->title = 'События на Планете Земля';
 
 ?>
 <div class="container">
