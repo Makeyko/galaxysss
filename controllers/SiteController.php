@@ -60,8 +60,29 @@ class SiteController extends BaseController
         ]);
     }
 
+    /**
+     *  Прием уведомлений о платежах
+     */
+    public function actionMoney()
+    {
+        Yii::info(\yii\helpers\VarDumper::dumpAsString(Yii::$app->request->post()), 'gs\\money');
+
+        return self::jsonSuccess();
+    }
+
+    /**
+     *  Прием уведомлений о платежах
+     */
+    public function actionThankyou()
+    {
+        return $this->render();
+    }
+
     public function actionService()
     {
+        $i = new \app\services\investigator\Salusa();
+        VarDumper::dump($i->getNewItems());
+
         return $this->render();
     }
 

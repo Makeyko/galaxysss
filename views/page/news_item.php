@@ -36,6 +36,7 @@ $this->registerJs("$('#share').popover()");
             'title'       => $item['header'],
             'description' => trim(Str::sub(strip_tags($item['content']), 0, 200)),
         ]) ?>
+        <?= $this->render('../blocks/yandexMoney2') ?>
         <!--                Комментарии -->
         <?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_NEWS, $item['id']); ?>
 
