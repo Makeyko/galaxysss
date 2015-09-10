@@ -604,7 +604,7 @@ class BaseForm extends Model
         }
         $fields = $this->getFieldsFromFormUpdate($fieldsCols);
         if (!is_null($beforeUpdate)) {
-            $fields = call_user_func($beforeUpdate, $fields);
+            $fields = call_user_func($beforeUpdate, $fields, $this);
         }
         (new Query())->createCommand()->update(static::TABLE, $fields, ['id' => $this->id])->execute();
 
@@ -640,7 +640,7 @@ class BaseForm extends Model
         }
         $fields = $this->getFieldsFromFormInsert($fieldsCols);
         if (!is_null($beforeInsert)) {
-            $fields = call_user_func($beforeInsert, $fields);
+            $fields = call_user_func($beforeInsert, $fields, $this);
         }
         (new Query())->createCommand()->insert(static::TABLE, $fields)->execute();
         $fields['id'] = \Yii::$app->db->getLastInsertID();
@@ -660,7 +660,7 @@ class BaseForm extends Model
             }
         }
         if (!is_null($beforeUpdate)) {
-            $fieldsUpdate = call_user_func($beforeUpdate, $fieldsUpdate);
+            $fieldsUpdate = call_user_func($beforeUpdate, $fieldsUpdate, $this);
         }
         if (count($fieldsUpdate) > 0) {
             (new Query())->createCommand()->update(static::TABLE, $fieldsUpdate, ['id' => $fields['id']])->execute();

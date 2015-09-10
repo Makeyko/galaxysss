@@ -149,6 +149,7 @@ class AdminController extends AdminBaseController
     public function actionChenneling_list_edit($id)
     {
         $model = \app\models\Form\Chenneling::find($id);
+        $model->is_add_image = false;
         if ($model->load(Yii::$app->request->post()) && $model->update()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
             \app\models\Chenneling::clearCache();

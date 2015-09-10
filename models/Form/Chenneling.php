@@ -117,7 +117,7 @@ class Chenneling extends \cs\base\BaseForm
      */
     public function insert($fieldsCols = null)
     {
-        $row =  parent::insert([
+        $row = parent::insert([
             'beforeInsert' => function ($fields) {
                 $fields['date_insert'] = gmdate('YmdHis');
                 $fields['id_string'] = Str::rus2translit($fields['header']);
@@ -132,7 +132,8 @@ class Chenneling extends \cs\base\BaseForm
             $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
                     'class' => 'thumbnail',
                     'style' => 'width:100%;',
-                ])) . $item->getField('content') ];
+                    'alt'   => $item->getField('header'),
+                ])) . $item->getField('content')];
         }
         if ($row['description'] == '') {
             $fields['description'] = GsssHtml::getMiniText($row['content']);
@@ -145,9 +146,16 @@ class Chenneling extends \cs\base\BaseForm
     public function update($fieldsCols = null)
     {
         return parent::update([
-            'beforeUpdate' => function ($fields) {
+            'beforeUpdate' => function ($fields, \app\models\Form\Chenneling $model) {
                 if ($fields['description'] == '') {
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
+                }
+                if ($model->is_add_image) {
+                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($fields['img']), [
+                            'class' => 'thumbnail',
+                            'style' => 'width:100%;',
+                            'alt'   => $fields['header'],
+                        ])) . $fields['content'];
                 }
 
                 return $fields;
