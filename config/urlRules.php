@@ -36,8 +36,8 @@ return [
     'test'                                                                                 => 'site/test',
     'stat'                                                                                 => 'site/statistic',
     'service'                                                                              => 'site/service',
-    'thankyou'                                                                              => 'site/thankyou',
-    'money'                                                                              => 'site/money',
+    'thankyou'                                                                             => 'site/thankyou',
+    'moneyBack'                                                                            => 'site/money',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',
