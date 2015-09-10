@@ -70,6 +70,14 @@ class SiteController extends BaseController
         return self::jsonSuccess();
     }
 
+    /**
+     *  Прием уведомлений о платежах
+     */
+    public function actionThankyou()
+    {
+        return $this->render();
+    }
+
     public function actionService()
     {
         $i = new \app\services\investigator\Salusa();
