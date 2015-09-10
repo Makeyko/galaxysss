@@ -72,7 +72,8 @@ class Chenneling extends \cs\base\BaseForm
                 'cs\Widget\CheckBox2\Validator',
                 'widget' => [
                     'cs\Widget\CheckBox2\CheckBox',
-                ]
+                ],
+                'isFieldDb' => false,
             ],
             [
                 'description',
