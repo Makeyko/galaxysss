@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $model->field($form, 'description')->textarea(['rows' => 10]) ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'img') ?>
+                <?= $model->field($form, 'is_add_image') ?>
                 <?= $model->field($form, 'tree_node_id_mask') ?>
 
                 <hr>

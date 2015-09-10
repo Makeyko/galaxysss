@@ -36,6 +36,8 @@ class Chenneling extends \cs\base\BaseForm
     public $is_added_site_update;
     /** @var  int маска которая содержит идентификаторы разделов к которому принадлежит ченелинг */
     public $tree_node_id_mask;
+    /** @var  bool */
+    public $is_add_image = true;
 
     function __construct($fields = [])
     {
@@ -61,6 +63,15 @@ class Chenneling extends \cs\base\BaseForm
                     'cs\Widget\HtmlContent\HtmlContent',
                     [
                     ]
+                ]
+            ],
+            [
+                'is_add_image',
+                'Добавлять картинку вначале статьи?',
+                0,
+                'cs\Widget\CheckBox2\Validator',
+                'widget' => [
+                    'cs\Widget\CheckBox2\CheckBox',
                 ]
             ],
             [
@@ -117,10 +128,12 @@ class Chenneling extends \cs\base\BaseForm
         ]);
 
         $item = new \app\models\Chenneling($row);
-        $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
-                'class' => 'thumbnail',
-                'style' => 'width:100%;',
-            ])) . $item->getField('content') ];
+        if ($this->is_add_image) {
+            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
+                    'class' => 'thumbnail',
+                    'style' => 'width:100%;',
+                ])) . $item->getField('content') ];
+        }
         if ($row['description'] == '') {
             $fields['description'] = GsssHtml::getMiniText($row['content']);
         }
