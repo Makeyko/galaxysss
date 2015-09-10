@@ -465,80 +465,96 @@ class BaseForm extends Model
     protected function processUpdateField(&$dbFields, $field)
     {
         $name = $field[0];
-        if (isset($field['widget'])) {
-            $class = $field['widget'][0];
-            if (method_exists($class, 'onUpdate')) {
-                $new = $class::onUpdate($field, $this);
+        $isUpdate = true;
+        if (isset($field['isFieldDb'])) {
+            if ($field['isFieldDb'] == false) {
+                $isUpdate = false;
+            }
+        }
+        if ($isUpdate) {
+            if (isset($field['widget'])) {
+                $class = $field['widget'][0];
+                if (method_exists($class, 'onUpdate')) {
+                    $new = $class::onUpdate($field, $this);
+                    foreach ($new as $k => $v) {
+                        $dbFields[ $k ] = $v;
+                    }
+                }
+                else {
+                    $value = $this->$name;
+                    $value = $this->updateGetValue($value, $field);
+
+                    $dbFields[ $name ] = $value;
+                }
+
+                return;
+            }
+            if (self::getType($field) == 'place') {
+                $new = Place::onUpdate($field, $this);
                 foreach ($new as $k => $v) {
                     $dbFields[ $k ] = $v;
                 }
-            }
-            else {
-                $value = $this->$name;
-                $value = $this->updateGetValue($value, $field);
 
-                $dbFields[ $name ] = $value;
+                return;
             }
+            if (self::getType($field) == 'RadioList') {
+                $new = RadioList::onUpdate($field, $this);
+                foreach ($new as $k => $v) {
+                    $dbFields[ $k ] = $v;
+                }
 
-            return;
+                return;
+            }
+            $value = $this->$name;
+            $value = $this->updateGetValue($value, $field);
+
+            $dbFields[ $name ] = $value;
         }
-        if (self::getType($field) == 'place') {
-            $new = Place::onUpdate($field, $this);
-            foreach ($new as $k => $v) {
-                $dbFields[ $k ] = $v;
-            }
-
-            return;
-        }
-        if (self::getType($field) == 'RadioList') {
-            $new = RadioList::onUpdate($field, $this);
-            foreach ($new as $k => $v) {
-                $dbFields[ $k ] = $v;
-            }
-
-            return;
-        }
-        $value = $this->$name;
-        $value = $this->updateGetValue($value, $field);
-
-        $dbFields[ $name ] = $value;
     }
 
     // если есть метод onInsert и onUpdate то при инсерте нужно выбрать onInsert
     protected function processInsertField(&$dbFields, $field)
     {
         $name = $field[0];
-        if (isset($field['widget'])) {
-            $class = $field['widget'][0];
-            if (method_exists($class, 'onInsert')) {
-                $new = $class::onInsert($field, $this);
+        $isUpdate = true;
+        if (isset($field['isFieldDb'])) {
+            if ($field['isFieldDb'] == false) {
+                $isUpdate = false;
+            }
+        }
+        if ($isUpdate) {
+            if (isset($field['widget'])) {
+                $class = $field['widget'][0];
+                if (method_exists($class, 'onInsert')) {
+                    $new = $class::onInsert($field, $this);
+                    foreach ($new as $k => $v) {
+                        $dbFields[ $k ] = $v;
+                    }
+                }
+
+                return;
+            }
+            if (self::getType($field) == 'place') {
+                $new = Place::onUpdate($field, $this);
                 foreach ($new as $k => $v) {
                     $dbFields[ $k ] = $v;
                 }
+
+                return;
             }
+            if (self::getType($field) == 'RadioList') {
+                $new = RadioList::onUpdate($field, $this);
+                foreach ($new as $k => $v) {
+                    $dbFields[ $k ] = $v;
+                }
 
-            return;
-        }
-        if (self::getType($field) == 'place') {
-            $new = Place::onUpdate($field, $this);
-            foreach ($new as $k => $v) {
-                $dbFields[ $k ] = $v;
+                return;
             }
+            $value = $this->$name;
+            $value = $this->updateGetValue($value, $field);
 
-            return;
+            $dbFields[ $name ] = $value;
         }
-        if (self::getType($field) == 'RadioList') {
-            $new = RadioList::onUpdate($field, $this);
-            foreach ($new as $k => $v) {
-                $dbFields[ $k ] = $v;
-            }
-
-            return;
-        }
-        $value = $this->$name;
-        $value = $this->updateGetValue($value, $field);
-
-        $dbFields[ $name ] = $value;
     }
 
     /**
