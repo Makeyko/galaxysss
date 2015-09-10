@@ -62,6 +62,9 @@ class SiteController extends BaseController
 
     public function actionService()
     {
+        $i = new \app\services\investigator\Salusa();
+        VarDumper::dump($i->getNewItems());
+
         return $this->render();
     }
 
