@@ -7,7 +7,7 @@ $this->title = 'Манифест Cвободного Cознания';
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
         <p class="lead">Мирное решение существующих проблем социума и цивилизации в целом через переформатирование полей сознания.</p>
-        <p><img src="/images/page/manifest/5.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/manifest/5.jpg" width="100%" class="thumbnail"></p>
     </div>
 
 
@@ -50,7 +50,7 @@ $this->title = 'Манифест Cвободного Cознания';
 
         <hr>
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/page/manifest/5.jpg', true) ,
+            'image'       => \yii\helpers\Url::to('/images/new_earth/manifest/5.jpg', true) ,
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
             'description' => 'Мирное решение существующих проблем социума и цивилизации в целом через переформатирование полей сознания.',

@@ -6,7 +6,7 @@ $this->title = 'Кодекс света';
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
         <p class="lead">Новые правила для работников света</p>
 
-        <p><img src="/images/page/codex/header.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/codex/header.jpg" width="100%" class="thumbnail"></p>
 
         <p>Мастерами Света называют  тех людей, кто никогда, никого, ни в чём не обвинил; кто следует правилам Истины Божественного Творения; кто следует по пути свершения новых идей для построения Нового Мира на Земле; кто верит себе и Создателю.</p>
 
@@ -19,7 +19,7 @@ $this->title = 'Кодекс света';
 
 
 
-        <p><img src="/images/page/codex/header2.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/codex/header2.jpg" width="100%" class="thumbnail"></p>
         <h2>Памятка работникам света</h2>
         <p>1. Соблюдать чистоту своих помыслов, несмотря на любые непредвиденные ситуации в жизни.</p>
         <p>2. Держать Свет своей души и нести его всему сущему на Земле.</p>
@@ -36,7 +36,7 @@ $this->title = 'Кодекс света';
 
 
 
-        <p><img src="/images/page/codex/header3.png" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/codex/header3.png" width="100%" class="thumbnail"></p>
         <h2>Кодекс мастера света</h2>
         <p>1. Следовать нормам и правилам этики гражданина Земли.</p>
         <p>2. Нести Свет души во всех её проявлениях открыто и любвеобильно, быть примером обществу.</p>
@@ -52,7 +52,7 @@ $this->title = 'Кодекс света';
 
 
 
-        <p><img src="/images/page/codex/header4.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/codex/header4.jpg" width="100%" class="thumbnail"></p>
         <h2>Памятка для воина света</h2>
         <p>1. Если ты встал на путь Воина Света, твёрдо держи этот статус.</p>
         <p>2. Постоянно наполняйся новыми космическими энергиями посредством медитаций и творческих сеансов по работе с Землёй.</p>
@@ -70,7 +70,7 @@ $this->title = 'Кодекс света';
         <hr>
 
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/page/codex/header.jpg', true) ,
+            'image'       => \yii\helpers\Url::to('/images/new_earth/codex/header.jpg', true) ,
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
             'description' => 'Новые правила для работников света',

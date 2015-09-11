@@ -173,6 +173,11 @@ class SiteController extends BaseController
         }
     }
 
+    public function actionLogo()
+    {
+        return $this->render();
+    }
+
     public function actionLog()
     {
         return $this->render([

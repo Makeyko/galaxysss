@@ -10,7 +10,7 @@ $this->title = 'Декларация человечества Новой Эры'
         <p class="lead">Декларация человечества является Общемировым Пактом самоопределения и планетарной идентификации
             жителей планеты Земля.</p>
 
-        <p><img src="/images/page/declaration/1270100_654508297907655_1964333961_o.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/declaration/1270100_654508297907655_1964333961_o.jpg" width="100%" class="thumbnail"></p>
     </div>
 
 
@@ -137,7 +137,7 @@ $this->title = 'Декларация человечества Новой Эры'
 
 
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/page/declaration/1270100_654508297907655_1964333961_o.jpg', true) ,
+            'image'       => \yii\helpers\Url::to('/images/new_earth/declaration/1270100_654508297907655_1964333961_o.jpg', true) ,
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
             'description' => 'Декларация провозглашает принципы жизни и развития Людей, объединенных в Человеческую

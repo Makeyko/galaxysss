@@ -35,12 +35,14 @@ use yii\helpers\Url;
        aria-expanded="false">Земля 4D <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
 
-        <li><a href="<?= Url::to(['page/declaration']) ?>">Декларация</a></li>
-        <li><a href="<?= Url::to(['page/manifest']) ?>">Манифест</a></li>
-        <li><a href="<?= Url::to(['page/codex']) ?>">Кодекс</a></li>
-        <li><a href="<?= Url::to(['page/residence']) ?>">Резиденция</a></li>
-        <li><a href="<?= Url::to(['page/hymn']) ?>">Гимн</a></li>
-        <li><a href="<?= Url::to(['page/history']) ?>">История Человечества</a></li>
+        <li><a href="<?= Url::to(['new_earth/index']) ?>">Введение</a></li>
+        <li class="divider"></li>
+        <li><a href="<?= Url::to(['new_earth/declaration']) ?>">Декларация</a></li>
+        <li><a href="<?= Url::to(['new_earth/manifest']) ?>">Манифест</a></li>
+        <li><a href="<?= Url::to(['new_earth/codex']) ?>">Кодекс</a></li>
+        <li><a href="<?= Url::to(['new_earth/residence']) ?>">Резиденция</a></li>
+        <li><a href="<?= Url::to(['new_earth/hymn']) ?>">Гимн</a></li>
+        <li><a href="<?= Url::to(['new_earth/history']) ?>">История Человечества</a></li>
 
     </ul>
 </li>

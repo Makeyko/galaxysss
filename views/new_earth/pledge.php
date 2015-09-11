@@ -6,7 +6,7 @@ $this->title = 'Клатва Жителя Нового Мира';
     <div class="page-header">
         <h1 class="text-center">Клатва Жителя Нового Мира</h1>
     </div>
-    <p><img src="/images/page/pledge/uTWH1GtsdYw.jpg" width="100%" class="thumbnail"></p>
+    <p><img src="/images/new_earth/pledge/uTWH1GtsdYw.jpg" width="100%" class="thumbnail"></p>
 
 
     <div class="row">

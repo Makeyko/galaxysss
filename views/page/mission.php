@@ -90,7 +90,7 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <img src="/images/page/declaration/1270100_654508297907655_1964333961_o1.jpg" class="thumbnail"
+                        <img src="/images/new_earth/declaration/1270100_654508297907655_1964333961_o1.jpg" class="thumbnail"
                              width="80">
                     </div>
                     <div class="col-lg-9">
@@ -121,6 +121,18 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
                     </div>
                     <div class="col-lg-9">
                         <p>Новые правила для работников света</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/logo" class="list-group-item">
+                <h4>Логотип</h4>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <img src="/images/page/mission/logo.jpg" class="thumbnail" width="80">
+                    </div>
+                    <div class="col-lg-9">
+                        <p>«Цветок Жизни» - знак, символ, изображение, которое отображает математический символ бесконечности ∞.
+                            Символ, «Цветок жизни»</p>
                     </div>
                 </div>
             </a>
