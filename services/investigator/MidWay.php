@@ -59,6 +59,6 @@ class MidWay extends Base implements InvestigatorInterface
      */
     public function getItem($url)
     {
-        return new Chenneling($url);
+        return new \app\services\GetArticle\VkMidway($url);
     }
 } 
