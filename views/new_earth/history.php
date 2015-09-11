@@ -17,7 +17,7 @@ $this->title = 'История Человечества';
                     allowfullscreen></iframe>
         </p>
         <hr/>
-        <p><img src="/images/page/history/1.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/1.jpg" class="thumbnail" width="100%"></p>
 
         <p>Мы хотим перенести вас в ту точку пространственно-временного континуума, которая, в терминах вашего линейного
             времени, имела место более сотни тысяч лет назад. Это был важнейший этап событий, случившихся в вашем
@@ -67,7 +67,7 @@ $this->title = 'История Человечества';
 
         <p>Такова, Дорогие, была ваша судьба.</p>
 
-        <p><img src="/images/page/history/2.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/2.jpg" class="thumbnail" width="100%"></p>
 
         <p>По Тонкой Паутине распространился зов, и по всей Вселенной разошлась новость о планах проведения такого
             эксперимента &mdash; зарождения расы физических существ со световыми телами, способных удерживать в себе
@@ -107,7 +107,7 @@ $this->title = 'История Человечества';
 
         <p>Это был &laquo;союз, заключенный на небесах&raquo;.</p>
 
-        <p><img src="/images/page/history/3.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/3.jpg" class="thumbnail" width="100%"></p>
 
         <p>Были проведены глубокие исследования окружающей среды Земли &mdash; царства растений и животных &mdash; и
             было детально изучено, как биологическое разнообразие зависело от геофизических и климатических факторов.
@@ -164,7 +164,7 @@ $this->title = 'История Человечества';
 
         <p>Это была палитра художника.</p>
 
-        <p><img src="/images/page/history/4.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/4.jpg" class="thumbnail" width="100%"></p>
 
 
         <p>В отдаленной точке вашей галактики существует планета под названием Энган. Ее гравитационное поле и
@@ -201,7 +201,7 @@ $this->title = 'История Человечества';
             видно в ваши телескопы. Далекая и изолированная, эта древняя планета находилась в кризисе, подобном тому,
             что переживает ваш современный мир.</p>
 
-        <p><img src="/images/page/history/6.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/6.jpg" class="thumbnail" width="100%"></p>
 
         <p>Значительное перенаселение и обожествление сложных технологий привели цивилизацию на грань исчезновения, где
             она просто разрушала сама себя. На уровне коллективного бессознательного они отдали власть технологии и
@@ -243,7 +243,7 @@ $this->title = 'История Человечества';
         <p>Пятый элемент, связь с душой планеты, был найден в ДНКHomoErectus, местного земного примата. Он дал первичную
             форму и структуруHomoSapiens, навсегда связав вас с душой Гайи.</p>
 
-        <p><img src="/images/page/history/5.jpg" class="thumbnail" width="100%"></p>
+        <p><img src="/images/new_earth/history/5.jpg" class="thumbnail" width="100%"></p>
 
 
         <p>Не относитесь к этим прототипам с предубеждением. Ни один из них не превосходит другой, потому что все вы,
@@ -299,7 +299,7 @@ $this->title = 'История Человечества';
         <a href="http://rumagic.com/ru_zar/religion_esoterics/kori/0/j2.html" target="_blank" class="btn btn-primary">Ссылка на источник »</a>
 
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/page/history/1.jpg', true),
+            'image'       => \yii\helpers\Url::to('/images/new_earth/history/1.jpg', true),
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
             'description' => 'Когда в небесах раздался зов, подобный церковным колоколам, Силы Света из высших измерений, Ангельские Создания и Небесные Божества объединились вместе, чтобы помочь в исцелении этого места, излучая волны любви и света всем живым существам физического мира и желая восстановить равновесие.',

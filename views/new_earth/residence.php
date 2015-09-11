@@ -42,7 +42,7 @@ $data = [
     <div class="col-lg-12">
         <h1 class="page-header">Резиденция Галактического Союза Сил Света</h1>
         <p class="lead">Резиденция является одной из ключевых точек силы на Планете Земля.</p>
-        <p><img src="/images/page/residence/1/0.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/new_earth/residence/1/0.jpg" width="100%" class="thumbnail"></p>
     </div>
 
 
@@ -51,7 +51,7 @@ $data = [
             Света, провдения синхронизаций, активаций, инициаций, манифестаций и прямых контактов с Галактической Федерацией Света.</p>
         <?php
         for ($i = 1; $i <= 10; $i++) {
-            echo Html::tag('p', Html::img('/images/page/residence/1/' . $i . '.jpg', ['width' => '100%']));
+            echo Html::tag('p', Html::img('/images/new_earth/residence/1/' . $i . '.jpg', ['width' => '100%']));
         }
         ?>
         <p> Автор проекта: Денис Дубинин <a href="http://dk.3dn.ru/">http://dk.3dn.ru/</a></p>
@@ -60,7 +60,7 @@ $data = [
 
 
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/page/residence/1/0.jpg', true) ,
+            'image'       => \yii\helpers\Url::to('/images/new_earth/residence/1/0.jpg', true) ,
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
             'description' => 'Резиденция создана для проведения собраний Коалиционного Совета и Великого Содружества Сил

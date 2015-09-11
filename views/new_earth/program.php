@@ -8,7 +8,7 @@ $this->title = 'Программа новой эволюционной меде�
     </div>
     <p class="lead">Программа новой эволюционной медели разития человечества</p>
 
-    <p><img src="/images/page/program/3Z08zbLEZgk.jpg" width="100%" class="thumbnail"></p>
+    <p><img src="/images/new_earth/program/3Z08zbLEZgk.jpg" width="100%" class="thumbnail"></p>
 
 
     <div class="row">
