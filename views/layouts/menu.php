@@ -121,7 +121,8 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
                                 <li role="presentation" class="dropdown-header">Раздел админа</li>
                                 <li><a href="<?= Url::to(['admin/news']) ?>">Новости</a></li>
-                                <li><a href="<?= Url::to(['admin/chenneling_list']) ?>">Ченелинги</a></li>
+                                <li><a href="<?= Url::to(['admin/chenneling_list']) ?>">Послания</a></li>
+                                <li><a href="<?= Url::to(['admin_investigator/index']) ?>">Новые послания</a></li>
                                 <li><a href="<?= Url::to(['admin_article/index']) ?>">Статьи</a></li>
                                 <li><a href="<?= Url::to(['admin_category/index']) ?>">Категории</a></li>
                                 <li><a href="<?= Url::to(['admin_service/index']) ?>">Услуги</a></li>

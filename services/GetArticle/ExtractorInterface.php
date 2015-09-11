@@ -52,4 +52,10 @@ interface ExtractorInterface
      */
     public function getDescription();
 
+    /**
+     * Получает ссылку
+     * @return string
+     */
+    public function getUrl();
+
 } 

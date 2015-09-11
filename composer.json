@@ -16,14 +16,14 @@
         "yiisoft/yii2-imagine": "*",
         "yiisoft/yii2-authclient": "*",
         "yiisoft/yii2-smarty": "*",
+        "ExactTarget/fuelux": "*",
         "dixso/custombox": "*",
         "NorthwoodsSoftware/GoJS": "*",
         "mistic100/Bootstrap-Confirmation": "*",
         "vlucas/valitron": "~1.2",
         "flesler/jquery.scrollTo": "*",
         "nnnick/Chart.js": "1.0.1",
-        "mobiledetect/mobiledetectlib": "*",
-        "mycompany/superlogger": "dev-master"
+        "mobiledetect/mobiledetectlib": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -38,6 +38,18 @@
         }
     },
     "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "ExactTarget/fuelux",
+                "version": "1.0.1",
+                "source": {
+                    "url": "https://github.com/ExactTarget/fuelux",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        },
         {
             "type":"git",
             "url":"http://github.com/pqr/superlogger"

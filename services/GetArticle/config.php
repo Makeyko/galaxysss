@@ -26,4 +26,10 @@ return [
         'class' => 'app\services\GetArticle\VkMidway',
         'find'  => 'vk.com',
     ],
+    [
+        'name'  => 'chenneling',
+        'title' => 'chenneling.net',
+        'class' => 'app\services\GetArticle\Chenneling',
+        'find'  => 'chenneling.net',
+    ],
 ];

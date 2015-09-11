@@ -19,11 +19,8 @@ use app\services\GsssHtml;
  * $array = (new \app\services\GetArticle\Verhosvet('http://verhosvet.org/2015/05/poslanie-arkturianskoj-gruppy-ot-10-maya-2015-goda/'))->extract();
  * ```
  */
-class Verhosvet implements ExtractorInterface
+class Verhosvet extends Base implements ExtractorInterface
 {
-    /** @var  string */
-    public $url;
-
     /** @var  \simple_html_dom_node */
     private $article;
 
@@ -32,11 +29,6 @@ class Verhosvet implements ExtractorInterface
 
     /** @var  string */
     private $content;
-
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
 
     /**
      * Возвращает информацию о статье

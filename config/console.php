@@ -12,7 +12,7 @@ return [
     'controllerNamespace' => 'app\commands',
     'aliases'          => [
         '@web'    => __DIR__ . '/../public_html/',
-        '@csRoot' => __DIR__ . '/../../app',
+        '@csRoot' => __DIR__ . '/../app',
         '@upload' => __DIR__ . '/../public_html/upload',
     ],
     'modules'             => [
@@ -34,6 +34,15 @@ return [
                     'categories' => ['gs\\*'],
                 ],
             ],
+        ],
+        'urlManager'           => [
+            'hostInfo'             => 'http://www.galaxysss.ru' ,
+            'baseUrl'             => '',
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
+            'enableStrictParsing' => true,
+            'suffix'              => '',
+            'rules'               => require(__DIR__ . '/urlRules.php'),
         ],
         'db'     => $db,
     ],

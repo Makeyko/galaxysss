@@ -25,11 +25,8 @@ use cs\services\Str;
  * YouTube Api
  * https://developers.google.com/youtube/v3/
  */
-class YouTube implements ExtractorInterface
+class YouTube extends Base implements ExtractorInterface
 {
-    /** @var  string */
-    public $url;
-
     /** @var  string идентификатор видео YouTube */
     public $idString;
 
@@ -41,7 +38,7 @@ class YouTube implements ExtractorInterface
 
     public function __construct($url)
     {
-        $this->url = $url;
+        parent::__construct($url);
         $urlObject = new Url($url);
         if ($urlObject->host == 'www.youtube.com') {
             $this->idString = $urlObject->getParam('v');
