@@ -19,11 +19,8 @@ use app\services\GsssHtml;
  * $array = (new \app\services\GetArticle\VkMidway('https://vk.com/wall-84190266_337'))->extract();
  * ```
  */
-class VkMidway implements ExtractorInterface
+class VkMidway extends Base implements ExtractorInterface
 {
-    /** @var  string */
-    public $url;
-
     /** @var  \simple_html_dom */
     private $article;
 
@@ -32,11 +29,6 @@ class VkMidway implements ExtractorInterface
 
     /** @var  string */
     private $content;
-
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
 
     /**
      * Возвращает информацию о статье

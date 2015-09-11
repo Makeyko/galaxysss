@@ -71,53 +71,10 @@ class ChennelingFromPage extends BaseForm
         $extractorClass = $extractorConfig['class'];
         /** @var \app\services\GetArticle\ExtractorInterface $extractor */
         $extractor = new $extractorClass($this->url);
-        $row = $extractor->extract();
-        if (is_null($row['header'])) {
-            throw new Exception('Нет заголовка');
-        }
-        if ($row['header'] == '') {
-            throw new Exception('Нет заголовка');
-        }
-        if (is_null($row['description'])) {
-            throw new Exception('Нет описания');
-        }
-        if ($row['description'] == '') {
-            throw new Exception('Нет описания');
-        }
-        $articleObject = Chenneling::insert([
-            'header'            => $row['header'],
-            'content'           => $row['content'],
-            'description'       => $row['description'],
-            'source'            => $this->url,
-            'id_string'         => Str::rus2translit($row['header']),
-            'date_insert'       => gmdate('YmdHis'),
-            'date'              => gmdate('Ymd'),
+        $articleObject = Chenneling::insertExtractorInterface($extractor);
+        $articleObject->update([
             'tree_node_id_mask' => (new BitMask($this->tree_node_id_mask))->getMask(),
-            'img'               => '',
         ]);
-        $this->id = $articleObject->getId();
-        $image = $row['image'];
-        if ($image) {
-            $imageContent = file_get_contents($image);
-            $imageUrl = parse_url($image);
-            $pathInfo = pathinfo($imageUrl['path']);
-            $pathInfo['extension'];
-            $fields = \cs\Widget\FileUpload2\FileUpload::save(File::content($imageContent), $pathInfo['extension'], [
-                'img',
-                'Картинка',
-                0,
-                'string',
-                'widget' => [
-                    FileUpload::className(),
-                    [
-                        'options' => [
-                            'small' => \app\services\GsssHtml::$formatIcon
-                        ]
-                    ]
-                ]
-            ], $this);
-            $articleObject->update($fields);
-        }
 
         return true;
     }

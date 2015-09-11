@@ -12,18 +12,15 @@ use cs\services\Str;
 use app\services\GsssHtml;
 
 /**
- * Class VkMidway
+ * Class Chenneling
  * @package app\services\GetArticle
  *
  * ```php
- * $array = (new \app\services\GetArticle\VkMidway('https://vk.com/wall-84190266_337'))->extract();
+ * $array = (new \app\services\GetArticle\Chenneling('http://chenneling.net/chennelingi/poslanie-salusa-s-siriusa-ot-4-sentyabrya-2015-goda.html'))->extract();
  * ```
  */
-class Tasachena extends Base implements ExtractorInterface
+class Chenneling extends Base implements ExtractorInterface
 {
-    /** @var  string */
-    private $image;
-
     /** @var  \simple_html_dom */
     private $document;
 
@@ -66,22 +63,11 @@ class Tasachena extends Base implements ExtractorInterface
 
     public function _getContent()
     {
-        $html = $this->getDocument()->find('article/div.item-content')[0];
+        $html = $this->getDocument()->find('div.art-post-body/div.art-article/div.art-postcontent');
 
         $arr = [];
-        $arr[] = Html::tag('p', Html::img($this->getImage(), [
-            'width' => '100%',
-            'class' => 'thumbnail',
-        ]));
-        foreach ($html->find('*') as $item) {
-            if ($item instanceof \simple_html_dom_node) {
-                if ($item->tag == 'div') {
-                    if (strpos($item->attr['class'], 'essb_links') !== false) {
-                        break;
-                    }
-                }
-                $arr[] = $item->outertext();
-            }
+        foreach ($html[0]->find('p') as $item) {
+            $arr[] = Html::tag('p', trim($item->plaintext));
         }
 
         return join("\n", $arr);
@@ -105,9 +91,9 @@ class Tasachena extends Base implements ExtractorInterface
      */
     public function getHeader()
     {
-        $a = $this->getDocument()->find('div.blog-heading/h1');
+        $a = $this->getDocument()->find('div.art-post-body/div.art-article/h2');
 
-        return $a[0]->plaintext;
+        return trim($a[0]->plaintext);
     }
 
     /**
@@ -133,11 +119,7 @@ class Tasachena extends Base implements ExtractorInterface
      */
     public function getImage()
     {
-        if (is_null($this->image)) {
-            $this->image = $this->_getImage();
-        }
-
-        return $this->image;
+        return null;
     }
 
     /**

@@ -104,6 +104,7 @@ return [
     'admin/categoryList/add'                                                               => 'admin_category/add',
     'admin/categoryList/<id:\\d+>/delete'                                                  => 'admin_category/delete',
     'admin/categoryList/<id:\\d+>/edit'                                                    => 'admin_category/edit',
+    'admin/investigator'                                                                   => 'admin_investigator/index',
 
     'cabinet/officeList/<unionId:\\d+>'                                                    => 'cabinet_office/index',
     'cabinet/officeList/<unionId:\\d+>/add'                                                => 'cabinet_office/add',

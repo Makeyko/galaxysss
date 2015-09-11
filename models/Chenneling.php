@@ -10,7 +10,12 @@ namespace app\models;
 
 
 use app\services\Subscribe;
+use cs\services\BitMask;
+use cs\services\File;
+use cs\services\Str;
 use cs\services\Url;
+use cs\Widget\FileUpload2\FileUpload;
+use yii\base\Exception;
 
 class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
 {
@@ -127,5 +132,71 @@ class Chenneling extends \cs\base\DbRecord implements SiteContentInterface
             'date',
             'tree_node_id_mask',
         ]);
+    }
+
+    /**
+     * Добавить послание из GetArticle
+     *
+     * @param \app\services\GetArticle\ExtractorInterface $extractor
+     *
+     * @return static
+     * @throws \yii\base\Exception
+     */
+    public static function insertExtractorInterface($extractor)
+    {
+        $row = $extractor->extract();
+        if (is_null($row['header'])) {
+            throw new Exception('Нет заголовка');
+        }
+        if ($row['header'] == '') {
+            throw new Exception('Нет заголовка');
+        }
+        if (is_null($row['description'])) {
+            throw new Exception('Нет описания');
+        }
+        if ($row['description'] == '') {
+            throw new Exception('Нет описания');
+        }
+        $fields = [
+            'header'            => $row['header'],
+            'content'           => $row['content'],
+            'description'       => $row['description'],
+            'source'            => $extractor->getUrl(),
+            'id_string'         => Str::rus2translit($row['header']),
+            'date_insert'       => gmdate('YmdHis'),
+            'date'              => gmdate('Ymd'),
+            'img'               => '',
+        ];
+        $articleObject = self::insert($fields);
+        $model = new \app\models\Form\Chenneling();
+        $model->id = $articleObject->getId();
+        $image = $row['image'];
+        if ($image) {
+            try {
+                $imageContent = file_get_contents($image);
+                $imageUrl = parse_url($image);
+                $pathInfo = pathinfo($imageUrl['path']);
+                $pathInfo['extension'];
+                $fields = FileUpload::save(File::content($imageContent), $pathInfo['extension'], [
+                    'img',
+                    'Картинка',
+                    0,
+                    'string',
+                    'widget' => [
+                        FileUpload::className(),
+                        [
+                            'options' => [
+                                'small' => \app\services\GsssHtml::$formatIcon
+                            ]
+                        ]
+                    ]
+                ], $model);
+                $articleObject->update($fields);
+            } catch (\Exception $e) {
+
+            }
+        }
+
+        return $articleObject;
     }
 }

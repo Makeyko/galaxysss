@@ -11,6 +11,11 @@ namespace app\services\investigator;
 
 class Base
 {
+    public function className()
+    {
+        return get_called_class();
+    }
+
     /**
      * Возвращает разобранный документ
      *

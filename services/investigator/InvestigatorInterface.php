@@ -27,6 +27,12 @@ namespace app\services\investigator;
 interface InvestigatorInterface
 {
     /**
+     * Возвращает название класса
+     * @return string
+     */
+    public function className();
+
+    /**
      * Возвращает элементы которые есть
      *
      * @return array
@@ -53,14 +59,7 @@ interface InvestigatorInterface
      *
      * @param string $url идентификатор статьи
      *
-     * @return array
-     * [
-     *    'url'
-     *    'image'       => $this->getImage(),
-     *    'header'      => $this->getHeader(),
-     *    'content'     => $this->getContent(),
-     *    'description' => $this->getDescription(),
-     * ]
+     * @return \app\services\GetArticle\ExtractorInterface
      */
     public function getItem($url);
 } 
