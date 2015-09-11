@@ -49,30 +49,6 @@ class SiteChennelingNet extends Base implements InvestigatorInterface
     }
 
     /**
-     * Возвращает новые элементы
-     *
-     * @return array
-     * [[
-     *     'name'
-     *     'url'
-     * ],...]
-     */
-    public function getNewItems()
-    {
-        $class_name = get_called_class();
-        $items = $this->getItems();
-        $dbItems = Investigator::query(['class_name' => $class_name])->select('url')->column();
-        $ret = [];
-        foreach($items as $item) {
-            if (!in_array($item['url'], $dbItems)) {
-                $ret[] = $item;
-            }
-        }
-
-        return $ret;
-    }
-
-    /**
      * Получает
      *
      * @param string $url

@@ -12,4 +12,9 @@ return [
         'title' => 'Силия Фэнн',
         'class' => 'app\services\investigator\SilayaFenn',
     ],
+    [
+        'name'  => 'mid-way',
+        'title' => 'Элексир',
+        'class' => 'app\services\investigator\MidWay',
+    ],
 ];
