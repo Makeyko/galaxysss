@@ -3,11 +3,13 @@
 namespace app\controllers;
 
 use app\models\Form\Event;
+use app\models\HD;
 use app\models\Log;
 use app\models\SiteUpdate;
 use app\models\User;
 use app\services\GetArticle\YouTube;
 use app\services\GraphExporter;
+use app\services\HumanDesign2;
 use cs\base\BaseController;
 use cs\helpers\Html;
 use cs\services\SitePath;
@@ -49,6 +51,36 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
+        $c = new HumanDesign2();
+        foreach (HumanDesign2::$countryList as $k => $v) {
+            $options = [
+                'country' => $k,
+                'day'     => '1',
+                'month'   => '1',
+                'year'    => '2015',
+                'hour'    => '0',
+                'minute'  => '0',
+            ];
+            $curl = curl_init($c->url);
+            curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
+            curl_setopt($curl, CURLOPT_POST, 1);
+            $query = http_build_query($options);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $query);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_HEADER, 0);
+            $body = curl_exec($curl);
+
+            $result = new \StdClass();
+            $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            $result->body = $body;
+            curl_close($curl);
+            HD::insert([
+                'name' => $k,
+                'content' => $result->body
+            ]);
+        }
+
+
         return $this->render('index', [
             'events' => \app\models\Event::query()
                 ->limit(3)
