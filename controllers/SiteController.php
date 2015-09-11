@@ -52,40 +52,6 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
-        require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-
-        foreach(HD::query()->all() as $item) {
-            echo $item['name'] . ' => ';
-            $doc = str_get_html($item['content']);
-            $p = $doc->find('p');
-            $fields = [];
-            if (count($p) > 0) {
-                $sub_type = trim($p[0]->plaintext);
-                $fields['sub_type'] = $sub_type;
-                $items = $doc->find('select/option');
-                $new = [];
-                foreach($items as $i) {
-                    $new [] = [
-                        $item['id'],
-                        $i->attr['value'],
-                        $i->plaintext,
-                    ];
-                }
-                if (count($new) > 0) {
-                   HDtown::batchInsert(['country_id','name','title'], $new);
-                }
-            }
-            $i = $doc->find('input[name="country_en"]');
-            if (count($i) > 0) {
-                $fields['name_eng'] = $i[0]->attr['value'];
-            }
-            if (count($fields)) {
-                (new HD($item))->update($fields);
-            }
-            echo 'ok' . "\n";
-        }
-
-
         return $this->render('index', [
             'events' => \app\models\Event::query()
                 ->limit(3)
