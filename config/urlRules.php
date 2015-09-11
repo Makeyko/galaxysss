@@ -38,6 +38,7 @@ return [
     'service'                                                                              => 'site/service',
     'thankyou'                                                                             => 'site/thankyou',
     'moneyBack'                                                                            => 'site/money',
+    'thank'                                                                                => 'site/thank',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',

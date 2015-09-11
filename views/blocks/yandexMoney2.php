@@ -8,4 +8,4 @@
 
 ?>
 
-<a href="http://yasobe.ru/na/galaxysss" target="_blank" class="btn btn-success">Поддержать проект</a>
+<a href="<?= \yii\helpers\Url::to(['site/thank']) ?>" target="_blank" class="btn btn-success">Поддержать проект</a>
