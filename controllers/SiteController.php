@@ -60,6 +60,11 @@ class SiteController extends BaseController
         ]);
     }
 
+    public function actionThank()
+    {
+        return $this->render();
+    }
+
     /**
      *  Прием уведомлений о платежах
      */
