@@ -232,11 +232,7 @@ class GsssHtml
         $day = substr($row['date'], 8, 2);
         $html[] = Html::tag('p', Html::a(Html::img($row['img'], ['width' => '100%', 'class' => 'thumbnail']), "/chenneling/{$year}/{$month}/{$day}/{$row['id_string']}"));
         // Описание
-        $content = $row['description'];
-        if ($content.'' == '') {
-            $content = self::getMiniText($row['content']);
-        }
-        $html[] = Html::tag('p', $content);
+        $html[] = Html::tag('p', $row['description']);
 
         return Html::tag('div', join('', $html), ['class' => 'col-sm-4 chennelingItem']);
     }

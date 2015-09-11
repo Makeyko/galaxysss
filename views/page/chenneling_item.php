@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'image'       => ($image != '')? \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($item['img'], true), false) : '' ,
             'url'         => Url::current([], true),
             'title'       => $item['header'],
-            'description' => trim(Str::sub(strip_tags($item['content']), 0, 200)),
+            'description' => $item['description'],
         ]) ?>
         <?= $this->render('../blocks/yandexMoney2') ?>
         <!--                Комментарии -->

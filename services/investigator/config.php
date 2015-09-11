@@ -17,4 +17,9 @@ return [
         'title' => 'Элексир',
         'class' => 'app\services\investigator\MidWay',
     ],
+    [
+        'name'  => 'ronnastar',
+        'title' => 'Ронна Стар',
+        'class' => 'app\services\investigator\RonnaStar',
+    ],
 ];

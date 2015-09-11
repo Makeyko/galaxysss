@@ -26,14 +26,6 @@ $item2 = [
     <div class="caption">
         <h3><?= $item['header'] ?></h3>
 
-        <p><?php
-            $string = '';
-            if ($item['description'] != '') {
-                $string = \app\services\GsssHtml::getMiniText($item['description']);
-            } else {
-                $string = \app\services\GsssHtml::getMiniText($item['content']);
-            }
-            echo $string;
-            ?></p>
+        <p><?= $item['description'] ?></p>
     </div>
 </div>

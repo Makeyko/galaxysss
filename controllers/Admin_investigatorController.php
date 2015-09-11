@@ -81,6 +81,7 @@ class Admin_investigatorController extends AdminBaseController
             return $this->render([
             ]);
         } else {
+            $start1 = microtime(true);
             $items = [];
             $list = Collection::getList();
             $c = 1;
@@ -98,7 +99,8 @@ class Admin_investigatorController extends AdminBaseController
                 }
             }
             Yii::$app->session->set('items', $items);
-
+            $diff = (float)(microtime(true) - $start1);
+            Yii::info('all: ' . $diff, 'gs\\time');
             return $this->render([
                 'items' => $items,
             ]);
