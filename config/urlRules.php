@@ -39,7 +39,8 @@ return [
     'thankyou'                                                                             => 'site/thankyou',
     'moneyBack'                                                                            => 'site/money',
     'thank'                                                                                => 'site/thank',
-    'logo'                                                                                => 'site/logo',
+    'logo'                                                                                 => 'site/logo',
+    'user/<id:\\d+>'                                                                       => 'site/user',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',

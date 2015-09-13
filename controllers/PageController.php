@@ -7,6 +7,7 @@ use app\models\Praktice;
 use app\models\Service;
 use app\models\Union;
 use app\models\UnionCategory;
+use app\services\HumanDesign2;
 use cs\Application;
 use cs\services\Str;
 use cs\services\VarDumper;
@@ -60,6 +61,9 @@ class PageController extends BaseController
 
     public function actionHouse()
     {
+        $n = new HumanDesign2();
+        $v = $n->calc(new \DateTime('1980-12-23 19:00'),'Russia', 'Россия', 'Moscow');
+          VarDumper::dump($v);
         return $this->render([
             'articleList' => Article::getByTreeNodeId(3),
         ]);
