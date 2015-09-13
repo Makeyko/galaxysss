@@ -69,6 +69,26 @@ class SiteController extends BaseController
     }
 
     /**
+     * Выводит карточку профиля
+     *
+     * @param $id
+     *
+     * @return string
+     * @throws \cs\web\Exception
+     */
+    public function actionUser($id)
+    {
+        $user =  User::find($id);
+        if (is_null($user)) {
+            throw new \cs\web\Exception('Пользователь не найден');
+        }
+
+        return $this->render([
+            'user' => $user,
+        ]);
+    }
+
+    /**
      *  Прием уведомлений о платежах
      */
     public function actionMoney()

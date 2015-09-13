@@ -13,4 +13,5 @@ $this->title = 'Сервис';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Удаление кеша FB: <a href="https://developers.facebook.com/tools/debug/" target="_blank">https://developers.facebook.com/tools/debug/</a></p>
+    <p>Bootstrap Addons: <a href="http://bootsnipp.com/tags/user-interface" target="_blank">http://bootsnipp.com/tags/user-interface</a></p>
 </div>
