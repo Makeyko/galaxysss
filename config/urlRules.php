@@ -4,6 +4,7 @@ return [
     'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
     'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
+    'blog/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/blog_item',
     'praktice/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                         => 'page/praktice_item',
 
     'checkBoxTreeMask/add'                                                                 => 'check_box_tree_mask/add',
@@ -91,6 +92,12 @@ return [
     'admin/praktice/<id:\\d+>/delete'                                                      => 'admin_praktice/delete',
     'admin/praktice/<id:\\d+>/edit'                                                        => 'admin_praktice/edit',
 
+    'admin/blog'                                                                           => 'admin_blog/index',
+    'admin/blog/add'                                                                       => 'admin_blog/add',
+    'admin/blog/<id:\\d+>/delete'                                                          => 'admin_blog/delete',
+    'admin/blog/<id:\\d+>/edit'                                                            => 'admin_blog/edit',
+    'admin/blog/<id:\\d+>/subscribe'                                                       => 'admin_blog/subscribe',
+
     'admin/chennelingList'                                                                 => 'admin/chenneling_list',
     'admin/chennelingList/add'                                                             => 'admin/chenneling_list_add',
     'admin/chennelingList/addFromPage'                                                     => 'admin/chenneling_list_add_from_page',
@@ -132,6 +139,7 @@ return [
     'category/<category:\\w+>/<id:\\d+>'                                                   => 'page/union_item',
     'forgive'                                                                              => 'page/forgive',
     'tv'                                                                                   => 'page/tv',
+    'blog'                                                                                 => 'page/blog',
 
     'newEarth'                                                                             => 'new_earth/index',
     'declaration'                                                                          => 'new_earth/declaration',
@@ -171,6 +179,7 @@ return [
     'objects/<id:\\d+>/sendModeration'                                                     => 'cabinet/send_moderation',
     'cabinet/passwordChange'                                                               => 'cabinet/password_change',
     'cabinet/profile'                                                                      => 'cabinet/profile',
+    'cabinet/profile/humanDesign'                                                          => 'cabinet/profile_human_design',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',
     'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',

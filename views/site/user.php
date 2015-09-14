@@ -6,9 +6,10 @@ use yii\captcha\Captcha;
 /* @var $this yii\web\View */
 /* @var $user \app\models\User */
 
-$name = $user->getField('name_first') . $user->getField('name_last') . $user->getField('email');
+$name = $user->getField('name_first') . ' ' . $user->getField('name_last');
 
 $this->title = $name;
+
 ?>
 <div class="container">
     <h1 class="page-header"><?= $user->getField('name_first') . ' ' . $user->getField('name_last') ?> <a href="<?= \yii\helpers\Url::to(['cabinet/profile'])?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></h1>
@@ -21,7 +22,11 @@ $this->title = $name;
         <div class="panel panel-default">
             <div class="panel-heading">Дизайн Человека</div>
             <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
+                <?php if ($user->hasHumanDesign()) {?>
+                    <img src="<?= $user->getHumanDesign()->getImage() ?>" style="width: 100%;">
+                <?php } else {?>
+                    <a href="<?= \yii\helpers\Url::to(['cabinet/profile_human_design']) ?>" class="btn btn-primary">Расчитать</a>
+                <?php } ?>
             </div>
         </div>
 

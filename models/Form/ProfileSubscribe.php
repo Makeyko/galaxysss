@@ -39,6 +39,8 @@ class ProfileSubscribe extends BaseForm
     public $fb_link;
     public $birth_date;
     public $last_action;
+    public $human_design;
+    public $birth_time;
 
     public $subscribe_is_news;
     public $subscribe_is_site_update;
