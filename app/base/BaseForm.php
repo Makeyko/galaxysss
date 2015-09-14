@@ -665,12 +665,20 @@ class BaseForm extends Model
         // ищу file
         $fieldsUpdate = [];
         foreach ($fieldsCols as $field) {
-            $widget = ArrayHelper::getValue($field, 'widget.0', '');
-            if ($widget != '') {
-                if (!method_exists($widget, 'onInsert')) {
-                    $ret = $widget::onUpdate($field, $this);
-                    foreach ($ret as $k => $v) {
-                        $fieldsUpdate[ $k ] = $v;
+            $isUpdate = true;
+            if (isset($field['isFieldDb'])) {
+                if ($field['isFieldDb'] == false) {
+                    $isUpdate = false;
+                }
+            }
+            if ($isUpdate) {
+                $widget = ArrayHelper::getValue($field, 'widget.0', '');
+                if ($widget != '') {
+                    if (!method_exists($widget, 'onInsert')) {
+                        $ret = $widget::onUpdate($field, $this);
+                        foreach ($ret as $k => $v) {
+                            $fieldsUpdate[ $k ] = $v;
+                        }
                     }
                 }
             }

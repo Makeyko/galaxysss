@@ -48,6 +48,12 @@ class CabinetController extends BaseController
         return $this->goHome();
     }
 
+    public function actionProfile_human_design()
+    {
+        return $this->render([
+        ]);
+    }
+
     public function actionObjects()
     {
         $items = \app\models\Union::query([

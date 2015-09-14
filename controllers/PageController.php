@@ -61,9 +61,6 @@ class PageController extends BaseController
 
     public function actionHouse()
     {
-        $n = new HumanDesign2();
-        $v = $n->calc(new \DateTime('1980-12-23 19:00'),'Russia', 'Россия', 'Moscow');
-          VarDumper::dump($v);
         return $this->render([
             'articleList' => Article::getByTreeNodeId(3),
         ]);

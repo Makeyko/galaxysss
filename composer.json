@@ -23,7 +23,8 @@
         "vlucas/valitron": "~1.2",
         "flesler/jquery.scrollTo": "*",
         "nnnick/Chart.js": "1.0.1",
-        "mobiledetect/mobiledetectlib": "*"
+        "mobiledetect/mobiledetectlib": "*",
+        "jdewit/bootstrap-timepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -38,6 +39,18 @@
         }
     },
     "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jdewit/bootstrap-timepicker",
+                "version": "0.5.1",
+                "source": {
+                    "url": "https://github.com/jdewit/bootstrap-timepicker",
+                    "type": "git",
+                    "reference": "gh-pages"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {

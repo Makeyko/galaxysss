@@ -28,6 +28,32 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Заполнены ли данные о Дизайне Человека?
+     *
+     * @return bool
+     */
+    public function hasHumanDesign()
+    {
+        return $this->getField('human_design', '') != '';
+    }
+
+    /**
+     * Заполнены ли данные о Дизайне Человека?
+     *
+     * @return \app\models\HumanDesign
+     */
+    public function getHumanDesign()
+    {
+        $data = $this->getField('human_design_data');;
+        if (is_null($data)) {
+            return null;
+        }
+        $data = json_decode($data);
+
+        return new \app\models\HumanDesign($data);
+    }
+
+    /**
      * @inheritdoc
      */
     public static function findIdentityByAccessToken($token, $type = null)

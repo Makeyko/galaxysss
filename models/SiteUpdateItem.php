@@ -16,6 +16,7 @@ class SiteUpdateItem
     const TYPE_PRAKTICE   = 6;
     const TYPE_SERVICE    = 7;
     const TYPE_UNION      = 8;
+    const TYPE_BLOG       = 9;
 
     public $name;
     public $image;
@@ -31,5 +32,6 @@ class SiteUpdateItem
         self::TYPE_PRAKTICE   => 'Практика',
         self::TYPE_SERVICE    => 'Услуга',
         self::TYPE_UNION      => 'Объединение',
+        self::TYPE_BLOG       => 'Статья блога',
     ];
 }

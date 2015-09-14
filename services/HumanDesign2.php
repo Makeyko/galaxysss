@@ -212,7 +212,7 @@ class HumanDesign2
      *
      * @return string
      */
-    public function calc($datetime, $countryEn, $country, $town)
+    public function calc($datetime, $country, $town)
     {
         $hour = $datetime->format('H');
         if (substr($hour, 0, 1) == '0') $hour = substr($hour, 1);
@@ -224,8 +224,7 @@ class HumanDesign2
             'year'       => $datetime->format('Y'),
             'hour'       => $hour,
             'minute'     => $minute,
-//            'country'         => $country,
-            'country_en' => $countryEn,
+            'country_en' => $country,
             'city'       => $town,
         ];
         $curl = curl_init($this->url);
@@ -253,33 +252,33 @@ class HumanDesign2
      * @return array
      * [
      *    'image' => string
-     *    'Type' =>
+     *    'type' =>
      *        [
      *             'text'
      *             'href'
      *        ]
-     *    'Profile' =>
+     *    'profile' =>
      *        [
      *             'text'
      *             'href'
      *        ]
-     *    'Definition' =>
+     *    'definition' =>
      *        [
      *             'text'
      *        ]
-     *    'Inner' =>
+     *    'inner' =>
      *        [
      *             'text'
      *        ]
-     *    'Strategy' =>
+     *    'strategy' =>
      *        [
      *             'text'
      *        ]
-     *    'Theme' =>
+     *    'theme' =>
      *        [
      *             'text'
      *        ]
-     *    'Cross' =>
+     *    'cross' =>
      *        [
      *             'text'
      *        ]
@@ -307,13 +306,13 @@ class HumanDesign2
 
         return [
             'image'      => $img->attr['src'],
-            'Type'       => $Type,
-            'Profile'    => $Profile,
-            'Definition' => $Definition,
-            'Inner'      => $Inner,
-            'Strategy'   => $Strategy,
-            'Theme'      => $Theme,
-            'Cross'      => $Cross,
+            'type'       => $Type,
+            'profile'    => $Profile,
+            'definition' => $Definition,
+            'inner'      => $Inner,
+            'strategy'   => $Strategy,
+            'theme'      => $Theme,
+            'cross'      => $Cross,
         ];
     }
 
