@@ -389,7 +389,7 @@ class PageController extends BaseController
     public function actionArticle($category, $year, $month, $day, $id)
     {
         $item = Article::find([
-            'id_string'   => $id,
+            'id_string'         => $id,
             'DATE(date_insert)' => $year . $month . $day
         ]);
         if (is_null($item)) {
@@ -421,7 +421,7 @@ class PageController extends BaseController
             'nearList' => $nearList,
             'breadcrumbs' => [
                 'label' => $categoryObject->getField('header'),
-                'url'   => '/category/' . $category,
+                'url'   => ($categoryObject->getField('id_string', '') == '')? '/category/' . $category : '/' . $categoryObject->getField('id_string', ''),
             ],
         ]);
     }

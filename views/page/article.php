@@ -20,14 +20,13 @@ $this->registerJs("$('#share').popover()");
 
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
-        <?= Breadcrumbs::widget([
-            'links' => [
+        <?=  \cs\Widget\BreadCrumbs\BreadCrumbs::widget([
+            'items' => [
                 $breadcrumbs,
                 $this->title,
-            ],
+            ]
         ]) ?>
-
-
+        <hr>
     </div>
     <div class="col-lg-8">
         <?= $item['content'] ?>
