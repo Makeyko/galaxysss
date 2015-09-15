@@ -177,7 +177,6 @@ JS
 
 <p><img src="http://www.milogiya2007.ru/7/eneagram14.gif" alt="" class="thumbnail" style="width:100%;max-width: 525px;" border="0" /></p>
 
-<p>&nbsp;</p>
 
 <p>рис.7</p>
 
@@ -191,7 +190,6 @@ JS
 
 <p><img src="http://www.milogiya2007.ru/7/eneagram16.gif" alt="" class="thumbnail" style="width:100%;max-width: 464px;" border="0" /></p>
 
-<p>&nbsp;</p>
 
 <p>рис.8</p>
 
