@@ -8,6 +8,10 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Логотип - Цветок Жизни';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs(<<<JS
+$('img[data-tooltip]').tooltip();
+JS
+);
 ?>
 <div class="container">
     <div class="col-lg-12">
@@ -33,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-12 row">
             <center>
                 <p class="col-lg-8 col-lg-offset-2">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/UwzCGbsg3fw" frameborder="0"
+                    <iframe class="thumbnail" width="100%" height="315" src="https://www.youtube.com/embed/UwzCGbsg3fw" frameborder="0"
                             allowfullscreen></iframe>
                 </p>
             </center>
@@ -71,6 +75,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <img src="/images/site/logo/12031477_902118623207286_2987198916923122159_o.jpg"
                      class="thumbnail"
                      style="width: 100%; max-width: 600px;"
+                    />
+            </p>
+            <p class="center">
+                <img src="/images/site/logo/11951990_10153614106752888_8936861898552140126_n.jpg"
+                     class="thumbnail"
+                     style="width: 100%; max-width: 600px;"
+                     alt="Флаг Земли"
+                     title="Флаг Земли"
+                     data-tooltip="tooltip"
                     />
             </p>
         </center>
