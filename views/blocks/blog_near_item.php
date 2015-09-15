@@ -12,7 +12,7 @@ use cs\services\Url as csUrl;
 <div class="thumbnail">
     <a href="<?= $item->getLink() ?>">
         <img
-            src="<?= $item->getLink() ?>"
+            src="<?= $item->getImage() ?>"
             style="width: 100%; display: block;">
     </a>
 
