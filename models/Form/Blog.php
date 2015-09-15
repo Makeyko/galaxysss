@@ -147,8 +147,9 @@ class Blog extends \cs\base\BaseForm
                 if ($fields['description'] == '') {
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
+
                 if ($model->is_add_image) {
-                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($fields['image']), [
+                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($model->image), [
                             'class' => 'thumbnail',
                             'style' => 'width:100%;',
                             'alt'   => $fields['header'],
