@@ -49,8 +49,8 @@ $this->title = 'Новая Земля 4D';
 
     <hr class="col-lg-12">
 
-    <div class="col-lg-12 row">
-        <p> Смотрите также разделы:</p>
+    <div class="col-lg-12">
+        <p>Смотрите также разделы:</p>
 
         <div class="list-group col-lg-4">
             <a href="<?= \yii\helpers\Url::to(['new_earth/declaration']) ?>" class="list-group-item">Декларация</a>
