@@ -126,14 +126,14 @@ class Blog extends \cs\base\BaseForm
 
         $item = new \app\models\Blog($fields);
         if ($this->is_add_image) {
-            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
+            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getImage()), [
                     'class' => 'thumbnail',
                     'style' => 'width:100%;',
                     'alt'   => $item->getField('header'),
                 ])) . $item->getField('content')];
         }
-        if ($fields['description'] == '') {
-            $fields['description'] = GsssHtml::getMiniText($fields['content']);
+        if ($item->getField('description', '') == '') {
+            $fields['description'] = GsssHtml::getMiniText($item->getField('content', ''));
         }
         $item->update($fields);
 
@@ -143,7 +143,7 @@ class Blog extends \cs\base\BaseForm
     public function update($fieldsCols = null)
     {
         return parent::update([
-            'beforeUpdate' => function ($fields, \app\models\Form\Chenneling $model) {
+            'beforeUpdate' => function ($fields, \app\models\Form\Blog $model) {
                 if ($fields['description'] == '') {
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }

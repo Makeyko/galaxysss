@@ -40,12 +40,9 @@ var PlaceMapHumanDesign = {
         var input = /** @type {HTMLInputElement} */(
             document.getElementById(PlaceMapHumanDesign.fieldId));
 
-        // This event listener will call addMarker() when the map is clicked.
-        google.maps.event.addListener(PlaceMapHumanDesign.map, 'click', function (event) {
-            PlaceMapHumanDesign.addMarker(event.latLng);
+        var autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['(cities)']
         });
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();

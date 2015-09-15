@@ -6,6 +6,14 @@
     vertical-align: bottom;
 }
 
+.blogItem {
+    height: 650px;
+}
+.blogItem .header {
+    height: 70px;
+    vertical-align: bottom;
+}
+
 .unityItem {
     height: 650px;
 }

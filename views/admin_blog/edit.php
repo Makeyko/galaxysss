@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $model->field($form, 'description') ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'image') ?>
+                <?= $model->field($form, 'is_add_image') ?>
                 <?= $model->field($form, 'tree_node_id_mask') ?>
 
                 <hr>

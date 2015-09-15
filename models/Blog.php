@@ -4,7 +4,9 @@ namespace app\models;
 
 use app\services\Subscribe;
 use cs\services\BitMask;
+use cs\services\VarDumper;
 use yii\db\Query;
+use yii\helpers\Url;
 
 class Blog extends \cs\base\DbRecord implements SiteContentInterface
 {

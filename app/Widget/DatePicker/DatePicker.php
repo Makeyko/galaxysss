@@ -241,7 +241,9 @@ class DatePicker extends \yii\jui\InputWidget
             $contents[] = Html::tag('div', null, $this->containerOptions);
         }
 
-        return implode("\n", $contents);
+        $div = Html::tag('div', implode("\n", $contents) . '<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>', ['class' => 'input-group' ]);
+
+        return $div;
     }
 
 

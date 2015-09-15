@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\Blog;
 use app\models\Praktice;
 use app\models\Service;
 use app\models\Union;
@@ -101,21 +102,31 @@ class PageController extends BaseController
         ]);
     }
 
+    public function actionBlog()
+    {
+        return $this->render([
+            'list' => Blog::query()
+                ->select([
+                    'id',
+                    'header',
+                    'description',
+                    'if(length(ifnull(content, "")) > 0, 1, 0) as is_content',
+                    'image',
+                    'source',
+                    'date',
+                    'id_string',
+                    'date_insert',
+                ])
+                ->orderBy(['date_insert' => SORT_DESC])
+                ->all(),
+        ]);
+    }
+
     public function actionServices_item($id)
     {
         return $this->render([
             'item' => Service::find($id)
         ]);
-    }
-
-    public function actionMission()
-    {
-        return $this->render();
-    }
-
-    public function actionCodex()
-    {
-        return $this->render();
     }
 
     public function actionColkin()
@@ -255,26 +266,6 @@ class PageController extends BaseController
     }
 
     public function actionTv()
-    {
-        return $this->render();
-    }
-
-    public function actionDeclaration()
-    {
-        return $this->render();
-    }
-
-    public function actionResidence()
-    {
-        return $this->render();
-    }
-
-    public function actionPledge()
-    {
-        return $this->render();
-    }
-
-    public function actionProgram()
     {
         return $this->render();
     }
@@ -454,6 +445,38 @@ class PageController extends BaseController
 
         return $this->render([
             'item'     => $item->getFields(),
+            'nearList' => $nearList,
+        ]);
+    }
+
+    public function actionBlog_item($year, $month, $day, $id)
+    {
+        $date = $year . $month . $day;
+        $pattern = '#^[a-z\d_-]+$#';
+        if (!preg_match($pattern, $id)) {
+            throw new BadRequestHttpException('Имеются запрещенные символы');
+        }
+        $item = Blog::find([
+            'date'      => $date,
+            'id_string' => $id
+        ]);
+        if (is_null($item)) {
+            throw new HttpException(404, 'Нет такой статьи');
+        }
+        $item->incViewCounter();
+        // похожие статьи
+        {
+            $nearList = Blog::query()
+                ->select('id,header,id_string,image,view_counter,description,date_insert')
+                ->orderBy(['date_insert' => SORT_DESC])
+                ->andWhere(['not in', 'id', $item->getId()])
+                ->limit(3)
+                ->all()
+            ;
+        }
+
+        return $this->render([
+            'item'     => $item,
             'nearList' => $nearList,
         ]);
     }
