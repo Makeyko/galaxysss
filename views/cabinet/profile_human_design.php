@@ -6,14 +6,93 @@ use yii\captcha\Captcha;
 use app\models\UnionCategory;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model cs\base\BaseForm */
+/* @var $items array gs_hd.* */
 
 
 $this->title = 'Дизайн Человека';
 $this->params['breadcrumbs'][] = $this->title;
 
 \app\assets\FuelUX\Asset::register($this);
+
+$items = \yii\helpers\Json::encode($items);
+$this->registerJs(<<<JS
+    var items = {$items};
+    var geocoder = new google.maps.Geocoder();
+    var ret = [];
+    var bounds;
+    var item;
+    findLocation(0);
+
+    function findLocation(i)
+    {
+        var v = items[i];
+        var address = v.name + ', ' + v.town_name;
+        // делаю запрос к Google для поиск координат места. То есть ищу координты по названию места
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                var isExistEa = false;
+                for(d in results[0].geometry.bounds) {
+                    if (d == 'Ea') {
+                        isExistEa = true;
+                    }
+                }
+                if (isExistEa == false) {
+                    item = {
+                        i: i,
+                        id: v.town_id,
+                        address: address,
+                        resultLength: results.length,
+                        bounds: 'error',
+                        results: results
+                    };
+                } else {
+                    bounds =  {
+                       latMin: results[0].geometry.bounds.Ea.j,
+                       latMax: results[0].geometry.bounds.Ea.G,
+                       lngMin: results[0].geometry.bounds.Ja.G,
+                       lngMax: results[0].geometry.bounds.Ja.j
+                    };
+
+                    item = {
+                        i: i,
+                        id: v.town_id,
+                        address: address,
+                        resultLength: results.length,
+                        bounds: bounds,
+                        results: results
+                    };
+                }
+
+                console.log(item);
+                ret.push(item);
+
+            } else {
+                end();
+            }
+            if ((i+1) < items.length) {
+                i++;
+                findLocation(i);
+            } else {
+                end();
+            }
+        })
+    }
+
+    function end()
+    {
+        console.log(ret);
+        ajaxJson({
+            url: '/cabinet/profile/hd_ajax',
+            data: {
+                data: ret
+            },
+            success: function(ret) {
+                console.log('ok');
+            }
+        })
+    }
+JS
+);
 
 
 /** @var \app\models\User $user */

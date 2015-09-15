@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Form\Union;
+use app\models\HDtown;
 use app\models\SiteUpdate;
 use app\models\User;
 use app\services\Subscribe;
@@ -51,6 +52,18 @@ class CabinetController extends BaseController
     public function actionProfile_human_design()
     {
         return $this->render([
+            'items' => HDtown::query()
+                ->select([
+                    'gs_hd.id',
+                    'gs_hd.title',
+                    'gs_hd.sub_type',
+                    'gs_hd.name',
+                    'gs_hd_town.id as town_id',
+                    'gs_hd_town.name as town_name',
+                    'gs_hd_town.title as town_title',
+                ])
+                ->innerJoin('gs_hd', 'gs_hd_town.country_id = gs_hd.id')
+                ->all()
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-/** @var $item array article */
+/** @var $item \app\models\Blog */
 
 use yii\helpers\Html;
 use yii\bootstrap\ButtonDropdown;
@@ -9,7 +9,7 @@ use cs\services\Url as csUrl;
 
 
 $item2 = [
-    'id'       => $item['id_string'],
+    'id'       => $item->getField('id_string'),
     'year'     => substr($item['date_insert'], 0, 4),
     'month'    => substr($item['date_insert'], 5, 2),
     'day'      => substr($item['date_insert'], 8, 2),
