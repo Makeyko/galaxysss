@@ -66,6 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
             «Цветок Жизни» - это эзотерическая информация, идущая через века, о том, как осознанно применять принципы
             Сакральной Геометрии для духовного роста человека.
         </p>
+        <center>
+            <p class="center">
+                <img src="/images/site/logo/12031477_902118623207286_2987198916923122159_o.jpg"
+                     class="thumbnail"
+                     style="width: 100%; max-width: 600px;"
+                    />
+            </p>
+        </center>
+
         <hr>
 
         <?= $this->render('../blocks/share', [
