@@ -45,7 +45,7 @@ $this->registerJs("$('#share').popover()");
     </div>
     <div class="col-lg-4">
         <?php foreach ($nearList as $item) { ?>
-            <?= $this->render('../blocks/blog_newar_item', [
+            <?= $this->render('../blocks/blog_near_item', [
                 'item'     => new \app\models\Blog($item),
             ]) ?>
         <?php } ?>

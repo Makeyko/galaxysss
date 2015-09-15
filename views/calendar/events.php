@@ -28,7 +28,7 @@ $this->title = 'События на Планете Земля';
                 <p><?= $event['date'] ?></p>
 
                 <p style="margin-bottom: 0px;padding-bottom: 0px;">
-                    <a href="<?= $link ?>" target="_blank">
+                    <a href="<?= $link ?>">
                         <img
                             src="<?= $event['image'] ?>"
                             width="100%"
