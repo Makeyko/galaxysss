@@ -44,7 +44,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
      */
     public function getHumanDesign()
     {
-        $data = $this->getField('human_design_data');;
+        $data = $this->getField('human_design');;
         if (is_null($data)) {
             return null;
         }

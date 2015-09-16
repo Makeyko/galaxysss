@@ -122,4 +122,18 @@ class Url
 
         return $ret;
     }
+
+    /**
+     * @return string
+     */
+    public function getExtension()
+    {
+        $info = pathinfo($this->path);
+        return $info['extension'];
+    }
+
+    public function read()
+    {
+        return file_get_contents($this->__toString());
+    }
 } 

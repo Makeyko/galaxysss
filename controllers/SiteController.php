@@ -177,7 +177,6 @@ class SiteController extends BaseController
 
     public function actionContact()
     {
-        VarDumper::dump($_POST);
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['mailList']['contact'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');

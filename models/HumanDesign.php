@@ -5,6 +5,7 @@ namespace app\models;
 
 
 use yii\base\Object;
+use yii\helpers\Json;
 use yii\helpers\Url;
 
 class HumanDesign extends Object
@@ -37,5 +38,10 @@ class HumanDesign extends Object
         }
 
         return Url::to($url, $isSchema);
+    }
+
+    public function getJson()
+    {
+        return Json::encode($this);
     }
 }

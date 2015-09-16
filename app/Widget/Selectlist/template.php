@@ -10,6 +10,7 @@
 'hiddenId'   => $this->hiddenId,
 'hiddenName' => $this->hiddenName,
  */
+/** @var int $value|null выбранный элемент */
 
 ?>
 
@@ -20,8 +21,13 @@
         <span class="sr-only">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-        <?php foreach($items as $k => $v) { ?>
-            <li data-value="<?= $k ?>"><a href="#"><?= $v ?></a></li>
+        <?php foreach($items as $k => $v) {
+            $selected = '';
+            if ($k == $value) {
+                $selected = ' selected="selected"';
+            }
+            ?>
+            <li data-value="<?= $k ?>"<?= $selected ?>><a href="#"><?= $v ?></a></li>
         <?php } ?>
     </ul>
     <input class="hidden hidden-field" name="<?= $fieldName ?>" id="<?= $fieldId ?>" readonly="readonly" aria-hidden="true" type="text"/>

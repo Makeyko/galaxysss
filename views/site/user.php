@@ -19,14 +19,63 @@ $this->title = $name;
     </div>
     <div class="col-lg-8">
 
+        <?php $humanDesign = $user->getHumanDesign();
+
+        $this->registerJs(<<<JS
+$('.buttonDelete').click(function(){
+    ajaxJson({
+            url: '/cabinet/profile/humanDesign/delete',
+            success: function(){
+                window.location = '/cabinet/profile/humanDesign'
+            }
+        })
+    }
+);
+JS
+        );
+        ?>
+
         <div class="panel panel-default">
-            <div class="panel-heading">Дизайн Человека</div>
+            <div class="panel-heading">Дизайн Человека
+
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-xs buttonDelete" >
+                        Удалить и пересчитать
+                    </button>
+                </div>
+            </div>
             <div class="panel-body">
-                <?php if ($user->hasHumanDesign()) {?>
-                    <img src="<?= $user->getHumanDesign()->getImage() ?>" style="width: 100%;">
-                <?php } else {?>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet/profile_human_design']) ?>" class="btn btn-primary">Расчитать</a>
-                <?php } ?>
+                <img src="<?= $humanDesign->getImage() ?>" style="width: 100%;">
+                <table class="table table-striped table-hover" style="width: auto;" align="center">
+                    <tr>
+                        <td>Тип</td>
+                        <td><?= $humanDesign->type->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>Профиль</td>
+                        <td><?= $humanDesign->profile->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>definition</td>
+                        <td><?= $humanDesign->definition->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>inner</td>
+                        <td><?= $humanDesign->inner->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>Стратегия</td>
+                        <td><?= $humanDesign->strategy->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>Тема ложного Я</td>
+                        <td><?= $humanDesign->theme->text ?></td>
+                    </tr>
+                    <tr>
+                        <td>Крест</td>
+                        <td><?= $humanDesign->cross->text ?></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
