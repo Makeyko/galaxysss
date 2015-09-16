@@ -25,12 +25,14 @@ class ProfileHumanDesignCalc extends BaseForm
     /** @var  string */
     public $time;
     /** @var  int */
-    public $country = 687;
+    public $country;
     /** @var  int */
     public $town;
 
     public function init()
     {
+        $this->country = (YII_ENV_PROD)? 2907 : 687;
+
         /** @var \app\models\User $user */
         $user = Yii::$app->user->identity;
         $birth_date = $user->getField('birth_date');
