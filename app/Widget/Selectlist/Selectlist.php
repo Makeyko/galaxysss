@@ -68,11 +68,15 @@ class Selectlist extends InputWidget
     public function run()
     {
         $this->registerClientScript();
+        $model = $this->model;
+        $attribute = $this->attribute;
+        $value = $model->$attribute;
 
         return Yii::$app->view->renderFile('@csRoot/Widget/Selectlist/template.php', [
             'items'      => $this->items,
             'fieldId'    => $this->fieldId,
             'fieldName'  => $this->fieldName,
+            'value'      => $value
         ]);
     }
 

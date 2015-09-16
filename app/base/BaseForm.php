@@ -51,6 +51,8 @@ class BaseForm extends Model
 {
     protected $row;
 
+    public $rules;
+
     public static $fields = [];
 
     const POS_DB_NAME     = 0;

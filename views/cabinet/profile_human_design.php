@@ -4,116 +4,78 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use app\models\UnionCategory;
+use \yii\helpers\ArrayHelper;
 
-/* @var $this yii\web\View */
-/* @var $items array gs_hd.* */
+/* @var $this  \yii\web\View */
+/* @var $model \app\models\Form\ProfileHumanDesignCalc */
 
 
 $this->title = 'Дизайн Человека';
-$this->params['breadcrumbs'][] = $this->title;
-
-\app\assets\FuelUX\Asset::register($this);
-
-$items = \yii\helpers\Json::encode($items);
-$this->registerJs(<<<JS
-    var items = {$items};
-    var geocoder = new google.maps.Geocoder();
-    var ret = [];
-    var bounds;
-    var item;
-    findLocation(0);
-
-    function findLocation(i)
-    {
-        var v = items[i];
-        var address = v.name + ', ' + v.town_name;
-        // делаю запрос к Google для поиск координат места. То есть ищу координты по названию места
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                var isExistEa = false;
-                for(d in results[0].geometry.bounds) {
-                    if (d == 'Ea') {
-                        isExistEa = true;
-                    }
-                }
-                if (isExistEa == false) {
-                    item = {
-                        i: i,
-                        id: v.town_id,
-                        address: address,
-                        resultLength: results.length,
-                        bounds: 'error',
-                        results: results
-                    };
-                } else {
-                    bounds =  {
-                       latMin: results[0].geometry.bounds.Ea.j,
-                       latMax: results[0].geometry.bounds.Ea.G,
-                       lngMin: results[0].geometry.bounds.Ja.G,
-                       lngMax: results[0].geometry.bounds.Ja.j
-                    };
-
-                    item = {
-                        i: i,
-                        id: v.town_id,
-                        address: address,
-                        resultLength: results.length,
-                        bounds: bounds,
-                        results: results
-                    };
-                }
-
-                console.log(item);
-                ret.push(item);
-
-            } else {
-                end();
-            }
-            if ((i+1) < items.length) {
-                i++;
-                findLocation(i);
-            } else {
-                end();
-            }
-        })
-    }
-
-    function end()
-    {
-        console.log(ret);
-        ajaxJson({
-            url: '/cabinet/profile/hd_ajax',
-            data: {
-                data: ret
-            },
-            success: function(ret) {
-                console.log('ok');
-            }
-        })
-    }
-JS
-);
-
 
 /** @var \app\models\User $user */
 $user = Yii::$app->user->identity;
 ?>
 <div class="container">
-    <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
         <div class="col-lg-8">
             <?php if ($user->hasHumanDesign()): ?>
+                <?php $humanDesign = $user->getHumanDesign();
+
+                $this->registerJs(<<<JS
+$('.buttonDelete').click(function(){
+    ajaxJson({
+            url: '/cabinet/profile/humanDesign/delete',
+            success: function(){
+                location.reload();
+            }
+        })
+    }
+);
+JS
+                );
+                ?>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Дизайн Человека</div>
+                    <div class="panel-heading">Дизайн Человека
+
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-xs buttonDelete" >
+                                Удалить и пересчитать
+                            </button>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        <img src="<?= $user->getField('human_design_image') ?>" style="width: 100%;">
-                        <?php $humanDesign = $user->getHumanDesign() ?>
-                        <table class="table table-striped table-hover">
+                        <img src="<?= $humanDesign->getImage() ?>" style="width: 100%;">
+                        <table class="table table-striped table-hover" style="width: auto;" align="center">
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>Тип</td>
+                                <td><?= $humanDesign->type->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>Профиль</td>
+                                <td><?= $humanDesign->profile->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>definition</td>
+                                <td><?= $humanDesign->definition->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>inner</td>
+                                <td><?= $humanDesign->inner->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>Стратегия</td>
+                                <td><?= $humanDesign->strategy->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>Тема ложного Я</td>
+                                <td><?= $humanDesign->theme->text ?></td>
+                            </tr>
+                            <tr>
+                                <td>Крест</td>
+                                <td><?= $humanDesign->cross->text ?></td>
                             </tr>
                         </table>
                     </div>
@@ -121,22 +83,67 @@ $user = Yii::$app->user->identity;
 
             <?php else: ?>
                 <p>Для того чтобы расчитать Дизайн Человека вам необходимо заполнить следующие данные</p>
-<!--                Форма подключения дизайна человека -->
+                <!--                Форма подключения дизайна человека -->
                 <div class="col-lg-8 row">
                     <?php
-                    $model = new \app\models\Form\ProfileHumanDesignCalc();
+                    $this->registerJs(<<<JS
+    $('#profilehumandesigncalc-country').on('change', function(e) {
+        ajaxJson({
+            url: '/cabinet/profile/humanDesign/ajax',
+            data: {
+                id: $(this).val()
+            },
+            success: function(ret) {
+                // убираю все элементы
+                $('#profilehumandesigncalc-town option').each(function(i,v) {
+                    $(this).remove();
+                });
+                var townSelect = $('#profilehumandesigncalc-town');
+                if (ret.items.length == 1) {
+                    $('.field-profilehumandesigncalc-town').hide();
+
+                    townSelect.append(
+                        $('<option>', {
+                            value: ret.items[0].id,
+                            selected: 'selected'
+                        }).html(ret.items[0].title)
+                    );
+                } else {
+                    $('.field-profilehumandesigncalc-town').show();
+                    townSelect.append(
+                        $('<option>', {
+                            value: 0,
+                            selected: 'selected'
+                        }).html('Ничего не выбрано')
+                    );
+                    $('.field-profilehumandesigncalc-town label').html(ret.item.sub_type);
+                    $.each(ret.items, function(i,v){
+                        townSelect.append(
+                            $('<option>', {
+                                value: v.id
+                            }).html(v.title)
+                        );
+                    });
+                }
+            }
+        })
+    });
+JS
+                    );
                     $form = ActiveForm::begin([
                         'id' => 'contact-form',
+                        'enableAjaxValidation' =>true,
                     ]); ?>
 
                     <?= $model->field($form, 'date') ?>
                     <?= $model->field($form, 'time') ?>
-                    <?= $model->field($form, 'point') ?>
+                    <?= $model->field($form, 'country')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\HD::query()->select('id,title')->orderBy(['title' => SORT_ASC])->all(), 'id', 'title')) ?>
+                    <?= $model->field($form, 'town')->dropDownList(\yii\helpers\ArrayHelper::merge([0 => 'Ничего не выбрано'], \yii\helpers\ArrayHelper::map(\app\models\HDtown::query(['country_id' => $model->country])->select('id,title')->orderBy(['title' => SORT_ASC])->all(), 'id', 'title'))) ?>
 
                     <div class="form-group">
                         <hr>
-                        <?= Html::button('Далее', [
-                            'class' => 'btn btn-default',
+                        <?= Html::submitButton('Далее', [
+                            'class' => 'btn btn-primary',
                             'name'  => 'contact-button',
                             'style' => 'width:100%',
                             'id'    => 'buttonNext'
@@ -150,11 +157,21 @@ $user = Yii::$app->user->identity;
         </div>
         <div class="col-lg-4">
             <div class="list-group">
-                <a href="<?= Url::to(['cabinet/profile']) ?>" class="list-group-item<?php if (Url::to(['cabinet/profile']) == Url::to()) { echo ' active'; } ?>"> Профиль </a>
-                <a href="<?= Url::to(['cabinet/profile_subscribe']) ?>" class="list-group-item<?php if (Url::to(['cabinet/profile_subscribe']) == Url::to()) { echo ' active'; } ?>"> Рассылки </a>
-                <a href="<?= Url::to(['cabinet/profile_human_design']) ?>" class="list-group-item<?php if (Url::to(['cabinet/profile_human_design']) == Url::to()) { echo ' active'; } ?>"> Дизайн Человека </a>
+                <a href="<?= Url::to(['cabinet/profile']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Профиль </a>
+                <a href="<?= Url::to(['cabinet/profile_subscribe']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile_subscribe']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Рассылки </a>
+                <a href="<?= Url::to(['cabinet/profile_human_design']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile_human_design']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Дизайн Человека </a>
             </div>
         </div>
+
     </div>
 
 

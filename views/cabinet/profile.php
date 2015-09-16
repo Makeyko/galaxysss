@@ -10,19 +10,39 @@ use app\models\UnionCategory;
 /* @var $model cs\base\BaseForm */
 
 $this->title = 'Редактирование профиля';
-$this->params['breadcrumbs'][] = $this->title;
 
 
-
-$this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
-    'app\assets\App\Asset',
-]]);
+$this->registerJs(<<<JS
+$('.buttonUnLink').click(function (e) {
+        if (confirm('Подтвердите отсоединение')) {
+            var objectButton = $(this);
+            var name = objectButton.data('name');
+            ajaxJson({
+                url: '/cabinet/profile/unLinkSocialNetWork',
+                data: {
+                    name: name
+                },
+                success: function (ret) {
+                    var td = objectButton.parent();
+                    td.find('*').each(function() {
+                        $(this).remove();
+                    });
+                    td.append($('<a>', {
+                        href: '/auth?authclient=' + name,
+                        target: '_blank'
+                    }).html('Присоединить профиль'));
+                }
+            });
+        }
+    });
+JS
+);
 
 ?>
 <div class="container">
-    <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+    <div class="col-lg-12">
+        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
         <div class="col-lg-8">
             <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
@@ -63,7 +83,9 @@ $this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
                     <td>
                         <?php if (isset($model->fb_link)) { ?>
                             <a href="<?= $model->fb_link ?>" target="_blank">Профиль</a>
-                            <button class="btn btn-default btn-xs buttonUnLink" data-name="facebook" style="margin-left: 10px;" type="button">Отсоединить</button>
+                            <button class="btn btn-default btn-xs buttonUnLink" data-name="facebook"
+                                    style="margin-left: 10px;" type="button">Отсоединить
+                            </button>
                         <?php } else { ?>
                             <a href="<?= Url::to(['auth/auth', 'authclient' => 'facebook']) ?>" target="_blank">Присоединить
                                 профиль</a>
@@ -75,7 +97,9 @@ $this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
                     <td>
                         <?php if (isset($model->vk_id)) { ?>
                             <a href="https://vk.com/id<?= $model->vk_id ?>" target="_blank">Профиль</a>
-                            <button class="btn btn-default btn-xs buttonUnLink" data-name="vkontakte" style="margin-left: 10px;" type="button">Отсоединить</button>
+                            <button class="btn btn-default btn-xs buttonUnLink" data-name="vkontakte"
+                                    style="margin-left: 10px;" type="button">Отсоединить
+                            </button>
                         <?php } else { ?>
                             <a href="<?= Url::to(['auth/auth', 'authclient' => 'vkontakte']) ?>" target="_blank">Присоединить
                                 профиль</a>
@@ -86,8 +110,18 @@ $this->registerJsFile('/js/pages/cabinet/profile.js', ['depends' => [
         </div>
         <div class="col-lg-4">
             <div class="list-group">
-                <a href="<?= Url::to(['cabinet/profile']) ?>" class="list-group-item<?php if (Url::to(['cabinet/profile']) == Url::to()) { echo ' active'; } ?>"> Профиль </a>
-                <a href="<?= Url::to(['cabinet/profile_subscribe']) ?>" class="list-group-item<?php if (Url::to(['cabinet/profile_subscribe']) == Url::to()) { echo ' active'; } ?>"> Рассылки </a>
+                <a href="<?= Url::to(['cabinet/profile']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Профиль </a>
+                <a href="<?= Url::to(['cabinet/profile_subscribe']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile_subscribe']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Рассылки </a>
+                <a href="<?= Url::to(['cabinet/profile_human_design']) ?>"
+                   class="list-group-item<?php if (Url::to(['cabinet/profile_human_design']) == Url::to()) {
+                       echo ' active';
+                   } ?>"> Дизайн Человека </a>
             </div>
         </div>
     </div>

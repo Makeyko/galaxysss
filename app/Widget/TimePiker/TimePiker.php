@@ -81,6 +81,7 @@ class TimePiker extends InputWidget
             'id' => $this->fieldId,
            'class' => 'form-control input-small'
         ]);
+
         return Html::tag('div',
             Html::input('text', $this->fieldName, $this->value, $inputOptions) . '<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'
             , [

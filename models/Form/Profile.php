@@ -40,6 +40,8 @@ class Profile extends BaseForm
     public $last_action;
     public $human_design;
     public $birth_time;
+    public $birth_country;
+    public $birth_town;
 
     public $subscribe_is_news;
     public $subscribe_is_site_update;

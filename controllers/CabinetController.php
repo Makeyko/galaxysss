@@ -3,11 +3,13 @@
 namespace app\controllers;
 
 use app\models\Form\Union;
+use app\models\HD;
 use app\models\HDtown;
 use app\models\SiteUpdate;
 use app\models\User;
 use app\services\Subscribe;
 use cs\Application;
+use cs\services\SitePath;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -51,20 +53,66 @@ class CabinetController extends BaseController
 
     public function actionProfile_human_design()
     {
-        return $this->render([
-            'items' => HDtown::query()
-                ->select([
-                    'gs_hd.id',
-                    'gs_hd.title',
-                    'gs_hd.sub_type',
-                    'gs_hd.name',
-                    'gs_hd_town.id as town_id',
-                    'gs_hd_town.name as town_name',
-                    'gs_hd_town.title as town_title',
-                ])
-                ->innerJoin('gs_hd', 'gs_hd_town.country_id = gs_hd.id')
-                ->all()
+        $model = new \app\models\Form\ProfileHumanDesignCalc();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->action()) {
+            return $this->refresh();
+        } else {
+            return $this->render([
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * AJAX
+     *
+     * REQUEST:
+     * - id - int - идентификатор
+     *
+     * @return array
+     */
+    public function actionProfile_human_design_ajax()
+    {
+        $id = self::getParam('id');
+        $item = HD::find($id);
+        $items = HDtown::query(['country_id' => $id])
+            ->select([
+                'id',
+                'title',
+            ])
+            ->all();
+
+        return self::jsonSuccess([
+            'item' => [
+                'sub_type' => $item->getField('sub_type'),
+            ],
+            'items' => $items,
         ]);
+    }
+
+    /**
+     * AJAX
+     * Удаляет дизайн человека
+     *
+     * @return string
+     */
+    public function actionProfile_human_design_delete()
+    {
+        /** @var \app\models\User $user */
+        $user = Yii::$app->user->identity;
+        $hd = $user->getHumanDesign();
+        $path = new SitePath($hd->getImage());
+        $path->deleteFile();
+        $user->update(['human_design' => null]);
+
+        return self::jsonSuccess();
     }
 
     public function actionObjects()

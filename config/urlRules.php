@@ -180,6 +180,8 @@ return [
     'cabinet/passwordChange'                                                               => 'cabinet/password_change',
     'cabinet/profile'                                                                      => 'cabinet/profile',
     'cabinet/profile/humanDesign'                                                          => 'cabinet/profile_human_design',
+    'cabinet/profile/humanDesign/ajax'                                                          => 'cabinet/profile_human_design_ajax',
+    'cabinet/profile/humanDesign/delete'                                                          => 'cabinet/profile_human_design_delete',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',
     'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',

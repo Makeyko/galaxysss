@@ -1,6 +1,6 @@
 <?php
 
-namespace app\services;
+namespace app\modules\HumanDesign\calculate;
 
 use cs\services\VarDumper;
 
@@ -210,7 +210,7 @@ class YourHumanDesignRu
      * @param string    $country
      * @param string    $town
      *
-     * @return string
+     * @return \app\models\HumanDesign
      */
     public function calc($datetime, $country, $town)
     {
@@ -240,8 +240,9 @@ class YourHumanDesignRu
         $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $result->body = $body;
         curl_close($curl);
+        $class = new \app\models\HumanDesign($this->getImageUrlFromHtml($result->body));
 
-        return $this->getImageUrlFromHtml($result->body);
+        return $class;
     }
 
     /**
