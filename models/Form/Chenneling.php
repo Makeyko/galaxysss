@@ -130,7 +130,7 @@ class Chenneling extends \cs\base\BaseForm
 
         $item = new \app\models\Chenneling($row);
         if ($this->is_add_image) {
-            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('image')), [
+            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
                     'class' => 'thumbnail',
                     'style' => 'width:100%;',
                     'alt'   => $item->getField('header'),
