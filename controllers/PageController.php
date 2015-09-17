@@ -258,7 +258,7 @@ class PageController extends BaseController
             ]),
             'breadcrumbs' => [
                 'label' => $categoryObject->getField('header'),
-                'url'   => Url::to(['page/category', 'id' => $category]),
+                'url'   => ($categoryObject->getField('id_string', '') == '')? '/category/' . $category : '/' . $categoryObject->getField('id_string', ''),
             ],
         ]);
     }
