@@ -18,6 +18,16 @@ $this->registerJs("$('#share').popover()");
 
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
+        <?=  \cs\Widget\BreadCrumbs\BreadCrumbs::widget([
+            'items' => [
+                [
+                    'label' => 'Блог',
+                    'url' => ['page/blog'],
+                ],
+                $item->getField('name'),
+            ]
+        ]) ?>
+        <hr>
     </div>
     <div class="col-lg-8">
         <?= $item->getField('content') ?>
