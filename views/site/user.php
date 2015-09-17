@@ -79,40 +79,40 @@ JS
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Древо Рода</div>
-            <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Наука о времени</div>
-            <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Звездное происхождение</div>
-            <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Обучение</div>
-            <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">О себе</div>
-            <div class="panel-body">
-                <img src="/upload/635556384000000000_.png" style="width: 100%;">
-            </div>
-        </div>
+<!--        <div class="panel panel-default">-->
+<!--            <div class="panel-heading">Древо Рода</div>-->
+<!--            <div class="panel-body">-->
+<!--                <img src="/upload/635556384000000000_.png" style="width: 100%;">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="panel panel-default">-->
+<!--            <div class="panel-heading">Наука о времени</div>-->
+<!--            <div class="panel-body">-->
+<!--                <img src="/upload/635556384000000000_.png" style="width: 100%;">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="panel panel-default">-->
+<!--            <div class="panel-heading">Звездное происхождение</div>-->
+<!--            <div class="panel-body">-->
+<!--                <img src="/upload/635556384000000000_.png" style="width: 100%;">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="panel panel-default">-->
+<!--            <div class="panel-heading">Обучение</div>-->
+<!--            <div class="panel-body">-->
+<!--                <img src="/upload/635556384000000000_.png" style="width: 100%;">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="panel panel-default">-->
+<!--            <div class="panel-heading">О себе</div>-->
+<!--            <div class="panel-body">-->
+<!--                <img src="/upload/635556384000000000_.png" style="width: 100%;">-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
 </div>
