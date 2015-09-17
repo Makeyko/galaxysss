@@ -24,7 +24,7 @@ $this->registerJs("$('#share').popover()");
                     'label' => 'Блог',
                     'url' => ['page/blog'],
                 ],
-                $item->getField('name'),
+                $item->getName(),
             ]
         ]) ?>
         <hr>
