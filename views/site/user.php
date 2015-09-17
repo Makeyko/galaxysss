@@ -21,7 +21,14 @@ $this->title = $name;
 
         <?php $humanDesign = $user->getHumanDesign();
 
-        $this->registerJs(<<<JS
+
+        ?>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Дизайн Человека
+                <?php if (!\Yii::$app->user->isGuest) {
+                    if (!\Yii::$app->user->id == $user->getId()) {
+                    $this->registerJs(<<<JS
 $('.buttonDelete').click(function(){
     ajaxJson({
             url: '/cabinet/profile/humanDesign/delete',
@@ -32,17 +39,15 @@ $('.buttonDelete').click(function(){
     }
 );
 JS
-        );
-        ?>
+                    );
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Дизайн Человека
-
+                }}?>
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default btn-xs buttonDelete" >
                         Удалить и пересчитать
                     </button>
                 </div>
+                <?php if (!\Yii::$app->user->isGuest) {} ?>
             </div>
             <div class="panel-body">
                 <img src="<?= $humanDesign->getImage() ?>" style="width: 100%;">
