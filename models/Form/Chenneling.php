@@ -152,7 +152,7 @@ class Chenneling extends \cs\base\BaseForm
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
                 if ($model->is_add_image) {
-                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($fields['img']), [
+                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($model->img), [
                             'class' => 'thumbnail',
                             'style' => 'width:100%;',
                             'alt'   => $fields['header'],
