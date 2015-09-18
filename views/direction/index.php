@@ -18,7 +18,6 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
     </div>
 
 
-
     <div class="col-lg-12">
         <?php if ($isMobile) { ?>
             <div class="list-group">
@@ -53,8 +52,18 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
                 <area shape="poly" coords="213,129,273,198,222,219,184,145" href="/food" alt="Питание">
             </map>
         <?php } ?>
+    </div>
 
 
+    <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2">
+            <a href="<?= \yii\helpers\Url::to(['direction/semya']) ?>">
+                <img src="/images/direction/index/semya.jpg" width="100%" class="thumbnail">
+                <p class="text-center">Семья</p>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-12">
 
         <hr>
         <?= $this->render('../blocks/share', [
