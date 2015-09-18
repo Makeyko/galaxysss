@@ -10,6 +10,10 @@ use yii\helpers\Url;
        aria-expanded="false">Сферы жизни <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
 
+        <li><a href="<?= Url::to(['direction/index'])?>">Все</a></li>
+
+        <li class="divider"></li>
+
         <li><a href="<?= Url::to(['page/language'])?>">Язык</a></li>
         <li><a href="<?= Url::to(['page/energy'])?>">Энергия</a></li>
         <li><a href="<?= Url::to(['page/time'])?>">Время</a></li>
