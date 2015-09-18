@@ -58,11 +58,10 @@ $isMobile = \Yii::$app->deviceDetect->isMobile();
 
         <hr>
         <?= $this->render('../blocks/share', [
-            'image'       => \yii\helpers\Url::to('/images/index/slider/1.jpg', true),
+            'image'       => \yii\helpers\Url::to('/images/direction/index/header.jpg', true),
             'url'         => \yii\helpers\Url::current([], true),
             'title'       => $this->title,
-            'description' => 'Мы – люди нового времени. Мы манифестирум Свет, Любовь, Радость, Процветание, Счастье, Здороье,
-            Ясность и многомерную эволюцию на Благо Мира.',
+            'description' => 'Мы строим мир одновременно во сферах жизни со скоростью мысли и по воле Бога.',
         ]) ?>
 
     </div>
