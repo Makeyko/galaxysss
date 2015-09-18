@@ -25,6 +25,7 @@ return [
     'auth'                                                                                 => 'auth/auth',
 
     'direction'                                                                            => 'direction/index',
+    'semya'                                                                                => 'direction/semya',
 
     'category/<id:\\w+>'                                                                   => 'page/category',
     '/'                                                                                    => 'site/index',

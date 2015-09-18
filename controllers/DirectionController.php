@@ -31,6 +31,7 @@ use app\models\ContactForm;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\services\RegistrationDispatcher;
+use app\models\Article;
 
 class DirectionController extends BaseController
 {
@@ -39,5 +40,12 @@ class DirectionController extends BaseController
     public function actionIndex()
     {
         return $this->render();
+    }
+
+    public function actionSemya()
+    {
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(23),
+        ]);
     }
 }
