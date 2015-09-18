@@ -45,7 +45,8 @@ class Subscribe
                 $where = ['subscribe_is_site_update' => 1];
                 break;
             case self::TYPE_MANUAL:
-                $where = ['subscribe_is_test' => 1];
+                $where = ['subscribe_is_manual' => 1];
+//                $where = ['subscribe_is_test' => 1];
                 break;
         }
 
