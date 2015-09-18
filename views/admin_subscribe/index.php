@@ -52,8 +52,14 @@ $this->registerJsFile('/js/pages/admin_subscribe/index.js', [
         <div class="row">
             <!-- Split button -->
             <div class="btn-group">
-                <a href="<?= Url::to(['admin_subscribe/add'])?>" class="btn btn-default">Добавить</a>
-            </div>
+                <a href="<?= Url::to(['admin_subscribe/add'])?>" class="btn btn-success">Рассылка</a>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="<?= Url::to(['admin_subscribe/add_simple'])?>">Добавить только HTML</a></li>
+                </ul></div>
         </div>
     </div>
 </div>

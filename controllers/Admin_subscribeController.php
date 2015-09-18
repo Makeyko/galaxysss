@@ -28,6 +28,20 @@ class Admin_subscribeController extends AdminBaseController
         }
     }
 
+    public function actionAdd_simple()
+    {
+        $model = new \app\models\Form\SubscribeHistorySimple();
+        if ($model->load(Yii::$app->request->post()) && $model->insert()) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        } else {
+            return $this->render([
+                'model' => $model,
+            ]);
+        }
+    }
+
     public function actionView($id)
     {
         $item = \app\models\SubscribeHistory::find($id);

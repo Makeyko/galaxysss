@@ -45,7 +45,7 @@ class Subscribe
                 $where = ['subscribe_is_site_update' => 1];
                 break;
             case self::TYPE_MANUAL:
-                $where = ['subscribe_is_manual' => 1];
+                $where = ['subscribe_is_test' => 1];
                 break;
         }
 
@@ -61,24 +61,16 @@ class Subscribe
         $rows = [];
         foreach ($emailList as $email) {
             $urlUnSubscribe = Url::to(['subscribe/unsubscribe', 'mail' => $email, 'type' => $subscribeItem->type, 'hash' => self::hashGenerate($email, $subscribeItem->type)], true);
-            $rows[] = [
-                str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->text),
-                str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->html),
-                $subscribeItem->subject,
-                $email,
-                time(),
-            ];
+            SubscribeMailItem::insert([
+                'text'        => str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->text),
+                'html'        => str_replace('{linkUnsubscribe}', $urlUnSubscribe, $subscribeItem->html),
+                'subject'     => $subscribeItem->subject,
+                'mail'        => $email,
+                'date_insert' => time(),
+            ]);
+            $rows[] = $email;
         }
-        \Yii::info(ArrayHelper::getColumn($rows,3), 'gs\\subscribe');
-        if (count($rows) > 0) {
-            SubscribeMailItem::batchInsert([
-                'text',
-                'html',
-                'subject',
-                'mail',
-                'date_insert',
-            ], $rows);
-        }
+        \Yii::info($rows, 'gs\\subscribe');
     }
 
     /**
