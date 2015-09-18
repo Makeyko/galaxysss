@@ -51,18 +51,22 @@ JS
                         <table class="table table-striped table-hover" style="width: auto;" align="center">
                             <tr>
                                 <td>Тип</td>
-                                <td><?= $humanDesign->type->text ?></td>
+                                <td>
+                                    <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['type'][$humanDesign->type->href] ?>">
+                                        <?= $humanDesign->type->text ?>
+                                    </a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Профиль</td>
                                 <td><?= $humanDesign->profile->text ?></td>
                             </tr>
                             <tr>
-                                <td>definition</td>
+                                <td>Определение</td>
                                 <td><?= $humanDesign->definition->text ?></td>
                             </tr>
                             <tr>
-                                <td>inner</td>
+                                <td>Внутренний Авторитет</td>
                                 <td><?= $humanDesign->inner->text ?></td>
                             </tr>
                             <tr>
@@ -74,7 +78,7 @@ JS
                                 <td><?= $humanDesign->theme->text ?></td>
                             </tr>
                             <tr>
-                                <td>Крест</td>
+                                <td>Инкарнационный крест</td>
                                 <td><?= $humanDesign->cross->text ?></td>
                             </tr>
                         </table>

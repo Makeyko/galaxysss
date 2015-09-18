@@ -205,6 +205,19 @@ class YourHumanDesignRu
     ];
     public static $townList    = [];
 
+    public static $links = [
+        'type' => [
+            '/types/reflector'             => '/category/dizayn_cheloveka/article/2015/09/18/reflektor',
+            '/types/manifesting-generator' => '/category/dizayn_cheloveka/article/2015/09/18/manifestiruyuschiy_generator',
+            '/types/manifestor'            => '/category/dizayn_cheloveka/article/2015/09/18/manifestor',
+            '/types/generator'             => '/category/dizayn_cheloveka/article/2015/09/18/generator',
+            '/types/projector'             => '/category/dizayn_cheloveka/article/2015/09/18/proektor',
+        ],
+        'profile' => [
+            'http://yourhumandesign.ru/profiles/profile-1-3' => '',
+
+        ],
+    ];
     /**
      * @param \DateTime $datetime
      * @param string    $country
