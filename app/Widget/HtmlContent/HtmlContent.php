@@ -37,6 +37,8 @@ class HtmlContent extends InputWidget
     private $fieldId;
     private $fieldName;
 
+    public $isCopyFromRemoteHost;
+
     public static $resizeBox = [
         1200,
         1200
@@ -162,12 +164,13 @@ JS;
     /**
      * Выбирает все картинки копирует в папку назначения заменяет в $content и возвращает
      *
-     * @param \simple_html_dom | string $content     контент
-     * @param SitePath | string         $destination путь к папке назначения, она должна существовать
+     * @param \simple_html_dom | string $content              контент
+     * @param SitePath | string         $destination          путь к папке назначения, она должна существовать
+     * @param bool                      $isCopyFromRemoteHost копировать с внешних источников картинки?
      *
      * @return string
      */
-    public static function copyImages($content, $destination)
+    public static function copyImages($content, $destination, $isCopyFromRemoteHost = false)
     {
         if ($content == '') return '';
         if (!$content instanceof \simple_html_dom) {
@@ -176,12 +179,11 @@ JS;
         }
 
         foreach ($content->find('img') as $element) {
-            $imagePath = new SitePath($element->attr['src']);
-
-            // картинка не содержит путь назначения?
-            if (!Str::isContain($element->attr['src'], $destination->getPath())) {
-                $urlInfo = parse_url($element->attr['src']);
-                if (ArrayHelper::getValue($urlInfo, 'scheme', '') == '') {
+            $urlInfo = parse_url($element->attr['src']);
+            if (ArrayHelper::getValue($urlInfo, 'scheme', '') == '') {
+                $imagePath = new SitePath($element->attr['src']);
+                // картинка не содержит путь назначения?
+                if (!Str::isContain($element->attr['src'], $destination->getPath())) {
                     try {
                         $destinationFile = $destination->cloneObject()->add($imagePath->getFileName());
                         self::resizeImage($imagePath->getPathFull(), $destinationFile->getPathFull());
@@ -189,10 +191,15 @@ JS;
                     } catch (\Exception $e) {
                         Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
                     }
-                } else {
-                    // картинка на внешнем сервере, пока ничего не делаем
+
+                }
+            } else {
+                // картинка на внешнем сервере
+                if ($isCopyFromRemoteHost) {
+                    // пока ничего не делаю
                 }
             }
+
         }
 
         return $content->root->outertext();

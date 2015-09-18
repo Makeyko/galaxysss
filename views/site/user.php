@@ -19,12 +19,10 @@ $this->title = $name;
     </div>
     <div class="col-lg-8">
 
-        <?php $humanDesign = $user->getHumanDesign();
+        <?php $humanDesign = $user->getHumanDesign(); ?>
+        <?php if (!is_null($humanDesign)) { ?>
 
-
-        ?>
-
-        <div class="panel panel-default">
+            <div class="panel panel-default">
             <div class="panel-heading">Дизайн Человека
                 <?php if (!\Yii::$app->user->isGuest) {
                     if (!\Yii::$app->user->id == $user->getId()) {
@@ -83,6 +81,7 @@ JS
                 </table>
             </div>
         </div>
+        <?php } ?>
 
 <!--        <div class="panel panel-default">-->
 <!--            <div class="panel-heading">Древо Рода</div>-->

@@ -12,6 +12,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use cs\services\UploadFolderDispatcher;
 use yii\imagine\Image;
+use \Imagine\Image\ManipulatorInterface;
 
 class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
 {
@@ -210,9 +211,65 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
         FileHelper::createDirectory($imageFileName);
         $imageFileName .= DIRECTORY_SEPARATOR . time() . '_' . Security::generateRandomString(10) . '.' . $extension;
         \Yii::info(\yii\helpers\VarDumper::dumpAsString($imageFileName), 'gs\\user');
-        $image->getImagine()->load(file_get_contents($url))->thumbnail(new Box(300, 300))->save($imageFileName, ['format' => 'jpg', 'quality' => 100]);
+
+        $image = $image->getImagine()->load(file_get_contents($url));
+        $image = $this->expandImage($image, 300, 300, ManipulatorInterface::THUMBNAIL_OUTBOUND);
+        $image->thumbnail(new Box(300, 300), ManipulatorInterface::THUMBNAIL_OUTBOUND)->save($imageFileName, ['format' => 'jpg', 'quality' => 100]);
 
         return $this->setAvatarAsContent(file_get_contents($imageFileName), $extension);
+    }
+
+    /**
+     * Расширяет маленькую картинку по заданной стратегии
+     *
+     * @param \Imagine\Image\ImageInterface $image
+     * @param int $widthFormat
+     * @param int $heightFormat
+     * @param int $mode
+     *
+     * @return \Imagine\Image\ImageInterface
+     */
+    protected static function expandImage($image, $widthFormat, $heightFormat, $mode)
+    {
+        $size = $image->getSize();
+        $width = $size->getWidth();
+        $height = $size->getHeight();
+        if ($width < $widthFormat || $height < $heightFormat) {
+            // расширяю картинку
+            if ($mode == ManipulatorInterface::THUMBNAIL_OUTBOUND) {
+                if ($width < $widthFormat && $height >= $heightFormat) {
+                    $size = $size->widen($widthFormat);
+                } else if ($width >= $widthFormat && $height < $heightFormat) {
+                    $size = $size->heighten($heightFormat);
+                } else if ($width < $widthFormat && $height < $heightFormat) {
+                    // определяю как расширять по ширине или по высоте
+                    if ($width / $widthFormat < $height / $heightFormat) {
+                        $size = $size->widen($widthFormat);
+                    }
+                    else {
+                        $size = $size->heighten($heightFormat);
+                    }
+                }
+                $image->resize($size);
+            } else {
+                if ($width < $widthFormat && $height >= $heightFormat) {
+                    $size = $size->heighten($heightFormat);
+                } else if ($width >= $widthFormat && $height < $heightFormat) {
+                    $size = $size->widen($widthFormat);
+                } else if ($width < $widthFormat && $height < $heightFormat) {
+                    // определяю как расширять по ширине или по высоте
+                    if ($width / $widthFormat < $height / $heightFormat) {
+                        $size = $size->heighten($heightFormat);
+                    }
+                    else {
+                        $size = $size->widen($widthFormat);
+                    }
+                }
+                $image->resize($size);
+            }
+        }
+
+        return $image;
     }
 
     /**
