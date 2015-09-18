@@ -19,4 +19,15 @@ use yii\helpers\Html;
 class Investigator extends \cs\base\BaseForm
 {
     public $id;
+
+
+    public function __get($name)
+    {
+        if (\yii\helpers\StringHelper::startsWith($name, 'id')) {
+            $id = (int)substr($name, 2);
+            if (is_null($this->id))return null;
+
+            return \yii\helpers\ArrayHelper($this->id, $id, null);
+        }
+    }
 }
