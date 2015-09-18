@@ -256,10 +256,7 @@ class PageController extends BaseController
                 'point_lng as lng',
                 'concat("<h5>",name,"</h5><div>",ifnull(content,""),"</div><p>",point_address,"</p>") as html',
             ]),
-            'breadcrumbs' => [
-                'label' => $categoryObject->getField('header'),
-                'url'   => ($categoryObject->getField('id_string', '') == '')? '/category/' . $category : '/' . $categoryObject->getField('id_string', ''),
-            ],
+            'breadcrumbs' => $categoryObject->getBreadCrumbs([$item->getField('name')]),
         ]);
     }
 
@@ -402,7 +399,7 @@ class PageController extends BaseController
             ;
             if (count($nearList) == 0) {
                 $nearList = Article::query()
-                    ->select('id,header,id_string,image,view_counter,description,content')
+                    ->select('id,header,id_string,image,view_counter,description,content,date_insert')
                     ->orderBy(['date_insert' => SORT_DESC])
                     ->andWhere(['not in', 'id', $item->getId()])
                     ->limit(3)
@@ -412,13 +409,10 @@ class PageController extends BaseController
         }
 
         return $this->render([
-            'item'     => $item->getFields(),
-            'category' => $category,
-            'nearList' => $nearList,
-            'breadcrumbs' => [
-                'label' => $categoryObject->getField('header'),
-                'url'   => ($categoryObject->getField('id_string', '') == '')? '/category/' . $category : '/' . $categoryObject->getField('id_string', ''),
-            ],
+            'item'        => $item->getFields(),
+            'category'    => $category,
+            'nearList'    => $nearList,
+            'breadcrumbs' => $categoryObject->getBreadCrumbs([$item->getField('header')]),
         ]);
     }
 

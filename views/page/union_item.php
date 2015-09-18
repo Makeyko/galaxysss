@@ -3,6 +3,7 @@
 use yii\widgets\Breadcrumbs;
 
 /** @var \app\models\Union $item */
+/** @var array $breadcrumbs */
 
 $this->title = $item->getField('name');
 
@@ -10,12 +11,7 @@ $this->title = $item->getField('name');
 <div class="container">
     <div class="col-lg-12">
         <h1 class="page-header"><?= \yii\helpers\Html::encode($this->title) ?></h1>
-        <?=  \cs\Widget\BreadCrumbs\BreadCrumbs::widget([
-            'items' => [
-                $breadcrumbs,
-                $item->getField('name'),
-            ]
-        ]) ?>
+        <?=  \cs\Widget\BreadCrumbs\BreadCrumbs::widget(['items' => $breadcrumbs]) ?>
         <hr>
     </div>
 

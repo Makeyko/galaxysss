@@ -24,6 +24,8 @@ return [
     'logout'                                                                               => 'auth/logout',
     'auth'                                                                                 => 'auth/auth',
 
+    'direction'                                                                            => 'direction/index',
+
     'category/<id:\\w+>'                                                                   => 'page/category',
     '/'                                                                                    => 'site/index',
     'contact'                                                                              => 'site/contact',
@@ -66,9 +68,9 @@ return [
     'moderator/unionList/<id:\\d+>/reject'                                                 => 'moderator_unions/reject',
     'moderator/unionList/<id:\\d+>/delete'                                                 => 'moderator_unions/delete',
 
-    'admin/pictures'                                                                      => 'admin_pictures/index',
-    'admin/pictures/add'                                                                  => 'admin_pictures/add',
-    'admin/pictures/<id:\\d+>'                                                            => 'admin_pictures/view',
+    'admin/pictures'                                                                       => 'admin_pictures/index',
+    'admin/pictures/add'                                                                   => 'admin_pictures/add',
+    'admin/pictures/<id:\\d+>'                                                             => 'admin_pictures/view',
 
     'admin/subscribe'                                                                      => 'admin_subscribe/index',
     'admin/subscribe/add'                                                                  => 'admin_subscribe/add',
@@ -184,8 +186,8 @@ return [
     'cabinet/passwordChange'                                                               => 'cabinet/password_change',
     'cabinet/profile'                                                                      => 'cabinet/profile',
     'cabinet/profile/humanDesign'                                                          => 'cabinet/profile_human_design',
-    'cabinet/profile/humanDesign/ajax'                                                          => 'cabinet/profile_human_design_ajax',
-    'cabinet/profile/humanDesign/delete'                                                          => 'cabinet/profile_human_design_delete',
+    'cabinet/profile/humanDesign/ajax'                                                     => 'cabinet/profile_human_design_ajax',
+    'cabinet/profile/humanDesign/delete'                                                   => 'cabinet/profile_human_design_delete',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',
     'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',

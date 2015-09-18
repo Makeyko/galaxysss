@@ -27,6 +27,11 @@ class UnionCategory extends \cs\base\DbRecord
             ->all();
     }
 
+    public function getParentId()
+    {
+        return $this->getField('parent_id');
+    }
+
     /**
      * @return array
      * [
@@ -71,5 +76,81 @@ class UnionCategory extends \cs\base\DbRecord
     public static function getIdStringById($id)
     {
         return self::query(['id' => $id])->select('id_string')->scalar();
+    }
+
+    /**
+     * Возвращает хлебные крошки для этой категории
+     * Если указан параметр то эти хлебные крошки будут добавлены в конец пути
+     *
+     * @param array $breadCrumbs хлебные крошки которые надо добавить в конец пути (массив объектов "хлебная крошка"    )
+     * [
+     *     [
+     *        'url'   => array|string,
+     *        'title' => string,
+     *     ], ...
+     * ]
+     *
+     * @return array
+     * [
+     *     [
+     *        'url'   => array|string,
+     *        'title' => string,
+     *     ], ...
+     * ]
+     */
+    public function getBreadCrumbs($add = null)
+    {
+        $direction = [
+            [
+                'url' => ['direction/index'],
+                'label'=> 'Сферы жизни',
+            ]
+        ];
+        $breadCrumbs = self::getBreadCrumbs_repeat($this->getId());
+
+        $ret = \yii\helpers\ArrayHelper::merge($direction, $breadCrumbs);
+        if ($add) {
+            $ret = \yii\helpers\ArrayHelper::merge($ret, $add);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Получает все элементы хлемных крошет начиная от указанного и вплоть до корневого
+     *
+     * @param int $id идентификатор категории gs_unions_tree.id
+     *
+     * @return array
+     * [
+     *     [
+     *        'url'   => array|string,
+     *        'title' => string,
+     *     ], ...
+     * ]
+     * Корневой элемент не указывается (дом)
+     * и далее до указанного в переданном параметре
+     * то есть порядок следования элементов в массиве от старшего к дочернему
+     */
+    private static function getBreadCrumbs_repeat($id)
+    {
+        $item = self::find($id);
+        $parentId = $item->getParentId();
+        if ($parentId) {
+            $arr = self::getBreadCrumbs_repeat($parentId);
+            $return = [[
+                'url'  => ['page/category', 'id' => $item->getField('id_string')],
+                'label' => $item->getField('header', ''),
+            ]];
+
+            return \yii\helpers\ArrayHelper::merge($arr, $return);
+        } else {
+            return [
+                [
+                    'url'  => '/' . $item->getField('id_string'),
+                    'label' => $item->getField('header', ''),
+                ]
+            ];
+        }
     }
 }
