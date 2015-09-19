@@ -31,6 +31,7 @@ class Event extends \cs\base\BaseForm
     public $date_insert;
     public $link;
     public $date;
+    public $is_added_site_update;
 
     function __construct($fields = [])
     {
