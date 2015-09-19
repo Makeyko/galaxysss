@@ -55,7 +55,7 @@ JS
                             );
                             ?>
                             <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default btn-xs buttonDelete">
+                                <button type="button" class="btn btn-default btn-xs buttonDelete" href="<?= \yii\helpers\Url::to(['cabinet/profile_human_design']) ?>">
                                     Удалить и пересчитать
                                 </button>
                             </div>
