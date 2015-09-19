@@ -94,6 +94,7 @@ return [
     'admin/events/add'                                                                     => 'admin_events/add',
     'admin/events/<id:\\d+>/delete'                                                        => 'admin_events/delete',
     'admin/events/<id:\\d+>/edit'                                                          => 'admin_events/edit',
+    'admin/events/<id:\\d+>/subscribe'                                                     => 'admin_events/subscribe',
 
     'admin/praktice'                                                                       => 'admin_praktice/index',
     'admin/praktice/add'                                                                   => 'admin_praktice/add',
