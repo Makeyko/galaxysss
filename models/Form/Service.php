@@ -28,6 +28,7 @@ class Service extends \cs\base\BaseForm
     public $description;
     public $date_insert;
     public $is_added_site_update;
+    public $id_string;
 
     function __construct($fields = [])
     {
