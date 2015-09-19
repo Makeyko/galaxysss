@@ -12,7 +12,20 @@ $this->title = $name;
 
 ?>
 <div class="container">
-    <h1 class="page-header"><?= $user->getField('name_first') . ' ' . $user->getField('name_last') ?> <a href="<?= \yii\helpers\Url::to(['cabinet/profile'])?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></h1>
+    <h1 class="page-header"><?= $user->getField('name_first') . ' ' . $user->getField('name_last') ?>
+
+        <?php
+        if (!\Yii::$app->user->isGuest) {
+            if (!\Yii::$app->user->id == $user->getId()) { ?>
+
+                <a href="<?= \yii\helpers\Url::to(['cabinet/profile'])?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Редактировать</a>
+
+        <?php
+            }
+        }
+        ?>
+
+    </h1>
 
     <div class="col-lg-4">
         <img src="<?= $user->getAvatar() ?>" class="thumbnail" style="width: 100%;border-radius: 20px;"/>
