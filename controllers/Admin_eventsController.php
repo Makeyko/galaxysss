@@ -16,7 +16,9 @@ class Admin_eventsController extends AdminBaseController
     public function actionIndex()
     {
         return $this->render([
-            'items' => Event::query()->all(),
+            'items' => Event::query()
+                ->orderBy(['date_insert' => SORT_DESC])
+                ->all(),
         ]);
     }
 
