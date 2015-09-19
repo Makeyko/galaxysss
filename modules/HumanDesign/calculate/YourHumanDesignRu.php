@@ -303,12 +303,12 @@ class YourHumanDesignRu
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
 
         $doc = str_get_html($html);
-        $table = $doc->find('table')[0];
+        $table = $doc->find('div.uk-panel')[0];
         $img = $doc->find('#imgmap')[0];
-        $trList = $table->find('tr');
-        $row1 = $trList[0]->find('td');
-        $row2 = $trList[1]->find('td');
-        $row3 = $trList[2]->find('td');
+        $trList = $table->find('div.uk-grid');
+        $row1 = $trList[0]->find('div.uk-width-1-1');
+        $row2 = $trList[1]->find('div.uk-width-1-1');
+        $row3 = $trList[2]->find('div.uk-width-1-1');
         $Type = $this->getTd($row1[0]);
         $Profile = $this->getTd($row1[1]);
         $Definition = $this->getTd($row1[2]);
@@ -344,9 +344,11 @@ class YourHumanDesignRu
         $data = [
             'text' => trim(explode(':', trim($item->plaintext))[1]),
         ];
-        $a = $item->find('A');
+        $a = $item->find('a');
         if (count($a) > 0) {
-            $data['href'] = $a[0]->attr['href'];
+            $href = $a[0]->attr['href'];
+            $href = str_replace('http://yourhumandesign.ru', '', $href);
+            $data['href'] = $href;
         }
 
         return $data;
