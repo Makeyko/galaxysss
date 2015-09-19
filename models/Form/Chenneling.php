@@ -152,10 +152,6 @@ class Chenneling extends \cs\base\BaseForm
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
                 if ($model->is_add_image) {
-                    \Yii::info(\yii\helpers\VarDumper::dump($model), 'gs\\Chenneling');
-                    \Yii::info($fields, 'gs\\Chenneling');
-                    \Yii::info($fields['img'], 'gs\\Chenneling');
-                    \Yii::info(\cs\Widget\FileUpload2\FileUpload::getOriginal($model->img), 'gs\\Chenneling');
                     $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($model->img), [
                             'class' => 'thumbnail',
                             'style' => 'width:100%;',
