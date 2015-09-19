@@ -16,7 +16,7 @@ $this->title = $name;
 
         <?php
         if (!\Yii::$app->user->isGuest) {
-            if (!\Yii::$app->user->id == $user->getId()) { ?>
+            if (\Yii::$app->user->id == $user->getId()) { ?>
 
                 <a href="<?= \yii\helpers\Url::to(['cabinet/profile'])?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Редактировать</a>
 
@@ -38,7 +38,7 @@ $this->title = $name;
             <div class="panel panel-default">
             <div class="panel-heading">Дизайн Человека
                 <?php if (!\Yii::$app->user->isGuest) {
-                    if (!\Yii::$app->user->id == $user->getId()) {
+                    if (\Yii::$app->user->id == $user->getId()) {
                     $this->registerJs(<<<JS
 $('.buttonDelete').click(function(){
     ajaxJson({
