@@ -103,7 +103,7 @@ JS
                 <?php } else { ?>
                     <?php if (!\Yii::$app->user->isGuest) { ?>
                         <?php if (\Yii::$app->user->id == $user->getId()) { ?>
-                            <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['cabinet/profile_human_design']) ?>>
+                            <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['cabinet/profile_human_design']) ?>">
                                 Посчитать
                             </a>
                         <?php } else { ?>
