@@ -6,12 +6,41 @@ use yii\helpers\Html;
 
 $this->title = 'События';
 
-$this->registerJsFile('/js/pages/admin_events/index.js', [
-    'depends' => [
-        'app\assets\App\Asset',
-        'app\assets\ModalBoxNew\Asset'
-    ]
-]);
+
+$this->registerJs(<<<JS
+$('.buttonDelete').click(function (e) {
+        e.preventDefault();
+        if (confirm('Подтвердите удаление')) {
+            var id = $(this).data('id');
+            ajaxJson({
+                url: '/admin/events/' + id + '/delete',
+                success: function (ret) {
+                    infoWindow('Успешно', function() {
+                        $('#newsItem-' + id).remove();
+                    });
+                }
+            });
+        }
+    });
+
+    // Сделать рассылку
+    $('.buttonAddSiteUpdate').click(function (e) {
+        e.preventDefault();
+        if (confirm('Подтвердите')) {
+            var buttonSubscribe = $(this);
+            var id = $(this).data('id');
+            ajaxJson({
+                url: '/admin/events/' + id + '/subscribe',
+                success: function (ret) {
+                    infoWindow('Успешно', function() {
+                        buttonSubscribe.remove();
+                    });
+                }
+            });
+        }
+    });
+JS
+);
 ?>
 
 <div class="container">
@@ -45,6 +74,9 @@ $this->registerJsFile('/js/pages/admin_events/index.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
+                        <?php if (\yii\helpers\ArrayHelper::getValue($item, 'is_added_site_update', 0) == 0) { ?>
+                            <button class="btn btn-success btn-xs buttonAddSiteUpdate" data-id="<?= $item['id'] ?>">Сделать рассылку</button>
+                        <?php } ?>
                     </div>
                 </div>
             </a>
