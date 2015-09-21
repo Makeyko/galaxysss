@@ -32,4 +32,10 @@ return [
         'class' => 'app\services\GetArticle\Chenneling',
         'find'  => 'chenneling.net',
     ],
+    [
+        'name'  => 'bcoreanda',
+        'title' => 'bcoreanda.com',
+        'class' => 'app\services\GetArticle\Bcoreanda',
+        'find'  => 'bcoreanda.com',
+    ],
 ];
