@@ -12,7 +12,7 @@ use yii\helpers\StringHelper;
 class MidWay extends Base implements InvestigatorInterface
 {
     /** @var string ссылка где публикуются обновления */
-    public $url = 'https://vk.com/wall-84190266?own=1';
+    public $url = 'http://vk.com/wall-84190266?own=1';
 
     /**
      * @return array
