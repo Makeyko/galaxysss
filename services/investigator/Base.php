@@ -79,7 +79,7 @@ class Base
         curl_close($curl);
 
         if ($result->status_code != 200) {
-            throw new \cs\web\Exception('Не удалось прочитать файл');
+            throw new \cs\web\Exception('Не удалось прочитать файл '. $url);
         }
 
         return str_get_html($body);
