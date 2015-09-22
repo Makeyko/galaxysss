@@ -113,9 +113,9 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        Yii::$app->session->open();
-        VarDumper::dump(Yii::$app->cache->get(Yii::$app->session->getId() . '/maya'));
-        Yii::$app->cache->delete(Yii::$app->session->getId() . '/maya');
+        $url = 'http://vk.com/wall-84190266';
+
+        VarDumper::dump(file_get_contents($url, false, null, -1));
     }
 
     public function actionStatistic()
