@@ -113,7 +113,7 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        $url = 'http://vk.com/wall-84190266';
+        $url = 'https://vk.com/wall-84190266';
 
         VarDumper::dump(file_get_contents($url));
     }
