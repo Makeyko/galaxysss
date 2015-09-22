@@ -24,9 +24,6 @@ class RonnaStar extends Base implements ExtractorInterface
     /** @var  string */
     private $image;
 
-    /** @var  \simple_html_dom */
-    private $document;
-
     /** @var  string */
     private $content;
 
@@ -77,17 +74,6 @@ class RonnaStar extends Base implements ExtractorInterface
         $ret[] = Html::tag('p', $content->find('p')[0]->plaintext);
 
         return join("\n", $ret);
-    }
-
-    public function getDocument()
-    {
-        if (is_null($this->document)) {
-            $url = $this->url;
-            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-            $this->document = file_get_html($url);
-        }
-
-        return $this->document;
     }
 
     /**
