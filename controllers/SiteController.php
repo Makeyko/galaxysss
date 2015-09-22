@@ -115,7 +115,7 @@ class SiteController extends BaseController
     {
         $url = 'http://vk.com/wall-84190266';
 
-        VarDumper::dump(file_get_contents($url, false, null, -1));
+        VarDumper::dump(file_get_contents($url));
     }
 
     public function actionStatistic()
