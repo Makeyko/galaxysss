@@ -44,7 +44,7 @@ class Base
     {
         $class_name = get_called_class();
         $items = $this->getItems();
-        \cs\services\VarDumper::dump(2);
+
         $dbItems = Investigator::query(['class_name' => $class_name])->select('url')->column();
         $ret = [];
         foreach($items as $item) {
