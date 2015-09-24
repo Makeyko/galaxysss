@@ -16,9 +16,9 @@ class UnionCategory extends \cs\base\DbRecord
     public function getUnions()
     {
         return Union::query([
-            'tree_node_id'      => $this->getId(),
-            'moderation_status' => 1,
-        ])
+                'tree_node_id'      => $this->getId(),
+                'moderation_status' => 1,
+            ])
             ->orderBy(['sort_index' => SORT_ASC])
             ->orderBy([
                 'if(sort_index is NULL, 1, 0)' => SORT_ASC,

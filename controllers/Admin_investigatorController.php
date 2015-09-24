@@ -91,6 +91,7 @@ class Admin_investigatorController extends AdminBaseController
                 $class = new $class();
                 $className = $class->className();
                 $new = $class->getNewItems();
+//                VarDumper::dump($new);
                 foreach($new as $i) {
                     $i['class'] = $className;
                     $i['id'] = $c;

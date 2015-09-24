@@ -24,6 +24,7 @@ class MidWay extends Base implements InvestigatorInterface
     public function getItems()
     {
         $doc = $this->getDocument($this->url);
+        \cs\services\VarDumper::dump($doc);
         $ret = [];
         $c = 1;
         foreach ($doc->find('.wall_item') as $div) {
