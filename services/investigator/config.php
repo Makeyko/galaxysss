@@ -13,11 +13,6 @@ return [
         'class' => 'app\services\investigator\SilayaFenn',
     ],
     [
-        'name'  => 'mid-way',
-        'title' => 'Элексир',
-        'class' => 'app\services\investigator\MidWay',
-    ],
-    [
         'name'  => 'ronnastar',
         'title' => 'Ронна Стар',
         'class' => 'app\services\investigator\RonnaStar',
@@ -26,5 +21,10 @@ return [
         'name'  => 'bcoreanda',
         'title' => 'Bcoreanda библиотека',
         'class' => 'app\services\investigator\Bcoreanda',
+    ],
+    [
+        'name'  => 'mid-way',
+        'title' => 'Элексир',
+        'class' => 'app\services\investigator\MidWay',
     ],
 ];

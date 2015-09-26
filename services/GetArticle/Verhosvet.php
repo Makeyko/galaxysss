@@ -24,9 +24,6 @@ class Verhosvet extends Base implements ExtractorInterface
     /** @var  \simple_html_dom_node */
     private $article;
 
-    /** @var  \simple_html_dom */
-    private $document;
-
     /** @var  string */
     private $content;
 
@@ -116,18 +113,6 @@ class Verhosvet extends Base implements ExtractorInterface
         }
 
         return $this->article;
-    }
-
-    public function getDocument()
-    {
-        if (is_null($this->document)) {
-            $url = $this->url;
-            require_once(Yii::getAlias('@vendor/simplehtmldom_1_5/simple_html_dom.php'));
-            $this->document = file_get_html($url);
-
-        }
-
-        return $this->document;
     }
 
     /**

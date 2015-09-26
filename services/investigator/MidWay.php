@@ -12,7 +12,7 @@ use yii\helpers\StringHelper;
 class MidWay extends Base implements InvestigatorInterface
 {
     /** @var string ссылка где публикуются обновления */
-    public $url = 'http://vk.com/wall-84190266';
+    public $url = 'http://vk.com/wall-84190266?own=1';
 
     /**
      * @return array
@@ -24,6 +24,7 @@ class MidWay extends Base implements InvestigatorInterface
     public function getItems()
     {
         $doc = $this->getDocument($this->url);
+
         $ret = [];
         $c = 1;
         foreach ($doc->find('.wall_item') as $div) {

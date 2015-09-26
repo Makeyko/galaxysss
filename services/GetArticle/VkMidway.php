@@ -186,13 +186,13 @@ class VkMidway extends Base implements ExtractorInterface
     public function getDocument()
     {
         if (is_null($this->document)) {
-            $url = $this->url;
-            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-            $this->document = file_get_html($url);
+            $this->document = $this->_getDocument();
         }
 
         return $this->document;
     }
+
+
 
     /**
      * Возвращает название статьи
