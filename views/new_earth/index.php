@@ -39,11 +39,10 @@ $this->title = 'Новая Земля 4D';
 
     <div class="col-lg-12">
 
-        <h2 class="page-header">Процветание</h2>
+        <h2 class="page-header">Процветание - фильм, разрешен для показа на всех телеканалах Земли</h2>
 
         <p class="center-block" style="width: 100%;max-width: 600px; ">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/55AdvVbR-Fw" frameborder="0"
-                    allowfullscreen></iframe>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/U4e_8b28SHk" frameborder="0" allowfullscreen></iframe>
         </p>
     </div>
 
