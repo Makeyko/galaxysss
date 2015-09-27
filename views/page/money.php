@@ -12,7 +12,7 @@ $this->title = 'Деньги';
         <p class="lead">Деньги – эквивалент вашей духовной силы и способности пропускать через себя большие потоки
             энергии.</p>
 
-        <p><img src="/images/page/money/laxmi.jpg" width="100%" class="thumbnail"></p>
+        <p><img src="/images/page/money/header.jpg" width="100%" class="thumbnail"></p>
     </div>
 
     <div class="col-lg-4 unityItem">
