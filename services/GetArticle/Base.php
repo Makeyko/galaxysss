@@ -61,6 +61,8 @@ class Base
         $result->body = $body;
         curl_close($curl);
         if ($result->headers['content_type'] != 200) {
+            \Yii::info($result,
+                'gs\\inv');
             throw new \cs\web\Exception('Не удалось прочитать файл');
         }
         $temp = explode(';',$result->headers['content_type']);
