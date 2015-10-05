@@ -10,7 +10,9 @@ use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
+use yii\db\Query;
 use yii\helpers\StringHelper;
+use \app\models\Investigator as Inv;
 
 class Admin_investigatorController extends AdminBaseController
 {
@@ -30,19 +32,13 @@ class Admin_investigatorController extends AdminBaseController
                                 // пропустить
                                 case 1:
                                     $skip[] = [
-                                        $sessionItem['class'],
-                                        $sessionItem['url'],
-                                        time(),
-                                        1,
+                                        $sessionItem['id'],
                                     ];
                                     break;
                                 // добавить
                                 case 2:
                                     $add[] = [
-                                        $sessionItem['class'],
-                                        $sessionItem['url'],
-                                        time(),
-                                        2,
+                                        $sessionItem['id'],
                                     ];
                                     break;
                             }
@@ -51,12 +47,7 @@ class Admin_investigatorController extends AdminBaseController
                 }
             }
             if (count($skip) > 0) {
-                \app\models\Investigator::batchInsert([
-                    'class_name',
-                    'url',
-                    'date_insert',
-                    'status',
-                ], $skip);
+                (new Query())->createCommand()->update(Inv::TABLE, ['status' => Inv::STATUS_SKIP], ['in', 'id', $skip])->execute();
             }
             foreach($add as $item) {
                 $class = $item[0];
@@ -68,12 +59,7 @@ class Admin_investigatorController extends AdminBaseController
                 Chenneling::insertExtractorInterface($extractor);
             }
             if (count($add) > 0) {
-                \app\models\Investigator::batchInsert([
-                    'class_name',
-                    'url',
-                    'date_insert',
-                    'status',
-                ], $add);
+                (new Query())->createCommand()->update(Inv::TABLE, ['status' => Inv::STATUS_ADD], ['in', 'id', $add])->execute();
             }
             Yii::$app->session->remove('items');
             Yii::$app->session->setFlash('contactFlash');
