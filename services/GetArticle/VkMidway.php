@@ -42,12 +42,6 @@ class VkMidway extends Base implements ExtractorInterface
      */
     public function extract()
     {
-        VarDumper::dump([
-            'image'       => $this->getImage(),
-            'header'      => $this->getHeader(),
-            'content'     => $this->getContent(),
-            'description' => $this->getDescription(),
-        ]);
         return [
             'image'       => $this->getImage(),
             'header'      => $this->getHeader(),
