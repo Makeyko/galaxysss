@@ -42,13 +42,20 @@ class Base
     public function _getDocument()
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-        $url = $this->url;
-        $url = new Url($url);
-        if (strtolower($url->scheme) == 'https') {
-            $url->scheme = 'http';
+        $curl = curl_init($this->url);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        $body = curl_exec($curl);
+
+        $result = new \StdClass();
+        $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $result->body = $body;
+        curl_close($curl);
+
+        if ($result->status_code != 200) {
+            throw new \cs\web\Exception('Не удалось прочитать файл');
         }
-        $url = $url->__toString();
-        $body = file_get_contents($url);
 
         return str_get_html($body);
     }
