@@ -31,15 +31,11 @@ class Admin_investigatorController extends AdminBaseController
                             switch($value) {
                                 // пропустить
                                 case 1:
-                                    $skip[] = [
-                                        $sessionItem['id'],
-                                    ];
+                                    $skip[] = $sessionItem['id'];
                                     break;
                                 // добавить
                                 case 2:
-                                    $add[] = [
-                                        $sessionItem['id'],
-                                    ];
+                                    $add[] = $sessionItem['id'];
                                     break;
                             }
                         }
@@ -50,11 +46,12 @@ class Admin_investigatorController extends AdminBaseController
                 (new Query())->createCommand()->update(Inv::TABLE, ['status' => Inv::STATUS_SKIP], ['in', 'id', $skip])->execute();
             }
             foreach($add as $item) {
-                $class = $item[0];
+                $i = Inv::find($item);
+                $class = $i->getField('class_name');
                 // послание
                 /** @var \app\services\investigator\InvestigatorInterface $class */
                 $class = new $class();
-                $extractor = $class->getItem($item[1]);
+                $extractor = $class->getItem($i->getField('url'));
                 // добавляю
                 Chenneling::insertExtractorInterface($extractor);
             }
