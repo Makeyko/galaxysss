@@ -3,16 +3,16 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150926_233657_user extends Migration
+class m151004_223346_ia extends Migration
 {
     public function up()
     {
-//        $this->execute('ALTER TABLE galaxysss_1.gs_users ADD subscribe_is_tesla TINYINT NULL;');
+        $this->execute('ALTER TABLE galaxysss_1.gs_investigator ADD name VARCHAR(255) NULL;');
     }
 
     public function down()
     {
-        echo "m150926_233657_user cannot be reverted.\n";
+        echo "m151004_223346_ia cannot be reverted.\n";
 
         return false;
     }

@@ -131,7 +131,6 @@ class Str
             'Ь' => 'ь', 'Ы' => 'ы', 'Ъ' => 'ъ',
             'Э' => 'э', 'Ю' => 'ю', 'Я' => 'я',
         ];
-        $string = strtolower($string);
         $ret = '';
         foreach (self::getChars($string) as $char) {
             $ret .= ArrayHelper::getValue($converter, $char, $char);
@@ -155,7 +154,6 @@ class Str
             'ь' => 'Ь', 'ы' => 'Ы', 'ъ' => 'Ъ',
             'э' => 'Э', 'ю' => 'Ю', 'я' => 'Я',
         ];
-        $string = strtoupper($string);
         $ret = '';
         foreach (self::getChars($string) as $char) {
             $ret .= ArrayHelper::getValue($converter, $char, $char);

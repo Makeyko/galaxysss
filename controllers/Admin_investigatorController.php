@@ -78,30 +78,20 @@ class Admin_investigatorController extends AdminBaseController
             Yii::$app->session->remove('items');
             Yii::$app->session->setFlash('contactFlash');
 
-            return $this->render([
-            ]);
+            return $this->render([]);
         } else {
-            $start1 = microtime(true);
-            $items = [];
-            $list = Collection::getList();
-            $c = 1;
-            foreach($list as $item) {
-                $class = $item['class'];
-                /** @var \app\services\investigator\InvestigatorInterface $class */
-                $class = new $class();
-                $className = $class->className();
-                $new = $class->getNewItems();
-//                VarDumper::dump($new);
-                foreach($new as $i) {
-                    $i['class'] = $className;
-                    $i['id'] = $c;
-                    $items[] = $i;
-                    $c++;
-                }
-            }
+            $items = \app\models\Investigator::query(['status' => \app\models\Investigator::STATUS_NEW])
+                ->select([
+                    'class_name as class',
+                    'id',
+                    'url',
+                    'date_insert',
+                    'status',
+                    'name',
+                ])
+                ->all();
             Yii::$app->session->set('items', $items);
-            $diff = (float)(microtime(true) - $start1);
-            Yii::info('all: ' . $diff, 'gs\\time');
+
             return $this->render([
                 'items' => $items,
             ]);

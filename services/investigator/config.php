@@ -22,9 +22,9 @@ return [
         'title' => 'Bcoreanda библиотека',
         'class' => 'app\services\investigator\Bcoreanda',
     ],
-//    [
-//        'name'  => 'mid-way',
-//        'title' => 'Элексир',
-//        'class' => 'app\services\investigator\MidWay',
-//    ],
+    [
+        'name'  => 'mid-way',
+        'title' => 'Элексир',
+        'class' => 'app\services\investigator\MidWay',
+    ],
 ];
