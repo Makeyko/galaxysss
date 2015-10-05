@@ -44,12 +44,12 @@ class Base
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
 
-        $url = new Url($this->url);
-        if (strtolower($url->scheme) == 'https') {
-            $url->scheme = 'http';
-        }
-        $url = $url->__toString();
-        $curl = curl_init($url);
+//        $url = new Url($this->url);
+//        if (strtolower($url->scheme) == 'https') {
+//            $url->scheme = 'http';
+//        }
+//        $url = $url->__toString();
+        $curl = curl_init($this->url);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_HEADER, 0);
