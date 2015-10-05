@@ -58,14 +58,10 @@ class Base
         $body = curl_exec($curl);
 
         $result = new \StdClass();
-        $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $result->headers = curl_getinfo($curl);
         $result->body = $body;
         curl_close($curl);
-        $d = new \cs\services\SitePath('/upload');
-        $d->addAndCreate('test2');
-        $d->add(time().'_'.Security::generateRandomString().'.txt')->write($body);
-        \Yii::info($body, 'gs\\inv');
-
+        VarDumper::dump($result);
         if ($result->status_code != 200) {
             throw new \cs\web\Exception('Не удалось прочитать файл');
         }
