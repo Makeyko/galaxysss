@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $model->field($form, 'header') ?>
                 <?= $model->field($form, 'source') ?>
-                <?= $model->field($form, 'description') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 20]) ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'image') ?>
                 <?= $model->field($form, 'is_add_image') ?>

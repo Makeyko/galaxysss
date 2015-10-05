@@ -7,7 +7,7 @@ use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = 'Добавить статью в блог';
 $this->params['breadcrumbs'][] = $this->title;
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?= $model->field($form, 'header') ?>
                 <?= $model->field($form, 'source') ?>
-                <?= $model->field($form, 'description') ?>
+                <?= $model->field($form, 'description')->textarea(['rows' => 20]) ?>
                 <?= $model->field($form, 'content') ?>
                 <?= $model->field($form, 'image') ?>
                 <?= $model->field($form, 'is_add_image') ?>
