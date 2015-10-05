@@ -54,7 +54,7 @@ class Base
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type: windows-1251']);
+//        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type: windows-1251']);
         $body = curl_exec($curl);
 
         $result = new \StdClass();
@@ -69,6 +69,7 @@ class Base
         if ($result->status_code != 200) {
             throw new \cs\web\Exception('Не удалось прочитать файл');
         }
+        $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
 
         return str_get_html($body);
     }
