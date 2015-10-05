@@ -52,6 +52,7 @@ class Base
         $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $result->body = $body;
         curl_close($curl);
+        \Yii::info($body, 'gs\\inv');
 
         if ($result->status_code != 200) {
             throw new \cs\web\Exception('Не удалось прочитать файл');
