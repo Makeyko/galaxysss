@@ -42,6 +42,12 @@ class VkMidway extends Base implements ExtractorInterface
      */
     public function extract()
     {
+        VarDumper::dump([
+            'image'       => $this->getImage(),
+            'header'      => $this->getHeader(),
+            'content'     => $this->getContent(),
+            'description' => $this->getDescription(),
+        ]);
         return [
             'image'       => $this->getImage(),
             'header'      => $this->getHeader(),
@@ -66,7 +72,7 @@ class VkMidway extends Base implements ExtractorInterface
 
     public function _getContent()
     {
-        $html = $this->getObjArticle()->find('.pi_text')[0];
+        $html = $this->getObjArticle();
         $header = explode('..............................', $html->plaintext);
         $header = $header[count($header) -1];
         // ищу начало текста
@@ -177,7 +183,11 @@ class VkMidway extends Base implements ExtractorInterface
     public function getObjArticle()
     {
         if (is_null($this->article)) {
-            $this->article = $this->getDocument()->find('.wi_body')[0];
+            $r = $this->getDocument()->find('.wi_body');
+            if (count($r) == 0) {
+                $r = $this->getDocument()->find('#wrap1/.wall_post_text');
+            }
+            $this->article = $r[0];
         }
 
         return $this->article;
