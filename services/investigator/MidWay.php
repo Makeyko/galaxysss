@@ -37,7 +37,6 @@ class MidWay extends Base implements InvestigatorInterface
                     $header = Str::sub($header, 0, Str::length($header) - 1);
                 }
                 $header = Str::toLower($header);
-                \Yii::error($header);
                 $first = Str::toUpper(Str::sub($header,0,1));
                 $header = $first . Str::sub($header,1);
 
