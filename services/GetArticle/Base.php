@@ -9,6 +9,7 @@
 namespace app\services\GetArticle;
 
 use cs\services\Str;
+use cs\services\Url;
 use cs\services\VarDumper;
 
 class Base
@@ -41,7 +42,13 @@ class Base
     public function _getDocument()
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-        $body = file_get_contents($this->url);
+        $url = $this->url;
+        $url = new Url($url);
+        if (strtolower($url->scheme) == 'https') {
+            $url->scheme = 'http';
+        }
+        $url = $url->__toString();
+        $body = file_get_contents($url);
 
         return str_get_html($body);
     }
