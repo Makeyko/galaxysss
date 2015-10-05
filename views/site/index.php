@@ -32,6 +32,8 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                     <li data-target="#carousel-example-captions" data-slide-to="4" class=""></li>
                     <li data-target="#carousel-example-captions" data-slide-to="5" class=""></li>
                     <li data-target="#carousel-example-captions" data-slide-to="6" class=""></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="7" class=""></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="8" class=""></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
@@ -67,6 +69,16 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
                     <div class="item">
                         <img
                             src="/images/index/slider/7.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/8.jpg"
+                            data-holder-rendered="true">
+                    </div>
+                    <div class="item">
+                        <img
+                            src="/images/index/slider/9.jpg"
                             data-holder-rendered="true">
                     </div>
                 </div>
