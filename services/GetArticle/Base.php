@@ -8,6 +8,7 @@
 
 namespace app\services\GetArticle;
 
+use cs\services\Security;
 use cs\services\Str;
 use cs\services\Url;
 use cs\services\VarDumper;
@@ -52,6 +53,9 @@ class Base
         $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $result->body = $body;
         curl_close($curl);
+        $d = new \cs\services\SitePath('/upload');
+        $d->addAndCreate('test2');
+        $d->add(time().'_'.Security::generateRandomString().'.txt')->write($body);
         \Yii::info($body, 'gs\\inv');
 
         if ($result->status_code != 200) {
