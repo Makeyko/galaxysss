@@ -10,6 +10,7 @@
 namespace app\services\investigator;
 
 use app\models\Investigator;
+use cs\services\Url;
 
 class Base
 {
@@ -73,6 +74,11 @@ class Base
     public function getDocument($url)
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
+        $url = new Url($url);
+        if (strtolower($url->scheme) == 'https') {
+            $url->scheme = 'http';
+        }
+        $url = $url->__toString();
         $body = file_get_contents($url);
 
         try {
