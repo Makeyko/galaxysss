@@ -26,6 +26,7 @@ class SubscribeHistorySimple extends \cs\base\BaseForm
     public $content;
     public $date_insert;
     public $subject;
+    public $is_send;
 
     function __construct($fields = [])
     {
@@ -55,23 +56,6 @@ class SubscribeHistorySimple extends \cs\base\BaseForm
                 return $fields;
             },
         ]);
-        $class = new \app\models\SubscribeHistory($item);
-
-        // добавляю рассылку
-        {
-            $subscribeItem = new SubscribeItem();
-            $subscribeItem->subject = $class->getField('subject');
-            $subscribeItem->type = Subscribe::TYPE_MANUAL;
-
-            /** @var \yii\swiftmailer\Mailer $mailer */
-            $mailer = Yii::$app->mailer;
-            $view = 'subscribe/manual';
-            $options = [
-                'subscribeHistory' => $class
-            ];
-            $subscribeItem->html = $mailer->render('html/' . $view, $options, 'layouts/html');
-            Subscribe::add($subscribeItem);
-        }
 
         return $item;
     }

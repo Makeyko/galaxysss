@@ -27,6 +27,7 @@ class SubscribeHistory extends \cs\base\BaseForm
     public $content;
     public $date_insert;
     public $subject;
+    public $is_send;
 
     function __construct($fields = [])
     {
@@ -76,22 +77,31 @@ class SubscribeHistory extends \cs\base\BaseForm
             $content = $content->root->outertext();
             $class->setContent($content);
         }
-        // добавляю рассылку
-        {
-            $subscribeItem = new SubscribeItem();
-            $subscribeItem->subject = $class->getField('subject');
-            $subscribeItem->type = Subscribe::TYPE_MANUAL;
 
-            /** @var \yii\swiftmailer\Mailer $mailer */
-            $mailer = Yii::$app->mailer;
-            $view = 'subscribe/manual';
-            $options = [
-                'subscribeHistory' => $class
-            ];
-            $subscribeItem->html = $mailer->render('html/' . $view, $options, 'layouts/html');
-            Subscribe::add($subscribeItem);
+        return $item;
+    }
+
+    public function update2($id)
+    {
+        $item = parent::update();
+        $item['id'] = $id;
+        $class = new \app\models\SubscribeHistory($item);
+        // получаю content
+        {
+            $content = $class->getField('content');
+            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
+            $content = str_get_html($content);
+            foreach ($content->find('img') as $element) {
+                $src = $element->attr['src'];
+                if (StringHelper::startsWith($src, 'http') == false) {
+                    $element->attr['src'] = Url::to($src, true);
+                }
+            }
+            $content = $content->root->outertext();
+            $class->setContent($content);
         }
 
         return $item;
     }
+
 }

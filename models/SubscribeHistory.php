@@ -12,6 +12,7 @@ class SubscribeHistory extends \cs\base\DbRecord
     public function setContent($data)
     {
         $this->fields['content'] = $data;
+        $this->update(['content' => $data]);
     }
 
 }

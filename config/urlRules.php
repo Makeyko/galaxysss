@@ -75,8 +75,11 @@ return [
 
     'admin/subscribe'                                                                      => 'admin_subscribe/index',
     'admin/subscribe/add'                                                                  => 'admin_subscribe/add',
+    'admin/subscribe/send'                                                                 => 'admin_subscribe/send',
+    'admin/subscribe/delete'                                                               => 'admin_subscribe/delete',
     'admin/subscribe/add/simple'                                                           => 'admin_subscribe/add_simple',
     'admin/subscribe/<id:\\d+>'                                                            => 'admin_subscribe/view',
+    'admin/subscribe/<id:\\d+>/edit'                                                       => 'admin_subscribe/edit',
 
     'admin/serviceList'                                                                    => 'admin_service/index',
     'admin/serviceList/add'                                                                => 'admin_service/add',
