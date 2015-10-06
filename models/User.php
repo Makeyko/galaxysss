@@ -124,6 +124,7 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
             'is_active'                => 0,
             'is_confirm'               => 0,
             'datetime_reg'             => gmdate('YmdHis'),
+            'referal_code'             => Security::generateRandomString(20),
         ];
         // добавляю поля для подписки
         foreach(\app\services\Subscribe::$userFieldList as $field) {
