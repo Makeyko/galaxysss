@@ -6,12 +6,50 @@ use yii\helpers\Html;
 
 $this->title = 'Рассылки';
 
-$this->registerJsFile('/js/pages/admin_subscribe/index.js', [
-    'depends' => [
-        'app\assets\App\Asset',
-        'app\assets\ModalBoxNew\Asset'
-    ]
-]);
+
+$urlSend = Url::to(['admin_subscribe/send']);
+$urlDelete = Url::to(['admin_subscribe/delete']);
+$this->registerJs(<<<JS
+$('.buttonSend').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (confirm('Подтвердите рассылку')) {
+        var b = $(this);
+        ajaxJson({
+            url: '{$urlSend}',
+            data: {
+                id: b.data('id')
+            },
+            success: function(ret) {
+                b.remove();
+            }
+        });
+    }
+});
+$('.buttonDelete').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (confirm('Подтвердите удаление')) {
+        var b = $(this);
+        ajaxJson({
+            url: '{$urlDelete}',
+            data: {
+                id: b.data('id')
+            },
+            success: function(ret) {
+                b.parent().parent().parent().remove();
+            }
+        });
+    }
+});
+$('.buttonShow').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    var b = $(this);
+    window.location = b.data('url');
+});
+JS
+);
 ?>
 
 <div class="container">
@@ -26,7 +64,7 @@ $this->registerJsFile('/js/pages/admin_subscribe/index.js', [
         foreach ($items as $item) {
             ?>
             <a href="<?= Url::to([
-                    'admin_subscribe/view',
+                    'admin_subscribe/edit',
                     'id' => $item['id']
                 ]) ?>" class="list-group-item" id="newsItem-<?= $item['id'] ?>">
                 <h4><?= $item['subject'] ?></h4>
@@ -39,6 +77,10 @@ $this->registerJsFile('/js/pages/admin_subscribe/index.js', [
                         <br>
                         <br>
                         <button class="btn btn-danger btn-xs buttonDelete" data-id="<?= $item['id'] ?>">Удалить</button>
+                        <button class="btn btn-info btn-xs buttonShow" data-url="<?= Url::to(['admin_subscribe/view', 'id' => $item['id']]) ?>">Просмотреть</button>
+                        <?php if (\yii\helpers\ArrayHelper::getValue($item, 'is_send', 0) == 0) { ?>
+                            <button class="btn btn-success btn-xs buttonSend" data-id="<?= $item['id'] ?>">Разослать</button>
+                        <?php } ?>
                     </div>
                 </div>
             </a>
