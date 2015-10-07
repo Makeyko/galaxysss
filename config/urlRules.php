@@ -45,6 +45,8 @@ return [
     'thank'                                                                                => 'site/thank',
     'logo'                                                                                 => 'site/logo',
     'user/<id:\\d+>'                                                                       => 'site/user',
+    'user/<user_id:\\d+>/rod/<rod_id:\\d+>'                                                => 'site/user_rod',
+    'user/<user_id:\\d+>/rod/<rod_id:\\d+>/edit'                                           => 'site/user_rod_edit',
 
     'subscribe/unsubscribe'                                                                => 'subscribe/unsubscribe',
     'subscribe/mail'                                                                       => 'subscribe/mail',
@@ -195,6 +197,7 @@ return [
     'cabinet/profile/humanDesign/ajax'                                                     => 'cabinet/profile_human_design_ajax',
     'cabinet/profile/humanDesign/delete'                                                   => 'cabinet/profile_human_design_delete',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',
+    'cabinet/profile/zvezdnoe'                                                          => 'cabinet/profile_zvezdnoe',
     'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',
     'cabinet/poseleniya'                                                                   => 'cabinet/poseleniya',

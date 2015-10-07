@@ -1,15 +1,16 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use app\models\UnionCategory;
+use yii\db\Query;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model cs\base\BaseForm */
+/* @var $model app\models\ContactForm */
 
-$this->title = 'Редактирование рассылок';
+$this->title = 'Редактировать';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
@@ -25,23 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php else: ?>
 
+
                 <?php $form = ActiveForm::begin([
                     'id'      => 'contact-form',
-                    'options' => ['enctype' => 'multipart/form-data'],
-                    'layout'  => 'horizontal'
+                    'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $model->field($form, 'subscribe_is_news') ?>
-                <?= $model->field($form, 'subscribe_is_site_update') ?>
-                <?= $model->field($form, 'subscribe_is_manual') ?>
+                <?= $model->field($form, 'data')->textarea(['rows' => 20]) ?>
 
-
-                <hr class="featurette-divider">
+                <hr>
                 <div class="form-group">
                     <?= Html::submitButton('Обновить', [
                         'class' => 'btn btn-default',
                         'name'  => 'contact-button',
                         'style' => 'width:100%',
-
                     ]) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
@@ -50,8 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-lg-4">
             <?= $this->render('profile_menu/profile_menu') ?>
-
         </div>
     </div>
-
 </div>

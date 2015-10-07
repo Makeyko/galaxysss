@@ -29,6 +29,36 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * @return \app\models\Zvezdnoe
+     */
+    public function getZvezdnoe()
+    {
+        $i = $this->getField('zvezdnoe', '');
+        if ($i == '') {
+            $i = "{data:''}";
+        }
+
+        return Zvezdnoe::set($i);
+    }
+
+    /**
+     * @param \app\models\Zvezdnoe $z
+     *
+     *
+     */
+    public function setZvezdnoe($z)
+    {
+        $this->update(['zvezdnoe' => $z->__toString()]);
+    }
+
+    public function hasZvezdnoe()
+    {
+        $i = $this->getField('zvezdnoe', '');
+
+        return ($i != '');
+    }
+
+    /**
      * Заполнены ли данные о Дизайне Человека?
      *
      * @return bool

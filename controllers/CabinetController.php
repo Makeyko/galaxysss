@@ -70,6 +70,24 @@ class CabinetController extends BaseController
         }
     }
 
+    public function actionProfile_zvezdnoe()
+    {
+        /** @var \app\models\User $user */
+        $user = Yii::$app->user->identity;
+        $z = $user->getZvezdnoe();
+        $model = new \app\models\Form\ProfileZvezdnoe(['data' => $z->data]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->action()) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        } else {
+            return $this->render([
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * AJAX
      *
