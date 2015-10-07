@@ -8,6 +8,7 @@ use app\models\HDtown;
 use app\models\Log;
 use app\models\SiteUpdate;
 use app\models\User;
+use app\models\UserRod;
 use app\services\GetArticle\YouTube;
 use app\services\GraphExporter;
 use app\services\HumanDesign2;
@@ -79,7 +80,7 @@ class SiteController extends BaseController
      */
     public function actionUser($id)
     {
-        $user =  User::find($id);
+        $user = User::find($id);
         if (is_null($user)) {
             throw new \cs\web\Exception('Пользователь не найден');
         }
@@ -197,6 +198,27 @@ class SiteController extends BaseController
             return $this->refresh();
         } else {
             return $this->render('contact', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionUser_rod_edit($user_id, $rod_id)
+    {
+        $user = UserRod::find(['user_id' => $user_id, 'rod_id' => $rod_id]);
+        if (is_null($user)) {
+            $user = UserRod::insert([
+                'user_id' => $user_id,
+                'rod_id'  => $rod_id,
+            ]);
+        }
+        $model = new \app\models\Form\UserRod($user->getFields());
+        if ($model->load(Yii::$app->request->post()) && $model->update()) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        } else {
+            return $this->render([
                 'model' => $model,
             ]);
         }
