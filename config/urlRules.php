@@ -199,6 +199,7 @@ return [
     'cabinet/profile/humanDesign/delete'                                                   => 'cabinet/profile_human_design_delete',
     'cabinet/profile/unLinkSocialNetWork'                                                  => 'cabinet/profile_unlink_social_network',
     'cabinet/profile/zvezdnoe'                                                             => 'cabinet/profile_zvezdnoe',
+    'cabinet/profile/time'                                                                 => 'cabinet/profile_time',
     'cabinet/profile/subscribe'                                                            => 'cabinet/profile_subscribe',
     'cabinet/mindMap'                                                                      => 'cabinet/mind_map',
     'cabinet/poseleniya'                                                                   => 'cabinet/poseleniya',

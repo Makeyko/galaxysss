@@ -26,4 +26,8 @@ use yii\helpers\Url;
        class="list-group-item<?php if (Url::to(['cabinet/profile_zvezdnoe']) == Url::to()) {
            echo ' active';
        } ?>"> Звездное происхождение </a>
+    <a href="<?= Url::to(['cabinet/profile_time']) ?>"
+       class="list-group-item<?php if (Url::to(['cabinet/profile_time']) == Url::to()) {
+           echo ' active';
+       } ?>"> Персональная Галактическая Печать</a>
 </div>

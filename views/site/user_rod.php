@@ -17,7 +17,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
     <div>
-        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+        <h1 class="page-header"><?= Html::encode($this->title) ?>
+
+        <?php if (!\Yii::$app->user->isGuest) { ?>
+            <?php if (\Yii::$app->user->id == $userRod->getField('user_id')) { ?>
+
+                <a href="<?= \yii\helpers\Url::to(['site/user_rod_edit']) ?>" class="btn btn-default btn-sm"><span
+                        class="glyphicon glyphicon-edit"></span> Редактировать</a>
+
+            <?php } ?>
+        <?php } ?>
+        </h1>
+
         <?= \cs\Widget\BreadCrumbs\BreadCrumbs::widget([
             'items' => $breadcrumbs,
             'home'  => [
@@ -41,6 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <td>Колено</td>
                     <td><?= $userRod->getKoleno() ?></td>
+                </tr>
+                <tr>
+                    <td>Родство</td>
+                    <td><?= $userRod->getRodstvo() ?></td>
                 </tr>
                 <tr>
                     <td>Дата прихода</td>
