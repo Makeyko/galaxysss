@@ -10,39 +10,6 @@ use yii\helpers\ArrayHelper;
 $name = $user->getField('name_first') . ' ' . $user->getField('name_last');
 
 $this->title = $name;
-function getName($point)
-{
-    if (isset($point[2])) {
-        $user = $point[2];
-        $arr = [];
-        $index = 'name_first';
-        if (ArrayHelper::getValue($user, $index, '') != '') {
-            $arr[] = $user[ $index ];
-        }
-        $index = 'name_middle';
-        if (ArrayHelper::getValue($user, $index, '') != '') {
-            $arr[] = $user[ $index ];
-        }
-        $index = 'name_last';
-        if (ArrayHelper::getValue($user, $index, '') != '') {
-            $arr[] = $user[ $index ];
-        }
-        if (ArrayHelper::getValue($user, 'date_born', '') != '') {
-            if (ArrayHelper::getValue($user, 'date_death', '') != '') {
-                $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
-                $end = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_death', ''));
-                $arr[] = "({$start} - {$end})";
-            } else {
-                $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
-                $arr[] = "({$start})";
-            }
-        }
-
-        return join(' ', $arr);
-    } else {
-        return '';
-    }
-}
 
 ?>
 <div class="container">
@@ -160,6 +127,41 @@ JS
     <div class="panel-body">
         <img src="/images/passport/tree.png" usemap="#Map"/>
         <?php
+
+        function getName($point)
+        {
+            if (isset($point[2])) {
+                $user = $point[2];
+                $arr = [];
+                $index = 'name_first';
+                if (ArrayHelper::getValue($user, $index, '') != '') {
+                    $arr[] = $user[ $index ];
+                }
+                $index = 'name_middle';
+                if (ArrayHelper::getValue($user, $index, '') != '') {
+                    $arr[] = $user[ $index ];
+                }
+                $index = 'name_last';
+                if (ArrayHelper::getValue($user, $index, '') != '') {
+                    $arr[] = $user[ $index ];
+                }
+                if (ArrayHelper::getValue($user, 'date_born', '') != '') {
+                    if (ArrayHelper::getValue($user, 'date_death', '') != '') {
+                        $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
+                        $end = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_death', ''));
+                        $arr[] = "({$start} - {$end})";
+                    } else {
+                        $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
+                        $arr[] = "({$start})";
+                    }
+                }
+
+                return join(' ', $arr);
+            } else {
+                return '';
+            }
+        }
+
         $points = [
             1 => [128, 35],
             2 => [128 + 256, 35],
@@ -192,7 +194,7 @@ JS
                     shape="rect"
                     title="<?= getName($points[ $key ]) ?>"
                     coords="<?= $point[0] - 2 ?>,<?= $point[1] - 2 ?>,<?= $point[0] + 2 ?>,<?= $point[1] + 2 ?>"
-                    href="<?= \yii\helpers\Url::to(['site/user_rod_edit', 'rod_id' => $key, 'user_id' => $user->getId()]) ?>"
+                    href="<?= \yii\helpers\Url::to(['site/user_rod', 'rod_id' => $key, 'user_id' => $user->getId()]) ?>"
                     />
             <?php } ?>
         </map>
@@ -275,7 +277,7 @@ JS
                             <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
                                  class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $vedun ?>.gif" alt="" class="stamp"
-                                 data-date="2014-03-03">
+                                 title="<?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?>">
                         </td>
                         <td></td>
                     </tr>
@@ -284,22 +286,30 @@ JS
                             <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
                                  class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $antipod ?>.gif" alt="" class="stamp"
-                                 data-date="2014-03-03">
+                                title="<?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?>">
                         </td>
                         <td id="today" class="item">
                             <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
                                  class="ton"><br>
                             <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif" alt=""
-                                     class="stamp"
-                                     data-date="<?= $birthDate ?>">
+                                <img
+                                    src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif"
+                                    alt=""
+                                    class="stamp"
+                                    title="<?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?>"
+                                    data-date="<?= $birthDate ?>"
+                                    >
                             </a>
                         </td>
                         <td id="analog" class="item">
                             <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
                                  class="ton"><br>
-                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $analog ?>.gif" alt="" class="stamp"
-                                 data-date="2014-03-03">
+                            <img
+                                src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $analog ?>.gif"
+                                alt=""
+                                class="stamp"
+                                title="<?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?>"
+                                 >
                         </td>
                     </tr>
                     <tr>
@@ -307,8 +317,12 @@ JS
                         <td id="okkult" class="item">
                             <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $okkultTon ?>.gif" alt="" width="20"
                                  class="ton"><br>
-                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $okkult ?>.gif" alt="" class="stamp"
-                                 data-date="2014-03-03">
+                            <img
+                                src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $okkult ?>.gif"
+                                alt=""
+                                class="stamp"
+                                title="<?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?>"
+                                >
                         </td>
                         <td></td>
                     </tr>
@@ -318,29 +332,29 @@ JS
             <?php
             $this->registerJs(<<<JS
 var magnificPopupOptions = {
-            type: 'inline',
+    type: 'inline',
 
-            fixedContentPos: false,
-            fixedBgPos: true,
+    fixedContentPos: false,
+    fixedBgPos: true,
 
-            overflowY: 'auto',
+    overflowY: 'auto',
 
-            closeBtnInside: true,
-            preloader: false,
+    closeBtnInside: true,
+    preloader: false,
 
-            midClick: true,
-            removalDelay: 300,
-            mainClass: 'my-mfp-zoom-in',
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'my-mfp-zoom-in',
 
-            callbacks: {
-                beforeOpen: function(e,i) {
-                    //var modalDialog = $('#small-dialog');
-                    //modalDialog.html('123');
-                }
-            }
-        };
-                        $('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
-
+    callbacks: {
+        beforeOpen: function(e,i) {
+            //var modalDialog = $('#small-dialog');
+            //modalDialog.html('123');
+        }
+    }
+};
+$('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
+$('img.stamp').tooltip();
 JS
 );
             ?>

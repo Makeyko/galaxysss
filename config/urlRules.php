@@ -1,10 +1,10 @@
 <?php
 
 return [
+    'blog/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/blog_item',
     'chenneling/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                       => 'page/chenneling_item',
     'category/<category:\\w+>/article/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>' => 'page/article',
     'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
-    'blog/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/blog_item',
     'praktice/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                         => 'page/praktice_item',
 
     'checkBoxTreeMask/add'                                                                 => 'check_box_tree_mask/add',
