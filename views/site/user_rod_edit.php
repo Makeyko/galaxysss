@@ -8,13 +8,22 @@ use yii\db\Query;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
+/* @var $breadcrumbs array */
 
 $this->title = 'Древо рода';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
+    <div>
+        <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
+        <?= \cs\Widget\BreadCrumbs\BreadCrumbs::widget([
+            'items' => $breadcrumbs,
+            'home'  => [
+                'name' => 'я',
+                'url'  => \yii\helpers\Url::to(['site/user', 'id' => $model->user_id])
+            ]
+        ]) ?>
+        <hr>
     </div>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
