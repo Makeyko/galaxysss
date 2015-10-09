@@ -70,6 +70,23 @@ class CabinetController extends BaseController
         }
     }
 
+    public function actionProfile_time()
+    {
+        $model = new \app\models\Form\ProfileTime();
+        $model->id = (int)Yii::$app->user->id;
+        if ($model->load(Yii::$app->request->post()) && $model->update()) {
+            /** @var \app\models\User $user */
+            $user = Yii::$app->user->identity;
+            $user->cacheClear();
+
+            return $this->refresh();
+        } else {
+            return $this->render([
+                'model' => $model,
+            ]);
+        }
+    }
+
     public function actionProfile_zvezdnoe()
     {
         /** @var \app\models\User $user */

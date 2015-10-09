@@ -40,7 +40,13 @@ class UserRod extends \cs\base\DbRecord
     public function getImage($isScheme = false)
     {
         $url = $this->getField('image', '');
-        if ($url == '') return '';
+        if ($url == '') {
+            if ($this->getGender() == 1) {
+                $url = '/images/passport/tree/mail.jpg';
+            } else {
+                $url = '/images/passport/tree/female.jpg';
+            }
+        }
 
         if ($isScheme){
             return Url::to($url, $isScheme);
@@ -76,6 +82,24 @@ class UserRod extends \cs\base\DbRecord
     public function getKoleno()
     {
         return self::calcKolenoId($this->getRodId());
+    }
+
+    /**
+     * Выдает степень родства
+     */
+    public function getRodstvo()
+    {
+        $r = [
+            1=>['я', 'я'],
+            ['Мама', 'Папа'],
+            ['Бабушка', 'Дедушка'],
+            ['ПраБабушка', 'ПраДедушка'],
+            ['ПраПраБабушка', 'ПраПраДедушка'],
+            ['ПраПраПраБабушка', 'ПраПраПраДедушка'],
+            ['ПраПраПраПраБабушка', 'ПраПраПраПраДедушка'],
+        ];
+
+        return $r[$this->getKoleno()][$this->getGender()];
     }
 
     /**
