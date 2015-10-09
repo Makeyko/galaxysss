@@ -200,6 +200,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
         <p>Ближайший <abbr title="День имеет прямую связь с духом и космосом">портал галактической активации</abbr>
             открывается <span class="days">через <kbd>7</kbd> <span class="days2">дней</span></span></p>
         <a class="btn btn-primary" href="<?= Url::to(['calendar/index'])?>">Подробнее</a>
+        <a class="btn btn-primary" href="<?= Url::to(['page/time_arii'])?>">Арийское время</a>
    </noindex>
 </div>
 

@@ -168,6 +168,12 @@ class PageController extends BaseController
         ]);
     }
 
+    public function actionTime_arii()
+    {
+        return $this->render([
+        ]);
+    }
+
     /**
      * Выводит подкатегорию
      *
@@ -466,7 +472,7 @@ class PageController extends BaseController
         // похожие статьи
         {
             $nearList = Blog::query()
-                ->select('id,header,id_string,image,view_counter,description,date_insert')
+                ->select('id,header,id_string,image,view_counter,description,date_insert,date')
                 ->orderBy(['date_insert' => SORT_DESC])
                 ->andWhere(['not in', 'id', $item->getId()])
                 ->limit(3)

@@ -112,13 +112,9 @@ class Blog extends \cs\base\DbRecord implements SiteContentInterface
         $year = substr($date, 0, 4);
         $month = substr($date, 5, 2);
         $day = substr($date, 8, 2);
+        $id = $this->getField('id_string');
+        $url = "/blog/{$year}/{$month}/{$day}/{$id}";
 
-        return \yii\helpers\Url::to([
-            'page/blog_item',
-            'year'  => $year,
-            'month' => $month,
-            'day'   => $day,
-            'id'    => $this->getField('id_string'),
-        ], $isScheme);
+        return \yii\helpers\Url::to($url, $isScheme);
     }
 }
