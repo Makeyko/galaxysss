@@ -260,6 +260,7 @@ JS
                 padding: 0px 10px 10px 10px;
                 text-align: center;
             }
+
             .glyphicon-question-sign {
                 opacity: 0.3;
             }
@@ -271,7 +272,8 @@ JS
                     <tr>
                         <td></td>
                         <td id="vedun" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                                 class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $vedun ?>.gif" alt="" class="stamp"
                                  data-date="2014-03-03">
                         </td>
@@ -279,17 +281,23 @@ JS
                     </tr>
                     <tr>
                         <td id="antipod" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                                 class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $antipod ?>.gif" alt="" class="stamp"
                                  data-date="2014-03-03">
                         </td>
                         <td id="today" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20" class="ton"><br>
-                            <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif" alt="" class="stamp"
-                                 data-date="<?= $birthDate ?>">
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                                 class="ton"><br>
+                            <a class="popup-with-zoom-anim" href="#small-dialog">
+                                <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif" alt=""
+                                     class="stamp"
+                                     data-date="<?= $birthDate ?>">
+                            </a>
                         </td>
                         <td id="analog" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                                 class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $analog ?>.gif" alt="" class="stamp"
                                  data-date="2014-03-03">
                         </td>
@@ -297,7 +305,8 @@ JS
                     <tr>
                         <td></td>
                         <td id="okkult" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $okkultTon ?>.gif" alt="" width="20" class="ton"><br>
+                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $okkultTon ?>.gif" alt="" width="20"
+                                 class="ton"><br>
                             <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $okkult ?>.gif" alt="" class="stamp"
                                  data-date="2014-03-03">
                         </td>
@@ -305,46 +314,91 @@ JS
                     </tr>
                 </table>
             </div>
+
+            <?php
+            $this->registerJs(<<<JS
+var magnificPopupOptions = {
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in',
+
+            callbacks: {
+                beforeOpen: function(e,i) {
+                    //var modalDialog = $('#small-dialog');
+                    //modalDialog.html('123');
+                }
+            }
+        };
+                        $('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
+
+JS
+);
+            ?>
+            <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                <h1>Dialog example</h1>
+                <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
+            </div>
+
             <div class="col-lg-8">
                 <table class="table table-striped table-hover">
                     <tr>
                         <?php $this->registerJs(<<<JS
     $('.glyphicon-question-sign').popover();
 JS
-)?>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="Кин Судьбы, который состоит из тона и печати. Это основная энергия, которая дана человеку от рождения."></span></td>
+                        )?>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="Кин Судьбы, который состоит из тона и печати. Это основная энергия, которая дана человеку от рождения."></span>
+                        </td>
                         <td>Кин</td>
                         <td><?= $maya['kin'] ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="Портал Галактической Активации означает, что этот Кин - день или человек имеет прямую связь с духом и космосом."></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="Портал Галактической Активации означает, что этот Кин - день или человек имеет прямую связь с духом и космосом."></span>
+                        </td>
                         <td>ПГА</td>
                         <td><?= $maya['nearPortal'] == 0 ? 'Да' : 'Нет' ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="Персональная Галактическая Печать, которая определяет свойства человека, рожденного в этот день. Эта энергия остается с человеком на всю жизнь."></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="Персональная Галактическая Печать, которая определяет свойства человека, рожденного в этот день. Эта энергия остается с человеком на всю жизнь."></span>
+                        </td>
                         <td>Главная печать</td>
-                        <td><?= \cs\models\Calendar\Maya::$stampRows[$maya['stamp']][0] ?></td>
+                        <td><?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="результирующая сила, дающая обертон и движение"></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="результирующая сила, дающая обертон и движение"></span></td>
                         <td>Ведущая печать</td>
-                        <td><?= \cs\models\Calendar\Maya::$stampRows[$vedun][0] ?></td>
+                        <td><?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="поддерживающая, питающая сила, планетарный партнер"></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="поддерживающая, питающая сила, планетарный партнер"></span></td>
                         <td>Аналог</td>
-                        <td><?= \cs\models\Calendar\Maya::$stampRows[$analog][0] ?></td>
+                        <td><?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="сила вызова и испытания, балансирующая сила"></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="сила вызова и испытания, балансирующая сила"></span></td>
                         <td>Антипод</td>
-                        <td><?= \cs\models\Calendar\Maya::$stampRows[$antipod][0] ?></td>
+                        <td><?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?></td>
                     </tr>
                     <tr>
-                        <td><span class="glyphicon glyphicon-question-sign" data-content="скрытая сила, незримая духовная поддержка"></span></td>
+                        <td><span class="glyphicon glyphicon-question-sign" role="button"
+                                  data-content="скрытая сила, незримая духовная поддержка"></span></td>
                         <td>Оккультный учитель</td>
-                        <td><?= \cs\models\Calendar\Maya::$stampRows[$okkult][0] ?></td>
+                        <td><?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?></td>
                     </tr>
                 </table>
             </div>
