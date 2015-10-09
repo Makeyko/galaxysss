@@ -168,6 +168,12 @@ class PageController extends BaseController
         ]);
     }
 
+    public function actionTime_arii()
+    {
+        return $this->render([
+        ]);
+    }
+
     /**
      * Выводит подкатегорию
      *

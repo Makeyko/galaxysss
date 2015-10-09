@@ -144,6 +144,7 @@ return [
     'study'                                                                                => 'page/study',
     'study/add'                                                                            => 'page_add/study',
     'time'                                                                                 => 'page/time',
+    'time/arii'                                                                            => 'page/time_arii',
     'language'                                                                             => 'page/language',
     'language/article/<id:\\w+>'                                                           => 'page/language_article',
     'energy'                                                                               => 'page/energy',
