@@ -256,7 +256,6 @@ $(document).ready(function () {
         {
             var vedun;
 
-            console.log(todayMaya);
             switch (todayMaya.ton % 5) {
                 case 0:
                     // + 8 печатей

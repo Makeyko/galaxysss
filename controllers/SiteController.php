@@ -203,14 +203,61 @@ class SiteController extends BaseController
         }
     }
 
+    public function actionUser_rod($user_id, $rod_id)
+    {
+        $user = UserRod::find(['user_id' => $user_id, 'rod_id' => $rod_id]);
+        if (is_null($user)) {
+            $user = new UserRod([
+                'user_id' => $user_id,
+                'rod_id'  => $rod_id,
+            ]);
+        }
+        $path = $user->getRodPath();
+        $breadcrumbs = [];
+        foreach ($path as $i) {
+            $breadcrumbs[] = [
+                'label' => (is_null($i['name'])) ? '?' : $i['name'],
+                'url'   => [
+                    'site/user_rod',
+                    'user_id' => $user_id,
+                    'rod_id'  => $i['id'],
+                ],
+            ];
+        }
+
+        return $this->render([
+            'userRod'     => $user,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
+
     public function actionUser_rod_edit($user_id, $rod_id)
     {
+        if (Yii::$app->user->isGuest) {
+            throw new \cs\web\Exception('Вы не можете редактировать данные');
+        }
+        if (Yii::$app->user->id != $user_id) {
+            throw new \cs\web\Exception('Вы не можете редактировать чужие данные');
+        }
+
         $user = UserRod::find(['user_id' => $user_id, 'rod_id' => $rod_id]);
         if (is_null($user)) {
             $user = UserRod::insert([
                 'user_id' => $user_id,
                 'rod_id'  => $rod_id,
             ]);
+        }
+        $path = $user->getRodPath();
+        $breadcrumbs = [];
+        foreach ($path as $i) {
+            $breadcrumbs[] = [
+                'label' => (is_null($i['name'])) ? '?' : $i['name'],
+                'url'   => [
+                    'site/user_rod_edit',
+                    'user_id' => $user_id,
+                    'rod_id'  => $i['id'],
+                ],
+            ];
         }
         $model = new \app\models\Form\UserRod($user->getFields());
         if ($model->load(Yii::$app->request->post()) && $model->update()) {
@@ -219,7 +266,8 @@ class SiteController extends BaseController
             return $this->refresh();
         } else {
             return $this->render([
-                'model' => $model,
+                'model'       => $model,
+                'breadcrumbs' => $breadcrumbs,
             ]);
         }
     }

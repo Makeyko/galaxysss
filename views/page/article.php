@@ -16,7 +16,7 @@ $this->title = $item['header'];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs("$('#share').popover()");
 
-//\cs\services\VarDumper::dump($breadcrumbs);
+\cs\services\VarDumper::dump($breadcrumbs);
 ?>
 <div class="container">
 

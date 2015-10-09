@@ -89,7 +89,7 @@ class UserRod extends \cs\base\BaseForm
             ],
             [
                 'date_born',
-                'Дата рождения',
+                'Дата прихода',
                 0,
                 'cs\Widget\DatePicker\Validator',
                 'widget' => [
@@ -100,7 +100,7 @@ class UserRod extends \cs\base\BaseForm
             ],
             [
                 'date_death',
-                'Дата смерти',
+                'Дата ухода',
                 0,
                 'cs\Widget\DatePicker\Validator',
                 'widget' => [
