@@ -231,6 +231,43 @@ class SiteController extends BaseController
         ]);
     }
 
+    /**
+     * Выводит весь род человека
+     *
+     * @param int $id идентификатор пользователя
+     *
+     * @return string
+     * @throws \cs\web\Exception
+     */
+    public function actionUser_rod_list($id)
+    {
+        $user = User::find($id);
+        if (is_null($user)) {
+            throw new \cs\web\Exception('Не найден пользователь');
+        }
+        $rod = UserRod::query(['user_id' => $id])->all();
+        $rows = [];
+        for($i = 1; $i < 127; $i++) {
+            $new = null;
+            foreach($rod as $item) {
+                if ($item['rod_id'] == $i) {
+                    $new = $item;
+                }
+            }
+            if (is_null($new)) {
+                $new = [
+                    'rod_id' => $i
+                ];
+            }
+            $rows[$i] = $new;
+        }
+
+        return $this->render([
+            'items' => $rows,
+            'user'  => $user,
+        ]);
+    }
+
     public function actionUser_rod_edit($user_id, $rod_id)
     {
         if (Yii::$app->user->isGuest) {

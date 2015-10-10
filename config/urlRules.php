@@ -7,6 +7,7 @@ return [
     'news/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                             => 'page/news_item',
     'praktice/<year:\\d{4}>/<month:\\d{2}>/<day:\\d{2}>/<id:\\w+>'                         => 'page/praktice_item',
 
+
     'checkBoxTreeMask/add'                                                                 => 'check_box_tree_mask/add',
     'checkBoxTreeMask/addInto'                                                             => 'check_box_tree_mask/add_into',
     'checkBoxTreeMask/delete'                                                              => 'check_box_tree_mask/delete',
@@ -44,7 +45,9 @@ return [
     'moneyBack'                                                                            => 'site/money',
     'thank'                                                                                => 'site/thank',
     'logo'                                                                                 => 'site/logo',
+
     'user/<id:\\d+>'                                                                       => 'site/user',
+    'user/<id:\\d+>/rod'                                                                   => 'site/user_rod_list',
     'user/<user_id:\\d+>/rod/<rod_id:\\d+>'                                                => 'site/user_rod',
     'user/<user_id:\\d+>/rod/<rod_id:\\d+>/edit'                                           => 'site/user_rod_edit',
 
