@@ -19,6 +19,7 @@ class Asset extends AssetBundle
     ];
     public $depends  = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapThemeAsset',
         'yii\bootstrap\BootstrapPluginAsset',
     ];
 }
