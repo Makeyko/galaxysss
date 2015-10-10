@@ -59,7 +59,7 @@ $c = \app\services\SiteUpdateItemsCounter::getValue();
 ?>
 <?php if ($c > 0) { ?>
     <?php $this->registerJs("$('#linkUpdates').tooltip({placement:'right'})"); ?>
-    <li><a href="<?= Url::to(['page/news']) ?>"><span title="Обновления" id="linkUpdates" class="label label-danger"><?= $c ?></span></a></li>
+    <li><a href="<?= Url::to(['page/site_update']) ?>"><span title="Обновления" id="linkUpdates" class="label label-danger"><?= $c ?></span></a></li>
 <?php } ?>
 
 <li<?php if ((Url::to(['page/services']) == Url::current()) or (Yii::$app->controller->action->id == 'services_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['page/services']) ?>">Услуги</a></li>
