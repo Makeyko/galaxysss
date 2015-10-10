@@ -53,6 +53,15 @@ use yii\helpers\Url;
 
 <li<?php if ((Url::to(['page/chenneling']) == Url::current()) or (Yii::$app->controller->action->id == 'chenneling_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['page/chenneling']) ?>">Послания</a></li>
 <li<?php if ((Url::to(['page/news']) == Url::current()) or (Yii::$app->controller->action->id == 'news_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['page/news']) ?>">Новости</a></li>
+
+<?php
+$c = \app\services\SiteUpdateItemsCounter::getValue();
+?>
+<?php if ($c > 0) { ?>
+    <?php $this->registerJs("$('#linkUpdates').tooltip({placement:'right'})"); ?>
+    <li><a href="<?= Url::to(['page/news']) ?>"><span title="Обновления" id="linkUpdates" class="label label-danger"><?= $c ?></span></a></li>
+<?php } ?>
+
 <li<?php if ((Url::to(['page/services']) == Url::current()) or (Yii::$app->controller->action->id == 'services_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['page/services']) ?>">Услуги</a></li>
 <li<?php if ((Url::to(['calendar/events']) == Url::current()) or (Yii::$app->controller->action->id == 'events_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['calendar/events']) ?>">События</a></li>
 <li<?php if ((Url::to(['page/blog']) == Url::current()) or (Yii::$app->controller->action->id == 'blog_item')) { echo ' class="active"';} ?>><a href="<?= Url::to(['page/blog']) ?>">Блог</a></li>
