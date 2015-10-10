@@ -120,6 +120,6 @@ class InvestigatorController extends Controller
             }
         }
 
-        echo "\r";
+        echo "\n";
     }
 }
