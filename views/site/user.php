@@ -539,4 +539,31 @@ JS
 
 </div>
 
+<hr>
+<?php
+$arr = [];
+if ($user->hasHumanDesign()) {
+    $hd = $user->getHumanDesign();
+    $arr[] = 'Дизайн: ' . $hd->type->text . ', профиль: ' .  $hd->profile->text;
+}
+$birthDate = $user->getField('birth_date');
+if ($birthDate) {
+    $maya = \cs\models\Calendar\Maya::calc($birthDate);
+    $arr[] = 'Персональная Галактическая Печать: ' . \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] . ', ' . \cs\models\Calendar\Maya::$tonList[ $maya['ton'] ][0];
+    $arr[] = 'Дата прихода на Землю: ' . Yii::$app->formatter->asDate($birthDate);
+}
+if ($user->hasZvezdnoe()) {
+    $z = $user->getZvezdnoe();
+    $arr[] = 'Звездное происхождение: ' . $z->data;
+}
+$description = join('; ', $arr);
+?>
+
+<?= $this->render('../blocks/share', [
+    'image'       => \yii\helpers\Url::to($user->getAvatar(), true),
+    'url'         => \yii\helpers\Url::current([], true),
+    'title'       => $user->getName2() . ':' . ' ' . 'Паспорт гражданина Галактики',
+    'description' => $description,
+]) ?>
+
 </div>
