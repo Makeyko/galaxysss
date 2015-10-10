@@ -228,7 +228,6 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             </div>
             <div class="col-lg-4">
                 <p><a href="<?= Url::to(['site/contact']) ?>">Контакты</a></p>
-                <p><a href="<?= Url::to(['site/site_update']) ?>">Обновления</a><?php $c = \app\services\SiteUpdateItemsCounter::getValue(); if ($c > 0) { echo ' ('.$c.')'; }  ?></p>
                 <p><a href="http://yasobe.ru/na/galaxysss" target="_blank">Поддержать проект</a></p>
             </div>
         </div>
