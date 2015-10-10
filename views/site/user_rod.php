@@ -22,8 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if (!\Yii::$app->user->isGuest) { ?>
             <?php if (\Yii::$app->user->id == $userRod->getField('user_id')) { ?>
 
-                <a href="<?= \yii\helpers\Url::to(['site/user_rod_edit']) ?>" class="btn btn-default btn-sm"><span
-                        class="glyphicon glyphicon-edit"></span> Редактировать</a>
+                <a
+                    href="<?= \yii\helpers\Url::to(['site/user_rod_edit', 'user_id' => $userRod->getField('user_id'), 'rod_id' => $userRod->getRodId()]) ?>"
+                    class="btn btn-default btn-sm"
+                    >
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Редактировать
+                </a>
 
             <?php } ?>
         <?php } ?>

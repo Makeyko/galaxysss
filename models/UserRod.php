@@ -8,6 +8,19 @@ use cs\services\VarDumper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
+/**
+ * Class UserRod
+ *
+ * Колено
+ * 1 - я
+ * 2 - мама и папа
+ * ...
+ * первый элемент колена = (pow(2, $koleno-1) - 1)
+ * последний элемент колена = (pow(2, $koleno) - 2)
+ *
+ * @package app\models
+ */
+
 class UserRod extends \cs\base\DbRecord
 {
     const TABLE = 'gs_users_rod';
@@ -18,8 +31,8 @@ class UserRod extends \cs\base\DbRecord
 
     /**
      * Вычисляет в каком колене находится человек
-     * 1,2 - 1 колено
-     * 3,4,5,6 - 2 колено
+     * 1,2 - 2 колено
+     * 3,4,5,6 - 3 колено
      * ...
      *
      * @param $rodId
@@ -185,6 +198,34 @@ class UserRod extends \cs\base\DbRecord
     public function getName()
     {
         return $this->getField('name_first');
+    }
+
+    public function getDateIn($format = null)
+    {
+        $date = $this->getField('date_born', '');
+        if ($date) {
+            if ($format) {
+                return \Yii::$app->formatter->asDate($date);
+            } else {
+                return \Yii::$app->formatter->asDate($date, $format);
+            }
+        } else {
+            return '';
+        }
+    }
+
+    public function getDateOut($format = null)
+    {
+        $date = $this->getField('date_death', '');
+        if ($date) {
+            if ($format) {
+                return \Yii::$app->formatter->asDate($date);
+            } else {
+                return \Yii::$app->formatter->asDate($date, $format);
+            }
+        } else {
+            return '';
+        }
     }
 
     /**
