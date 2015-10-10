@@ -73,16 +73,16 @@ $this->title = $user->getField('name_first');
                         </a>
                     </td>
                     <td>
-                        <a href="<?= \yii\helpers\Url::to(['site/user_rod', 'rod_id' => $i, 'user_id' => $user->getId()]) ?>">
-                            <?= $userRod->getName()  ?>
-                        </a>
-                    </td>
-                    <td>
                         <?php if ($userRod->getGender() == 1) { ?>
                             <span class="label label-danger">Мужчина</span>
                         <?php } else { ?>
                             <span class="label label-success">Женщина</span>
                         <?php } ?>
+                    </td>
+                    <td>
+                        <a href="<?= \yii\helpers\Url::to(['site/user_rod', 'rod_id' => $i, 'user_id' => $user->getId()]) ?>">
+                            <?= $userRod->getName()  ?>
+                        </a>
                     </td>
                     <td>
                         <?= $userRod->getField('name_last')  ?>

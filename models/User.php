@@ -341,6 +341,26 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Возвращает Имя и Фамилию через пробел
+     *
+     * @return string
+     */
+    public function getName2()
+    {
+        $first = $this->getString('name_first');
+        $last = $this->getString('name_last');
+        $arr = [];
+        if ($first) {
+            $arr[] = $first;
+        }
+        if ($last) {
+            $arr[] = $last;
+        }
+
+        return join(' ', $arr);
+    }
+
+    /**
      * Возвращает значение из $this->fields, если значение = null то возвращается пустая строка
      *
      * @param $name
