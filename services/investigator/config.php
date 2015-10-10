@@ -3,6 +3,11 @@
 
 return [
     [
+        'name'  => 'otkroveniya',
+        'title' => 'Маслов',
+        'class' => 'app\services\investigator\Otkroveniya',
+    ],
+    [
         'name'  => 'salusa',
         'title' => 'СаЛуСа',
         'class' => 'app\services\investigator\Salusa',

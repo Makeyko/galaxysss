@@ -146,22 +146,26 @@ class Chenneling extends \cs\base\BaseForm
 
     public function update($fieldsCols = null)
     {
-        return parent::update([
+        $fields = parent::update([
             'beforeUpdate' => function ($fields, \app\models\Form\Chenneling $model) {
                 if ($fields['description'] == '') {
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
-                if ($model->is_add_image) {
-                    $fields['content'] = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($model->img), [
-                            'class' => 'thumbnail',
-                            'style' => 'width:100%;',
-                            'alt'   => $fields['header'],
-                        ])) . $fields['content'];
-                }
-
                 return $fields;
             }
         ]);
+
+        $item = \app\models\Chenneling::find($this->id);
+        if ($this->is_add_image) {
+            $content = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('img')), [
+                    'class' => 'thumbnail',
+                    'style' => 'width:100%;',
+                    'alt'   => $item->getField('header'),
+                ])) . $item->getField('content');
+            $item->update(['content' => $content]);
+        }
+
+        return $fields;
     }
 
 }

@@ -38,4 +38,10 @@ return [
         'class' => 'app\services\GetArticle\Bcoreanda',
         'find'  => 'bcoreanda.com',
     ],
+    [
+        'name'  => 'otkroveniya',
+        'title' => 'Otkroveniya',
+        'class' => 'app\services\GetArticle\Otkroveniya',
+        'find'  => 'otkroveniya.ru',
+    ],
 ];

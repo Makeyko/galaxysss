@@ -11,6 +11,8 @@ namespace app\services\investigator;
 
 use app\models\Investigator;
 use cs\services\Url;
+use cs\services\VarDumper;
+use yii\helpers\ArrayHelper;
 
 class Base
 {
@@ -74,18 +76,12 @@ class Base
     public function getDocument($url)
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-//        $url = new Url($url);
-//        if (strtolower($url->scheme) == 'https') {
-//            $url->scheme = 'http';
-//        }
-//        $url = $url->__toString();
-
-//        $body = file_get_contents($url);
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
         $body = curl_exec($curl);
 
         $result = new \StdClass();
@@ -96,6 +92,14 @@ class Base
             throw new \cs\web\Exception('Не удалось прочитать файл');
         }
         $temp = explode(';',$result->headers['content_type']);
+        if (count($temp) == 1) {
+            // в заголовке не указана кодировка, определяю ее через документ
+            $pos = strpos($body, 'text/html; charset=');
+            $openQuote = substr($body, $pos-1, 1);
+            $endPos = strpos($body, $openQuote, $pos);
+            $content_type = substr($body, $pos, $endPos-$pos);
+            $temp = explode(';', $content_type);
+        }
         $temp = trim($temp[1]);
         $temp = explode('=', $temp);
         $charset = $temp[1];
