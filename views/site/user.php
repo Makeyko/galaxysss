@@ -15,7 +15,7 @@ $this->title = $name;
 <div class="container">
 <h1 class="page-header">Паспорт гражданина Галактики</h1>
 
-<h2 class="page-header"><?= $user->getField('name_first') . ' ' . $user->getField('name_last') ?>
+<h2 class="page-header"><?= $user->getName2() ?>
 
     <?php
     if (!\Yii::$app->user->isGuest) {
@@ -425,7 +425,7 @@ JS
                     <?php $this->registerJs(<<<JS
         $('.glyphicon-question-sign').popover({
             trigger: 'focus',
-            placement: 'left'
+            placement: 'right'
         });
 JS
                     )?>
