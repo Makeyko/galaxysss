@@ -22,7 +22,7 @@ class UserLastActive
         $now = time();
         if ($lastSave) {
             // Если более пяти минут не сохранял то сохраняю
-            if (($now - $lastSave) > 60*5) {
+            if (($now - $lastSave) > 60 * 5) {
                 $isNeedUpdate = true;
             }
         } else {
@@ -31,9 +31,15 @@ class UserLastActive
 
         if ($isNeedUpdate) {
             $session->set(self::SESSION_KEY, $now);
-            /** @var \app\models\User $user */
-            $user = \Yii::$app->user->identity;
-            $user->update(['last_action' => $now]);
+            self::updateNow();
         }
+    }
+
+    public static function updateNow()
+    {
+        $now = time();
+        /** @var \app\models\User $user */
+        $user = \Yii::$app->user->identity;
+        $user->update(['last_action' => $now]);
     }
 } 
