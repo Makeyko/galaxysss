@@ -206,7 +206,7 @@ class YourHumanDesignRu
     public static $townList    = [];
 
     public static $links = [
-        'type' => [
+        'type'    => [
             '/types/reflector'             => '/category/dizayn_cheloveka/article/2015/09/18/reflektor',
             '/types/manifesting-generator' => '/category/dizayn_cheloveka/article/2015/09/18/manifestiruyuschiy_generator',
             '/types/manifestor'            => '/category/dizayn_cheloveka/article/2015/09/18/manifestor',
@@ -214,10 +214,22 @@ class YourHumanDesignRu
             '/types/projector'             => '/category/dizayn_cheloveka/article/2015/09/18/proektor',
         ],
         'profile' => [
-            'http://yourhumandesign.ru/profiles/profile-1-3' => '',
+            '/profiles/profile-1-3' => '/category/dizayn_cheloveka/article/2015/10/11/profil_13_issledovatelmuchenik',
+            '/profiles/profile-1-4' => '/category/dizayn_cheloveka/article/2015/10/11/profil_14_issledovatel__opport',
+            '/profiles/profile-2-4' => '/category/dizayn_cheloveka/article/2015/10/11/profil_24_otshelnik__opportuni',
+            '/profiles/profile-2-5' => '/category/dizayn_cheloveka/article/2015/10/11/profil_25_otshelnik__eretik',
+            '/profiles/profile-3-5' => '/category/dizayn_cheloveka/article/2015/10/11/profil_35_muchenik__eretik',
+            '/profiles/profile-3-6' => '/category/dizayn_cheloveka/article/2015/10/11/profil_36_muchenik__rolevaya_m',
+            '/profiles/profile-4-1' => '/category/dizayn_cheloveka/article/2015/10/11/profil_41_opportunist__issledo',
+            '/profiles/profile-4-6' => '/category/dizayn_cheloveka/article/2015/10/11/profil_46_opportunist__rolevay',
+            '/profiles/profile-5-1' => '/category/dizayn_cheloveka/article/2015/10/11/profil_51_eretik__issledovatel',
+            '/profiles/profile-5-2' => '/category/dizayn_cheloveka/article/2015/10/11/profil_52_eretik__otshelnik',
+            '/profiles/profile-6-2' => '/category/dizayn_cheloveka/article/2015/10/11/profil_62_rolevaya_model__otsh',
+            '/profiles/profile-6-3' => '/category/dizayn_cheloveka/article/2015/10/11/profil_63_rolevaya_model__much',
 
         ],
     ];
+
     /**
      * @param \DateTime $datetime
      * @param string    $country

@@ -83,7 +83,11 @@ JS
                 </tr>
                 <tr>
                     <td>Профиль</td>
-                    <td><?= $humanDesign->profile->text ?></td>
+                    <td>
+                        <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['profile'][ $humanDesign->profile->href ] ?>">
+                            <?= $humanDesign->profile->text ?>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Определение</td>
