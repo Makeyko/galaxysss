@@ -39,7 +39,10 @@ class SubscribeController extends Controller
                         $mail->setTextBody($mailItem['text']);
                     }
                 }
-                $mail->send();
+                $result = $mail->send();
+                if ($result == false) {
+                    \Yii::info('Не удалось доствить: ' . VarDumper::dumpAsString($mailItem), 'gs\\app\\commands\\SubscribeController::actionSend');
+                }
             }
 
 //            \Yii::info('Список писем для удаления: ' . VarDumper::dumpAsString(ArrayHelper::getColumn($list, 'id')), 'gs\\app\\commands\\SubscribeController::actionSend');
