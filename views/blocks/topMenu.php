@@ -34,7 +34,7 @@ use yii\helpers\Url;
 
         <li class="divider"></li>
 
-        <li><a href="<?= Url::to(['page/semya']) ?>">Семья</a></li>
+        <li><a href="<?= Url::to(['direction/semya']) ?>">Семья</a></li>
 
     </ul>
 </li>
