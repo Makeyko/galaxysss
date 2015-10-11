@@ -163,21 +163,6 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
 </div>
 
 <hr class="featurette-divider" style="margin-bottom: 100px;">
-<center>
-    <p class="lead text-center">Представляем вам прототип «Новой Земли 4D».</p>
-    <p class="text-center">Инструкции для перехода на «Новую Землю 4D» уже передаются нами через Высшие Силы Света Истока Первотворца на «Землю 3D».</p>
-
-    <?php if (Yii::$app->deviceDetect->isMobile()) { ?>
-        <iframe width="100%" height="360" src="https://www.youtube.com/embed/vq7oIM-XvRQ" frameborder="0" allowfullscreen></iframe>
-    <?php } else { ?>
-        <iframe width="640" height="360" src="https://www.youtube.com/embed/vq7oIM-XvRQ" frameborder="0" allowfullscreen></iframe>
-    <?php }  ?>
-</center>
-
-
-
-
-<hr class="featurette-divider" style="margin-bottom: 100px;">
 <div class="container">
 <center>
     <p class="lead text-center">Мы строим мир гармонично развивающий все сферы организации жизни.</p>

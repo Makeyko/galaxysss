@@ -14,7 +14,7 @@ $this->title = $name;
 ?>
 <div class="container">
 <div class="col-lg-12">
-<h1 class="page-header">Паспорт гражданина Галактики</h1>
+<h1 class="page-header">Карта Жизни Гражданина Галактики</h1>
 
 <h2 class="page-header"><?= $user->getName2() ?>
 
@@ -567,7 +567,7 @@ $description = join('; ', $arr);
 <?= $this->render('../blocks/share', [
     'image'       => \yii\helpers\Url::to($user->getAvatar(), true),
     'url'         => \yii\helpers\Url::current([], true),
-    'title'       => $user->getName2() . ':' . ' ' . 'Паспорт гражданина Галактики',
+    'title'       => $user->getName2() . ':' . ' ' . 'Карта Жизни Гражданина Галактики',
     'description' => $description,
 ]) ?>
 </div>
