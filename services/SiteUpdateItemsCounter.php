@@ -19,7 +19,6 @@ class SiteUpdateItemsCounter
     public static function calc()
     {
         if (\Yii::$app->session->get(self::SESSION_KEY, false) === false) {
-//            \Yii::$app->user->identity->update(['last_action'=>1437745335]);
             $lastAction = \Yii::$app->user->identity->getField('last_action');
             $count = 0;
             if ($lastAction) {
