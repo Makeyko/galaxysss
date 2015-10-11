@@ -13,6 +13,7 @@ $this->title = $name;
 
 ?>
 <div class="container">
+<div class="colplg-12">
 <h1 class="page-header">Паспорт гражданина Галактики</h1>
 
 <h2 class="page-header"><?= $user->getName2() ?>
@@ -565,5 +566,5 @@ $description = join('; ', $arr);
     'title'       => $user->getName2() . ':' . ' ' . 'Паспорт гражданина Галактики',
     'description' => $description,
 ]) ?>
-
+</div>
 </div>
