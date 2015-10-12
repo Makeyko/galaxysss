@@ -71,7 +71,7 @@ JS
                 <?= $form->field($model, 'name_last')->label('Фамилия') ?>
                 <?= $form->field($model, 'avatar')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
                 <?= $model->field($form, 'birth_date') ?>
-
+                <?= $model->field($form, 'mission')->textarea(['rows' => 20]) ?>
 
 
                 <hr class="featurette-divider">
