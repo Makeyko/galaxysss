@@ -44,6 +44,7 @@ class Profile extends BaseForm
     public $birth_town;
     public $zvezdnoe;
     public $referal_code;
+    public $mission;
 
     public $subscribe_is_news;
     public $subscribe_is_site_update;
@@ -56,6 +57,7 @@ class Profile extends BaseForm
     {
         static::$fields = [
             ['name_first', 'Имя', 1, 'string'],
+            ['mission', 'Миссия', 0, 'string'],
             ['name_last', 'Фамилия', 0, 'string'],
             ['avatar', 'Картинка', 0, 'string', 'widget' => [FileUpload::className(), ['options' => [
                 'small' => \app\services\GsssHtml::$formatIcon

@@ -39,6 +39,17 @@ $this->title = $name;
 </div>
 <div class="col-lg-8">
 
+<div class="panel panel-default">
+    <div class="panel-heading">Пришел на Землю</div>
+    <div class="panel-body">
+        <?php
+        if ($user->getField('birth_date')) {
+            echo \Yii::$app->formatter->asDate($user->getField('birth_date'));
+        } ?><?php if (\Yii::$app->user->id == 41) {
+            ?> в Москве<?php } ?>
+    </div>
+</div>
+
 
 <div class="panel panel-default">
     <?php $humanDesign = $user->getHumanDesign(); ?>
@@ -177,23 +188,23 @@ JS
              * ]
              */
             $points = [
-                1 => [128,       107,25],
-                2 => [128 + 256, 107,25],
+                1 => [128, 107, 25],
+                2 => [128 + 256, 107, 25],
             ];
             for ($i = 0; $i < 4; $i++) {
-                $points[] = [64 + (128 * $i), 155,16];
+                $points[] = [64 + (128 * $i), 155, 16];
             }
             for ($i = 0; $i < 8; $i++) {
-                $points[] = [32 + (64 * $i), 195,2];
+                $points[] = [32 + (64 * $i), 195, 2];
             }
             for ($i = 0; $i < 16; $i++) {
-                $points[] = [16 + (32 * $i), 204,2];
+                $points[] = [16 + (32 * $i), 204, 2];
             }
             for ($i = 0; $i < 32; $i++) {
-                $points[] = [8 + (16 * $i), 213,2];
+                $points[] = [8 + (16 * $i), 213, 2];
             }
             for ($i = 0; $i < 64; $i++) {
-                $points[] = [4 + (8 * $i), 221,2];
+                $points[] = [4 + (8 * $i), 221, 2];
             }
 
             $rod = \app\models\UserRod::query(['user_id' => $user->getId()])->all();
@@ -214,7 +225,8 @@ JS
             </map>
         </div>
         <div class="row col-lg-12">
-            <a href="<?= \yii\helpers\Url::to(['site/user_rod_list', 'id' => $user->getId()]) ?>" class="btn btn-default">
+            <a href="<?= \yii\helpers\Url::to(['site/user_rod_list', 'id' => $user->getId()]) ?>"
+               class="btn btn-default">
                 Весь род списком
             </a>
         </div>
@@ -224,148 +236,148 @@ JS
 <div class="panel panel-default">
 <?php $birthDate = $user->getField('birth_date'); ?>
 
-    <div class="panel-heading">Персональная Галактическая Печать</div>
-    <div class="panel-body">
-        <?php if ($birthDate) { ?>
-            <div class="col-lg-4" id="orakul-div">
-                <?php
-                $mayaAssetUrl = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->baseUrl;
-                $maya = \cs\models\Calendar\Maya::calc($birthDate);
-                $analog = 19 - (($maya['stamp'] == 20) ? 0 : $maya['stamp']);
-                $analog = ($analog == 0) ? 20 : $analog;
-                $antipod = (($maya['stamp'] == 20) ? 0 : $maya['stamp']);
-                $antipod = (int)($antipod) + (int)((($antipod > 10) ? -1 : 1) * 10);
-                // Ведущий учитель
-                {
-                    $vedun = 0;
+<div class="panel-heading">Персональная Галактическая Печать</div>
+<div class="panel-body">
+<?php if ($birthDate) { ?>
+    <div class="col-lg-4" id="orakul-div">
+        <?php
+        $mayaAssetUrl = Yii::$app->assetManager->getBundle('app\assets\Maya\Asset')->baseUrl;
+        $maya = \cs\models\Calendar\Maya::calc($birthDate);
+        $analog = 19 - (($maya['stamp'] == 20) ? 0 : $maya['stamp']);
+        $analog = ($analog == 0) ? 20 : $analog;
+        $antipod = (($maya['stamp'] == 20) ? 0 : $maya['stamp']);
+        $antipod = (int)($antipod) + (int)((($antipod > 10) ? -1 : 1) * 10);
+        // Ведущий учитель
+        {
+            $vedun = 0;
 
-                    switch ($maya['ton'] % 5) {
-                        case 0:
-                            // + 8 печатей
-                            $vedun = $maya['stamp'] + 8;
-                            if ($vedun > 20) {
-                                $vedun = $vedun - 20;
-                            }
-                            break;
-                        case 1:
-                            // та же печать
-                            $vedun = $maya['stamp'];
-                            break;
-                        case 2:
-                            // - 8 печатей
-                            $vedun = $maya['stamp'] - 8;
-                            if ($vedun <= 0) {
-                                $vedun = 20 + $vedun;
-                            }
-                            break;
-                        case 3:
-                            // + 4 печати
-                            $vedun = $maya['stamp'] + 4;
-                            if ($vedun > 20) {
-                                $vedun = $vedun - 20;
-                            }
-                            break;
-                        case 4:
-                            // - 4 печати
-                            $vedun = $maya['stamp'] - 4;
-                            if ($vedun <= 0) {
-                                $vedun = 20 + $vedun;
-                            }
-                            break;
+            switch ($maya['ton'] % 5) {
+                case 0:
+                    // + 8 печатей
+                    $vedun = $maya['stamp'] + 8;
+                    if ($vedun > 20) {
+                        $vedun = $vedun - 20;
                     }
-                }
+                    break;
+                case 1:
+                    // та же печать
+                    $vedun = $maya['stamp'];
+                    break;
+                case 2:
+                    // - 8 печатей
+                    $vedun = $maya['stamp'] - 8;
+                    if ($vedun <= 0) {
+                        $vedun = 20 + $vedun;
+                    }
+                    break;
+                case 3:
+                    // + 4 печати
+                    $vedun = $maya['stamp'] + 4;
+                    if ($vedun > 20) {
+                        $vedun = $vedun - 20;
+                    }
+                    break;
+                case 4:
+                    // - 4 печати
+                    $vedun = $maya['stamp'] - 4;
+                    if ($vedun <= 0) {
+                        $vedun = 20 + $vedun;
+                    }
+                    break;
+            }
+        }
 
-                // Оккультный учитель
-                {
-                    $okkult = 21 - $maya['stamp'];
-                    $okkultTon = 14 - $maya['ton'];
-                }
-                ?>
-                <style>
-                    .oracul .item {
-                        padding: 0px 10px 10px 10px;
-                        text-align: center;
-                    }
+        // Оккультный учитель
+        {
+            $okkult = 21 - $maya['stamp'];
+            $okkultTon = 14 - $maya['ton'];
+        }
+        ?>
+        <style>
+            .oracul .item {
+                padding: 0px 10px 10px 10px;
+                text-align: center;
+            }
 
-                    .glyphicon-question-sign {
-                        opacity: 0.3;
-                    }
-                </style>
-                <table id="orakul-table" class="oracul">
-                    <tr>
-                        <td></td>
-                        <td id="vedun" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
-                                 class="ton"><br>
-                            <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $vedun ?>.gif" alt="" class="stamp"
-                                     data-stamp="<?= $vedun ?>"
-                                     title="<?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?>">
-                            </a>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td id="antipod" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
-                                 class="ton"><br>
-                            <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $antipod ?>.gif" alt="" class="stamp"
-                                     data-stamp="<?= $antipod ?>"
-                                     title="<?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?>">
-                            </a>
-                        </td>
-                        <td id="today" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
-                                 class="ton"><br>
-                            <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img
-                                    src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif"
-                                    alt=""
-                                    class="stamp"
-                                    data-stamp="<?= $maya['stamp'] ?>"
-                                    title="<?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?>"
-                                    data-date="<?= $birthDate ?>"
-                                    >
-                            </a>
-                        </td>
-                        <td id="analog" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
-                                 class="ton"><br>
-                            <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img
-                                    src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $analog ?>.gif"
-                                    alt=""
-                                    class="stamp"
-                                    data-stamp="<?= $analog ?>"
-                                    title="<?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?>"
-                                    >
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td id="okkult" class="item">
-                            <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $okkultTon ?>.gif" alt="" width="20"
-                                 class="ton"><br>
-                            <a class="popup-with-zoom-anim" href="#small-dialog">
-                                <img
-                                    src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $okkult ?>.gif"
-                                    alt=""
-                                    data-stamp="<?= $okkult ?>"
-                                    class="stamp"
-                                    title="<?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?>"
-                                    >
-                            </a>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-lg-8">
-            <?php
-            $path = $this->registerAssetBundle('app\assets\Maya\Asset')->baseUrl;
-            $this->registerJs(<<<JS
+            .glyphicon-question-sign {
+                opacity: 0.3;
+            }
+        </style>
+        <table id="orakul-table" class="oracul">
+            <tr>
+                <td></td>
+                <td id="vedun" class="item">
+                    <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                         class="ton"><br>
+                    <a class="popup-with-zoom-anim" href="#small-dialog">
+                        <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $vedun ?>.gif" alt="" class="stamp"
+                             data-stamp="<?= $vedun ?>"
+                             title="<?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?>">
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="antipod" class="item">
+                    <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                         class="ton"><br>
+                    <a class="popup-with-zoom-anim" href="#small-dialog">
+                        <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $antipod ?>.gif" alt="" class="stamp"
+                             data-stamp="<?= $antipod ?>"
+                             title="<?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?>">
+                    </a>
+                </td>
+                <td id="today" class="item">
+                    <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                         class="ton"><br>
+                    <a class="popup-with-zoom-anim" href="#small-dialog">
+                        <img
+                            src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $maya['stamp'] ?>.gif"
+                            alt=""
+                            class="stamp"
+                            data-stamp="<?= $maya['stamp'] ?>"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?>"
+                            data-date="<?= $birthDate ?>"
+                            >
+                    </a>
+                </td>
+                <td id="analog" class="item">
+                    <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $maya['ton'] ?>.gif" alt="" width="20"
+                         class="ton"><br>
+                    <a class="popup-with-zoom-anim" href="#small-dialog">
+                        <img
+                            src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $analog ?>.gif"
+                            alt=""
+                            class="stamp"
+                            data-stamp="<?= $analog ?>"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?>"
+                            >
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="okkult" class="item">
+                    <img src="<?= $mayaAssetUrl ?>/images/ton/<?= $okkultTon ?>.gif" alt="" width="20"
+                         class="ton"><br>
+                    <a class="popup-with-zoom-anim" href="#small-dialog">
+                        <img
+                            src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $okkult ?>.gif"
+                            alt=""
+                            data-stamp="<?= $okkult ?>"
+                            class="stamp"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?>"
+                            >
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-8">
+        <?php
+        $path = $this->registerAssetBundle('app\assets\Maya\Asset')->baseUrl;
+        $this->registerJs(<<<JS
     var magnificPopupOptions = {
         type: 'inline',
 
@@ -415,94 +427,94 @@ JS
     $('.popup-with-zoom-anim').magnificPopup(magnificPopupOptions);
     $('img.stamp').tooltip();
 JS
-            );
-            ?>
-            <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-                <h1>Dialog example</h1>
+        );
+        ?>
+        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+            <h1>Dialog example</h1>
 
-                <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look
-                    and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely
-                    disappointed.</p>
-            </div>
+            <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look
+                and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely
+                disappointed.</p>
+        </div>
 
-            <table class="table table-striped table-hover">
-                <tr>
-                    <?php $this->registerJs(<<<JS
+        <table class="table table-striped table-hover">
+            <tr>
+                <?php $this->registerJs(<<<JS
         $('.glyphicon-question-sign').popover({
             trigger: 'focus',
             placement: 'right'
         });
 JS
-                    )?>
-                    <td><span
-                            tabindex="0"
-                            class="glyphicon glyphicon-question-sign"
-                            role="button"
-                            data-content="Кин Судьбы, который состоит из тона и печати. Это основная энергия, которая дана человеку от рождения."
-                            data-title="Кин"
-                            ></span>
-                    </td>
-                    <td>Кин</td>
-                    <td><?= $maya['kin'] ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="ПГА"
-                              data-content="Портал Галактической Активации означает, что этот Кин - день или человек имеет прямую связь с духом и космосом."></span>
-                    </td>
-                    <td>ПГА</td>
-                    <td><?= $maya['nearPortal'] == 0 ? 'Да' : 'Нет' ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="Главная печать"
-                              data-content="Персональная Галактическая Печать, которая определяет свойства человека, рожденного в этот день. Эта энергия остается с человеком на всю жизнь."></span>
-                    </td>
-                    <td>Главная печать</td>
-                    <td><?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="Ведущая печать"
-                              data-content="результирующая сила, дающая обертон и движение"></span></td>
-                    <td>Ведущая печать</td>
-                    <td><?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="Аналог"
-                              data-content="поддерживающая, питающая сила, планетарный партнер"></span></td>
-                    <td>Аналог</td>
-                    <td><?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="Антипод"
-                              data-content="сила вызова и испытания, балансирующая сила"></span></td>
-                    <td>Антипод</td>
-                    <td><?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?></td>
-                </tr>
-                <tr>
-                    <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
-                              data-title="Оккультный учитель"
-                              data-content="скрытая сила, незримая духовная поддержка"></span></td>
-                    <td>Оккультный учитель</td>
-                    <td><?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?></td>
-                </tr>
-            </table>
-        </div>
-        <?php } else { ?>
-            <?php if (!Yii::$app->user->isGuest) { ?>
-                <?php if (Yii::$app->user->id == $user->getId()) { ?>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet/profile_time']) ?>" class="btn btn-primary">Расчитать</a>
-                <?php } else { ?>
-                    <p class="alert alert-success">Нет данных</p>
-                <?php } ?>
-            <?php } else { ?>
-                <p class="alert alert-success">Нет данных</p>
-            <?php } ?>
-        <?php } ?>
+                )?>
+                <td><span
+                        tabindex="0"
+                        class="glyphicon glyphicon-question-sign"
+                        role="button"
+                        data-content="Кин Судьбы, который состоит из тона и печати. Это основная энергия, которая дана человеку от рождения."
+                        data-title="Кин"
+                        ></span>
+                </td>
+                <td>Кин</td>
+                <td><?= $maya['kin'] ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="ПГА"
+                          data-content="Портал Галактической Активации означает, что этот Кин - день или человек имеет прямую связь с духом и космосом."></span>
+                </td>
+                <td>ПГА</td>
+                <td><?= $maya['nearPortal'] == 0 ? 'Да' : 'Нет' ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="Главная печать"
+                          data-content="Персональная Галактическая Печать, которая определяет свойства человека, рожденного в этот день. Эта энергия остается с человеком на всю жизнь."></span>
+                </td>
+                <td>Главная печать</td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="Ведущая печать"
+                          data-content="результирующая сила, дающая обертон и движение"></span></td>
+                <td>Ведущая печать</td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="Аналог"
+                          data-content="поддерживающая, питающая сила, планетарный партнер"></span></td>
+                <td>Аналог</td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="Антипод"
+                          data-content="сила вызова и испытания, балансирующая сила"></span></td>
+                <td>Антипод</td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?></td>
+            </tr>
+            <tr>
+                <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
+                          data-title="Оккультный учитель"
+                          data-content="скрытая сила, незримая духовная поддержка"></span></td>
+                <td>Оккультный учитель</td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?></td>
+            </tr>
+        </table>
     </div>
+<?php } else { ?>
+    <?php if (!Yii::$app->user->isGuest) { ?>
+        <?php if (Yii::$app->user->id == $user->getId()) { ?>
+            <a href="<?= \yii\helpers\Url::to(['cabinet/profile_time']) ?>" class="btn btn-primary">Расчитать</a>
+        <?php } else { ?>
+            <p class="alert alert-success">Нет данных</p>
+        <?php } ?>
+    <?php } else { ?>
+        <p class="alert alert-success">Нет данных</p>
+    <?php } ?>
+<?php } ?>
+</div>
 </div>
 
 <div class="panel panel-default">
@@ -540,6 +552,29 @@ JS
         <?php } ?>
     </div>
 </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Миссия</div>
+    <div class="panel-body">
+        <?php
+        if ($user->getField('mission')) {
+            echo nl2br(Html::encode($user->getField('mission')));
+        } else {
+            ?>
+            <?php if (!Yii::$app->user->isGuest) { ?>
+                <?php if (Yii::$app->user->id == $user->getId()) { ?>
+                    <a href="<?= \yii\helpers\Url::to(['cabinet/profile']) ?>" class="btn btn-default">Заполнить</a>
+                <?php } else { ?>
+                    <p class="alert alert-success">Нет данных</p>
+                <?php } ?>
+            <?php } else { ?>
+                <p class="alert alert-success">Нет данных</p>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>
+
+
 </div>
 
 </div>
@@ -549,7 +584,7 @@ JS
 $arr = [];
 if ($user->hasHumanDesign()) {
     $hd = $user->getHumanDesign();
-    $arr[] = 'Дизайн: ' . $hd->type->text . ', профиль: ' .  $hd->profile->text;
+    $arr[] = 'Дизайн: ' . $hd->type->text . ', профиль: ' . $hd->profile->text;
 }
 $birthDate = $user->getField('birth_date');
 if ($birthDate) {
