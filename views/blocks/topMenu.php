@@ -62,18 +62,19 @@ use yii\helpers\Url;
     echo ' class="active"';
 } ?>><a href="<?= Url::to(['page/news']) ?>">Новости</a></li>
 
-
-<?php
-$c = \app\services\SiteUpdateItemsCounter::getValue();
-$this->registerJs("$('#linkUpdates').tooltip({placement:'right'})");
-if ($c > 0) {
-    $class = 'danger';
-} else {
-    $class = 'default';
-}
-?>
-<li><a href="<?= Url::to(['site/site_update']) ?>"><span title="Обновления" id="linkUpdates"
-                                                         class="label label-<?= $class ?>"><?= $c ?></span></a></li>
+<?php if (!\Yii::$app->user->isGuest) { ?>
+    <?php
+    $c = \app\services\SiteUpdateItemsCounter::getValue();
+    $this->registerJs("$('#linkUpdates').tooltip({placement:'right'})");
+    if ($c > 0) {
+        $class = 'danger';
+    } else {
+        $class = 'default';
+    }
+    ?>
+    <li><a href="<?= Url::to(['site/site_update']) ?>"><span title="Обновления" id="linkUpdates"
+                                                             class="label label-<?= $class ?>"><?= $c ?></span></a></li>
+<?php } ?>
 
 
 <li<?php if ((Url::to(['page/services']) == Url::current()) or (Yii::$app->controller->action->id == 'services_item')) {
