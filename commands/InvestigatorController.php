@@ -25,7 +25,6 @@ class InvestigatorController extends Controller
     public function actionIndex($isEcho = 1)
     {
         $this->isEcho = $isEcho;
-        echo $isEcho;exit;
         $items = [];
         $list = Collection::getList();
         $c = $this->getIndex();
