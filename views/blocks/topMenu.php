@@ -72,8 +72,13 @@ use yii\helpers\Url;
         $class = 'default';
     }
     ?>
-    <li><a href="<?= Url::to(['site/site_update']) ?>"><span title="Обновления" id="linkUpdates"
-                                                             class="label label-<?= $class ?>"><?= $c ?></span></a></li>
+    <li>
+        <a href="<?= Url::to(['site/site_update']) ?>">
+            <span title="Обновления" id="linkUpdates" class="label label-<?= $class ?>">
+                <?= $c ?>
+            </span>
+        </a>
+    </li>
 <?php } ?>
 
 
