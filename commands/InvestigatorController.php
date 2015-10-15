@@ -16,13 +16,15 @@ use yii\helpers\VarDumper;
  */
 class InvestigatorController extends Controller
 {
+    public $isEcho = 1;
     const KEY_NAME = '\app\commands\InvestigatorController::getIndex';
 
     /**
      * Делает рассылку писем из списка рассылки
      */
-    public function actionIndex()
+    public function actionIndex($isEcho = 1)
     {
+        $this->isEcho = $isEcho;
         $items = [];
         $list = Collection::getList();
         $c = $this->getIndex();
@@ -48,6 +50,7 @@ class InvestigatorController extends Controller
             Application::mail('god@galaxysss.ru', 'Появились новые послания', 'new_channeling', [
                 'items' => $items
             ]);
+
             self::log('новые = ', $items);
         } else {
             self::log('Нет ничего');
@@ -107,6 +110,9 @@ class InvestigatorController extends Controller
 
     public function log($var, $var2 = null)
     {
+        if ($this->isEcho != 1) {
+            return;
+        }
         if (is_string($var)) {
             echo $var;
         } else {
