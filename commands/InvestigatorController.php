@@ -122,4 +122,10 @@ class InvestigatorController extends Controller
 
         echo "\n";
     }
+
+
+    public function actionTest($a = null)
+    {
+        print_r([$_SERVER,$a]);
+    }
 }
