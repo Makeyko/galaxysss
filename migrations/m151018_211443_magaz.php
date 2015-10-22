@@ -9,12 +9,13 @@ class m151018_211443_magaz extends Migration
     {
         $this->execute('CREATE TABLE `gs_unions_shop` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `content` text,
-  `sub_type` varchar(10) DEFAULT NULL,
+  `union_id` int DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `dostavka` text,
+  `admin_email` varchar(255),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8');
+        $this->execute('ALTER TABLE galaxysss_1.gs_article_list CHANGE content content LONGTEXT;');
     }
 
     public function down()
