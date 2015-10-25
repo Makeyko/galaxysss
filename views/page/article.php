@@ -51,6 +51,10 @@ $this->registerJs("$('#share').popover()");
 
     </div>
     <div class="col-lg-4">
+        <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isMarketing', 0) == 1 && date('Y-m-d') < '2015-10-30') { ?>
+            <?= $this->render('../blocks/reklama') ?>
+        <?php } ?>
+
         <?php foreach ($nearList as $item) { ?>
             <?= $this->render('../blocks/article', [
                 'item'     => $item,

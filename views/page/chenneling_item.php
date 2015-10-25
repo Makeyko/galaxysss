@@ -44,7 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <!--                --><?//= \app\modules\Comment\Service::render(\app\modules\Comment\Model::TYPE_CHENNELING, $item['id']); ?>
 
     </div>
+
     <div class="col-lg-4">
+        <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isMarketing', 0) == 1 && date('Y-m-d') < '2015-10-30') { ?>
+            <?= $this->render('../blocks/reklama') ?>
+        <?php } ?>
+
         <?php foreach ($nearList as $item) { ?>
             <?= $this->render('../blocks/chenneling', [
                 'item'     => $item,

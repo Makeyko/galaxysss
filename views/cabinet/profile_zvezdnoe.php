@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id'      => 'contact-form',
                     'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $model->field($form, 'data')->textarea(['rows' => 20]) ?>
+                <?= $model->field($form, 'data')->textarea(['rows' => 10]) ?>
 
                 <hr>
                 <div class="form-group">

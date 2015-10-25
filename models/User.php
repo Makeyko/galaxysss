@@ -41,6 +41,40 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
         return Zvezdnoe::set($i);
     }
 
+    public function hasBirthPlace()
+    {
+        return !is_null($this->getField('birth_country')) && !is_null($this->getField('birth_town'));
+    }
+
+    /**
+     * Возвращает место рождения в виде строки
+     *
+     * @return string
+     */
+    public function getBirthPlace()
+    {
+        $c = $this->getField('birth_country');
+        $t = $this->getField('birth_town');
+        $arr = [];
+        if ($c) {
+            $country = HD::find($c);
+            if ($country) {
+                $arr[] = $country->getField('title');
+            }
+        }
+        if ($t) {
+            $town = HDtown::find($t);
+            if ($town) {
+                $arr[] = $town->getField('title');
+            }
+        }
+        if (count($arr) > 0) {
+            return join(', ', $arr);
+        } else {
+            return '';
+        }
+    }
+
     /**
      * @param \app\models\Zvezdnoe $z
      *
@@ -338,6 +372,19 @@ class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
     public function getEmail()
     {
         return $this->getString('email');
+    }
+
+    /**
+     * Возвращает пол
+     *
+     * 0 - женщина
+     * 1 - мужчина
+     *
+     * @return int|null
+     */
+    public function getGender()
+    {
+        return $this->getField('gender', null);
     }
 
     /**

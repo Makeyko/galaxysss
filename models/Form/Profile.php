@@ -59,6 +59,7 @@ class Profile extends BaseForm
             ['name_first', 'Имя', 1, 'string'],
             ['mission', 'Миссия', 0, 'string'],
             ['name_last', 'Фамилия', 0, 'string'],
+            ['gender', 'Пол', 0, 'integer'],
             ['avatar', 'Картинка', 0, 'string', 'widget' => [FileUpload::className(), ['options' => [
                 'small' => \app\services\GsssHtml::$formatIcon
             ]]]],
