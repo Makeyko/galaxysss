@@ -13,12 +13,6 @@ use yii\widgets\Breadcrumbs;
 $this->title = $item->getName();
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs("$('#share').popover()");
-
-\Yii::info([
-    \yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isMarketing', 0) == 1 && (date('Y-m-d') < '2015-10-30'),
-    \yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isMarketing', 0),
-    date('Y-m-d')
-], 'gs\\info');
 ?>
 <div class="container">
 
