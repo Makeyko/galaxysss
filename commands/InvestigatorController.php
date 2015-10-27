@@ -39,7 +39,11 @@ class InvestigatorController extends Controller
         /** @var \app\services\investigator\InvestigatorInterface $class */
         $class = new $class();
         $className = $class->className();
-        $new = $class->getNewItems();
+        try {
+            $new = $class->getNewItems();
+        } catch (\Exception $e) {
+
+        }
         foreach ($new as $i) {
             $i['class'] = $className;
             $i['id'] = $c;
