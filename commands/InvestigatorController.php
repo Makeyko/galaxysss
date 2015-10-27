@@ -41,13 +41,13 @@ class InvestigatorController extends Controller
         $className = $class->className();
         try {
             $new = $class->getNewItems();
+            foreach ($new as $i) {
+                $i['class'] = $className;
+                $i['id'] = $c;
+                $items[] = $i;
+            }
         } catch (\Exception $e) {
 
-        }
-        foreach ($new as $i) {
-            $i['class'] = $className;
-            $i['id'] = $c;
-            $items[] = $i;
         }
 
         if (count($items) > 0) {

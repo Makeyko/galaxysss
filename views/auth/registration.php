@@ -13,7 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container">
     <div class="col-lg-4 col-lg-offset-4">
         <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
-        <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+        <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true){ ?>
+            <div class="alert alert-danger">
+                В дайнный момент происходит переезд
+            </div>
+        <?php }else{ ?>
+            <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
             <div class="alert alert-success">
                 Благодрим вас за регистрацию.
             </div>
@@ -46,5 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <?php ActiveForm::end(); ?>
         <?php endif; ?>
+        <?php } ?>
     </div>
 </div>
