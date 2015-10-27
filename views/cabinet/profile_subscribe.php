@@ -43,6 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $model->field($form, 'subscribe_is_news') ?>
                 <?= $model->field($form, 'subscribe_is_site_update') ?>
                 <?= $model->field($form, 'subscribe_is_manual') ?>
+                <?= $model->field($form, 'subscribe_is_tesla') ?>
+                <?= $model->field($form, 'subscribe_is_rod') ?>
 
 
                 <hr class="featurette-divider">

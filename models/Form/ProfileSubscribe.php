@@ -52,6 +52,7 @@ class ProfileSubscribe extends BaseForm
     public $subscribe_is_manual;
     public $subscribe_is_test;
     public $subscribe_is_tesla;
+    public $subscribe_is_rod;
 
     function __construct($fields = [])
     {
@@ -63,6 +64,12 @@ class ProfileSubscribe extends BaseForm
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
             ['subscribe_is_manual', 'Ручные рассылки', 0, 'cs\Widget\CheckBox2\Validator',
+                'widget' => ['cs\Widget\CheckBox2\CheckBox']
+            ],
+            ['subscribe_is_rod', 'Агентство Сохранения Рода', 0, 'cs\Widget\CheckBox2\Validator',
+                'widget' => ['cs\Widget\CheckBox2\CheckBox']
+            ],
+            ['subscribe_is_tesla', 'TeslaGen', 0, 'cs\Widget\CheckBox2\Validator',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
         ];
