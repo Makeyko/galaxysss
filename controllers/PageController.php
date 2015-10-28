@@ -69,7 +69,9 @@ class PageController extends BaseController
 
     public function actionMedical()
     {
-        return $this->render('medical');
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(5),
+        ]);
     }
 
     public function actionTest()

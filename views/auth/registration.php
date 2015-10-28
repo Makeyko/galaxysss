@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
         <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true){ ?>
             <div class="alert alert-danger">
-                В дайнный момент происходит переезд
+                В дайнный момент Инструмент Вознесения претерпевает переезд на другую платформу. Это продлится не более суток. Повторите позже.
             </div>
         <?php }else{ ?>
             <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
