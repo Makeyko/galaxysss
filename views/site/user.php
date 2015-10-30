@@ -46,7 +46,7 @@ $this->title = $name;
             <div><b>Дата</b>: <?= \Yii::$app->formatter->asDate($user->getField('birth_date')) ?></div>
         <?php } ?>
         <?php if ($user->hasBirthPlace()) { ?>
-            <div><b>Место</b>: <?= $user->getBirthPlace()  ?></div>
+            <div><b>Место</b>: <?= $user->getBirthPlace() ?></div>
         <?php } ?>
     </div>
 </div>
@@ -88,7 +88,7 @@ JS
                 <tr>
                     <td>Тип</td>
                     <td>
-                        <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['type'][ $humanDesign->type->href ] ?>">
+                        <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['type'][$humanDesign->type->href] ?>">
                             <?= $humanDesign->type->text ?>
                         </a>
                     </td>
@@ -96,7 +96,7 @@ JS
                 <tr>
                     <td>Профиль</td>
                     <td>
-                        <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['profile'][ $humanDesign->profile->href ] ?>">
+                        <a href="<?= \app\modules\HumanDesign\calculate\YourHumanDesignRu::$links['profile'][$humanDesign->profile->href] ?>">
                             <?= $humanDesign->profile->text ?>
                         </a>
                     </td>
@@ -146,94 +146,94 @@ JS
             <?php
             $gender = $user->getGender();
             ?>
-            <?php  if (is_null($gender)) { ?>
+            <?php if (is_null($gender)) { ?>
                 <p class="alert alert-danger">Пол не выбран</p>
-            <?php } else { ?>
+                <?php $gender = 1; ?>
+            <?php } ?>
             <?php
             $url = "/images/passport/tree-{$gender}.png";
             ?>
-                <img src="<?= $url ?>" usemap="#Map"/>
-                <?php
+            <img src="<?= $url ?>" usemap="#Map"/>
+            <?php
 
-                function getName($point)
-                {
-                    if (isset($point[3])) {
-                        $user = $point[3];
-                        $arr = [];
-                        $index = 'name_first';
-                        if (ArrayHelper::getValue($user, $index, '') != '') {
-                            $arr[] = $user[ $index ];
-                        }
-                        $index = 'name_middle';
-                        if (ArrayHelper::getValue($user, $index, '') != '') {
-                            $arr[] = $user[ $index ];
-                        }
-                        $index = 'name_last';
-                        if (ArrayHelper::getValue($user, $index, '') != '') {
-                            $arr[] = $user[ $index ];
-                        }
-                        if (ArrayHelper::getValue($user, 'date_born', '') != '') {
-                            if (ArrayHelper::getValue($user, 'date_death', '') != '') {
-                                $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
-                                $end = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_death', ''));
-                                $arr[] = "({$start} - {$end})";
-                            } else {
-                                $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
-                                $arr[] = "({$start})";
-                            }
-                        }
-
-                        return join(' ', $arr);
-                    } else {
-                        return '';
+            function getName($point)
+            {
+                if (isset($point[3])) {
+                    $user = $point[3];
+                    $arr = [];
+                    $index = 'name_first';
+                    if (ArrayHelper::getValue($user, $index, '') != '') {
+                        $arr[] = $user[$index];
                     }
-                }
+                    $index = 'name_middle';
+                    if (ArrayHelper::getValue($user, $index, '') != '') {
+                        $arr[] = $user[$index];
+                    }
+                    $index = 'name_last';
+                    if (ArrayHelper::getValue($user, $index, '') != '') {
+                        $arr[] = $user[$index];
+                    }
+                    if (ArrayHelper::getValue($user, 'date_born', '') != '') {
+                        if (ArrayHelper::getValue($user, 'date_death', '') != '') {
+                            $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
+                            $end = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_death', ''));
+                            $arr[] = "({$start} - {$end})";
+                        } else {
+                            $start = Yii::$app->formatter->asDate(ArrayHelper::getValue($user, 'date_born', ''));
+                            $arr[] = "({$start})";
+                        }
+                    }
 
-                /**
-                 * @var array $points
-                 * [
-                 *    x,
-                 *    y,
-                 *    radius,
-                 * ]
-                 */
-                $points = [
-                    1 => [128, 107, 25],
-                    2 => [128 + 256, 107, 25],
-                ];
-                for ($i = 0; $i < 4; $i++) {
-                    $points[] = [64 + (128 * $i), 155, 16];
+                    return join(' ', $arr);
+                } else {
+                    return '';
                 }
-                for ($i = 0; $i < 8; $i++) {
-                    $points[] = [32 + (64 * $i), 195, 2];
-                }
-                for ($i = 0; $i < 16; $i++) {
-                    $points[] = [16 + (32 * $i), 204, 2];
-                }
-                for ($i = 0; $i < 32; $i++) {
-                    $points[] = [8 + (16 * $i), 213, 2];
-                }
-                for ($i = 0; $i < 64; $i++) {
-                    $points[] = [4 + (8 * $i), 221, 2];
-                }
+            }
 
-                $rod = \app\models\UserRod::query(['user_id' => $user->getId()])->all();
-                foreach ($rod as $i) {
-                    $points[ $i['rod_id'] ][] = $i;
-                }
-                ?>
-                <map name="Map">
-                    <?php foreach ($points as $key => $point) { ?>
-                        <area
-                            class="rectTitle"
-                            shape="rect"
-                            title="<?= getName($points[ $key ]) ?>"
-                            coords="<?= $point[0] - $point[2] ?>,<?= $point[1] - $point[2] ?>,<?= $point[0] + $point[2] ?>,<?= $point[1] + $point[2] ?>"
-                            href="<?= \yii\helpers\Url::to(['site/user_rod', 'rod_id' => $key, 'user_id' => $user->getId()]) ?>"
-                            />
-                    <?php } ?>
-                </map>
-            <?php } ?>
+            /**
+             * @var array $points
+             * [
+             *    x,
+             *    y,
+             *    radius,
+             * ]
+             */
+            $points = [
+                1 => [128, 107, 25],
+                2 => [128 + 256, 107, 25],
+            ];
+            for ($i = 0; $i < 4; $i++) {
+                $points[] = [64 + (128 * $i), 155, 16];
+            }
+            for ($i = 0; $i < 8; $i++) {
+                $points[] = [32 + (64 * $i), 195, 2];
+            }
+            for ($i = 0; $i < 16; $i++) {
+                $points[] = [16 + (32 * $i), 204, 2];
+            }
+            for ($i = 0; $i < 32; $i++) {
+                $points[] = [8 + (16 * $i), 213, 2];
+            }
+            for ($i = 0; $i < 64; $i++) {
+                $points[] = [4 + (8 * $i), 221, 2];
+            }
+
+            $rod = \app\models\UserRod::query(['user_id' => $user->getId()])->all();
+            foreach ($rod as $i) {
+                $points[$i['rod_id']][] = $i;
+            }
+            ?>
+            <map name="Map">
+                <?php foreach ($points as $key => $point) { ?>
+                    <area
+                        class="rectTitle"
+                        shape="rect"
+                        title="<?= getName($points[$key]) ?>"
+                        coords="<?= $point[0] - $point[2] ?>,<?= $point[1] - $point[2] ?>,<?= $point[0] + $point[2] ?>,<?= $point[1] + $point[2] ?>"
+                        href="<?= \yii\helpers\Url::to(['site/user_rod', 'rod_id' => $key, 'user_id' => $user->getId()]) ?>"
+                        />
+                <?php } ?>
+            </map>
 
         </div>
         <div class="row col-lg-12">
@@ -324,7 +324,7 @@ JS
                     <a class="popup-with-zoom-anim" href="#small-dialog">
                         <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $vedun ?>.gif" alt="" class="stamp"
                              data-stamp="<?= $vedun ?>"
-                             title="<?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?>">
+                             title="<?= \cs\models\Calendar\Maya::$stampRows[$vedun - 1][0] ?>">
                     </a>
                 </td>
                 <td></td>
@@ -336,7 +336,7 @@ JS
                     <a class="popup-with-zoom-anim" href="#small-dialog">
                         <img src="<?= $mayaAssetUrl ?>/images/stamp3/<?= $antipod ?>.gif" alt="" class="stamp"
                              data-stamp="<?= $antipod ?>"
-                             title="<?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?>">
+                             title="<?= \cs\models\Calendar\Maya::$stampRows[$antipod - 1][0] ?>">
                     </a>
                 </td>
                 <td id="today" class="item">
@@ -348,7 +348,7 @@ JS
                             alt=""
                             class="stamp"
                             data-stamp="<?= $maya['stamp'] ?>"
-                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?>"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[$maya['stamp'] - 1][0] ?>"
                             data-date="<?= $birthDate ?>"
                             >
                     </a>
@@ -362,7 +362,7 @@ JS
                             alt=""
                             class="stamp"
                             data-stamp="<?= $analog ?>"
-                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?>"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[$analog - 1][0] ?>"
                             >
                     </a>
                 </td>
@@ -378,7 +378,7 @@ JS
                             alt=""
                             data-stamp="<?= $okkult ?>"
                             class="stamp"
-                            title="<?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?>"
+                            title="<?= \cs\models\Calendar\Maya::$stampRows[$okkult - 1][0] ?>"
                             >
                     </a>
                 </td>
@@ -483,35 +483,35 @@ JS
                           data-content="Персональная Галактическая Печать, которая определяет свойства человека, рожденного в этот день. Эта энергия остается с человеком на всю жизнь."></span>
                 </td>
                 <td>Главная печать</td>
-                <td><?= \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] ?></td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[$maya['stamp'] - 1][0] ?></td>
             </tr>
             <tr>
                 <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
                           data-title="Ведущая печать"
                           data-content="результирующая сила, дающая обертон и движение"></span></td>
                 <td>Ведущая печать</td>
-                <td><?= \cs\models\Calendar\Maya::$stampRows[ $vedun - 1 ][0] ?></td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[$vedun - 1][0] ?></td>
             </tr>
             <tr>
                 <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
                           data-title="Аналог"
                           data-content="поддерживающая, питающая сила, планетарный партнер"></span></td>
                 <td>Аналог</td>
-                <td><?= \cs\models\Calendar\Maya::$stampRows[ $analog - 1 ][0] ?></td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[$analog - 1][0] ?></td>
             </tr>
             <tr>
                 <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
                           data-title="Антипод"
                           data-content="сила вызова и испытания, балансирующая сила"></span></td>
                 <td>Антипод</td>
-                <td><?= \cs\models\Calendar\Maya::$stampRows[ $antipod - 1 ][0] ?></td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[$antipod - 1][0] ?></td>
             </tr>
             <tr>
                 <td><span tabindex="0" class="glyphicon glyphicon-question-sign" role="button"
                           data-title="Оккультный учитель"
                           data-content="скрытая сила, незримая духовная поддержка"></span></td>
                 <td>Оккультный учитель</td>
-                <td><?= \cs\models\Calendar\Maya::$stampRows[ $okkult - 1 ][0] ?></td>
+                <td><?= \cs\models\Calendar\Maya::$stampRows[$okkult - 1][0] ?></td>
             </tr>
         </table>
     </div>
@@ -552,7 +552,8 @@ JS
             <?php $z = $user->getZvezdnoe(); ?>
             <div><?= nl2br(Html::encode($z->data)) ?></div>
             <hr>
-            <p style="color: #808080; font-size: 80%;">Было получено <a href="https://vk.com/id313579738" target="_blank">здесь</a></p>
+            <p style="color: #808080; font-size: 80%;">Было получено <a href="https://vk.com/id313579738"
+                                                                        target="_blank">здесь</a></p>
         <?php } else { ?>
             <?php if (!Yii::$app->user->isGuest) { ?>
                 <?php if (Yii::$app->user->id == $user->getId()) { ?>
@@ -606,7 +607,7 @@ if ($user->hasHumanDesign()) {
 $birthDate = $user->getField('birth_date');
 if ($birthDate) {
     $maya = \cs\models\Calendar\Maya::calc($birthDate);
-    $arr[] = 'Персональная Галактическая Печать: ' . \cs\models\Calendar\Maya::$stampRows[ $maya['stamp'] - 1 ][0] . ', ' . \cs\models\Calendar\Maya::$tonList[ $maya['ton'] ][0];
+    $arr[] = 'Персональная Галактическая Печать: ' . \cs\models\Calendar\Maya::$stampRows[$maya['stamp'] - 1][0] . ', ' . \cs\models\Calendar\Maya::$tonList[$maya['ton']][0];
     $arr[] = 'Дата прихода на Землю: ' . Yii::$app->formatter->asDate($birthDate);
 }
 if ($user->hasZvezdnoe()) {
@@ -617,9 +618,9 @@ $description = join('; ', $arr);
 ?>
 
 <?= $this->render('../blocks/share', [
-    'image'       => \yii\helpers\Url::to($user->getAvatar(), true),
-    'url'         => \yii\helpers\Url::current([], true),
-    'title'       => $user->getName2() . ':' . ' ' . 'Карта Жизни Гражданина Галактики',
+    'image' => \yii\helpers\Url::to($user->getAvatar(), true),
+    'url' => \yii\helpers\Url::current([], true),
+    'title' => $user->getName2() . ':' . ' ' . 'Карта Жизни Гражданина Галактики',
     'description' => $description,
 ]) ?>
 </div>
