@@ -252,6 +252,9 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             } else if (Yii::$app->user->identity->getEmail() == '') {
                 $isShowForm = true;
             }
+            if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+                $isShowForm = false;
+            }
 
             if ($isShowForm) { ?>
                 <div class="col-lg-4">
