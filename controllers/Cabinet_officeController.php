@@ -18,6 +18,13 @@ class Cabinet_officeController extends AdminBaseController
         ]);
     }
 
+    public function init()
+    {
+        if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+            throw new Exception(Yii::$app->params['isTransfere_string']);
+        }
+    }
+
     public function actionAdd($unionId)
     {
         $model = new \app\models\Form\UnionOffice();
