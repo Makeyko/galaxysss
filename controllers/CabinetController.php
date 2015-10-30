@@ -44,6 +44,16 @@ class CabinetController extends BaseController
         ];
     }
 
+    public function init()
+    {
+         if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+             if ($this->action != 'logout')
+             {
+                 throw new Exception(Yii::$app->params['isTransfere_string']);
+             }
+         }
+    }
+
     public function actionLogout()
     {
         Yii::$app->user->logout();

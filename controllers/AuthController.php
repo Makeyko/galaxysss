@@ -154,6 +154,10 @@ class AuthController extends BaseController
 
     public function actionPassword_recover()
     {
+        if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+            throw new Exception(Yii::$app->params['isTransfere_string']);
+        }
+
         $model = new \app\models\Form\PasswordRecover();
         $model->setScenario('insert');
 
@@ -179,6 +183,9 @@ class AuthController extends BaseController
 
     public function actionRegistration()
     {
+        if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+            throw new Exception(Yii::$app->params['isTransfere_string']);
+        }
         $model = new \app\models\Form\Registration();
         $model->setScenario('insert');
 
@@ -211,6 +218,9 @@ class AuthController extends BaseController
      */
     public function actionRegistration_activate($code)
     {
+        if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+            throw new Exception(Yii::$app->params['isTransfere_string']);
+        }
         $row = RegistrationDispatcher::query(['code' => $code])->one();
         if ($row === false) {
             throw new Exception('Срок ссылки истек или не верный код активации');
@@ -236,6 +246,9 @@ class AuthController extends BaseController
      */
     public function actionPassword_recover_activate($code)
     {
+        if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
+            throw new Exception(Yii::$app->params['isTransfere_string']);
+        }
         $row = PasswordRecoverDispatcher::query(['code' => $code])->one();
         if ($row === false) {
             throw new Exception('Не верный код активации');
