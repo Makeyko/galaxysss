@@ -173,9 +173,9 @@ JS
         $lngDelta = $lngMax - $lngMin;
         $delta = ($lngDelta > $latDelta)? $lngDelta : $latDelta;
         $map = [
-            1 => 90,
-            2 => 60,
-            3 => 45,
+            1 => 180,
+            2 => 120,
+            3 => 60,
             4 => 30,
             5 => 20,
             6 => 10,
