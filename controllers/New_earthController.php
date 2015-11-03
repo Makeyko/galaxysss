@@ -75,6 +75,11 @@ class New_earthController extends BaseController
         return $this->render();
     }
 
+    public function actionPrice()
+    {
+        return $this->render();
+    }
+
     public function actionDeclaration()
     {
         return $this->render();

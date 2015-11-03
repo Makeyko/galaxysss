@@ -51,6 +51,7 @@ use yii\helpers\Url;
         <li><a href="<?= Url::to(['new_earth/residence']) ?>">Резиденция</a></li>
         <li><a href="<?= Url::to(['new_earth/hymn']) ?>">Гимн</a></li>
         <li><a href="<?= Url::to(['new_earth/history']) ?>">История Человечества</a></li>
+        <li><a href="<?= Url::to(['new_earth/price']) ?>">Смета</a></li>
 
     </ul>
 </li>

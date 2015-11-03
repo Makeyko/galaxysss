@@ -92,6 +92,11 @@ return [
     'admin/serviceList/<id:\\d+>/edit'                                                     => 'admin_service/edit',
     'admin/serviceList/<id:\\d+>/subscribe'                                                => 'admin_service/subscribe',
 
+    'admin/smeta'                                                                    => 'admin_smeta/index',
+    'admin/smeta/add'                                                                => 'admin_smeta/add',
+    'admin/smeta/<id:\\d+>/delete'                                                   => 'admin_smeta/delete',
+    'admin/smeta/<id:\\d+>/edit'                                                     => 'admin_smeta/edit',
+
     'admin/news'                                                                           => 'admin/news',
     'admin/news/add'                                                                       => 'admin/news_add',
     'admin/news/<id:\\d+>/delete'                                                          => 'admin/news_delete',
@@ -160,6 +165,7 @@ return [
     'blog'                                                                                 => 'page/blog',
 
     'newEarth'                                                                             => 'new_earth/index',
+    'newEarth/price'                                                                             => 'new_earth/price',
     'declaration'                                                                          => 'new_earth/declaration',
     'residence'                                                                            => 'new_earth/residence',
     'manifest'                                                                             => 'new_earth/manifest',
