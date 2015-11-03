@@ -30,6 +30,9 @@ $this->title = 'Смета на «Новую Землю» по стандарт�
                 ],
                 [
                     'header' => 'Цена, тыс руб',
+                    'contentOptions' => [
+                        'nowrap' => 'nowrap',
+                    ],
                     'content' => function($item) {
                         return Yii::$app->formatter->asDecimal($item['price'], 0);
                     }
