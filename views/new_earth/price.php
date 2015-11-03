@@ -34,12 +34,6 @@ $this->title = 'Смета на «Новую Землю» по стандарт�
                         return Yii::$app->formatter->asDecimal($item['price'], 0);
                     }
                 ],
-                [
-                    'header' => 'Счет',
-                    'content' => function($item) {
-                        return $item['bill'];
-                    }
-                ],
             ]
         ])?>
 
