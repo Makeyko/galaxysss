@@ -8,7 +8,7 @@ use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
 
-class Cabinet_officeController extends AdminBaseController
+class Cabinet_officeController extends CabinetBaseController
 {
     public function actionIndex($unionId)
     {

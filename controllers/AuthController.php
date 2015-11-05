@@ -57,6 +57,36 @@ class AuthController extends BaseController
     }
 
     /**
+     * Страница активации для подтверждения сменя email
+     *
+     * @param string $code код подтверждения
+     *
+     * @return string|\yii\web\Response
+     *
+     * @throws \cs\web\Exception
+     */
+    public function actionChange_email_activate($code)
+    {
+        $row = EmailChangeDispatcher::find(['code' => $code]);
+        if (is_null($row)) {
+            throw new Exception('Данный код уже активирован или не найден');
+        }
+        if (Yii::$app->user->isGuest) {
+            /** @var \app\models\User $user */
+            $user = User::find($row->getField('parent_id'));
+            $user->update(['email' => $row->getField('email')]);
+            Yii::$app->user->login($user);
+        } else {
+            /** @var \app\models\User $user */
+            $user = Yii::$app->user->identity;
+            $user->update(['email' => $row->getField('email')]);
+        }
+        $row->delete();
+
+        return $this->render();
+    }
+
+    /**
      * @param \yii\authclient\ClientInterface $client
      */
     public function successCallback($client)

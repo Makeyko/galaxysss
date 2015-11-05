@@ -215,9 +215,15 @@ class BaseForm extends Model
      */
     public static function find($id)
     {
+        $where = [];
+        if (is_integer($id)) {
+            $where = ['id' => $id];
+        } else {
+            $where = $id;
+        }
         $table = static::TABLE;
         $query = new Query();
-        $row = $query->select('*')->from($table)->where(['id' => $id])->one();
+        $row = $query->select('*')->from($table)->where($where)->one();
         if ($row) {
             $item = new static($row);
             $item->row = $row;

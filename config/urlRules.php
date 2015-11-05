@@ -143,6 +143,16 @@ return [
     'cabinet/officeList/<id:\\d+>/delete'                                                  => 'cabinet_office/delete',
     'cabinet/officeList/<id:\\d+>/edit'                                                    => 'cabinet_office/edit',
 
+    // магазин
+    'shop'                                                                                 => 'shop/index',
+    'cabinet/shop/<id:\\d+>'                                                               => 'cabinet_shop/index',
+    'cabinet/shop/<id:\\d+>/productList'                                                   => 'cabinet_shop/product_list',
+    'cabinet/shop/<id:\\d+>/productList/add'                                               => 'cabinet_shop/product_list_add',
+
+    'admin/checkBoxTreeMask/add'                                                           => 'admin_check_box_tree_mask/add',
+    'admin/checkBoxTreeMask/addInto'                                                       => 'admin_check_box_tree_mask/add_into',
+    'admin/checkBoxTreeMask/delete'                                                        => 'admin_check_box_tree_mask/delete',
+
 
     'praktice'                                                                             => 'page/praktice',
     'house'                                                                                => 'page/house',
