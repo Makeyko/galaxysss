@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use app\services\EmailChangeDispatcher;
 use cs\base\BaseController;
 use cs\services\VarDumper;
 use Yii;
