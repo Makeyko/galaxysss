@@ -216,7 +216,7 @@ class BaseForm extends Model
     public static function find($id)
     {
         $where = [];
-        if (is_integer($id)) {
+        if (!is_array($id)) {
             $where = ['id' => $id];
         } else {
             $where = $id;
