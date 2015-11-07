@@ -175,7 +175,8 @@ return [
     'blog'                                                                                 => 'page/blog',
 
     'newEarth'                                                                             => 'new_earth/index',
-    'newEarth/price'                                                                             => 'new_earth/price',
+    'newEarth/price'                                                                       => 'new_earth/price',
+    'newEarth/kon'                                                                         => 'new_earth/kon',
     'declaration'                                                                          => 'new_earth/declaration',
     'residence'                                                                            => 'new_earth/residence',
     'manifest'                                                                             => 'new_earth/manifest',

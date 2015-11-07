@@ -60,6 +60,11 @@ class New_earthController extends BaseController
         return $this->render();
     }
 
+    public function actionKon()
+    {
+        return $this->render();
+    }
+
     public function actionHymn()
     {
         return $this->render();
