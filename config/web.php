@@ -117,10 +117,11 @@ $config = [
     ],
     'params'           => $params,
     'controllerMap' => [
-        'upload'              => 'cs\Widget\FileUploadMany\UploadController',
-        'comment'             => 'app\modules\Comment\Controller',
-        'html_content'        => 'cs\Widget\HtmlContent\Controller',
-        'check_box_tree_mask' => 'cs\Widget\CheckBoxTreeMask\Controller',
+        'upload'                    => 'cs\Widget\FileUploadMany\UploadController',
+        'comment'                   => 'app\modules\Comment\Controller',
+        'html_content'              => 'cs\Widget\HtmlContent\Controller',
+        'check_box_tree_mask'       => 'cs\Widget\CheckBoxTreeMask\Controller',
+        'admin_check_box_tree_mask' => 'app\modules\Shop\services\CheckBoxTreeMask\Controller',
     ],
     'on ' . \yii\base\Application::EVENT_BEFORE_REQUEST => function ($event) {
         \Yii::$app->session->remove(\app\services\SiteUpdateItemsCounter::SESSION_KEY);

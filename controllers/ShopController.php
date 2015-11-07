@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\Blog;
 use app\models\Praktice;
 use app\models\Service;
 use app\models\Union;
 use app\models\UnionCategory;
+use app\services\HumanDesign2;
 use cs\Application;
 use cs\services\Str;
 use cs\services\VarDumper;
@@ -28,7 +30,7 @@ use cs\base\BaseController;
 use yii\web\HttpException;
 
 
-class New_earthController extends BaseController
+class ShopController extends BaseController
 {
     public $layout = 'menu';
 
@@ -57,56 +59,9 @@ class New_earthController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render();
+        return $this->render([
+
+        ]);
     }
 
-    public function actionKon()
-    {
-        return $this->render();
-    }
-
-    public function actionHymn()
-    {
-        return $this->render();
-    }
-
-    public function actionManifest()
-    {
-        return $this->render();
-    }
-
-    public function actionCodex()
-    {
-        return $this->render();
-    }
-
-    public function actionPrice()
-    {
-        return $this->render();
-    }
-
-    public function actionDeclaration()
-    {
-        return $this->render();
-    }
-
-    public function actionResidence()
-    {
-        return $this->render();
-    }
-
-    public function actionPledge()
-    {
-        return $this->render();
-    }
-
-    public function actionProgram()
-    {
-        return $this->render();
-    }
-
-    public function actionHistory()
-    {
-        return $this->render();
-    }
 }
