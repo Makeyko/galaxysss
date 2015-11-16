@@ -61,7 +61,7 @@ class Event extends \cs\base\BaseForm
             ],
             [
                 'end_date',
-                'Старт. Дата',
+                'Старт. J',
                 1,
                 'widget' => [
                     'cs\Widget\DatePicker\DatePicker', [

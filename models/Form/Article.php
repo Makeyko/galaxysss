@@ -34,6 +34,8 @@ class Article extends \cs\base\BaseForm
     /** @var  int маска которая содержит идентификаторы разделов к которому принадлежит ченелинг */
     public $tree_node_id_mask;
     public $is_added_site_update;
+    /** @var  bool */
+    public $is_add_image = true;
 
     function __construct($fields = [])
     {
@@ -43,6 +45,16 @@ class Article extends \cs\base\BaseForm
                 'Название',
                 1,
                 'string'
+            ],
+            [
+                'is_add_image',
+                'Добавлять картинку вначале статьи?',
+                0,
+                'cs\Widget\CheckBox2\Validator',
+                'widget' => [
+                    'cs\Widget\CheckBox2\CheckBox',
+                ],
+                'isFieldDb' => false,
             ],
             [
                 'source',
@@ -113,13 +125,16 @@ class Article extends \cs\base\BaseForm
         ]);
 
         $item = new \app\models\Article($row);
-        $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getField('image')), [
-                'class' => 'thumbnail',
-                'style' => 'width:100%;',
-            ])) . $item->getField('content') ];
-        if ($row['description'] == '') {
-            $item = new NewsItem($row);
-            $fields['description'] = GsssHtml::getMiniText($row['content']);
+        $fields = [];
+        if ($this->is_add_image) {
+            $fields = ['content' => Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getImage()), [
+                    'class' => 'thumbnail',
+                    'style' => 'width:100%;',
+                    'alt'   => $item->getField('header'),
+                ])) . $item->getField('content')];
+        }
+        if ($item->getField('description', '') == '') {
+            $fields['description'] = GsssHtml::getMiniText($item->getField('content', ''));
         }
         $item->update($fields);
 
@@ -128,15 +143,23 @@ class Article extends \cs\base\BaseForm
 
     public function update($fieldsCols = null)
     {
-        return parent::update([
-            'beforeUpdate' => function ($fields) {
+        $fields = parent::update([
+            'beforeUpdate' => function ($fields, \app\models\Form\Article $model) {
                 if ($fields['description'] == '') {
                     $fields['description'] = GsssHtml::getMiniText($fields['content']);
                 }
 
-                return $fields;
             }
         ]);
-    }
 
+        $item = \app\models\Article::find($this->id);
+        if ($this->is_add_image) {
+            $content = Html::tag('p', Html::img(\cs\Widget\FileUpload2\FileUpload::getOriginal($item->getImage()), [
+                    'class' => 'thumbnail',
+                    'style' => 'width:100%;',
+                    'alt'   => $item->getField('header'),
+                ])) . $item->getField('content');
+            $item->update(['content' => $content]);
+        }
+    }
 }
