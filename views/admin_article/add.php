@@ -7,7 +7,7 @@ use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model cs\base\BaseForm */
 
 $this->title = 'Добавить статью';
 $this->params['breadcrumbs'][] = $this->title;
@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'description')->label('Кратко')->textarea(['rows' => 20]) ?>
                 <?= $form->field($model, 'content')->label('Полно')->widget('cs\Widget\HtmlContent\HtmlContent') ?>
                 <?= $form->field($model, 'image')->label('Картинка')->widget('cs\Widget\FileUpload2\FileUpload') ?>
+                <?= $model->field($form, 'is_add_image') ?>
                 <?= $form->field($model, 'tree_node_id_mask')->label('Категории')->widget('cs\Widget\CheckBoxTreeMask\CheckBoxTreeMask', [
                     'tableName' => 'gs_unions_tree',
                     'select'    => 'id, header as name',

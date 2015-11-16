@@ -409,6 +409,21 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
             <iframe width="100%" height="200" src="https://www.youtube.com/embed/DQCkVTTRiNA" frameborder="0"
                     allowfullscreen></iframe>
         </div>
+        <div class="col-lg-4 col-lg-offset-4">
+            <center>
+                <h4 style="text-align: center;">«Мы желаем всем счастья»</h4>
+                <a href="http://vse-vmeste.info/" target="_blank">
+                    <center>
+                        <img
+                            src="/images/index/partners/vse-vmeste.png" height="100"
+                            class="thumbnail1"
+                            >
+                    </center>
+                </a>
+            </center>
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/reFN7H0_U3Y" frameborder="0"
+                    allowfullscreen></iframe>
+        </div>
     </div>
 
 </div>
