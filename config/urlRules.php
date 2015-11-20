@@ -46,6 +46,9 @@ return [
     'thank'                                                                                => 'site/thank',
     'logo'                                                                                 => 'site/logo',
 
+    'vasudev'                                                                              => 'busines_club/index',
+    'vasudev/login'                                                                        => 'busines_club/login',
+
     'user/<id:\\d+>'                                                                       => 'site/user',
     'user/<id:\\d+>/rod'                                                                   => 'site/user_rod_list',
     'user/<user_id:\\d+>/rod/<rod_id:\\d+>'                                                => 'site/user_rod',
@@ -177,6 +180,8 @@ return [
     'newEarth'                                                                             => 'new_earth/index',
     'newEarth/price'                                                                       => 'new_earth/price',
     'newEarth/kon'                                                                         => 'new_earth/kon',
+    'newEarth/civilizations'                                                               => 'new_earth/civilizations',
+    'newEarth/civilizations/<name:\\w+>'                                                   => 'new_earth/civilizations_item',
     'declaration'                                                                          => 'new_earth/declaration',
     'residence'                                                                            => 'new_earth/residence',
     'manifest'                                                                             => 'new_earth/manifest',
