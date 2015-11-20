@@ -116,7 +116,7 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        Application::mail('dram1008@yandex.ru','test','1');
+        VarDumper::dump(Application::mail('dram1008@yandex.ru','test','1'));
     }
 
     public function actionStatistic()
