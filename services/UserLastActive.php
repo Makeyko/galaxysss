@@ -1,6 +1,7 @@
 <?php
 
 namespace app\services;
+use cs\services\VarDumper;
 
 /**
  * В таблице gs_users есть поле last_action, которое сохраняет последнее действие пользователя. Чтобы не записывать
@@ -17,6 +18,7 @@ class UserLastActive
     public static function update()
     {
         $session = \Yii::$app->session;
+        VarDumper::dump($session);
         $lastSave = $session->get(self::SESSION_KEY);
         $isNeedUpdate = false;
         $now = time();
