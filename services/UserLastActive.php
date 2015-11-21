@@ -18,8 +18,8 @@ class UserLastActive
     public static function update()
     {
         $session = \Yii::$app->session;
-        VarDumper::dump($session);
         $lastSave = $session->get(self::SESSION_KEY);
+        VarDumper::dump($lastSave);
         $isNeedUpdate = false;
         $now = time();
         if ($lastSave) {
