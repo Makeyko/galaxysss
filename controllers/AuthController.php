@@ -218,7 +218,6 @@ class AuthController extends BaseController
             throw new Exception(Yii::$app->params['isTransfere_string']);
         }
         $model = new \app\models\Form\Registration();
-        $model->setScenario('insert');
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             $model->setScenario('ajax');
@@ -226,6 +225,7 @@ class AuthController extends BaseController
 
             return ActiveForm::validate($model);
         }
+        $model->setScenario('insert');
 
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
             Yii::$app->session->setFlash('contactFormSubmitted');

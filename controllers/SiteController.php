@@ -13,6 +13,7 @@ use app\services\GetArticle\YouTube;
 use app\services\GraphExporter;
 use app\services\HumanDesign2;
 use app\services\investigator\MidWay;
+use cs\Application;
 use cs\base\BaseController;
 use cs\helpers\Html;
 use cs\services\SitePath;
@@ -115,21 +116,7 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        $url = 'http://vk.com/wall-84190266?own=1';
-
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        $body = curl_exec($curl);
-
-        $result = new \StdClass();
-        $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        $result->body = $body;
-        curl_close($curl);
-
-
-        VarDumper::dump($result);
+        VarDumper::dump(Application::mail('dram1008@yandex.ru','test','1'));
     }
 
     public function actionStatistic()

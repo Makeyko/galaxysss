@@ -55,6 +55,11 @@ class New_earthController extends BaseController
         ];
     }
 
+    public function actionCivilizations_item($name)
+    {
+        return $this->render('civilizations/'.$name, []);
+    }
+
     public function actionIndex()
     {
         return $this->render();
