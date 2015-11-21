@@ -95,10 +95,10 @@ return [
     'admin/serviceList/<id:\\d+>/edit'                                                     => 'admin_service/edit',
     'admin/serviceList/<id:\\d+>/subscribe'                                                => 'admin_service/subscribe',
 
-    'admin/smeta'                                                                    => 'admin_smeta/index',
-    'admin/smeta/add'                                                                => 'admin_smeta/add',
-    'admin/smeta/<id:\\d+>/delete'                                                   => 'admin_smeta/delete',
-    'admin/smeta/<id:\\d+>/edit'                                                     => 'admin_smeta/edit',
+    'admin/smeta'                                                                          => 'admin_smeta/index',
+    'admin/smeta/add'                                                                      => 'admin_smeta/add',
+    'admin/smeta/<id:\\d+>/delete'                                                         => 'admin_smeta/delete',
+    'admin/smeta/<id:\\d+>/edit'                                                           => 'admin_smeta/edit',
 
     'admin/news'                                                                           => 'admin/news',
     'admin/news/add'                                                                       => 'admin/news_add',
@@ -180,6 +180,7 @@ return [
     'newEarth'                                                                             => 'new_earth/index',
     'newEarth/price'                                                                       => 'new_earth/price',
     'newEarth/kon'                                                                         => 'new_earth/kon',
+    'newEarth/chakri'                                                                      => 'new_earth/chakri',
     'newEarth/civilizations'                                                               => 'new_earth/civilizations',
     'newEarth/civilizations/<name:\\w+>'                                                   => 'new_earth/civilizations_item',
     'declaration'                                                                          => 'new_earth/declaration',

@@ -65,6 +65,11 @@ class New_earthController extends BaseController
         return $this->render();
     }
 
+    public function actionChakri()
+    {
+        return $this->render();
+    }
+
     public function actionKon()
     {
         return $this->render();
