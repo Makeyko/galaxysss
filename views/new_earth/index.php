@@ -42,6 +42,20 @@ $this->title = 'Новая Земля 4D';
 
             <p><a href="mailto:uzhva53@mail.ru">Владимир</a></p>
 
+            </div>
+            <div class="col-lg-12">
+
+                <h2 class="page-header">Измерения жизни</h2>
+
+                <div class="col-lg-4 col-lg-offset-2"><a href="#" type="button" data-toggle="modal" data-target="#myModal1"><img
+                            class="thumbnail" src="/images/new_earth/index/i1.png"
+                            style="width: 100%;max-width: 300px; max-height: 400px;"/></a></div>
+                <div class="col-lg-4"><a href="#" type="button" data-toggle="modal" data-target="#myModal2"><img
+                            class="thumbnail" src="/images/new_earth/index/i2.png"
+                            style="width: 100%;max-width: 300px; max-height: 400px;"/></a></div>
+            </div>
+            <div class="col-lg-8 col-lg-offset-2">
+
             <h2 class="page-header">Отличия трехмерной Земли от пятимерной Земли</h2>
 
             <p>Дорогие, многие из вас интересуются, как они узнают, что оказались в этих потоках энергии, и как узнают,
@@ -102,17 +116,6 @@ $this->title = 'Новая Земля 4D';
             <iframe class="thumbnail" width="100%" height="315" src="https://www.youtube.com/embed/fouyIFZt2y0"
                     frameborder="0" allowfullscreen></iframe>
         </p>
-    </div>
-    <div class="col-lg-12">
-
-        <h2 class="page-header">Измерения жизни</h2>
-
-        <div class="col-lg-4 col-lg-offset-2"><a href="#" type="button" data-toggle="modal" data-target="#myModal1"><img
-                    class="thumbnail" src="/images/new_earth/index/i1.png"
-                    style="width: 100%;max-width: 300px; max-height: 400px;"/></a></div>
-        <div class="col-lg-4"><a href="#" type="button" data-toggle="modal" data-target="#myModal2"><img
-                    class="thumbnail" src="/images/new_earth/index/i2.png"
-                    style="width: 100%;max-width: 300px; max-height: 400px;"/></a></div>
     </div>
 
     <div class="col-lg-12">
