@@ -19,7 +19,6 @@ class UserLastActive
     {
         $session = \Yii::$app->session;
         $lastSave = $session->get(self::SESSION_KEY);
-        VarDumper::dump($lastSave);
         $isNeedUpdate = false;
         $now = time();
         if ($lastSave) {
