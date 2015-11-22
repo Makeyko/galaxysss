@@ -16,6 +16,9 @@ use \Imagine\Image\ManipulatorInterface;
 
 class User extends \cs\base\DbRecord implements \yii\web\IdentityInterface
 {
+    const USER_ROLE_VASUDEV_BAGAVAN = 4;
+
+
     use UserCache;
 
     const TABLE = 'gs_users';
