@@ -46,15 +46,20 @@ class Busines_clubController extends BaseController
         return $this->goHome();
     }
 
+    public function actionIndex()
+    {
+        throw new Exception('Извините ваше сознание не готово. Вам необходимо сначала пройти Школу Богов (http://www.i-am-avatar.com/)');
+    }
+
     public function actionLogin()
     {
-            if (!\Yii::$app->user->isGuest) {
-                return $this->goHome();
-            }
+        if (!\Yii::$app->user->isGuest) {
+            return $this->redirect(Url::to(['busines_club/index']));
+        }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(Url::to(['busines_club/index']));
         }
         else {
             return $this->render([
