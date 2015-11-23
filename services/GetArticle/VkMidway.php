@@ -181,7 +181,7 @@ class VkMidway extends Base implements ExtractorInterface
             if (count($r) == 0) {
                 $r = $this->getDocument()->find('#wrap1/.wall_post_text');
             }
-            VarDumper::dump($r);
+            VarDumper::dump($this->getDocument());
             $this->article = $r[0];
         }
 
