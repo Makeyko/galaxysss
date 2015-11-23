@@ -118,7 +118,7 @@ class SiteController extends BaseController
     {
         $d = "<p><img alt=\"Разумное канализирование\" class=\"thumbnail\" src=\"/upload/FileUpload2/gs_cheneling_list/00000378/original/img.jpg\" style=\"width:100%;\" /></p>";
         require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-        $content = str_get_html($d);
+        $content = str_get_html($d,true,true,'WINDOWS-1251');
 
         VarDumper::dump($content);
     }
