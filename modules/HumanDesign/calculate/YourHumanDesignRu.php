@@ -314,7 +314,7 @@ class YourHumanDesignRu
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
         $doc = str_get_html('<root>'.$html.'</root>');
-        VarDumper::dump($doc->firstChild());
+        VarDumper::dump($doc->firstChild()->outertext());
         $table = $doc->find('div.uk-panel')[0];
         $img = $doc->find('#imgmap')[0];
         $trList = $table->find('div.uk-grid');
