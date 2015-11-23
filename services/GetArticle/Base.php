@@ -55,23 +55,26 @@ class Base
         $result->headers = curl_getinfo($curl);
         $result->body = $body;
         curl_close($curl);
+
         if ($result->headers['http_code'] != 200) {
-            throw new \cs\web\Exception('Не удалось прочитать файл');
-        }
-        $temp = explode(';',$result->headers['content_type']);
-        if (count($temp) == 1) {
-            // в заголовке не указана кодировка, определяю ее через документ
-            $pos = strpos($body, 'text/html; charset=');
-            $openQuote = substr($body, $pos-1, 1);
-            $endPos = strpos($body, $openQuote, $pos);
-            $content_type = substr($body, $pos, $endPos-$pos);
-            $temp = explode(';', $content_type);
-        }
-        $temp = trim($temp[1]);
-        $temp = explode('=', $temp);
-        $charset = $temp[1];
-        if ($charset == 'windows-1251') {
-            $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
+            $body = file_get_contents('https://vk.com/wall-84190266_361');
+            if ($body == '') throw new \cs\web\Exception('Не удалось прочитать файл');
+        } else {
+            $temp = explode(';',$result->headers['content_type']);
+            if (count($temp) == 1) {
+                // в заголовке не указана кодировка, определяю ее через документ
+                $pos = strpos($body, 'text/html; charset=');
+                $openQuote = substr($body, $pos-1, 1);
+                $endPos = strpos($body, $openQuote, $pos);
+                $content_type = substr($body, $pos, $endPos-$pos);
+                $temp = explode(';', $content_type);
+            }
+            $temp = trim($temp[1]);
+            $temp = explode('=', $temp);
+            $charset = $temp[1];
+            if ($charset == 'windows-1251') {
+                $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
+            }
         }
 
         return str_get_html($body);
