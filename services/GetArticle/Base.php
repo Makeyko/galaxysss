@@ -73,8 +73,8 @@ class Base
             $temp = explode('=', $temp);
             $charset = $temp[1];
             if ($charset == 'windows-1251') {
-                $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
-                VarDumper::dump($body);
+//                $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
+//                VarDumper::dump($body);
             }
         }
 
