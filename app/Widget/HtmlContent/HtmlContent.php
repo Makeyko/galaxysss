@@ -179,6 +179,7 @@ JS;
         }
 
         foreach ($content->find('img') as $element) {
+            VarDumper::dump($element);
             $urlInfo = parse_url($element->attr['src']);
             if (ArrayHelper::getValue($urlInfo, 'scheme', '') == '') {
                 $imagePath = new SitePath($element->attr['src']);
