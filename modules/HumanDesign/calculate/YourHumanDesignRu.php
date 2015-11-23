@@ -313,7 +313,7 @@ class YourHumanDesignRu
     private function getImageUrlFromHtml($html)
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-
+        VarDumper::dump($html);
         $doc = str_get_html($html);
         $table = $doc->find('div.uk-panel')[0];
         $img = $doc->find('#imgmap')[0];
