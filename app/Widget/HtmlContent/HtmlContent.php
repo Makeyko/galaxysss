@@ -155,7 +155,6 @@ JS;
             if ($content == '') return '';
             require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
             $content = str_get_html($content);
-            VarDumper::dump($content);
         };
         $content = self::filter($content);
 
