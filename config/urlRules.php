@@ -196,6 +196,7 @@ return [
     'events'                                                                               => 'calendar/events',
     'events/<id:\\d+>'                                                                     => 'calendar/events_item',
 
+    'conditions'                                                                           => 'site/conditions',
     'clothes'                                                                              => 'page/clothes',
     'portals'                                                                              => 'page/portals',
     'arts'                                                                                 => 'page/arts',
