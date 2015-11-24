@@ -46,12 +46,17 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
 
             <hr>
-            <p class="text-center"><img src="/images/site/conditions/Tesla-Gen-logo1-copy-5.jpg" width="400"></p>
+            <p class="text-center"><img
+                    class="thumbnail"
+                    src="/images/site/conditions/Tesla-Gen-logo1-copy-5.jpg" width="400"></p>
             <hr>
             <p class="text-center"><a href="http://www.i-am-avatar.com/" target="_blank" class="btn btn-primary">www.i-am-avatar.com</a>
             </p>
 
-            <p class="text-center">В скором времени сайт откроется и также мы расскажем вам о способностях Аватара в
+            <p class="text-center">В скором времени сайт откроется, на котором будет рассказано
+                как каждый желающий может себе вернуть все атрибуты божественного существа (аватара) и вспомнить себя
+                как Творца Нового Мира.
+                Также мы расскажем вам о способностях Аватара в
                 новом фильме <a href="https://ru.wikipedia.org/wiki/%D0%90%D0%B2%D0%B0%D1%82%D0%B0%D1%80_2">Аватар 2</a>.
             </p>
 
