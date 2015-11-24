@@ -7,7 +7,8 @@ $this->title = 'Музыка';
 ?>
 <div class="container">
     <div class="col-lg-12">
-        <h1 class="page-header"><?= \cs\helpers\Html::encode($this->title)?></h1>
+        <h1 class="page-header"><?= \cs\helpers\Html::encode($this->title) ?></h1>
+
         <p class="lead">Музыка высших сфер раскрывает сердца и расширяет сознание</p>
     </div>
 
@@ -25,11 +26,13 @@ $this->title = 'Музыка';
 
     <div class="col-lg-12">
         <hr>
-    <?= $this->render('../blocks/share', [
-        'url'         => Url::current([], true),
-        'title'       => $this->title,
-        'description' => 'Музыка высших сфер раскрывает сердца и расширяет сознание',
-    ]) ?>
+        <?= $this->render('../blocks/share', [
+            'image'       => Url::to('/images/page/money/laxmi.jpg', true),
+            'url'         => Url::current([], true),
+            'title'       => $this->title,
+            'description' => 'Музыка высших сфер раскрывает сердца и расширяет сознание',
+        ]) ?>
 
-</    <div class="col-lg-12">
+    </
+    <div class="col-lg-12">
         div>
