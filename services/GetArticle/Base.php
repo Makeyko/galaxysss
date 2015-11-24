@@ -76,7 +76,6 @@ class Base
                 $body = mb_convert_encoding($body, 'UTF-8', 'WINDOWS-1251');
             }
         }
-        VarDumper::dump($body);
 
         return str_get_html($body);
     }
