@@ -12,7 +12,7 @@ $(document).ready(function(){
         onConfirm: function() {
             var button = $(this);
             ajaxJson({
-                url: '/admin/checkBoxTreeMask/delete',
+                url: '/cabinet/shop/checkBoxTreeMask/delete',
                 data: {
                     id: button.data('id'),
                     tableName: button.data('table-name')
@@ -66,11 +66,12 @@ $(document).ready(function(){
                     var button = $(this);
                     var text = button.parent().find('input').val();
                     ajaxJson({
-                        url: '/admin/checkBoxTreeMask/add',
+                        url: '/cabinet/shop/checkBoxTreeMask/add',
                         data: {
                             text: text,
                             id: button.data('id'),
-                            tableName: that.data('table-name')
+                            tableName: that.data('table-name'),
+                            unionId: that.data('union_id')
                         },
                         success: function (ret) {
                             var id = ret.id;
@@ -89,22 +90,45 @@ $(document).ready(function(){
                                     $(this).find('a').hide();
                                 })
                                 .append(
-                                    $('<input type="checkbox" id="' + attrId + '" name="' + attrName + '" value="' + id + '">')
+                                    $('<input type="radio" id="' + attrId + '" name="' + attrName + '" value="' + id + '">')
                                 )
                                 .append(
                                     $('<label for="' + attrId + '" class="checkBoxTreeMaskLabel" style="margin-left: 4px;">' + text + '</label>')
                                 )
                                 .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-menu-down"></span></a>')
+                                    $('<a>', {
+                                        href: "javascript:void(0);",
+                                        class: "btn btn-default btn-xs checkBoxTreeMaskButton hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name'),
+                                        'data-union_id': that.data('union_id'),
+                                        style:"margin-left: 4px;"
+                                    })
                                         .click(functionButton)
+                                        .append('<span class="glyphicon glyphicon-menu-down"></span>')
                                 )
                                 .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton2 hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-menu-right"></span></a>')
+                                    $('<a>', {
+                                        href: "javascript:void(0);",
+                                        class: "btn btn-default btn-xs checkBoxTreeMaskButton2 hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name'),
+                                        'data-union_id': that.data('union_id'),
+                                        style:"margin-left: 4px;"
+                                    })
                                         .click(functionButton2)
+                                        .append('<span class="glyphicon glyphicon-menu-right"></span>')
                                 )
                                 .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButtonRemove hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-remove"></span></a>')
+                                    $('<a>', {
+                                        href: "javascript:void(0);",
+                                        class: "btn btn-default btn-xs checkBoxTreeMaskButtonRemove hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name'),
+                                        style:"margin-left: 4px;"
+                                    })
                                         .confirmation(optionsConfirmation)
+                                        .append('<span class="glyphicon glyphicon-remove"></span>')
                                 )
                                 ;
                             var next = $(that).parent()[0].nextSibling;
@@ -167,11 +191,12 @@ $(document).ready(function(){
                     var button = $(this);
                     var text = button.parent().find('input').val();
                     ajaxJson({
-                        url: '/admin/checkBoxTreeMask/addInto',
+                        url: '/cabinet/shop/checkBoxTreeMask/addInto',
                         data: {
                             text: text,
                             id: button.data('id'),
-                            tableName: that.data('table-name')
+                            tableName: that.data('table-name'),
+                            unionId: that.data('union_id')
                         },
                         success: function (ret) {
                             var id = ret.id;
@@ -190,22 +215,45 @@ $(document).ready(function(){
                                         $(this).find('a').hide();
                                     })
                                     .append(
-                                    $('<input type="checkbox" id="' + attrId + '" name="' + attrName + '" value="' + id + '">')
+                                    $('<input type="radio" id="' + attrId + '" name="' + attrName + '" value="' + id + '">')
                                 )
                                     .append(
                                     $('<label for="' + attrId + '" class="checkBoxTreeMaskLabel" style="margin-left: 4px;">' + text + '</label>')
                                 )
                                     .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-menu-down"></span></a>')
+                                    $('<a>', {
+                                        style:"margin-left: 4px;",
+                                        href:"javascript:void(0);",
+                                        class:"btn btn-default btn-xs checkBoxTreeMaskButton hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name'),
+                                        'data-union_id': that.data('union_id')
+                                    })
                                         .click(functionButton)
+                                        .append('<span class="glyphicon glyphicon-menu-down"></span>')
                                 )
                                     .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButton2 hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-menu-right"></span></a>')
+                                    $('<a>', {
+                                        style:"margin-left: 4px;",
+                                        href:"javascript:void(0);",
+                                        class:"btn btn-default btn-xs checkBoxTreeMaskButton2 hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name'),
+                                        'data-union_id': that.data('union_id')
+                                    })
                                         .click(functionButton2)
+                                        .append('<span class="glyphicon glyphicon-menu-right"></span>')
                                 )
                                     .append(
-                                    $('<a href="javascript:void(0);" class="btn btn-default btn-xs checkBoxTreeMaskButtonRemove hide" data-id="'+id+'" data-table-name="'+that.data('table-name')+'" style="margin-left: 4px;"><span class="glyphicon glyphicon-remove"></span></a>')
+                                    $('<a>', {
+                                        style:"margin-left: 4px;",
+                                        href:"javascript:void(0);",
+                                        class:"btn btn-default btn-xs checkBoxTreeMaskButtonRemove hide",
+                                        'data-id': id,
+                                        'data-table-name': that.data('table-name')
+                                    })
                                         .confirmation(optionsConfirmation)
+                                        .append('<span class="glyphicon glyphicon-remove"></span>')
                                 )
                                 ;
                             var next = $(that).parent()[0].nextSibling;

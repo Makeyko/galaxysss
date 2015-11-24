@@ -8,6 +8,11 @@ class Str
 {
     public static $encoding = 'utf-8';
 
+    public static function replace($find, $replace, $content, $option = null)
+    {
+        return mb_ereg_replace($find, $replace, $content, $option);
+    }
+
     public static function length($string)
     {
         return mb_strlen($string, self::$encoding);
@@ -18,9 +23,9 @@ class Str
         return mb_substr($string, $start, $length, self::$encoding);
     }
 
-    public static function pos($find, $content)
+    public static function pos($find, $content, $offset = null)
     {
-        return mb_strpos($content, $find, null, self::$encoding);
+        return mb_strpos($content, $find, $offset, self::$encoding);
     }
 
     /**

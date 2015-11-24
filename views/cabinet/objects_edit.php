@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <hr class="featurette-divider">
                 <?= Html::a('Офисы', ['cabinet_office/index', 'unionId' => $model->id], ['class' => 'btn btn-default']) ?>
+<!--                --><?//= Html::a('Магазин', ['cabinet_shop/index', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
 
                 <hr class="featurette-divider">
                 <div class="form-group">

@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use app\modules\Shop\services\Basket;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -97,6 +98,22 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
 
                     ?>
+                    <?php
+                    $count = Basket::getCount();
+                    $this->registerJs('$("#basketCount").tooltip({placement:"left"})');
+                    ?>
+                    <?php if ($count > 0) { ?>
+                        <li>
+                            <a style="
+                                padding-right: 0px;
+                                padding-bottom: 0px;
+                            " href="<?= Url::to(['cabinet_shop/basket']) ?>">
+                                <span id="basketCount" class="label label-success" title="Корзина">
+                                    <?= $count ?>
+                                </span>
+                            </a>
+                        </li>
+                    <?php } ?>
                     <li class="dropdown">
                         <a
                             href="#"

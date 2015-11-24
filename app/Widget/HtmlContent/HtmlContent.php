@@ -151,14 +151,14 @@ JS;
      */
     public static function process($content, $destination)
     {
-        if (!$content instanceof \simple_html_dom) {
-            if ($content == '') return '';
-            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
-            $content = str_get_html($content);
-        };
-        $content = self::filter($content);
+//        if (!$content instanceof \simple_html_dom) {
+//            if ($content == '') return '';
+//            require_once(Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
+//            $content = str_get_html($content);
+//        };
+//        $content = self::filter($content);
 
-        return self::copyImages($content, $destination);
+        return self::copyImages2($content, $destination);
     }
 
     /**
@@ -203,6 +203,49 @@ JS;
         }
 
         return $content->root->outertext();
+    }
+
+    /**
+     * Выбирает все картинки копирует в папку назначения заменяет в $content и возвращает
+     *
+     * @param \simple_html_dom | string $content              контент
+     * @param SitePath | string         $destination          путь к папке назначения, она должна существовать
+     * @param bool                      $isCopyFromRemoteHost копировать с внешних источников картинки?
+     *
+     * @return string
+     */
+    public static function copyImages2($content, $destination, $isCopyFromRemoteHost = false)
+    {
+        if ($content == '') return '';
+
+        // выбираю все изображения из контента
+        $start = 0;
+        $ret = [];
+        do {
+            $pos = Str::pos('src="/upload/HtmlContent/', $content, $start);
+            if ($pos === false) break;
+            $end = Str::pos('"', $content, $pos+5);
+            $src = Str::sub($content,$pos+5, $end-$pos-5);
+            $ret[] = $src;
+            $start = $end;
+        } while (true);
+
+        foreach ($ret as $src) {
+            $imagePath = new SitePath($src);
+            // картинка не содержит путь назначения?
+            if (!Str::isContain($src, $destination->getPath())) {
+                try {
+                    $destinationFile = $destination->cloneObject()->add($imagePath->getFileName());
+                    self::resizeImage($imagePath->getPathFull(), $destinationFile->getPathFull());
+                    $content = Str::replace('src="'.$src.'"', 'src="'.$destinationFile->getPath().'"', $content);
+                } catch (\Exception $e) {
+                    Yii::warning($e->getMessage(), 'gs\\HtmlContent\\copyImages');
+                }
+
+            }
+        }
+
+        return $content;
     }
 
     /**

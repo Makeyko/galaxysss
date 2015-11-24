@@ -16,18 +16,40 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?= \yii\grid\GridView::widget([
-            'dataProvider' => new \yii\data\ActiveDataProvider([
-                    'query' => \app\models\Shop\Product::query()
-                        ->select([
-                            'gs_unions_shop_product.*'
-                        ])
-                        ->where(['gs_unions_shop_tree.union_id' => $union_id])
-                        ->innerJoin('gs_unions_shop_tree', 'gs_unions_shop_tree.id = gs_unions_shop_product.tree_node_id')
-                ,
-              'pagination' => [
-                  'pageSize' => 50,
-              ],
-            ]),
+        'tableOptions' => [
+            'class' => 'table tableMy table-striped table-hover',
+        ],
+        'dataProvider' => new \yii\data\ActiveDataProvider([
+            'query'      => \app\models\Shop\Product::query(['union_id' => $union_id])
+                ->select([
+                    'id',
+                    'name',
+                    'image',
+                ])
+            ->orderBy(['sort_index' => SORT_ASC])
+            ,
+            'pagination' => [
+                'pageSize' => 50,
+            ],
+        ]),
+        'columns' => [
+            'id',
+            [
+                'header' => 'Картинка',
+                'content' => function($item) {
+                    $i = \yii\helpers\ArrayHelper::getValue($item, 'image', '');
+                    if ($i == '') return '';
+                    return Html::img($i, ['width' => 100]);
+                }
+            ],
+            'name',
+            [
+                'header' => 'Редактировать',
+                'content' => function($item) {
+                    return Html::a('Редактировать', ['cabinet_shop/product_list_edit', 'id' => $item['id']], ['class' => 'btn btn-primary']);
+                }
+            ],
+        ]
     ]) ?>
     <hr>
     <a href="<?= \yii\helpers\Url::to(['cabinet_shop/product_list_add', 'id' => $union_id]) ?>" class="btn btn-default">Добавить</a>

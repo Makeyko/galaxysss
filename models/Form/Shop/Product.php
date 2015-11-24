@@ -29,6 +29,8 @@ class Product extends \cs\base\BaseForm
     public $content;
     public $image;
     public $union_id;
+    public $price;
+    public $moderation_status;
 
     function __construct($fields = [])
     {
@@ -57,6 +59,12 @@ class Product extends \cs\base\BaseForm
                 'string'
             ],
             [
+                'price',
+                'Price',
+                0,
+                'integer'
+            ],
+            [
                 'image',
                 'Картинка',
                 0,
@@ -72,17 +80,25 @@ class Product extends \cs\base\BaseForm
             ],
             [
                 'tree_node_id',
-                'Категория',
+                'Категория частная',
                 0,
                 'default',
                 'widget' => [
                     'app\modules\Shop\services\CheckBoxTreeMask\CheckBoxTreeMask',
                     [
-                        'rows' => (new Query())->select([
-                            'id',
-                            'name'
-                        ])->from('gs_unions_shop_tree')->all(),
-                        'tableName' => 'gs_unions_shop_tree'
+                        'rows' => (new Query())
+                            ->select([
+                                'id',
+                                'name'
+                            ])
+                            ->where([
+                                'union_id' => $fields['union_id'],
+                            ])
+                            ->from('gs_unions_shop_tree')
+                            ->all()
+                        ,
+                        'tableName' => 'gs_unions_shop_tree',
+                        'union_id' => $fields['union_id'],
                     ]
                 ]
             ],

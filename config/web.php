@@ -3,16 +3,16 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'               => 'basic',
-    'basePath'         => dirname(__DIR__),
-    'bootstrap'        => ['log'],
-    'language'         => 'ru',
-    'aliases'          => [
+    'id'                                                => 'basic',
+    'basePath'                                          => dirname(__DIR__),
+    'bootstrap'                                         => ['log'],
+    'language'                                          => 'ru',
+    'aliases'                                           => [
         '@web'    => __DIR__ . '/public_html/',
         '@csRoot' => __DIR__ . '/../app',
         '@upload' => __DIR__ . '/public_html/upload',
     ],
-    'components'       => [
+    'components'                                        => [
         'assetManager'         => [
             'appendTimestamp' => true,
         ],
@@ -22,7 +22,7 @@ $config = [
             'enableCookieValidation' => false,
             'enableCsrfValidation'   => false,
         ],
-        'cache' =>
+        'cache'                =>
             (YII_ENV_PROD) ?
                 [
                     'class'   => 'yii\caching\MemCache',
@@ -60,15 +60,15 @@ $config = [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [
                 [
-                    'class'  => 'yii\log\FileTarget',
-                    'levels' => [
+                    'class'       => 'yii\log\FileTarget',
+                    'levels'      => [
                         'error',
                         'warning',
                     ],
                     'maxLogFiles' => 1,
                 ],
                 [
-                    'class'  => 'yii\log\DbTarget',
+                    'class'      => 'yii\log\DbTarget',
                     'categories' => ['gs\\*'],
                 ],
                 [
@@ -115,13 +115,13 @@ $config = [
             ],
         ],
     ],
-    'params'           => $params,
-    'controllerMap' => [
-        'upload'                    => 'cs\Widget\FileUploadMany\UploadController',
-        'comment'                   => 'app\modules\Comment\Controller',
-        'html_content'              => 'cs\Widget\HtmlContent\Controller',
-        'check_box_tree_mask'       => 'cs\Widget\CheckBoxTreeMask\Controller',
-        'admin_check_box_tree_mask' => 'app\modules\Shop\services\CheckBoxTreeMask\Controller',
+    'params'                                            => $params,
+    'controllerMap'                                     => [
+        'upload'                           => 'cs\Widget\FileUploadMany\UploadController',
+        'comment'                          => 'app\modules\Comment\Controller',
+        'html_content'                     => 'cs\Widget\HtmlContent\Controller',
+        'check_box_tree_mask'              => 'cs\Widget\CheckBoxTreeMask\Controller',
+        'cabinet_shop_check_box_tree_mask' => 'app\modules\Shop\services\CheckBoxTreeMask\Controller',
     ],
     'on ' . \yii\base\Application::EVENT_BEFORE_REQUEST => function ($event) {
         \Yii::$app->session->remove(\app\services\SiteUpdateItemsCounter::SESSION_KEY);
