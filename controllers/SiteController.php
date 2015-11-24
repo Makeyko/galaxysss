@@ -71,6 +71,11 @@ class SiteController extends BaseController
         return $this->render();
     }
 
+    public function actionConditions()
+    {
+        return $this->render();
+    }
+
     /**
      * Выводит карточку профиля
      *

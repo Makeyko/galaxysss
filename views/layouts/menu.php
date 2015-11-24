@@ -42,14 +42,16 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
 <body>
 
+<!-- facebook plugin -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.4&appId=1132196000140882";
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1132196000140882";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+<!-- /facebook plugin -->
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -259,7 +261,15 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                 <p class="text-center"><img src="<?= $LayoutMenuAssetPath ?>/images/merkaba-2nd.gif"></p>
             </div>
             <div class="col-lg-4" style="padding-bottom: 40px;">
-                <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
+                <div class="fb-page" data-href="https://www.facebook.com/gsss.merkaba" data-width="360" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/gsss.merkaba"><a href="https://www.facebook.com/gsss.merkaba">Галактический союз сил света</a></blockquote></div></div>
+
+                <center>
+                    <a href="<?= Url::to(['site/conditions']) ?>" class="text-center">
+                        <img src="/images/layout/menu/holo.png" width="300">
+                        <br>
+                        Условия наблюдения и пользования Инструментом Вознесения
+                    </a>
+                </center>
             </div>
             <?php
             $isShowForm = false;
