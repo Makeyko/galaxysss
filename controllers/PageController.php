@@ -292,7 +292,9 @@ class PageController extends BaseController
 
     public function actionMusic()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(13),
+        ]);
     }
 
     public function actionIdea()
