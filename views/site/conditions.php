@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
 
             <hr>
-            <p class="text-center"><img
-                    class="thumbnail"
+            <p class="text-center"
+                ><img class=""
                     src="/images/site/conditions/Tesla-Gen-logo1-copy-5.jpg" width="400"></p>
             <hr>
             <p class="text-center"><a href="http://www.i-am-avatar.com/" target="_blank" class="btn btn-primary">www.i-am-avatar.com</a>
