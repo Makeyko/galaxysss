@@ -26,6 +26,8 @@
 /** @var $model */
 /** @var $formName string */
 /** @var $tableName string */
+/** @var $value string */
+/** @var $union_id int */
 
 ?>
 
@@ -40,6 +42,9 @@
                 id="<?= $attrId ?>-<?= $item['id'] ?>"
                 name="<?= $attrName ?>"
                 value="<?= $item['id'] ?>"
+                <?php if ($value == $item['id']) { ?>
+                    checked="checked"
+                <?php } ?>
                 <?= (\yii\helpers\ArrayHelper::getValue($item,'selected',false))? 'checked="checked"' : '' ?>
                 >
             <label
@@ -51,6 +56,7 @@
                 class="btn btn-default btn-xs hide checkBoxTreeMaskButton"
                 data-id="<?= $item['id'] ?>"
                 data-table-name="<?= $tableName ?>"
+                data-union_id="<?= $union_id ?>"
                 >
                 <span class="glyphicon glyphicon-menu-down"></span>
                 </a>
@@ -59,6 +65,7 @@
                 class="btn btn-default btn-xs hide checkBoxTreeMaskButton2"
                 data-id="<?= $item['id'] ?>"
                 data-table-name="<?= $tableName ?>"
+                data-union_id="<?= $union_id ?>"
                 >
                 <span class="glyphicon glyphicon-menu-right"></span>
                 </a>
@@ -67,6 +74,7 @@
                 class="btn btn-default btn-xs hide checkBoxTreeMaskButtonRemove"
                 data-id="<?= $item['id'] ?>"
                 data-table-name="<?= $tableName ?>"
+                data-union_id="<?= $union_id ?>"
                 >
                 <span class="glyphicon glyphicon-remove"></span>
                 </a>
@@ -83,6 +91,8 @@
                     'attrId'            => $attrId,
                     'attrName'          => $attrName,
                     'templateVariables' => $templateVariables,
+                    'value'             => $value,
+                    'union_id'          => $union_id,
                 ]);
             }
         ?>

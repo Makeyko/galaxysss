@@ -69,6 +69,10 @@ class Shop extends \cs\base\BaseForm
             return parent::insert([
                 'beforeInsert' => function ($fields, \app\models\Form\Shop $model) {
                     $fields['union_id'] = $model->union_id;
+                    (new Query())->createCommand()->insert('gs_unions_shop_tree', [
+                        'union_id' => $model->union_id,
+                        'name'     => 'Root'
+                    ])->execute();
 
                     return $fields;
                 },

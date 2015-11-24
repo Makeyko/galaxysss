@@ -9,7 +9,7 @@ use yii\db\Query;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
 
-$this->title = 'Добавить статью';
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
-            Успешно добавлено.
+            Успешно обновлено.
         </div>
 
     <?php else: ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <hr>
                 <div class="form-group">
-                    <?= Html::submitButton('Добавить', [
+                    <?= Html::submitButton('Обновить', [
                         'class' => 'btn btn-default',
                         'name'  => 'contact-button',
                         'style' => 'width:100%',

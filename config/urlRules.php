@@ -150,11 +150,12 @@ return [
     'shop'                                                                                 => 'shop/index',
     'cabinet/shop/<id:\\d+>'                                                               => 'cabinet_shop/index',
     'cabinet/shop/<id:\\d+>/productList'                                                   => 'cabinet_shop/product_list',
+    'cabinet/shop/productList/<id:\\d+>/edit'                                              => 'cabinet_shop/product_list_edit',
     'cabinet/shop/<id:\\d+>/productList/add'                                               => 'cabinet_shop/product_list_add',
 
-    'admin/checkBoxTreeMask/add'                                                           => 'admin_check_box_tree_mask/add',
-    'admin/checkBoxTreeMask/addInto'                                                       => 'admin_check_box_tree_mask/add_into',
-    'admin/checkBoxTreeMask/delete'                                                        => 'admin_check_box_tree_mask/delete',
+    'cabinet/shop/checkBoxTreeMask/add'                                                    => 'cabinet_shop_check_box_tree_mask/add',
+    'cabinet/shop/checkBoxTreeMask/addInto'                                                => 'cabinet_shop_check_box_tree_mask/add_into',
+    'cabinet/shop/checkBoxTreeMask/delete'                                                 => 'cabinet_shop_check_box_tree_mask/delete',
 
 
     'praktice'                                                                             => 'page/praktice',
@@ -232,4 +233,7 @@ return [
     'cabinet/poseleniya/add'                                                               => 'cabinet/poseleniya_add',
     'cabinet/poseleniya/<id:\\d+>/edit'                                                    => 'cabinet/poseleniya_edit',
     'cabinet/poseleniya/<id:\\d+>/delete'                                                  => 'cabinet/poseleniya_delete',
+
+    'cabinet/basket'                                                                       => 'cabinet_shop/basket',
+    'cabinet/order'                                                                        => 'cabinet_shop/order',
 ];

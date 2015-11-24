@@ -14,12 +14,10 @@ class Controller extends \cs\base\BaseController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function() {
-                            /** @var \app\models\User $user */
-                            $user = \Yii::$app->user->identity;
-                            return $user->isAdmin();
+                        'allow'         => true,
+                        'roles'         => ['@'],
+                        'matchCallback' => function () {
+                            return !\Yii::$app->user->isGuest;
                         }
                     ],
                 ],
@@ -34,12 +32,14 @@ class Controller extends \cs\base\BaseController
      * id - int - идентификатор записи
      * text - string - наименование новой записи
      * tableName - string - название таблицы
+     * unionId - int -
      */
     public function actionAdd()
     {
         $tableName = self::getParam('tableName');
         $text = self::getParam('text');
         $id = self::getParam('id');
+        $unionId = self::getParam('unionId');
         $parent_id = (new Query())->select('parent_id')->from($tableName)->where(['id' => $id])->scalar();
         if ($parent_id === false) $parent_id = null;
 
@@ -54,7 +54,8 @@ class Controller extends \cs\base\BaseController
         }
         (new Query())->createCommand()->insert($tableName, [
             'name'      => $text,
-            'parent_id' => $parent_id
+            'parent_id' => $parent_id,
+            'union_id'  => $unionId,
         ])->execute();
         $newId = \Yii::$app->db->getLastInsertID();
         // сортировка
@@ -69,7 +70,7 @@ class Controller extends \cs\base\BaseController
             }
             // обновляю sort_index
             $c = 0;
-            foreach($new as $i) {
+            foreach ($new as $i) {
                 (new Query())->createCommand()->update($tableName, ['sort_index' => $c], ['id' => $i])->execute();
                 $c++;
             }
@@ -88,12 +89,14 @@ class Controller extends \cs\base\BaseController
      * id - int - идентификатор записи
      * text - string - наименование новой записи
      * tableName - string - название таблицы
+     * unionId - int -
      */
     public function actionAdd_into()
     {
         $tableName = self::getParam('tableName');
         $text = self::getParam('text');
         $id = self::getParam('id');
+        $unionId = self::getParam('unionId');
 
         // сортировка
         {
@@ -106,7 +109,8 @@ class Controller extends \cs\base\BaseController
         }
         (new Query())->createCommand()->insert($tableName, [
             'name'      => $text,
-            'parent_id' => $id
+            'parent_id' => $id,
+            'union_id'  => $unionId,
         ])->execute();
         $newId = \Yii::$app->db->getLastInsertID();
         // сортировка
@@ -118,7 +122,7 @@ class Controller extends \cs\base\BaseController
             }
             // обновляю sort_index
             $c = 0;
-            foreach($new as $i) {
+            foreach ($new as $i) {
                 (new Query())->createCommand()->update($tableName, ['sort_index' => $c], ['id' => $i])->execute();
                 $c++;
             }
@@ -157,7 +161,7 @@ class Controller extends \cs\base\BaseController
     private function delete($tableName, $id)
     {
         $parent_ids = (new Query())->select('id')->from($tableName)->where(['parent_id' => $id])->column();
-        foreach($parent_ids as $pid) {
+        foreach ($parent_ids as $pid) {
             $this->delete($tableName, $pid);
         }
         (new Query())->createCommand()->delete($tableName, ['id' => $id])->execute();
