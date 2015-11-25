@@ -155,7 +155,9 @@ class PageController extends BaseController
 
     public function actionStudy()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(11),
+        ]);
     }
 
     public function actionGfs()
@@ -278,10 +280,12 @@ class PageController extends BaseController
 
     public function actionTv()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(10),
+        ]);
     }
 
-    public function actionClothes()
+    public function actionClothes(  )
     {
         return $this->render();
     }
