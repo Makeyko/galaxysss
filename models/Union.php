@@ -56,6 +56,26 @@ class Union extends \cs\base\DbRecord implements SiteContentInterface
     }
 
     /**
+     * Имеет ли объединение магазин?
+     * @return bool
+     */
+    public function hasShop()
+    {
+        $shop = $this->getShop();
+        if (is_null($shop)) return false;
+        return true;
+    }
+
+    /**
+     * Получить объект магазина
+     * @return null | \app\models\Shop
+     */
+    public function getShop()
+    {
+        return Shop::find(['union_id' => $this->getId()]);
+    }
+
+    /**
      * Возвращает картинку для объединения
      * @param bool $isScheme
      * @return string

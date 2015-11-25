@@ -178,6 +178,9 @@ return [
     'tv'                                                                                   => 'page/tv',
     'blog'                                                                                 => 'page/blog',
 
+    'category/<category:\\w+>/<id:\\d+>/shop'                                              => 'union_shop/index',
+    'category/<category:\\w+>/<id:\\d+>/shop/<shop_category:\\d+>'                         => 'union_shop/category',
+
     'newEarth'                                                                             => 'new_earth/index',
     'newEarth/price'                                                                       => 'new_earth/price',
     'newEarth/kon'                                                                         => 'new_earth/kon',
