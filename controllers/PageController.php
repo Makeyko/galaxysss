@@ -285,9 +285,11 @@ class PageController extends BaseController
         ]);
     }
 
-    public function actionClothes(  )
+    public function actionClothes()
     {
-        return $this->render();
+        return $this->render([
+            'articleList' => Article::getByTreeNodeId(9),
+        ]);
     }
 
     public function actionPortals()
