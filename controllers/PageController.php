@@ -265,6 +265,7 @@ class PageController extends BaseController
                 'concat("<h5>",name,"</h5><div>",ifnull(content,""),"</div><p>",point_address,"</p>") as html',
             ]),
             'breadcrumbs' => $categoryObject->getBreadCrumbs([$item->getField('name')]),
+            'category' => $categoryObject,
         ]);
     }
 

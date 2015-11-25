@@ -265,9 +265,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 
                 <center>
                     <a href="<?= Url::to(['site/conditions']) ?>" class="text-center">
-                        <img src="/images/layout/menu/holo.png" width="300">
-                        <br>
-                        Условия наблюдения и пользования Инструментом Вознесения
+                        <img src="/images/layout/menu/holo.png" width="200"><br>Условия наблюдения и пользования Инструментом Вознесения
                     </a>
                 </center>
             </div>

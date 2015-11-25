@@ -52,7 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <hr class="featurette-divider">
                 <?= Html::a('Офисы', ['cabinet_office/index', 'unionId' => $model->id], ['class' => 'btn btn-default']) ?>
-<!--                --><?//= Html::a('Магазин', ['cabinet_shop/index', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+                <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isShop', 0) == 1) { ?>
+                    <?= Html::a('Магазин', ['cabinet_shop/index', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+                <?php } ?>
 
                 <hr class="featurette-divider">
                 <div class="form-group">

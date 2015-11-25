@@ -102,7 +102,7 @@ class UnionCategory extends \cs\base\DbRecord
     {
         $direction = [
             [
-                'url' => ['direction/index'],
+                'url'  => ['direction/index'],
                 'label'=> 'Сферы жизни',
             ]
         ];

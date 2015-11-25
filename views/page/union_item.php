@@ -3,6 +3,7 @@
 use yii\widgets\Breadcrumbs;
 
 /** @var \app\models\Union $item */
+/** @var \app\models\UnionCategory $category */
 /** @var array $breadcrumbs */
 
 $this->title = $item->getField('name');
@@ -73,6 +74,14 @@ $this->title = $item->getField('name');
             'title'       => $item->getField('name'),
             'description' => trim(\cs\services\Str::sub(strip_tags($item->getField('description')), 0, 200)),
         ]) ?>
+<?php
+//\cs\services\VarDumper::dump($category);
+?>
+        <?php if ($item->hasShop() && \yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isShop',0) == 1) {?>
+            <a
+                class="btn btn-primary"
+                href="<?= \yii\helpers\Url::to(['union_shop/index', 'id' => $item->getId(), 'category' => $category->getField('id_string')]) ?>">Магазин</a>
+        <?php } ?>
     </div>
 
 
