@@ -57,7 +57,7 @@ class Base
         curl_close($curl);
 
         if ($result->headers['http_code'] != 200) {
-            $body = file_get_contents('https://vk.com/wall-84190266_361');
+            $body = file_get_contents($this->url);
             if ($body == '') throw new \cs\web\Exception('Не удалось прочитать файл');
         } else {
             $temp = explode(';',$result->headers['content_type']);

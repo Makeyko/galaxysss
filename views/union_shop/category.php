@@ -31,7 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-lg-8">
 
-        Товары
+        <p>Товары</p>
+
+        <?php foreach($items as $item) { ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <a href="<?= Url::to(['union_shop/product', 'id' => $item['id'], 'union_id' => $union->getId(), 'category' => $category->getField('id_string')]) ?>">
+                        <img src="<?= $item['image'] ?>"  width="100%" class="thumbnail">
+                    </a>
+                </div>
+                <div class="col-lg-8">
+                    <p><?= $item['description'] ?></p>
+                    <hr>
+                    <p><?= Yii::$app->formatter->asDecimal($item['price']) ?></p>
+                    <button class="btn btn-default btn-lg buttonAdd" style="100%">Добавить</button>
+                </div>
+            </div>
+        <?php } ?>
 
         <hr>
         <?= $this->render('../blocks/share', [
