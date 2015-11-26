@@ -72,6 +72,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                 <img
                     src="/images/ico40.png"
                     height="40"
+                    width="40"
                     >
             </a>
         </div>
@@ -201,6 +202,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                             'id'    => 'dateThis',
                         ]) . Html::img( $mayaAsset->getStampSrc(($maya !== false) ?  $maya['stamp'] : \cs\models\Calendar\Maya::calc()['stamp']), [
                             'height' => 20,
+                            'width'  => 20,
                             'id'     => 'calendarMayaStamp',
                         ]), $link, $options); ?></li>
             </ul>
