@@ -70,7 +70,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                 style="padding: 5px 10px 5px 10px;"
                 >
                 <img
-                    src="/images/ico.jpg"
+                    src="/images/ico40.png"
                     height="40"
                     >
             </a>

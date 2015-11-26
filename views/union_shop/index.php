@@ -26,27 +26,25 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr>
     </div>
 
-    <div class="row">
-        <div class="col-lg-4">
-            <img class="img-thumbnail" src="<?= $union->getImage() ?>">
-        </div>
-        <div class="col-lg-8">
-            Магазин
+    <div class="col-lg-4">
+        <img class="img-thumbnail" src="<?= $union->getImage() ?>">
+    </div>
+    <div class="col-lg-8">
+        Магазин
 
-            <?= $this->render('_tree', [
-                'rows'     => $rows,
-                'category' => $category->getField('id_string'),
-                'id'       => $union->getId(),
-            ]) ?>
+        <?= $this->render('_tree', [
+            'rows'     => $rows,
+            'category' => $category->getField('id_string'),
+            'id'       => $union->getId(),
+        ]) ?>
 
-            <hr>
-            <?= $this->render('../blocks/share', [
-                'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($union->getImage(), true), false),
-                'url'         => Url::current([], true),
-                'title'       => $union->getName() . '. Магазин',
-                'description' => 'ff',
-            ]) ?>
-        </div>
+        <hr>
+        <?= $this->render('../blocks/share', [
+            'image'       => \cs\Widget\FileUpload2\FileUpload::getOriginal(Url::to($union->getImage(), true), false),
+            'url'         => Url::current([], true),
+            'title'       => $union->getName() . '. Магазин',
+            'description' => 'ff',
+        ]) ?>
     </div>
 
 

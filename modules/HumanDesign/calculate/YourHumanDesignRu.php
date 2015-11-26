@@ -2,6 +2,7 @@
 
 namespace app\modules\HumanDesign\calculate;
 
+use cs\services\Str;
 use cs\services\VarDumper;
 
 /**
@@ -265,7 +266,7 @@ class YourHumanDesignRu
         $result->status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $result->body = $body;
         curl_close($curl);
-        $class = new \app\models\HumanDesign($this->getImageUrlFromHtml($result->body));
+        $class = new \app\models\HumanDesign($this->getImageUrlFromHtml2($result->body));
 
         return $class;
     }
@@ -313,6 +314,7 @@ class YourHumanDesignRu
     private function getImageUrlFromHtml($html)
     {
         require_once(\Yii::getAlias('@csRoot/services/simplehtmldom_1_5/simple_html_dom.php'));
+
         $doc = str_get_html($html);
         $table = $doc->find('div.uk-panel')[0];
         $img = $doc->find('#imgmap')[0];
@@ -331,6 +333,136 @@ class YourHumanDesignRu
 
         return [
             'image'      => $img->attr['src'],
+            'type'       => $Type,
+            'profile'    => $Profile,
+            'definition' => $Definition,
+            'inner'      => $Inner,
+            'strategy'   => $Strategy,
+            'theme'      => $Theme,
+            'cross'      => $Cross,
+        ];
+    }
+
+    /**
+     * Получает info дизайна
+     *
+     * @param $html
+     *
+     * @return array
+     * [
+     *    'image' => string
+     *    'type' =>
+     *        [
+     *             'text'
+     *             'href'
+     *        ]
+     *    'profile' =>
+     *        [
+     *             'text'
+     *             'href'
+     *        ]
+     *    'definition' =>
+     *        [
+     *             'text'
+     *        ]
+     *    'inner' =>
+     *        [
+     *             'text'
+     *        ]
+     *    'strategy' =>
+     *        [
+     *             'text'
+     *        ]
+     *    'theme' =>
+     *        [
+     *             'text'
+     *        ]
+     *    'cross' =>
+     *        [
+     *             'text'
+     *        ]
+     * ]
+     */
+    private function getImageUrlFromHtml2($html)
+    {
+        $rows = explode('uk-width-1-1', $html);
+        // $Type
+        {
+            $items = explode('uk-text-primary', $rows[1]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $href = strrpos($items[0], '/');
+            $href = substr($items[0],$href);
+            $href = explode('>',$href);
+            $Type = [
+                'text' => Str::sub($str,1,$end-1),
+                'href' => '/types'.$href[0],
+            ];
+        }
+        // $Profile
+        {
+            $items = explode('yourhumandesign.ru/profiles/profile-', $rows[2]);
+            $str = $items[1];
+            $Profile = [
+                'text' => Str::sub($str,5,5),
+                'href' => '/profiles/profile-' . str_replace(' / ','-',Str::sub($str,5,5)),
+            ];
+        }
+        // $Definition
+        {
+            $items = explode('uk-text-primary', $rows[3]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $Definition = [
+                'text' => Str::sub($str,2,$end-2),
+            ];
+        }
+        // $Inner
+        {
+            $items = explode('uk-text-primary', $rows[4]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $Inner = [
+                'text' => Str::sub($str,2,$end-2),
+            ];
+        }
+        // $Strategy
+        {
+            $items = explode('uk-text-primary', $rows[5]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $Strategy = [
+                'text' => Str::sub($str,2,$end-2),
+            ];
+        }
+        // $Theme
+        {
+            $items = explode('uk-text-primary', $rows[6]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $Theme = [
+                'text' => Str::sub($str,2,$end-2),
+            ];
+        }
+        // $Cross
+        {
+            $items = explode('uk-text-primary', $rows[7]);
+            $str = $items[1];
+            $end = Str::pos('<',$str);
+            $Cross = [
+                'text' => Str::sub($str,2,$end-2),
+            ];
+        }
+        // $img
+        {
+            $items = explode('http://www.jovianarchive.com/Content/Charts/', $rows[7]);
+            $str = $items[1];
+            $str = explode('.png',$str);
+            $img = 'http://www.jovianarchive.com/Content/Charts/' . $str[0] . '.png';
+        }
+
+        return [
+            'image'      => $img,
             'type'       => $Type,
             'profile'    => $Profile,
             'definition' => $Definition,

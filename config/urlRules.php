@@ -180,6 +180,7 @@ return [
 
     'category/<category:\\w+>/<id:\\d+>/shop'                                              => 'union_shop/index',
     'category/<category:\\w+>/<id:\\d+>/shop/<shop_category:\\d+>'                         => 'union_shop/category',
+    'category/<category:\\w+>/<union_id:\\d+>/shop/product/<id:\\d+>'                      => 'union_shop/product',
 
     'newEarth'                                                                             => 'new_earth/index',
     'newEarth/price'                                                                       => 'new_earth/price',
