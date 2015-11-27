@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ><img class="img-circle"
                           src="/images/site/conditions/Tesla-Gen-logo1-copy-5.jpg" style="max-width: 400px; width: 100%;"></p>
                 <hr>
-                <p class="text-center"><a href="http://www.i-am-avatar.com/" target="_blank" class="btn btn-primary">www.i-am-avatar.com</a>
+                <p class="text-center"><a href="http://www.i-am-avatar.com/" target="_blank" class="btn btn-primary">www.I-AM-AVATAR.com</a>
                 </p>
 
                 <p class="text-center">В скором времени сайт откроется, на котором будет рассказано
