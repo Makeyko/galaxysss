@@ -234,6 +234,9 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
 <?php if (\Yii::$app->user->isGuest) : ?>
     <?= $this->render('_modalLogin') ?>
 <?php endif; ?>
+
+
+
 <footer class="footer" id="layoutMenuFooter">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
@@ -283,10 +286,9 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isTransfere', false) == true) {
                 $isShowForm = false;
             }
-
-            if ($isShowForm) { ?>
+            ?>
+            <?php if ($isShowForm) { ?>
                 <div class="col-lg-4">
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Подписаться на рассылку</h3>
@@ -294,10 +296,10 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                         <div class="panel-body">
                             <form id="formSubscribe">
                                 <?php if (Yii::$app->user->isGuest) {?>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="formSubscribeName" placeholder="Имя">
-                                    <p class="help-block help-block-error hide">Это поле должно быть заполнено обязательно</p>
-                                </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="formSubscribeName" placeholder="Имя">
+                                        <p class="help-block help-block-error hide">Это поле должно быть заполнено обязательно</p>
+                                    </div>
                                 <?php }?>
                                 <div class="form-group">
                                     <input type="email" class="form-control" id="formSubscribeEmail" placeholder="Email">
