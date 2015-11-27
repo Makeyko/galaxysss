@@ -162,6 +162,17 @@ $isMobile = Yii::$app->deviceDetect->isMobile();
     </center>
 </div>
 
+<hr>
+<div class="row">
+<center>
+    <p class="lead" style="padding-top: 40px;">Представляем вам наш новый проект «Боги Египта»</p>
+    <iframe allowfullscreen="" class="thumbnail" frameborder="0" height="400" src="https://www.youtube.com/embed/cMVxECWC-vk" style="width: 100%; max-width: 900px;"></iframe>
+    <p><a href="http://www.godsofegypt.movie/" target="_blank">http://www.godsofegypt.movie/</a></p>
+    <p>Смотрите на&nbsp;больших экранах в 3D Здесь и Сейчас 26 февраля 2016 г.</p>
+</center>
+</div>
+
+
 <hr class="featurette-divider" style="margin-bottom: 100px;">
 <div class="container">
 <center>
