@@ -124,6 +124,60 @@ class Union_shopController extends BaseController
     }
 
     /**
+     * Продукт
+     *
+     * @param $category string id_string
+     * @param $union_id int идентификатор объединения
+     * @param $id int идентификатор продукта gs_unions_shop_product.id
+     *
+     * @return string
+     * @throws \cs\web\Exception
+     */
+    public function actionProduct($category, $union_id, $id)
+    {
+        $item = Union::find($union_id);
+        if (is_null($item)) {
+            throw new Exception('Нет такого объединения');
+        }
+
+        $categoryObject = UnionCategory::find(['id_string' => $category]);
+        if (is_null($categoryObject)) {
+            throw new Exception('Не найдена категория');
+        }
+        $product = Product::find($id);
+        if (is_null($product)) {
+            throw new Exception('Не найден товар');
+        }
+        $treeNode = TreeNode::find($product->getField('tree_node_id'));
+
+        $breadcrumbs = $categoryObject->getBreadCrumbs();
+        $breadcrumbs = ArrayHelper::merge($breadcrumbs, [
+            [
+                'url'   => ['page/union_item', 'id' => $item->getId(), 'category' => $categoryObject->getField('id_string')],
+                'label' => $item->getName(),
+            ],
+            [
+                'url'   => ['union_shop/index', 'id' => $item->getId(), 'category' => $categoryObject->getField('id_string')],
+                'label' => 'Магазин',
+            ],
+            [
+                'url'   => ['union_shop/category', 'id' => $item->getId(), 'category' => $categoryObject->getField('id_string'), 'shop_category' => $product->getField('tree_node_id')],
+                'label' => $treeNode->getField('name'),
+            ],
+            $product->getField('name'),
+        ]);
+
+        return $this->render([
+            'union'       => $item,
+            'shop'        => $item->getShop(),
+            'breadcrumbs' => $breadcrumbs,
+            'category'    => $categoryObject,
+            'treeNode'    => $treeNode,
+            'product'     => $product,
+        ]);
+    }
+
+    /**
      * Возвращает элементы списка
      * @return array
      * [[

@@ -82,7 +82,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if (\Yii::$app->user->isGuest): ?>
-                    <li>
+                    <li id="userBlockLi">
                         <!-- Split button -->
                         <div class="btn-group" style="margin-top: 9px; opacity: 0.5;" id="loginBarButton">
                             <button type="button" class="btn btn-default" id="modalLogin"><i class="glyphicon glyphicon-user" style="padding-right: 5px;"></i>Войти</button>
@@ -117,7 +117,7 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                             </a>
                         </li>
                     <?php } ?>
-                    <li class="dropdown">
+                    <li class="dropdown" id="userBlockLi">
                         <a
                             href="#"
                             class="dropdown-toggle"

@@ -240,5 +240,6 @@ return [
     'cabinet/poseleniya/<id:\\d+>/delete'                                                  => 'cabinet/poseleniya_delete',
 
     'cabinet/basket'                                                                       => 'cabinet_shop/basket',
+    'cabinet/basket/add'                                                                   => 'cabinet_shop/basket_add',
     'cabinet/order'                                                                        => 'cabinet_shop/order',
 ];
