@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\Shop\Product;
+use app\modules\Shop\services\Basket;
 use cs\services\VarDumper;
 use cs\web\Exception;
 use Yii;
@@ -80,6 +82,27 @@ class Cabinet_shopController extends CabinetBaseController
     public function actionBasket()
     {
         return $this->render([
+            'items' => Basket::get()
         ]);
+    }
+
+    /**
+     * AJAX
+     * Добавление товара в корзину
+     * REQUEST
+     * - id - int - идентификатор товара gs_unions_shop_product.id
+     *
+     * @return string
+     */
+    public function actionBasket_add()
+    {
+        $id = self::getParam('id');
+        $product = Product::find($id);
+        if (is_null($product)) {
+            return self::jsonErrorId(101, 'Не найден товар');
+        }
+        $count = Basket::add($product);
+
+        return self::jsonSuccess($count);
     }
 }
