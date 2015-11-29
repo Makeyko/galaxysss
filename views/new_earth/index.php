@@ -14,7 +14,6 @@ $this->title = 'Новая Земля 4D';
     <div class="col-lg-12">
         <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-
             <h2 class="page-header">Четвертое измерение</h2>
             <p>Мерности:<br>
 
@@ -42,7 +41,11 @@ $this->title = 'Новая Земля 4D';
 
             <p><a href="mailto:uzhva53@mail.ru">Владимир</a></p>
 
-            </div>
+            <center>
+                <img src="/images/new_earth/index/newEarth.jpg" style="width: 100%; max-width: 731px;" class="thumbnail"/>
+            </center>
+
+        </div>
             <div class="col-lg-12">
 
                 <h2 class="page-header">Измерения жизни</h2>
