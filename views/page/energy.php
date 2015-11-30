@@ -22,7 +22,7 @@ $this->title = 'Энергия';
                 <div class="item active">
                     <img src="/images/page/energy/promo/slider/1.jpg" alt="...">
                 </div>
-                <div class="item active">
+                <div class="item">
                     <img src="/images/page/energy/promo/slider/3.jpg" alt="...">
                 </div>
                 <div class="item">
