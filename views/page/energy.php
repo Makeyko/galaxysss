@@ -15,7 +15,6 @@ $this->title = 'Энергия';
         <p class="lead">В каждой точке вселенной находится сверхизбыток энергии, а значит на Земле присутствует
             Богатство Чистейшей Энергии.</p>
 
-        <p><img src="/images/page/energy/1405027_571610319578558_903459749_o1.jpg" width="100%" class="thumbnail"></p>
         <?php $this->registerJs("$('.carousel').carousel()"); ?>
         <div id="carousel-example-generic" class="carousel slide thumbnail" data-ride="carousel">
             <!-- Indicators -->
@@ -29,21 +28,12 @@ $this->title = 'Энергия';
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <img src="/images/page/energy/promo/slider/3.jpg" alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
                 </div>
                 <div class="item">
                     <img src="/images/page/energy/promo/slider/4.jpg" alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
                 </div>
                 <div class="item">
                     <img src="/images/page/energy/promo/slider/5.jpg" alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
                 </div>
             </div>
 
@@ -75,8 +65,7 @@ $this->title = 'Энергия';
                 <p class="center-block text-center">Время работы не ограничено. Расчетный срок службы от 10 лет</p>
             </div>
         </div>
-        <hr>
-        <a href="http://tesla.galaxysss.ru/" class="btn btn-success btn-lg" style="width: 100%;">Узнать и купить</a>
+        <a href="http://tesla.galaxysss.ru/" class="btn btn-success btn-lg" style="width: 100%; margin-bottom: 80px;">Узнать и купить</a>
         <hr>
     </div>
 
