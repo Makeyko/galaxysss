@@ -61,7 +61,7 @@ $this->title = 'Энергия';
                 <p class="center-block text-center">Время работы не ограничено. Расчетный срок службы от 10 лет</p>
             </div>
         </div>
-        <a href="http://tesla.galaxysss.ru/" class="btn btn-success btn-lg" style="width: 100%; margin-bottom: 80px;">Узнать и купить</a>
+        <a href="http://www.teslagen.org/" class="btn btn-success btn-lg" style="width: 100%; margin-bottom: 80px;">Узнать и купить</a>
         <hr>
     </div>
 
