@@ -79,7 +79,7 @@ $this->title = 'Энергия';
     <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
-        'image'       => Url::to('/images/page/energy/1405027_571610319578558_903459749_o1.jpg', true),
+        'image'       => Url::to('/images/page/energy/promo/slider/1.jpg', true),
         'url'         => Url::current([], true),
         'title'       => $this->title,
         'description' => 'В каждой точке вселенной находится сверхизбыток энергии, а значит на Земле присутствует
