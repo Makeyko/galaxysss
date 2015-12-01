@@ -61,7 +61,7 @@ $this->title = 'Энергия';
                 <p class="center-block text-center">Время работы не ограничено. Расчетный срок службы от 10 лет</p>
             </div>
         </div>
-        <a href="http://tesla.galaxysss.ru/" class="btn btn-success btn-lg" style="width: 100%; margin-bottom: 80px;">Узнать и купить</a>
+        <a href="http://www.teslagen.org/" class="btn btn-success btn-lg" style="width: 100%; margin-bottom: 80px;">Узнать и купить</a>
         <hr>
     </div>
 
@@ -79,7 +79,7 @@ $this->title = 'Энергия';
     <div class="col-lg-12">
     <hr>
     <?= $this->render('../blocks/share', [
-        'image'       => Url::to('/images/page/energy/1405027_571610319578558_903459749_o1.jpg', true),
+        'image'       => Url::to('/images/page/energy/promo/slider/1.jpg', true),
         'url'         => Url::current([], true),
         'title'       => $this->title,
         'description' => 'В каждой точке вселенной находится сверхизбыток энергии, а значит на Земле присутствует
