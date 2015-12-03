@@ -219,11 +219,12 @@ class AuthController extends BaseController
         }
         $model = new \app\models\Form\Registration();
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isAjax) {
             $model->setScenario('ajax');
-            Yii::$app->response->format = Response::FORMAT_JSON;
-
-            return ActiveForm::validate($model);
+            if ($model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
         }
         $model->setScenario('insert');
 

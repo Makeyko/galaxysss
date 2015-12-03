@@ -141,9 +141,11 @@ $this->title = 'Новая Земля 4D';
             <a href="<?= \yii\helpers\Url::to(['new_earth/manifest']) ?>" class="list-group-item">Манифест</a>
             <a href="<?= \yii\helpers\Url::to(['new_earth/codex']) ?>" class="list-group-item">Кодекс</a>
             <a href="<?= \yii\helpers\Url::to(['new_earth/residence']) ?>" class="list-group-item">Резиденция</a>
+            <a href="<?= \yii\helpers\Url::to(['new_earth/chakri']) ?>" class="list-group-item">Карта чакр</a>
             <a href="<?= \yii\helpers\Url::to(['new_earth/hymn']) ?>" class="list-group-item">Гимн</a>
-            <a href="<?= \yii\helpers\Url::to(['new_earth/history']) ?>" class="list-group-item">История
-                Человечества</a>
+            <a href="<?= \yii\helpers\Url::to(['new_earth/history']) ?>" class="list-group-item">История Человечества</a>
+            <a href="<?= \yii\helpers\Url::to(['new_earth/kon']) ?>" class="list-group-item">Законы</a>
+            <a href="<?= \yii\helpers\Url::to(['new_earth/price']) ?>" class="list-group-item">Смета</a>
         </div>
     </div>
     <div class="col-lg-12">
