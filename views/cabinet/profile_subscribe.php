@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['enctype' => 'multipart/form-data'],
                     'layout'  => 'horizontal'
                 ]); ?>
+                <input type="hidden" name="ProfileSubscribe[test]" value="1"/>
                 <?= $model->field($form, 'subscribe_is_news') ?>
                 <?= $model->field($form, 'subscribe_is_site_update') ?>
                 <?= $model->field($form, 'subscribe_is_manual') ?>
