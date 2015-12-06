@@ -144,7 +144,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->get());
                 [
                     'header'  => 'Рассылка',
                     'content' => function ($item) {
-                        if (ArrayHelper::getValue($item, 'is_added_site_update', 0) == 0) {
+                        if (ArrayHelper::getValue($item, 'is_added_site_update', 0) == 1) {
                             return '';
                         }
 
