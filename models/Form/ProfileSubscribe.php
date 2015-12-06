@@ -57,19 +57,19 @@ class ProfileSubscribe extends BaseForm
     function __construct($fields = [])
     {
         static::$fields = [
-            ['subscribe_is_news', 'Новости Планеты', 0, 'cs\Widget\CheckBox2\Validator',
+            ['subscribe_is_news', 'Новости Планеты', 0, 'default',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
-            ['subscribe_is_site_update', 'Обновления сайта', 0, 'cs\Widget\CheckBox2\Validator',
+            ['subscribe_is_site_update', 'Обновления сайта', 0, 'default',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
-            ['subscribe_is_manual', 'Ручные рассылки', 0, 'cs\Widget\CheckBox2\Validator',
+            ['subscribe_is_manual', 'Ручные рассылки', 0, 'default',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
-            ['subscribe_is_rod', 'Агентство Сохранения Рода', 0, 'cs\Widget\CheckBox2\Validator',
+            ['subscribe_is_rod', 'Агентство Сохранения Рода', 0, 'default',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
-            ['subscribe_is_tesla', 'TeslaGen', 0, 'cs\Widget\CheckBox2\Validator',
+            ['subscribe_is_tesla', 'TeslaGen', 0, 'default',
                 'widget' => ['cs\Widget\CheckBox2\CheckBox']
             ],
         ];
