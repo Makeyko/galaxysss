@@ -89,7 +89,6 @@ class AdminController extends AdminBaseController
     public function actionChenneling_list()
     {
         return $this->render([
-            'items' => Chenneling::query()->orderBy(['date_insert' => SORT_DESC])->all(),
         ]);
     }
 
