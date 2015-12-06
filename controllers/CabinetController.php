@@ -283,6 +283,7 @@ class CabinetController extends BaseController
     public function actionProfile_subscribe()
     {
         $model = \app\models\Form\ProfileSubscribe::find(Yii::$app->user->getId());
+        VarDumper::dump(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post()) && $model->update()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
