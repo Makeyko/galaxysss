@@ -64,7 +64,7 @@ class Union_shopController extends BaseController
             ],
             'Магазин'
         ]);
-        $rows = $this->getRows(TreeNode::query(['parent_id' => null])->select('id')->scalar(), $item->getId());
+        $rows = $this->getRows(TreeNode::query(['parent_id' => null, 'union_id' => $item->getId()])->select('id')->scalar(), $item->getId());
 
         return $this->render([
             'union'       => $item,

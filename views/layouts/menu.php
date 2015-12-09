@@ -135,6 +135,9 @@ $this->registerJs('var pathLayoutMenu = \'' . $LayoutMenuAssetPath . '\';', \yii
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<?= Url::to(['cabinet/objects']) ?>">Мои объединения</a></li>
                             <li><a href="<?= Url::to(['cabinet/poseleniya']) ?>">Мои поселения</a></li>
+                            <?php if (\yii\helpers\ArrayHelper::getValue(Yii::$app->params, 'isShop', 0) == 1) { ?>
+                                <li><a href="<?= Url::to(['cabinet_shop/orders']) ?>">Мои заказы</a></li>
+                            <?php } ?>
 
                             <?php if (Yii::$app->user->identity->getField('is_admin') == 1) { ?>
                                 <li class="divider"></li>

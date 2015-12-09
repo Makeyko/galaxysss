@@ -150,6 +150,13 @@ return [
     'shop'                                                                                 => 'shop/index',
     'cabinet/shop/<id:\\d+>'                                                               => 'cabinet_shop/index',
     'cabinet/shop/<id:\\d+>/productList'                                                   => 'cabinet_shop/product_list',
+    'cabinet/shop/<id:\\d+>/requestList'                                                   => 'cabinet_shop/request_list',
+    'cabinet/shop/requestList/<id:\\d+>'                                                   => 'cabinet_shop/request_list_item',
+    'cabinet/shop/requestList/<id:\\d+>/message'                                           => 'cabinet_shop/request_list_item_message',
+    'cabinet/shop/requestList/<id:\\d+>/newBill'                                           => 'cabinet_shop/request_list_item_new_bill',
+    'cabinet/shop/requestList/<id:\\d+>/answerPay'                                         => 'cabinet_shop/request_list_item_answer_pay',
+    'cabinet/shop/requestList/<id:\\d+>/send'                                              => 'cabinet_shop/request_list_item_send',
+    'cabinet/shop/requestList/<id:\\d+>/done'                                              => 'cabinet_shop/request_list_item_done',
     'cabinet/shop/productList/<id:\\d+>/edit'                                              => 'cabinet_shop/product_list_edit',
     'cabinet/shop/<id:\\d+>/productList/add'                                               => 'cabinet_shop/product_list_add',
 
@@ -242,4 +249,6 @@ return [
     'cabinet/basket'                                                                       => 'cabinet_shop/basket',
     'cabinet/basket/add'                                                                   => 'cabinet_shop/basket_add',
     'cabinet/order'                                                                        => 'cabinet_shop/order',
+    'cabinet/orders'                                                                       => 'cabinet_shop/orders',
+    'cabinet/order/<id:\\d+>'                                                              => 'cabinet_shop/order_item',
 ];

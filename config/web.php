@@ -7,6 +7,7 @@ $config = [
     'basePath'                                          => dirname(__DIR__),
     'bootstrap'                                         => ['log'],
     'language'                                          => 'ru',
+    'timeZone'                                          => 'Europe/Moscow',
     'aliases'                                           => [
         '@web'    => __DIR__ . '/public_html/',
         '@csRoot' => __DIR__ . '/../app',

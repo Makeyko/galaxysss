@@ -3,12 +3,13 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use app\models\UnionCategory;
+use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model cs\base\BaseForm */
 
-$this->title = 'Магазин';
+$this->title = 'Оформление заказа';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
-            Успешно обновлено.
+            Заказ оформлен.
         </div>
 
     <?php else: ?>
@@ -29,20 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
                     'id'      => 'contact-form',
-                    'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
-                <?= $model->field($form, 'name') ?>
-                <?= $model->field($form, 'dostavka') ?>
-                <?= $model->field($form, 'admin_email') ?>
+                <?= $form->field($model, 'address')->textarea(['rows' => 10])->label('Адрес доставки') ?>
+                <?= $form->field($model, 'comment')->textarea(['rows' => 10])->label('Комментарий к заказу') ?>
 
-                <?php if ($model->union_id) { ?>
-                    <hr>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop/product_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Товары</a>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop/request_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Заказы</a>
-                <?php } ?>
                 <hr>
                 <div class="form-group">
-                    <?= Html::submitButton('Обновить', [
+                    <?= Html::submitButton('Заказать', [
                         'class' => 'btn btn-default',
                         'name'  => 'contact-button',
                         'style' => 'width:100%',

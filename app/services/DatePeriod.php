@@ -236,12 +236,12 @@ class DatePeriod
      */
     private static function convertDate($date)
     {
-        if (is_string($date)) {
-            return Response::success((new \DateTime($date, new \DateTimeZone('UTC')))->format('U'));
+        if (filter_var($date, FILTER_VALIDATE_INT)) {
+            return Response::success($date);
         } else if ($date instanceof DateTime) {
             return Response::success($date->format('U'));
-        } else if (is_integer($date)) {
-            return Response::success($date);
+        } else if (is_string($date)) {
+            return Response::success((new \DateTime($date, new \DateTimeZone('UTC')))->format('U'));
         } else {
             return Response::error('Не верный формат данных');
         }
@@ -277,7 +277,7 @@ class DatePeriod
     public static function backInt($date, $messageGregerThenNow = 'больше настоящего')
     {
         $start = $date;
-        $now = gmdate('U');
+        $now = time();
         if ($start > $now) return $messageGregerThenNow;
         $diff = $now - $start;
         return self::backConvert($diff);
