@@ -29,20 +29,24 @@ class Request extends \cs\base\DbRecord
 
     public static $statusList = [
         self::STATUS_USER_NOT_CONFIRMED => [
-            'client'  => '',
-            'shop'  => 'Пользователь не подтвердил почту',
-            'style' => 'default',
+            'client' => 'Пользователь не подтвердил почту',
+            'shop'   => 'Пользователь не подтвердил почту',
+            'style'  => 'default',
+            'timeLine' => [
+                'icon'  => 'glyphicon-minus',
+                'color' => 'default',
+            ],
         ],
         self::STATUS_SEND_TO_SHOP       => [
             'client'   => 'Отпрален в магазин',
             'shop'     => 'Пользователь отправил заказ',
             'style'    => 'primary',
             'timeLine' => [
-                'icon'  => 'glyphicon-chevron-right',
+                'icon'  => 'glyphicon-ok',
                 'color' => 'default',
             ],
         ],
-        self::STATUS_ORDER_DOSTAVKA       => [
+        self::STATUS_ORDER_DOSTAVKA     => [
             'client'   => 'Выставлен счет с учетом доставки',
             'shop'     => 'Клиенту выставлен счет с учетом доставки',
             'style'    => 'primary',
@@ -51,7 +55,7 @@ class Request extends \cs\base\DbRecord
                 'color' => 'warning',
             ],
         ],
-        self::STATUS_PAID_SHOP       => [
+        self::STATUS_PAID_SHOP          => [
             'client'   => 'Оплата подтверждена',
             'shop'     => 'Оплата подтверждена',
             'style'    => 'primary',
@@ -60,16 +64,16 @@ class Request extends \cs\base\DbRecord
                 'color' => 'success',
             ],
         ],
-        self::STATUS_PAID_CLIENT       => [
-            'client'   => 'Оплата подтверждена',
-            'shop'     => 'Оплата подтверждена',
+        self::STATUS_PAID_CLIENT        => [
+            'client'   => 'Оплата сделана',
+            'shop'     => 'Оплата сделана',
             'style'    => 'primary',
             'timeLine' => [
                 'icon'  => 'glyphicon-credit-card',
                 'color' => 'success',
             ],
         ],
-        self::STATUS_FINISH_SHOP       => [
+        self::STATUS_FINISH_SHOP        => [
             'client'   => 'Заказ выполнен',
             'shop'     => 'Заказ выполнен',
             'style'    => 'success',
@@ -78,13 +82,22 @@ class Request extends \cs\base\DbRecord
                 'color' => 'success',
             ],
         ],
-        self::STATUS_FINISH_CLIENT       => [
-            'client'   => 'Заказ выполнен',
-            'shop'     => 'Заказ выполнен',
+        self::STATUS_FINISH_CLIENT      => [
+            'client'   => 'Заказ получен',
+            'shop'     => 'Заказ получен',
             'style'    => 'success',
             'timeLine' => [
                 'icon'  => 'glyphicon-thumbs-up',
                 'color' => 'success',
+            ],
+        ],
+        self::STATUS_SEND_TO_USER       => [
+            'client'   => 'Отправлен клиенту',
+            'shop'     => 'Отправлен клиенту',
+            'style'    => 'success',
+            'timeLine' => [
+                'icon'  => 'glyphicon glyphicon-plane',
+                'color' => 'warning',
             ],
         ],
     ];
@@ -207,15 +220,15 @@ class Request extends \cs\base\DbRecord
      * Добавить сообщение или статус
      *
      * @param array $fields поля для сообщения
-     * @param int   $direction направление сообщения self::DIRECTION_*
+     * @param int $direction направление сообщения self::DIRECTION_*
      *
      * @return \app\models\Shop\RequestMessage
      */
     public function addMessageItem($fields, $direction)
     {
         $fieldsRequest = [
-            'is_answer_from_shop'   => ($direction == self::DIRECTION_TO_CLIENT)? 1 : 0,
-            'is_answer_from_client' => ($direction == self::DIRECTION_TO_CLIENT)? 0 : 1,
+            'is_answer_from_shop'   => ($direction == self::DIRECTION_TO_CLIENT) ? 1 : 0,
+            'is_answer_from_client' => ($direction == self::DIRECTION_TO_CLIENT) ? 0 : 1,
         ];
         if (isset($fields['status'])) {
             $fieldsRequest['status'] = $fields['status'];
@@ -312,5 +325,10 @@ class Request extends \cs\base\DbRecord
     public function getClient()
     {
         return $this->getUser();
+    }
+
+    public function getStatus()
+    {
+        return $this->getField('status');
     }
 }

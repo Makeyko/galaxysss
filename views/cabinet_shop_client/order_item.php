@@ -10,7 +10,7 @@ use yii\db\Query;
 
 $this->title = 'Заказ #' . $request->getId();
 $union = $request->getUnion();
-$client = $request->getClient();
+
 ?>
 <style>
     .timeline {
@@ -145,12 +145,10 @@ $client = $request->getClient();
 
     <div class="row">
         <div class="col-sm-4">
-            <a href="<?= \yii\helpers\Url::to(['site/user', 'id' => $client->getId()]) ?>">
-                <img src="<?= $client->getAvatar() ?>" class="thumbnail" width="100%";>
-            </a>
+            <img src="<?= $union->getImage() ?>" class="thumbnail" width="100%";>
         </div>
         <div class="col-sm-8">
-            <h2 class="page-header"><?= $client->getName2() ?></h2>
+            <h2 class="page-header"><?= $union->getName() ?></h2>
             <?= \yii\grid\GridView::widget([
                 'tableOptions' => [
                     'class' => 'table tableMy table-striped table-hover',
@@ -189,14 +187,12 @@ $client = $request->getClient();
     </div>
 
 
-
-
     <h2 class="page-header">История заказа</h2>
     <?php $this->registerJs('$(".timeBack").tooltip()'); ?>
     <ul class="timeline">
         <?php foreach($request->getMessages()->all() as $item) { ?>
             <?php
-            $side = 'shop';
+            $side = 'client';
             $liSuffix = '';
             if ($item['direction'] == (($side == 'client')? \app\models\Shop\Request::DIRECTION_TO_SHOP : \app\models\Shop\Request::DIRECTION_TO_CLIENT)) {
                 $liSuffix = ' class="timeline-inverted"';
@@ -233,8 +229,6 @@ $client = $request->getClient();
     </ul>
 
 
-
-
     <?php
     $this->registerJs(<<<JS
     $('#buttonSendMessage').click(function() {
@@ -242,22 +236,7 @@ $client = $request->getClient();
         $('#buttonSendMessageForm').click(function() {
             var text = $('#messageModal textarea').val();
             ajaxJson({
-                url: '/cabinet/shop/requestList/{$request->getId()}/message',
-                data: {
-                    text: text
-                },
-                success: function(ret) {
-                    $('#messageModal').modal('hide');
-                }
-            });
-        });
-    });
-    $('#buttonNewBill').click(function() {
-        $('#messageModal').modal('show');
-        $('#buttonSendMessageForm').click(function() {
-            var text = $('#messageModal textarea').val();
-            ajaxJson({
-                url: '/cabinet/shop/requestList/{$request->getId()}/newBill',
+                url: '/cabinet/order/{$request->getId()}/message',
                 data: {
                     text: text
                 },
@@ -272,22 +251,7 @@ $client = $request->getClient();
         $('#buttonSendMessageForm').click(function() {
             var text = $('#messageModal textarea').val();
             ajaxJson({
-                url: '/cabinet/shop/requestList/{$request->getId()}/answerPay',
-                data: {
-                    text: text
-                },
-                success: function(ret) {
-                    $('#messageModal').modal('hide');
-                }
-            });
-        });
-    });
-    $('#buttonSend').click(function() {
-        $('#messageModal').modal('show');
-        $('#buttonSendMessageForm').click(function() {
-            var text = $('#messageModal textarea').val();
-            ajaxJson({
-                url: '/cabinet/shop/requestList/{$request->getId()}/send',
+                url: '/cabinet/order/{$request->getId()}/answerPay',
                 data: {
                     text: text
                 },
@@ -302,7 +266,7 @@ $client = $request->getClient();
         $('#buttonSendMessageForm').click(function() {
             var text = $('#messageModal textarea').val();
             ajaxJson({
-                url: '/cabinet/shop/requestList/{$request->getId()}/done',
+                url: '/cabinet/order/{$request->getId()}/done',
                 data: {
                     text: text
                 },
@@ -335,8 +299,10 @@ JS
     </div>
     <hr>
     <button class="btn btn-info" id="buttonSendMessage">Отправить сообщение</button>
-    <button class="btn btn-info" id="buttonNewBill">Выставить счет на оплату</button>
-    <button class="btn btn-info" id="buttonAnswerPay">Подтвердить оплату</button>
-    <button class="btn btn-info" id="buttonSend">Заказ отправлен</button>
-    <button class="btn btn-info" id="buttonDone">Заказ выполнен</button>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_ORDER_DOSTAVKA])) { ?>
+        <button class="btn btn-info" id="buttonAnswerPay">Сообщить об оплате</button>
+    <?php } ?>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_PAID_SHOP, \app\models\Shop\Request::STATUS_SEND_TO_USER, ])) { ?>
+        <button class="btn btn-info" id="buttonDone">Заказ получен</button>
+    <?php } ?>
 </div>

@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php } ?>
             <?php } ?>
         </table>
-        <a href="<?= \yii\helpers\Url::to(['cabinet_shop/order']) ?>" class="btn btn-primary">Оформить заказ</a>
+        <a href="<?= \yii\helpers\Url::to(['shop/order']) ?>" class="btn btn-primary">Оформить заказ</a>
 
     </div>
 </div>

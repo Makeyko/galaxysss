@@ -37,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php if ($model->union_id) { ?>
                     <hr>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop/product_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Товары</a>
-                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop/request_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Заказы</a>
+                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop_shop/product_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Товары</a>
+                    <a href="<?= \yii\helpers\Url::to(['cabinet_shop_shop/request_list', 'id' => $model->union_id]) ?>" class="btn btn-default">Заказы</a>
                 <?php } ?>
                 <hr>
                 <div class="form-group">

@@ -46,14 +46,22 @@ JS
                 'content' => function($item) {
                     $u = \app\models\User::find($item['user_id']);
                     $arr = [];
-                    $arr[] = Html::tag('div', Html::img($u->getAvatar(), ['width' => 100, 'class' => 'thumbnail', 'style' => 'margin-bottom: 0px;']), ['class' => 'col-lg-4']);
+                    $arr[] = Html::tag('div', Html::img($u->getAvatar(), ['width' => 50, 'class' => 'thumbnail', 'style' => 'margin-bottom: 0px;']), ['class' => 'col-lg-4']);
                     $arr[] = Html::tag('div', $u->getEmail(), ['class' => 'col-lg-8']);
                     return join('', $arr);
                 }
             ],
             'address',
             'comment',
-            'is_answer_from_client:integer:Есть ответ?',
+            [
+                'header' => 'Есть ответ?',
+                'content' => function($item) {
+                    $v = \yii\helpers\ArrayHelper::getValue($item, 'is_answer_from_client', 0);
+                    if ($v == 0) return '';
+
+                    return Html::tag('pre', null, ['class' => 'glyphicon glyphicon-envelope']);
+                }
+            ],
         ]
     ]) ?>
 </div>

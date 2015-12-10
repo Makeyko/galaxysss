@@ -18,8 +18,8 @@ $this->title = $product->getField('name');
 $this->params['breadcrumbs'][] = $this->title;
 
 
-$url = Url::to(['cabinet_shop/basket']);
-$urlAdd = Url::to(['cabinet_shop/basket_add']);
+$url = Url::to(['shop/basket']);
+$urlAdd = Url::to(['shop/basket_add']);
 $this->registerJs(<<<JS
     $('#addToCart').click(function() {
         var id = $(this).data('id');

@@ -27,9 +27,10 @@ JS
     <?= \yii\grid\GridView::widget([
         'dataProvider' => new \yii\data\ActiveDataProvider([
             'query'      => \app\models\Shop\Request::query([
-                'user_id' => Yii::$app->user->id,
-            ])
-            ->orderBy(['date_create' => SORT_DESC])
+                    'user_id' => Yii::$app->user->id,
+                ])
+                ->andWhere(['not', ['in', 'status', [\app\models\Shop\Request::STATUS_FINISH_CLIENT, \app\models\Shop\Request::STATUS_FINISH_SHOP]]])
+                ->orderBy(['date_create' => SORT_DESC])
             ,
             'pagination' => [
                 'pageSize' => 20,
@@ -65,6 +66,15 @@ JS
             ],
             'date_create:datetime',
             'comment',
+            [
+                'header' => 'Есть ответ?',
+                'content' => function($item) {
+                    $v = \yii\helpers\ArrayHelper::getValue($item, 'is_answer_from_shop', 0);
+                    if ($v == 0) return '';
+
+                    return Html::tag('pre', null, ['class' => 'glyphicon glyphicon-envelope']);
+                }
+            ],
         ]
     ]) ?>
 </div>

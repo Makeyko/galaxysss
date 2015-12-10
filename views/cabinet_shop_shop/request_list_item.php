@@ -10,7 +10,7 @@ use yii\db\Query;
 
 $this->title = 'Заказ #' . $request->getId();
 $union = $request->getUnion();
-
+$client = $request->getClient();
 ?>
 <style>
     .timeline {
@@ -145,10 +145,12 @@ $union = $request->getUnion();
 
     <div class="row">
         <div class="col-sm-4">
-            <img src="<?= $union->getImage() ?>" class="thumbnail" width="100%";>
+            <a href="<?= \yii\helpers\Url::to(['site/user', 'id' => $client->getId()]) ?>">
+                <img src="<?= $client->getAvatar() ?>" class="thumbnail" width="100%";>
+            </a>
         </div>
         <div class="col-sm-8">
-            <h2 class="page-header"><?= $union->getName() ?></h2>
+            <h2 class="page-header"><?= $client->getName2() ?></h2>
             <?= \yii\grid\GridView::widget([
                 'tableOptions' => [
                     'class' => 'table tableMy table-striped table-hover',
@@ -187,17 +189,19 @@ $union = $request->getUnion();
     </div>
 
 
+
+
     <h2 class="page-header">История заказа</h2>
     <?php $this->registerJs('$(".timeBack").tooltip()'); ?>
     <ul class="timeline">
         <?php foreach($request->getMessages()->all() as $item) { ?>
             <?php
-            $side = 'client';
+            $side = 'shop';
             $liSuffix = '';
-            if ($item['direction'] == (($side == 'client')? \app\models\Shop\Request::DIRECTION_TO_CLIENT : \app\models\Shop\Request::DIRECTION_TO_SHOP)) {
+            if ($item['direction'] == (($side == 'client')? \app\models\Shop\Request::DIRECTION_TO_SHOP : \app\models\Shop\Request::DIRECTION_TO_CLIENT)) {
                 $liSuffix = ' class="timeline-inverted"';
             }
-            if (\yii\helpers\ArrayHelper::getValue($item, 'message', '') != '') {
+            if (\yii\helpers\ArrayHelper::getValue($item, 'status', '') == '') {
                 $type = 'message';
                 $header = 'Сообщение';
                 $icon = 'glyphicon-envelope';
@@ -208,7 +212,7 @@ $union = $request->getUnion();
                 $header = \app\models\Shop\Request::$statusList[$item['status']][$side];
                 $icon = \app\models\Shop\Request::$statusList[$item['status']]['timeLine']['icon'];
                 $color = \app\models\Shop\Request::$statusList[$item['status']]['timeLine']['color'];
-                $message = '';
+                $message = \yii\helpers\ArrayHelper::getValue($item, 'message', '');
             }
             ?>
             <li<?= $liSuffix ?>>
@@ -226,88 +230,121 @@ $union = $request->getUnion();
                 </div>
             </li>
         <?php } ?>
-        <li class="timeline-inverted">
-            <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Выставлен счет на оплату</h4>
-                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 часов назад</small></p>
-                </div>
-                <div class="timeline-body">
-                    <p>Стоимость дотавки составит 500 руб.</p>
-                    <p>Итого вам необходимо оплатить 2 500 руб.</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Заказ оплачен</h4>
-                </div>
-                <div class="timeline-body">
-                    <p>Я оплатил через сбербанк.</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge info"><i class="glyphicon glyphicon-envelope"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Сообщение</h4>
-                </div>
-                <div class="timeline-body">
-                    <p>А как сделать Акселератор мозга Если я ничего не знаю, ведь все же знают что Бог везде но я его не вижу, и тогда получается что нужно делать что то</p>
-                </div>
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge info"><i class="glyphicon glyphicon-envelope"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Сообщение</h4>
-                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 часов назад</small></p>
-                </div>
-                <div class="timeline-body">
-                    <p>А как сделать Акселератор мозга Если я ничего не знаю, ведь все же знают что Бог везде но я его не вижу, и тогда получается что нужно делать что то</p>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                </div>
-                <div class="timeline-body">
-                    <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                    <hr>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li class="timeline-inverted">
-            <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Заказ выполнен</h4>
-                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 часов назад</small></p>
-                </div>
-            </div>
-        </li>
     </ul>
-    <button class="btn btn-info">Отправить сообщение</button>
+
+
+
+
+    <?php
+    $this->registerJs(<<<JS
+    $('#buttonSendMessage').click(function() {
+        $('#messageModal').modal('show');
+        $('#buttonSendMessageForm').click(function() {
+            var text = $('#messageModal textarea').val();
+            ajaxJson({
+                url: '/cabinet/shop/requestList/{$request->getId()}/message',
+                data: {
+                    text: text
+                },
+                success: function(ret) {
+                    $('#messageModal').modal('hide');
+                }
+            });
+        });
+    });
+    $('#buttonNewBill').click(function() {
+        $('#messageModal').modal('show');
+        $('#buttonSendMessageForm').click(function() {
+            var text = $('#messageModal textarea').val();
+            ajaxJson({
+                url: '/cabinet/shop/requestList/{$request->getId()}/newBill',
+                data: {
+                    text: text
+                },
+                success: function(ret) {
+                    $('#messageModal').modal('hide');
+                }
+            });
+        });
+    });
+    $('#buttonAnswerPay').click(function() {
+        $('#messageModal').modal('show');
+        $('#buttonSendMessageForm').click(function() {
+            var text = $('#messageModal textarea').val();
+            ajaxJson({
+                url: '/cabinet/shop/requestList/{$request->getId()}/answerPay',
+                data: {
+                    text: text
+                },
+                success: function(ret) {
+                    $('#messageModal').modal('hide');
+                }
+            });
+        });
+    });
+    $('#buttonSend').click(function() {
+        $('#messageModal').modal('show');
+        $('#buttonSendMessageForm').click(function() {
+            var text = $('#messageModal textarea').val();
+            ajaxJson({
+                url: '/cabinet/shop/requestList/{$request->getId()}/send',
+                data: {
+                    text: text
+                },
+                success: function(ret) {
+                    $('#messageModal').modal('hide');
+                }
+            });
+        });
+    });
+    $('#buttonDone').click(function() {
+        $('#messageModal').modal('show');
+        $('#buttonSendMessageForm').click(function() {
+            var text = $('#messageModal textarea').val();
+            ajaxJson({
+                url: '/cabinet/shop/requestList/{$request->getId()}/done',
+                data: {
+                    text: text
+                },
+                success: function(ret) {
+                    $('#messageModal').modal('hide');
+                }
+            });
+        });
+    });
+JS
+    );
+    ?>
+
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Сообщение</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="10"></textarea>
+                    <hr>
+                    <button class="btn btn-primary" style="width:100%;" id="buttonSendMessageForm">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <button class="btn btn-info" id="buttonSendMessage">Отправить сообщение</button>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_USER_NOT_CONFIRMED, \app\models\Shop\Request::STATUS_SEND_TO_SHOP, ])) { ?>
+        <button class="btn btn-info" id="buttonNewBill">Выставить счет на оплату</button>
+    <?php } ?>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_ORDER_DOSTAVKA, \app\models\Shop\Request::STATUS_PAID_CLIENT, ])) { ?>
+        <button class="btn btn-info" id="buttonAnswerPay">Подтвердить оплату</button>
+    <?php } ?>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_PAID_CLIENT, \app\models\Shop\Request::STATUS_PAID_SHOP, ])) { ?>
+        <button class="btn btn-info" id="buttonSend">Заказ отправлен</button>
+    <?php } ?>
+    <?php if (in_array($request->getStatus(), [\app\models\Shop\Request::STATUS_SEND_TO_USER, \app\models\Shop\Request::STATUS_FINISH_CLIENT, ])) { ?>
+        <button class="btn btn-info" id="buttonDone">Заказ выполнен</button>
+    <?php } ?>
 </div>

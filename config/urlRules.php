@@ -148,21 +148,33 @@ return [
 
     // магазин
     'shop'                                                                                 => 'shop/index',
-    'cabinet/shop/<id:\\d+>'                                                               => 'cabinet_shop/index',
-    'cabinet/shop/<id:\\d+>/productList'                                                   => 'cabinet_shop/product_list',
-    'cabinet/shop/<id:\\d+>/requestList'                                                   => 'cabinet_shop/request_list',
-    'cabinet/shop/requestList/<id:\\d+>'                                                   => 'cabinet_shop/request_list_item',
-    'cabinet/shop/requestList/<id:\\d+>/message'                                           => 'cabinet_shop/request_list_item_message',
-    'cabinet/shop/requestList/<id:\\d+>/newBill'                                           => 'cabinet_shop/request_list_item_new_bill',
-    'cabinet/shop/requestList/<id:\\d+>/answerPay'                                         => 'cabinet_shop/request_list_item_answer_pay',
-    'cabinet/shop/requestList/<id:\\d+>/send'                                              => 'cabinet_shop/request_list_item_send',
-    'cabinet/shop/requestList/<id:\\d+>/done'                                              => 'cabinet_shop/request_list_item_done',
-    'cabinet/shop/productList/<id:\\d+>/edit'                                              => 'cabinet_shop/product_list_edit',
-    'cabinet/shop/<id:\\d+>/productList/add'                                               => 'cabinet_shop/product_list_add',
+    'shop/basket'                                                                          => 'shop/basket',
+    'shop/basket/add'                                                                      => 'shop/basket_add',
+    'shop/order'                                                                           => 'shop/order',
+
+    'cabinet/shop/<id:\\d+>'                                                               => 'cabinet_shop_shop/index',
+    'cabinet/shop/<id:\\d+>/productList'                                                   => 'cabinet_shop_shop/product_list',
+    'cabinet/shop/<id:\\d+>/requestList'                                                   => 'cabinet_shop_shop/request_list',
+    'cabinet/shop/requestList/<id:\\d+>'                                                   => 'cabinet_shop_shop/request_list_item',
+    'cabinet/shop/requestList/<id:\\d+>/message'                                           => 'cabinet_shop_shop/request_list_item_message',
+    'cabinet/shop/requestList/<id:\\d+>/newBill'                                           => 'cabinet_shop_shop/request_list_item_new_bill',
+    'cabinet/shop/requestList/<id:\\d+>/answerPay'                                         => 'cabinet_shop_shop/request_list_item_answer_pay',
+    'cabinet/shop/requestList/<id:\\d+>/send'                                              => 'cabinet_shop_shop/request_list_item_send',
+    'cabinet/shop/requestList/<id:\\d+>/done'                                              => 'cabinet_shop_shop/request_list_item_done',
+    'cabinet/shop/productList/<id:\\d+>/edit'                                              => 'cabinet_shop_shop/product_list_edit',
+    'cabinet/shop/<id:\\d+>/productList/add'                                               => 'cabinet_shop_shop/product_list_add',
 
     'cabinet/shop/checkBoxTreeMask/add'                                                    => 'cabinet_shop_check_box_tree_mask/add',
     'cabinet/shop/checkBoxTreeMask/addInto'                                                => 'cabinet_shop_check_box_tree_mask/add_into',
     'cabinet/shop/checkBoxTreeMask/delete'                                                 => 'cabinet_shop_check_box_tree_mask/delete',
+
+    'cabinet/orders'                                                                       => 'cabinet_shop_client/orders',
+    'cabinet/order/<id:\\d+>'                                                              => 'cabinet_shop_client/order_item',
+    'cabinet/order/<id:\\d+>/message'                                                      => 'cabinet_shop_client/order_item_message',
+    'cabinet/order/<id:\\d+>/answerPay'                                                    => 'cabinet_shop_client/order_item_answer_pay',
+    'cabinet/order/<id:\\d+>/done'                                                         => 'cabinet_shop_client/order_item_done',
+
+    // /Магазин
 
 
     'praktice'                                                                             => 'page/praktice',
@@ -246,9 +258,4 @@ return [
     'cabinet/poseleniya/<id:\\d+>/edit'                                                    => 'cabinet/poseleniya_edit',
     'cabinet/poseleniya/<id:\\d+>/delete'                                                  => 'cabinet/poseleniya_delete',
 
-    'cabinet/basket'                                                                       => 'cabinet_shop/basket',
-    'cabinet/basket/add'                                                                   => 'cabinet_shop/basket_add',
-    'cabinet/order'                                                                        => 'cabinet_shop/order',
-    'cabinet/orders'                                                                       => 'cabinet_shop/orders',
-    'cabinet/order/<id:\\d+>'                                                              => 'cabinet_shop/order_item',
 ];

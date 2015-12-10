@@ -14,7 +14,7 @@ use cs\web\Exception;
 use Yii;
 use yii\base\UserException;
 
-class Cabinet_shopController extends CabinetBaseController
+class Cabinet_shop_shopController extends CabinetBaseController
 {
     /**
      * Редактирование магазина
@@ -80,33 +80,6 @@ class Cabinet_shopController extends CabinetBaseController
     {
         return $this->render([
             'union_id' => $id
-        ]);
-    }
-
-    public function actionBasket()
-    {
-        return $this->render([
-            'items' => Basket::get()
-        ]);
-    }
-
-    public function actionOrder()
-    {
-        $model = new Order();
-        if ($model->load(Yii::$app->request->post()) && $model->add()) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        } else {
-            return $this->render([
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionOrders()
-    {
-        return $this->render([
         ]);
     }
 
@@ -235,32 +208,5 @@ class Cabinet_shopController extends CabinetBaseController
         ]);
 
         return self::jsonSuccess();
-    }
-
-    public function actionOrder_item($id)
-    {
-        return $this->render([
-            'request'     => Request::find($id),
-        ]);
-    }
-
-    /**
-     * AJAX
-     * Добавление товара в корзину
-     * REQUEST
-     * - id - int - идентификатор товара gs_unions_shop_product.id
-     *
-     * @return string
-     */
-    public function actionBasket_add()
-    {
-        $id = self::getParam('id');
-        $product = Product::find($id);
-        if (is_null($product)) {
-            return self::jsonErrorId(101, 'Не найден товар');
-        }
-        $count = Basket::add($product);
-
-        return self::jsonSuccess($count);
     }
 }
